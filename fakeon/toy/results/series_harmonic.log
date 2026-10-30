@@ -1,0 +1,26 @@
+# fakeon_series.py  2026-10-30 17:49:21  numpy 2.5.3 sympy 1.14.0 python 3.13.18  kmax 6
+# series_harmonic: Omega_K^2 against the Catalan series of (4.13); trajectories q_K vs exact cos(Omega t)
+  reduced order K = 1: 9 ops, 0.0 s
+  reduced order K = 2: 15 ops, 0.0 s
+  reduced order K = 3: 21 ops, 0.0 s
+  reduced order K = 4: 27 ops, 0.1 s
+  reduced order K = 5: 33 ops, 0.1 s
+  reduced order K = 6: 39 ops, 0.2 s
+  K = 0: Omega_K^2 = 1.0*omega**2   Catalan match: True
+  K = 1: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4   Catalan match: True
+  K = 2: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4 + 2.0*omega**6   Catalan match: True
+  K = 3: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4 + 2.0*omega**6 + 5.0*omega**8   Catalan match: True
+  K = 4: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4 + 2.0*omega**6 + 5.0*omega**8 + 14.0*omega**10   Catalan match: True
+  K = 5: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4 + 2.0*omega**6 + 5.0*omega**8 + 14.0*omega**10 + 42.0*omega**12   Catalan match: True
+  K = 6: Omega_K^2 = 1.0*omega**2 + 1.0*omega**4 + 2.0*omega**6 + 5.0*omega**8 + 14.0*omega**10 + 42.0*omega**12 + 132.0*omega**14   Catalan match: True
+ w tau = 0.1: Omega (4.13) = 0.100509+0.000000j; Omega_K = [0.1      0.100499 0.100509 0.100509 0.100509 0.100509 0.100509]
+   max|q_K - cos(Omega t)| over 20 periods, K = 0..6: [6.20e-01 1.26e-02 3.16e-04 8.87e-06 2.66e-07 8.48e-09 3.69e-10]
+ w tau = 0.3: Omega (4.13) = 0.316228+0.000000j; Omega_K = [0.3      0.313209 0.315528 0.316048 0.316178 0.316214 0.316224]
+   max|q_K - cos(Omega t)| over 20 periods, K = 0..6: [2.00e+00 1.17e+00 2.88e-01 7.43e-02 2.04e-02 5.84e-03 1.73e-03]
+ w tau = 0.45: Omega (4.13) = 0.531089+0.000000j; Omega_K = [0.45     0.493464 0.510014 0.51819  0.52277  0.525533 0.527283]
+   max|q_K - cos(Omega t)| over 20 periods, K = 0..6: [2.   2.   2.   2.   1.83 1.39 1.  ]
+ w tau = 0.49: Omega (4.13) = 0.632852+0.000000j; Omega_K = [0.49     0.545663 0.570465 0.584848 0.594321 0.601053 0.606083]
+   max|q_K - cos(Omega t)| over 20 periods, K = 0..6: [2. 2. 2. 2. 2. 2. 2.]
+ w tau = 0.55: Omega (4.13) = 0.724569-0.158114j; Omega_K = [0.55     0.627699 0.670349 0.700881 0.725738 0.747581 0.767771]
+   disc < 0: no real projected solution; the Omega_K series still has finite terms (partial sums of a divergent series)
+# END series_harmonic elapsed=3.8s status=ok

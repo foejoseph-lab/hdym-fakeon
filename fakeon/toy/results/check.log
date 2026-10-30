@@ -1,0 +1,10 @@
+# fakeon_toy.py  2026-10-30 17:49:26  numpy 2.5.3  python 3.13.18
+# check: kernel vs analytic multiplier, tau->0, eps extrapolation
+  cos(0.5 t): PV multiplier +1.023018; |err| eps=0.16,0.08,0.04: 2.63e-03 6.58e-04 1.65e-04; Richardson 2.06e-06
+  cos(1.0 t): PV multiplier +1.098901; |err| eps=0.16,0.08,0.04: 3.87e-03 9.70e-04 2.44e-04; Richardson 2.62e-06
+  cos(2.0 t): PV multiplier +1.562500; |err| eps=0.16,0.08,0.04: 1.80e-02 4.55e-03 1.14e-03; Richardson 7.80e-06
+  cos(3.0 t): PV multiplier +5.263158; |err| eps=0.16,0.08,0.04: 9.36e-01 2.72e-01 7.10e-02; Richardson 3.89e-03
+  Gaussian, tau = 0.3: max|<f> - f| = 1.347e-01  (expect ~ tau^2 <nu^2> = 9.0e-02)
+  Gaussian, tau = 0.1: max|<f> - f| = 1.032e-02  (expect ~ tau^2 <nu^2> = 1.0e-02)
+  Gaussian, tau = 0.03: max|<f> - f| = 9.024e-04  (expect ~ tau^2 <nu^2> = 9.0e-04)
+# END check elapsed=0.1s status=ok

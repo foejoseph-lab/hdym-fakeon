@@ -1,0 +1,24 @@
+# fakeon_toy.py  2026-10-30 17:49:26  numpy 2.5.3  python 3.13.18
+# picard: naive fixed-initial-data iteration on V = m w^2 q^2/2 -- recorded because it diverges
+ w tau = 0.10: (4.13) Omega = 0.100509+0.000000j  (Omega/w = 1.005090+0.000000j), disc = +0.9600
+  iter  1  |dq| = 9.720e-01
+  iter  2  |dq| = 3.257e+00  rho = 3.3507
+  iter  3  |dq| = 2.918e+00  rho = 0.8960
+  iter  4  |dq| = 1.236e+00  rho = 0.4235
+  iter  5  |dq| = 4.656e-01  rho = 0.3768
+  iter  6  |dq| = 2.634e+00  rho = 5.6575
+  iter  7  |dq| = 1.275e+01  rho = 4.8381
+  iter  8  |dq| = 4.655e+01  rho = 3.6519
+  status = max_iter, 8 iterations, 36.9 s
+  rho (last three): [5.65749351 4.83812903 3.65190553]
+ w tau = 0.30: (4.13) Omega = 0.316228+0.000000j  (Omega/w = 1.054093+0.000000j), disc = +0.6400
+  iter  1  |dq| = 8.263e+00
+  iter  2  |dq| = 3.468e+02  rho = 41.9656
+  iter  3  |dq| = 4.522e+03  rho = 13.0404
+  iter  4  |dq| = 2.493e+04  rho = 5.5139
+  iter  5  |dq| = 7.551e+04  rho = 3.0283
+  iter  6  |dq| = 1.698e+06  rho = 22.4915
+  status = diverged, 6 iterations, 29.1 s
+  rho (last three): [ 5.513873    3.02830898 22.49150392]
+# note: the fixed-initial-data iteration on a window of several periods does not contract (rho is erratic and ends above 1; secular polynomial terms grow like (w T)^2 per step); see the docstring and fakeon_series.py for the working method.
+# END picard elapsed=66.0s status=ok
