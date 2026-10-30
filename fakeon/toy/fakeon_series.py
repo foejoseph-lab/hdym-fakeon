@@ -20,7 +20,11 @@ Runs (Spyder):
     import sys
     %cd C:\\GitHub\\hdym\\fakeon\\toy
     !"{sys.executable}" -B -u fakeon_series.py --harmonic --kmax 6    > results\\series_harmonic.log
-    !"{sys.executable}" -B -u fakeon_series.py --wall --kmax 5        > results\\series_wall.log
+    !"{sys.executable}" -B -u fakeon_series.py --wall --kmax 7        > results\\series_wall.log
+Long runs (K >= 8; the reduction grows x8 per order, ~2 min per width at K = 8, ~16 min at K = 9) are resumable:
+    !"{sys.executable}" -B -u fakeon_series.py --wall --kmax 9 --out results\\series_wall_k9.npz --resume >> results\\series_wall_k9.log
+The npz is checkpointed after every wall width; --resume skips the widths already in --out (refused if that file
+was written with a different kmax).  Use >> for the log of a resumable run, > otherwise.
 Outputs: results/series_<name>.npz (signed), the log; every log ends '# END <name> status=...'.
 """
 import argparse
@@ -151,19 +155,38 @@ def run_harmonic(kmax, log):
     log(f"# END {name} elapsed={time.time() - t_run:.1f}s status={status}")
 
 
-def run_wall(kmax, log):
+def run_wall(kmax, log, out=None, resume=False):
     name = "series_wall"
     t_run = time.time()
-    log(f"# {name}: one bounce off V0 exp((q - qw)/w), no other force; convergence in K vs tau v/w")
+    out = out or os.path.join(RES, f"{name}.npz")
+    log(f"# {name}: one bounce off V0 exp((q - qw)/w), no other force; convergence in K vs tau v/w  "
+        f"kmax {kmax}  out {out}  resume {resume}")
     # V0 = 1/2 puts the turning point of a unit-speed particle at qw; launched from eight widths out
     # (wall force e^{-8} of its peak), run to eight widths out again; nothing else acts, so the outgoing
     # velocity v_out and the position at t_end are the observables (v_out is conserved after the bounce); the
     # projection mainly delays the bounce, so |dq| at t_end carries the signal and |dv_out| sits at machine
     # precision from K ~ 5; the two agree where both are resolved
     m, tau, qw, V0, v0 = 1.0, 0.2, 1.0, 0.5, 1.0
-    out = {}
+    done = {}
+    if resume and os.path.exists(out):
+        with np.load(out, allow_pickle=True) as z:
+            if int(z["kmax"]) != kmax:
+                log(f"# resume refused: {out} was written with kmax {int(z['kmax'])}, this run is kmax {kmax}")
+                log(f"# END {name} elapsed={time.time() - t_run:.1f}s status=FAIL")
+                return
+            done = {k: z[k].item() for k in z.files if k.startswith("ratio_")}
+        log(f"# resumed: {len(done)} wall width(s) already in {out}: {sorted(done)}")
     fmt = {"float_kind": lambda x: f"{x:.3e}"}
+
+    def checkpoint(results):
+        np.savez(out, tau=tau, qw=qw, V0=V0, v0=v0, kmax=kmax,
+                 **{k: np.array(v, dtype=object) for k, v in results.items()})
+
     for ratio in [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]:
+        key = f"ratio_{ratio}"
+        if key in done:
+            log(f" tau v/w = {ratio:.2f}: in checkpoint, skipped")
+            continue
         wv = tau * v0 / ratio
         q0 = qw - 8.0 * wv
         t_end = 20.0 * wv / v0
@@ -197,14 +220,14 @@ def run_wall(kmax, log):
         log(f"   r_K = dq_K/dq_(K-1), K = 2..{kmax}: {np.array2string(r, formatter=fmt)}"
             f"   c_K = r_K/(tau v/w)^2: {np.array2string(c, formatter=fmt)}"
             f"   increments of c_K: {np.array2string(np.diff(c), formatter=fmt)}")
-        out[f"ratio_{ratio}"] = dict(w=wv, tau_rate=ratio, t=t_eval, q0=q0, trajs=trajs, v_out=vels, d_v=d_v,
-                                     d_q_end=d_q_end, r=r, c=c, status=status)
+        done[key] = dict(w=wv, tau_rate=ratio, t=t_eval, q0=q0, trajs=trajs, v_out=vels, d_v=d_v,
+                         d_q_end=d_q_end, r=r, c=c, status=status)
+        checkpoint(done)  # one width per checkpoint: a killed run loses at most the width in progress
     log("# reading: a convergent series has c_K -> c_inf < inf (Catalan: 1, 2, 2.5, 2.8, ... -> 4, increments "
         "decreasing); the local-harmonic radius at the turning point, V'' = V0 E/w^2 = 1/(2 w^2), would give "
         "c_inf = 2.  Increasing increments of c_K, and c_K beyond 2, point to an asymptotic series; a Domb-Sykes "
         "(r_K vs 1/K) extrapolation needs K >= 7 to be decisive.")
-    np.savez(os.path.join(RES, f"{name}.npz"), tau=tau, qw=qw, V0=V0, v0=v0, kmax=kmax,
-             **{k: np.array(v, dtype=object) for k, v in out.items()})
+    checkpoint(done)
     log(f"# END {name} elapsed={time.time() - t_run:.1f}s status=ok")
 
 
@@ -213,6 +236,9 @@ def main():
     ap.add_argument("--harmonic", action="store_true")
     ap.add_argument("--wall", action="store_true")
     ap.add_argument("--kmax", type=int, default=5)
+    ap.add_argument("--out", default=None, help="npz name for --wall (default results/series_wall.npz)")
+    ap.add_argument("--resume", action="store_true",
+                    help="--wall: load --out if it exists and skip the wall widths already in it")
     a = ap.parse_args()
     log = lambda m: print(m, flush=True)
     log(f"# fakeon_series.py  {time.strftime('%Y-%m-%d %H:%M:%S')}  numpy {np.__version__} sympy {sp.__version__} "
@@ -220,7 +246,7 @@ def main():
     if a.harmonic:
         run_harmonic(a.kmax, log)
     if a.wall:
-        run_wall(a.kmax, log)
+        run_wall(a.kmax, log, out=a.out, resume=a.resume)
     if not (a.harmonic or a.wall):
         ap.print_help()
 

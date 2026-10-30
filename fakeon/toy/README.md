@@ -26,8 +26,15 @@ import sys
 !"{sys.executable}" -B -u fakeon_toy.py --picard                 > results\picard.log
 ```
 
-Wall clock on one core: the K = 7 wall sweep about 2 min, the Picard diagnostic about 1 min, the rest seconds; each log ends with its
-elapsed seconds. Dependencies: numpy, scipy, sympy. Nothing here reads from hdym.
+Wall clock on one core: the K = 7 wall sweep about 2 min, the Picard diagnostic about 1 min, the rest seconds; each
+log ends with its elapsed seconds. Dependencies: numpy, scipy, sympy. Nothing here reads from hdym.
+
+Longer wall sweeps (K ≥ 8; the reduction grows ×8 per order) are resumable: `--out` names the npz, which is
+checkpointed after every wall width, and `--resume` skips the widths already in it (refused if the file was written
+with a different `--kmax`). Log with `>>`:
+```
+!"{sys.executable}" -B -u fakeon_series.py --wall --kmax 9 --out results\series_wall_k9.npz --resume >> results\series_wall_k9.log
+```
 
 ## Method in one paragraph
 
