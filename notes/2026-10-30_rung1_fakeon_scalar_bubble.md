@@ -1,13 +1,13 @@
 # The fakeon scalar bubble against the published numbers (30 Oct 2026, night; housekeeping 31 Oct)
 
-Working notes for `bubble/`. Standing (brief 12 §4): an instrument check, done and kept — it confirms that the
+Working notes for `bubble/`. Standing: an instrument check, done and kept — it confirms that the
 one non-textbook rule (the average continuation) is under control on the simplest integral and that method P is
 trustworthy. On the ladder of `2026-10-31_chronology_1939_2014.md` §5 it is the p⃗ = 0 case of rung 2 (Lee–Wick
 1969 / Nakanishi 1971). Terms: **method P** = Feynman parameters with the average continuation (the method);
 **method M** = momentum-space residues (the check and balance); **FW** = Anselmi's "Feynman–Wheeler" name for the
 naive principal-value propagator, ½[1/(k²−m²+iε) + 1/(k²−m²−iε)], written "principal-value (FW)" here.
 
-## The two papers this rests on (brief 12 §2.3)
+## The two papers this rests on
 
 **Anselmi, arXiv:1801.00915, JHEP 02 (2018) 141, §4 — the average continuation.** A loop amplitude is defined in
 the Euclidean region and continued to Minkowski momenta. Where a threshold of a fakeon (purely virtual) pair is
@@ -25,7 +25,7 @@ breaks renormalizability and unitarity; the average continuation of the whole am
 principal value only at tree level, is what preserves both (eqs. 3.1, 6.6, §7). The third source, Anselmi–Piva
 arXiv:1703.04584, supplies the nonanalytic Wick rotation of method M and its fig. 13 (the propagator of eq. 2.1).
 
-Status as of 30 Oct: rung 1 of brief 11 §5b done — the one-loop bubble of scalar fields with
+Status as of 30 Oct: the one-loop bubble of scalar fields with
 the fakeon (average continuation), Lee–Wick and principal-value (FW) prescriptions computed by two independent methods
 in D = 2, 3, 4, and the closed forms in 1703.04584, 1801.00915 and 2001.01942 that apply to it reproduced ((5.12)
 through method M only); the published values certified in ball arithmetic. Reviewed once by a reader who had not
@@ -93,7 +93,7 @@ threshold is a branch point only on the second sheet; the two ways around t = 0 
    the logged jump counts there mean nothing; the logs say so. Lesson for later rungs: f_AV agreeing between two methods
    does not check f_d; f_d must be checked on its own, by the second method or a continued closed form. Schwarz
    reflection (f₋ = f₊* for a function real on the Euclidean axis) is a tool to call when something looks odd, not
-   a standing check (brief 12 §2.4); it was removed from the run script 31 Oct and kept as `bubble_lib.schwarz_gap`.
+   a standing check; it was removed from the run script 31 Oct and kept as `bubble_lib.schwarz_gap`.
 3. **Principal-value windows.** Tanh-sinh quadrature puts nodes within 10⁻ᵈᵖˢ of a breakpoint; a subtracted
    integrand h − R/(k − k*) then cancels catastrophically and the PV came out wrong by a factor 2 before the
    window around k* was integrated by Gauss–Legendre on its two halves (nodes O(width/n²) from the ends).
@@ -136,14 +136,13 @@ once to confirm that the 10⁻¹² residuals are the generator's and not the phy
 The two methods carry over as they are. Rung 2 on the current ladder is this bubble at p⃗ ≠ 0 under the Lee–Wick
 contour with real spatial momenta (Nakanishi 1971), CLOP, the region-wise continuation of 1703.04584 and the
 average continuation, with the Minkowski real-axis case of 1612.06510 alongside. The toolchain stands: mpmath
-generator, python-flint checker, no Mathematica. (The Yang–Mills step named here on 30 Oct is not on the ladder;
-brief 12 §2.2.)
+generator, python-flint checker, no Mathematica. (The Yang–Mills step named here on 30 Oct is not on the ladder.)
 
 ## History
 
 - 30 Oct 2026, night: built and run. Three numerical defects found and fixed in the process (items 2–4 above),
   one path error (item 1); all left in the code as comments where they bit.
-- 31 Oct 2026: housekeeping per brief 12 §5 — (a)/(b) renamed method P/M in code, logs and this note;
+- 31 Oct 2026: housekeeping — (a)/(b) renamed method P/M in code, logs and this note;
   "Feynman–Wheeler" → "principal-value (FW)"; the standing Schwarz check removed from the run script (kept callable);
   f_d in D = 3 written as such; two source summaries added at the head; Aglietti–Anselmi added to Open; `--fig13`
   now also saves `results/fig13.png`; folder renamed `loops/scalar/` → `bubble/`. Logs regenerated.

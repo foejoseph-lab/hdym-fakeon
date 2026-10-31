@@ -11,7 +11,7 @@ words of the open sources, the computation pinned down, the predictions written 
 - **Avramidi, hep-th/9510140 (thesis), ch. 1–2** — the Schwinger–DeWitt ansatz and the recursion written as
   an algorithm, with the covariant Taylor expansions in normal coordinates of σ, Δ and the a_k.
 - **Vassilevich, hep-th/0306138, §2.2 and §4.1** — the ansatz (eq. 2.21 region), the integrated coefficients
-  a₀, a₂, a₄ (eqs. 4.26–4.28). The check, read only after the run (rule 2 of brief 13: the method first).
+  a₀, a₂, a₄ (eqs. 4.26–4.28). The check, read only after the run (the method first).
 
 ## 2. The technique
 

@@ -44,7 +44,7 @@ hep-th/0306138 instead.
 
 If the 1962 text is ever in hand, this note gets a one-line re-score.
 
-## 2. Summaries (brief 12 §2.3)
+## 2. Summaries
 
 **Utiyama & DeWitt 1962, from the abstract only.** A set of quantized matter fields propagates on a classical
 metric that is itself sourced by ⟨T_μν⟩ (semiclassical gravity, self-consistently). ⟨T_μν⟩ is divergent with
@@ -125,7 +125,7 @@ Euler] — this is the number the generator computes and the checker certifies.
 **Then the 1962 second result:** resum Π into the h-propagator and show the 1/p⁴ fall-off at p ≫ m. One line
 once Π is in hand; recorded because it is the bridge to Stelle.
 
-## 4. Methods, per brief 12 §2.1
+## 4. Methods
 
 Method P throughout (a) and (c). Method M is not needed here; there is no threshold prescription to compare,
 since nothing is a fakeon yet. (b) is not P or M; it is the technique of its day and is on the ladder as such.
@@ -144,4 +144,4 @@ method on each number is the next technique in the sequence, and the external ch
 - Cutoff placement in (a): on the loop momentum before or after Feynman parametrisation. Both run.
 - Which matter fields 1962 included. Scalar only here; spinor and vector as later additions if wanted (the
   N_F/20 and N_V/5 of eq. 3.15 are the targets if so). Vector is abelian (Maxwell) — not Yang–Mills.
-- Folder: none created yet (brief 12 §2.5). Code lands where the author says when there is code.
+- Folder: none created yet. Code lands where the author says when there is code.

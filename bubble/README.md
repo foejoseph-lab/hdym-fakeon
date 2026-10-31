@@ -1,6 +1,6 @@
 # bubble/ — the one-loop bubble of a fakeon scalar, two ways
 
-The instrument check (brief 12 §4), and the p⃗ = 0 case of rung 2 on the 31 Oct ladder. The question asked here is a check, not a result: can the
+The instrument check, and the p⃗ = 0 case of rung 2 on the 31 Oct ladder. The question asked here is a check, not a result: can the
 one-loop bubble of scalar fields be computed, with the fakeon prescription (Anselmi's average continuation),
 the Lee–Wick prescription and the principal-value (FW) prescription, by two independent methods that agree with each
 other and with the numbers Anselmi and Piva published? Everything downstream (QED, Yang–Mills, the h/χ/φ

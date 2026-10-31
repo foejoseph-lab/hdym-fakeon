@@ -425,7 +425,7 @@ if __name__ == "__main__":
     for s in ("fakeon", "lw", "fw", "fig13"):
         ap.add_argument(f"--{s}", action="store_true")
     ap.add_argument("--dps", type=int, default=20)
-    ap.add_argument("--schwarz", action="store_true", help="also run the Schwarz-reflection consistency check (not standing; brief 12 sec. 2.4)")
+    ap.add_argument("--schwarz", action="store_true", help="also run the Schwarz-reflection consistency check (not standing: a tool to call when something looks odd)")
     args = ap.parse_args()
     mp.mp.dps = args.dps
     args_schwarz = args.schwarz

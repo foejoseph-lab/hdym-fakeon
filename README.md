@@ -3,6 +3,15 @@
 A research paper, backed by simulation, on a part of the study of the spin-2 graviton with a fakeon that the
 community has not yet addressed. The comparison theory is agravity (Salvio & Strumia 2014).
 
+## The rule of the project (author, 31 Oct 2026)
+
+Every result on the path to the goal, from the first paper that computes something (Pais–Uhlenbeck 1950) up to
+at least agravity, is redone with the technique of its day and then with each later technique **until the
+techniques stale out**, with the intent of extracting usable and missed mathematical techniques. Agreement
+between techniques is the pass condition, not the product; the product is what each technique sees that the
+others do not, recorded in `notes/TECHNIQUES.md` at the end of every rung. A rung is not left with a known open
+computation while the next one starts.
+
 ## The question
 
 Quadratic gravity, S = ∫√−g [R/2 + R²/(6f₀²) − C²/(4M²)], carries a massive spin-2 mode of mass M with the
@@ -30,14 +39,13 @@ flow, where the projection stops being usable, and how both compare with agravit
 | Rung 1: one-loop matter on a classical background (Utiyama–DeWitt 1962), four techniques | done 31 Oct 2026 (DeWitt's 1965 covariant recursion added in the evening) | `matter_loop/`, `notes/2026-10-31_rung1_utiyama_dewitt_{setup,results}.md`, `notes/2026-10-31_rung1_b2_dewitt_recursion_setup.md` |
 | Rung 2: the one-loop bubble under the ghost prescriptions (Lee–Wick 1969 / Nakanishi 1971) | p⃗ = 0 case done 30 Oct (the instrument check); p⃗ ≠ 0 and the Minkowski real-axis case next | `bubble/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
 | Rung 3: one-loop graviton on a background ('t Hooft–Veltman 1974) | — | — |
-| Pause before 1977; then Stelle and the ladder's later rungs (`notes/briefs/brief14.md` §4) | — | — |
+| Pause before 1977; then Stelle and the ladder's later rungs (chronology note §5) | — | — |
 
 ## Layout
 
 ```
 README.md            this file
-notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs);
-                     notes/briefs/ holds the session briefs from brief 14 on, each self-contained
+notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs)
 fakeon/toy/          one-degree-of-freedom fakeon projection: code, logs, a short README (rung 0)
 bubble/              the one-loop bubble with the fakeon, Lee–Wick and principal-value prescriptions, two methods,
                      certified against the published closed forms (rung 2 at p⃗ = 0; the instrument check)

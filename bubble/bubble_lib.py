@@ -1,5 +1,5 @@
 """bubble_lib.py -- the one-loop bubble of scalar fields under the Feynman, fakeon (average continuation),
-Lee-Wick and principal-value (FW) prescriptions, in D = 2, 3, 4, computed two independent ways.  The instrument check (brief 12 sec. 4); the p=0 case of rung 2 on the 31 Oct ladder.
+Lee-Wick and principal-value (FW) prescriptions, in D = 2, 3, 4, computed two independent ways.  The instrument check; the p=0 case of rung 2 on the 31 Oct ladder.
 Untrusted generator: mpmath, arbitrary precision, no certification here (that is bubble_cert.py).
 
 Conventions
@@ -616,8 +616,8 @@ def fw_D4_im_closed(t, a1, a2):
 
 def schwarz_gap(fp, fm):
     """Schwarz reflection, f(t - i0) = conj f(t + i0) for a function real on the Euclidean axis: returns the gap
-    fp - fm (real parts) or fp - conj(fm).  A tool to call when something looks odd, not a standing check (brief 12
-    sec. 2.4); removed from the default run of bubble_checks.py on 31 Oct 2026, available via --schwarz."""
+    fp - fm (real parts) or fp - conj(fm).  A tool to call when something looks odd, not a standing check;
+    removed from the default run of bubble_checks.py on 31 Oct 2026, available via --schwarz."""
     try:
         return fp - mp.conj(fm)
     except Exception:

@@ -156,7 +156,7 @@ Code `matter_loop/rung1_dewitt.py`; logs `results/rung1_dewitt_samples.log` (the
 curvature tensors in parallel; 6.5 min on 2 cores in the sandbox, `--jobs` over the samples. **The two logs
 were produced by the code as it stood before the review fixes of 31 Oct night** (the only later change to
 the code is two extra report fields per background: the `dRiemann_at_0` check and the count of nonzero x²
-coefficients of R(x); the computation is untouched). Under brief 14's smoke-test rule they are to be
+coefficients of R(x); the computation is untouched). Under the smoke-test rule (smoke test in the sandbox, full runs on the author's machine) they are to be
 regenerated on the author's machine with the two README commands and committed in their place.
 
 **Result.** The recursion σ^{;μ}∇_μa_k + k a_k = Δ^{−1/2}(□+E)(Δ^{1/2}a_{k−1}), run in normal coordinates on
