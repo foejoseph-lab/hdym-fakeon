@@ -6,7 +6,7 @@ Exported from the session doc of 30 Oct 2026 (three parallel sweeps, arXiv pages
 
 The target is unaddressed: no one has applied the fakeon classical projection, or the Lee–Wick or Merlin treatments, to any background with a nonvanishing Weyl tensor, let alone to Mixmaster. The spin-2 fakeon χ has only ever been projected as a linear tensor perturbation about de Sitter; on FLRW it drops out identically. The covariant projected equations exist on paper (1809.05037) and have never been solved. Anselmi–Marino and Salvio both say in print that generic backgrounds are open.
 
-Three things to pin down before path B step 1, in this order:
+Three things to pin down (written 30 Oct under a classical plan since set aside; they remain the first things a referee will ask of any route):
 
 1. **Reconcile `bianchi9/` with Lehners & Stelle 1909.01169**, who evolved EH + C² + R² on Bianchi IX and report BKL behaviour persisting with a faster crunch, where `bianchi9/` reports the Weyl ghost ending the chaos. Likely a matter of where in H/M their runs sit relative to the 0.2 boundary and of their not computing chaos indicators, but it has to be shown, and it is the first thing a referee will raise (section 6; separate note).
 2. **The spin-2 projection recipe is only spelled out for a linear mode about de Sitter** (ABP20's U/V split, section 3). Its nonlinear minisuperspace form, with C ≠ 0 and the constraints, does not exist in the literature and is the main technical risk; the one-mode toy (section 7) is the place to catch sign and ordering errors before Bianchi IX.
@@ -123,7 +123,7 @@ No paper applies the fakeon, Lee–Wick or Merlin prescription to any anisotropi
 
 **Caveat on the negative result.** INSPIRE and the arXiv API were unreachable in the session; the negatives rest on 47 web searches (query list available on request) plus the fakeon papers' own statements of scope. A ten-minute INSPIRE citation walk from 1901.09273 and 1909.01169 would close that gap.
 
-## 7. Equations to carry into the one-mode toy (path B, step 1)
+## 7. Equations carried into the one-mode toy (classical; ħ → 0 check material, not the route)
 
 Written before the toy was built; the toy's own note records what changed (the iteration was replaced by the order-by-order reduction, and the BVP route was found to be the wrong tool). Kept as the plan it was.
 
@@ -135,9 +135,9 @@ Written before the toy was built; the toy's own note records what changed (the i
 
 **Iteration (as planned).** q = q₀ + q₁ + … with q₀ the τ = 0 solution and each q_n obtained by applying the kernel to the previous force; the convergence criterion the ratio of successive terms as a function of τω_eff. The question for a chaotic base flow: does intermittently large ω_eff make it fail, and how does the failure announce itself.
 
-**What changes in minisuperspace (step 2).** On Bianchi IX the operator being inverted is the χ equation from ABP's auxiliary-field split, with C ≠ 0 and time-dependent coefficients from the Misner variables; the kernel must be constructed numerically. Two things from the hdym notes enter here and are not in any fakeon paper: (i) the Lee–Wick paper's open item (v) lesson that constraint terms vanishing on an ansatz couple the normal and ghost sectors off it applies to the Hamiltonian and momentum constraints, so the projection has to be defined on the constraint surface and checked to stay there, and the naive projection in the β± variables alone is to be labelled as such; (ii) the adiabatic/repeller boundary at H ≈ 0.2M is a prediction for where the kernel's reality condition m_χ² > H²/4 (section 3) is lost in the de Sitter approximation, H/m_χ = 0.5, versus where the unprojected ghost actually turns on, H/M ≈ 0.2.
+**What would change in minisuperspace (if the ħ → 0 check is ever taken to Bianchi IX).** On Bianchi IX the operator being inverted is the χ equation from ABP's auxiliary-field split, with C ≠ 0 and time-dependent coefficients from the Misner variables; the kernel must be constructed numerically. Two things from the hdym notes enter here and are not in any fakeon paper: (i) the Lee–Wick paper's open item (v) lesson that constraint terms vanishing on an ansatz couple the normal and ghost sectors off it applies to the Hamiltonian and momentum constraints, so the projection has to be defined on the constraint surface and checked to stay there, and the naive projection in the β± variables alone is to be labelled as such; (ii) the adiabatic/repeller boundary at H ≈ 0.2M is a prediction for where the kernel's reality condition m_χ² > H²/4 (section 3) is lost in the de Sitter approximation, H/m_χ = 0.5, versus where the unprojected ghost actually turns on, H/M ≈ 0.2.
 
-**Agravity on the same backgrounds (step 3).** Add R²/(6f_0²) to the `bianchi9/` action; φ is then a normal scalar in both theories (GSF), so the only difference between the fakeon and agravity runs is the treatment of χ. Parameters f_2 and f_0 with f_0/4 < f_2 < f_0 for the fakeon-consistent window, plus runs outside it.
+**Agravity on the same backgrounds (same status).** Add R²/(6f_0²) to the `bianchi9/` action; φ is then a normal scalar in both theories (GSF), so the only difference between the fakeon and agravity runs is the treatment of χ. Parameters f_2 and f_0 with f_0/4 < f_2 < f_0 for the fakeon-consistent window, plus runs outside it.
 
 ## 8. Sources
 

@@ -10,8 +10,9 @@ techniques stale out**, with the intent of extracting usable and missed mathemat
 between techniques is the pass condition, not the product; the product is what each technique sees that the
 others do not, recorded in `notes/TECHNIQUES.md` at the end of every rung. A rung is not left with a known open
 computation while the next one starts. Results before 1962 that the path rests on are presumed fact unless
-history marked them wrong; Pais–Uhlenbeck 1950 is such an input, and `fakeon/toy/` is the classical projection
-exercised on it, not a rung.
+history marked them wrong; Pais–Uhlenbeck 1950 is such an input. **The route is quantum.** Classical work
+(`fakeon/toy/`, any Bianchi IX projection) is ħ → 0 check material for the quantum result, done only when that
+result needs it, and is never a step of the plan.
 
 ## The question
 
@@ -25,8 +26,9 @@ perturbations about de Sitter. On any background with C ≠ 0 the spin-2 fakeon 
 
 The Bianchi IX minisuperspace — the Mixmaster billiard — is the simplest background with C ≠ 0, chaotic, and
 with the unprojected ghost's behaviour already mapped (hdym `bianchi9/`: adiabatic below H ≈ 0.2M, a power-law
-repeller above, the ghost ends the chaos). The paper asks what the fakeon-projected spin-2 mode does on the same
-flow, where the projection stops being usable, and how both compare with agravity's unprojected ghost.
+repeller above, the ghost ends the chaos). The paper asks, in the quantum theory, what the spin-2 fakeon does on
+a background with C ≠ 0 and how that compares with agravity's unprojected ghost; the classical projection on
+the same flow is the ħ → 0 check of that answer, not the answer.
 
 ## Where things stand
 
@@ -34,8 +36,7 @@ flow, where the projection stops being usable, and how both compare with agravit
 |---|---|---|
 | Literature: is it unaddressed, what are the exact equations | done 30 Oct 2026 | `notes/2026-10-30_literature_sweep.md` |
 | Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; LS rerun done on the author's side 31 Oct (hdym `bianchi9/results/ls_rerun.*`) and read 31 Oct evening (note §"Read") | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
-| Classical projection, step 1: the one-mode toy (rung 0 of the ladder) | done 30 Oct 2026 | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
-| Classical steps 2–3 (Bianchi I + wall; full Bianchi IX, R² for agravity) | deferred: the ħ → 0 check of the quantum result, run when that needs it | — |
+| ħ → 0 check material (not the route): the classical fakeon projection on a one-mode toy | done 30 Oct 2026; kept for the ħ → 0 check of the quantum result, used only when that needs it | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
 | Chronology 1939–2014 and the ladder | written 31 Oct, for the author to correct | `notes/2026-10-31_chronology_1939_2014.md` |
 | Rung 1: one-loop matter on a classical background (Utiyama–DeWitt 1962), four techniques | done 31 Oct 2026 (DeWitt's 1965 covariant recursion added in the evening) | `matter_loop/`, `notes/2026-10-31_rung1_utiyama_dewitt_{setup,results}.md`, `notes/2026-10-31_rung1_b2_dewitt_recursion_setup.md` |
 | Rung 2: the one-loop bubble under the ghost prescriptions (Lee–Wick 1969 / Nakanishi 1971) | p⃗ = 0 case done 30 Oct (the instrument check); p⃗ ≠ 0 and the Minkowski real-axis case next | `bubble/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
@@ -59,7 +60,7 @@ author, 31 Oct 2026); a new folder appears only when a new concept does. The lad
 in `notes/2026-10-31_chronology_1939_2014.md` §5: the toy (1950) → matter on a background (1962) → the bubble
 under prescriptions (1969–71) → the graviton loop (1974) → pause → Stelle 1977 and onward to agravity. Each rung is
 redone with the technique of its day, then with each later technique; the goal — a quantum treatment of the spin-2
-mode with a fakeon against agravity — is unchanged, and the classical projection work is its ħ → 0 check.
+mode with a fakeon against agravity — is unchanged; the classical projection work is ħ → 0 check material, not the route.
 
 Each folder follows hdym's pattern: a short README (what it asks, how to run, what is in `results/`), code at the
 top of the folder, outputs written straight into `results/`.
