@@ -147,3 +147,46 @@ into the W² coefficient. (Written out, not run: a one-line conversion.)
 - Spinor and vector matter (the N_F/20, N_V/5 of Salvio 3.15): not done; additions to the same code if the
   ladder wants them before rung 3 (the vector would be abelian — Maxwell — not Yang–Mills).
 - The 1962 text: unseen; §3 re-scored in one line if it ever is.
+
+## 7. Addendum, 31 Oct evening: (b2) DeWitt 1965 covariant recursion — done
+
+Setup, predictions and the two corrections made before the logged runs: `2026-10-31_rung1_b2_dewitt_recursion_setup.md`.
+Code `matter_loop/rung1_dewitt.py`; logs `results/rung1_dewitt_samples.log` (the result) and
+`results/rung1_dewitt_quartic0.log` (the control). Sympy, exact rationals, 6 random rational algebraic
+curvature tensors in parallel; 6.5 min on 2 cores in the sandbox, `--jobs` over the samples. **The two logs
+were produced by the code as it stood before the review fixes of 31 Oct night** (the only later change to
+the code is two extra report fields per background: the `dRiemann_at_0` check and the count of nonzero x²
+coefficients of R(x); the computation is untouched). Under brief 14's smoke-test rule they are to be
+regenerated on the author's machine with the two README commands and committed in their place.
+
+**Result.** The recursion σ^{;μ}∇_μa_k + k a_k = Δ^{−1/2}(□+E)(Δ^{1/2}a_{k−1}), run in normal coordinates on
+generic backgrounds (no expansion in h), gives at coincidence
+
+    [a₁] = E + R/6
+    [a₂] = ½E² + ⅙RE + (1/72)R² − (1/180)Ric² + (1/180)Riem²        (□R = 0 on every background used)
+
+as an exact fit over 6 backgrounds, 18 equations, 5 unknowns, residual zero; unit S⁴ gives 29/15 and S²×S² gives
+11/45 at E = 0, as predicted. Both constraints inherited from the six O(h²) logs hold exactly
+(c_{Ric²} + 4c_{Riem²} = 1/60, c_{R²} − c_{Riem²} = 1/120), and the numbers equal Vassilevich 4.28, read after the
+run. In the (W², R², Euler) basis: W²/120 + R²/72 − E₄/360 at E = 0, E₄ = Riem² − 4Ric² + R²; with E = −ξR the
+R² term is ½(ξ − 1/6)²R². **The Euler coefficient −1/360 is the number the flat-space graphs could not see;
+the log order of rung 1 now has four techniques agreeing, one of them not a graph.**
+
+**Control (`--quartic 0`).** With the x⁴ term of the normal-coordinate metric removed, □R(0) ≠ 0 on every
+background (S⁴: 32; S²×S²: 64/9), [a₂] shifts (S⁴: 3, S²×S²: 13/27) by exactly (1/30)□R(0), and the fit over
+generic samples degenerates to a one-parameter family, c₂ = 1/108 − 4c₄/9, c₃ = 1/36 − 2c₄/3, which contains
+the result at c₄ = 1/30. Within this family of metrics □R(0) is itself a combination of R², Ric², Riem², so
+the curvature-squared coefficients are unambiguous only on a metric with □R(0) = 0 — which is what the
+standard (2/45) R·R x⁴ term delivers. Two things were learned from this control and are in the setup note's
+History: the x⁴ term is load-bearing (the code header had claimed otherwise, and was corrected), and a
+"check" first planned — ∇∇R symmetrised in the derivative pair alone, vanishing at the origin — cannot hold
+for generic curvature and was replaced before the logged runs (the fully symmetrised object does vanish on
+this metric; see the setup note). Reviewed by a fresh agent 31 Oct night before the patch was sent; its
+findings (text claims exceeding the code and the logs, none touching the numbers) are folded in and listed
+in the setup note's History.
+
+**Scoring.** Agreement on all counts; no crack at the log order in four techniques. DeWitt 1965 itself stays
+unseen (rule 10); the recursion is attributed to it through Avramidi hep-th/9510140 and Vassilevich hep-th/0306138.
+
+**Still open from §6:** the 1/p⁴ resummation (finite p⁴ log p² part of Π), the unshifted-cutoff placement for
+§4.2, spinor and vector matter.

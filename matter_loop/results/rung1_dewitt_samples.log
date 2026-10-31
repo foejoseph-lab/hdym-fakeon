@@ -1,0 +1,29 @@
+# rung1 dewitt recursion samples=6
+# predictions: [a1] = E + R/6; [a2] = E^2/2 + R E/6 + R^2/72 - Ric^2/180 + Riem^2/180 + Box R/30; S4: 29/15; S2xS2: 11/45
+# x^4 term of the ansatz metric: coefficient 2/45
+sample0: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 2243/216   Box R(0) = 0
+   R = -2243/36, Ric^2 = 413155/81, Riem^2 = 31772069/1296,  [a2] = E**2/2 - 2243*E/216 + 75478423/466560
+sample1: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E + 911/72   Box R(0) = 0
+   R = 911/12, Ric^2 = 4814045/864, Riem^2 = 6165707/432,  [a2] = E**2/2 + 911*E/72 + 2495773/19440
+sample2: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 2153/108   Box R(0) = 0
+   R = -2153/18, Ric^2 = 657685/72, Riem^2 = 5738401/324,  [a2] = E**2/2 - 2153*E/108 + 14367341/58320
+sample3: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E + 95/24   Box R(0) = 0
+   R = 95/4, Ric^2 = 6463603/2592, Riem^2 = 10732529/1296,  [a2] = E**2/2 + 95*E/24 + 310943/7776
+sample4: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 362/27   Box R(0) = 0
+   R = -724/9, Ric^2 = 6812369/2592, Riem^2 = 599731/162,  [a2] = E**2/2 - 362*E/27 + 44717407/466560
+sample5: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 6617/216   Box R(0) = 0
+   R = -6617/36, Ric^2 = 49100797/2592, Riem^2 = 13785473/432,  [a2] = E**2/2 - 6617*E/216 + 126267743/233280
+# fit over 6 background(s), 18 equations: [{c1: 1/72, c2: -1/180, c3: 1/180, cEE: 1/2, cRE: 1/6}]
+# Box R(0) = 0 on every background with this ansatz: the Box R coefficient is not determined by this run (see --quartic 0)
+# constraints from the six O(h^2) logs: c_Ric2 + 4 c_Riem2 = 1/60 (want 1/60);  c_R2 - c_Riem2 = 1/120 (want 1/120)
+# equals the predicted (Vassilevich 4.28) values: True
+# (W^2, R^2, Euler) split at E = 0: {eu: -1/360, r2: 1/72, w: 1/120}   (W^2 = Riem^2 - 2Ric^2 + R^2/3, Euler = Riem^2 - 4Ric^2 + R^2)
+S4: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}  Box R(0) = 0  [a2]_(E=0) = 29/15  (predicted 29/15) ok
+S2xS2: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}  Box R(0) = 0  [a2]_(E=0) = 11/45  (predicted 11/45) ok
+# END rung1 dewitt recursion samples=6 elapsed=391.6s status=OK

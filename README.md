@@ -23,20 +23,21 @@ flow, where the projection stops being usable, and how both compare with agravit
 | step | status | where |
 |---|---|---|
 | Literature: is it unaddressed, what are the exact equations | done 30 Oct 2026 | `notes/2026-10-30_literature_sweep.md` |
-| Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; LS rerun done on the author's side 31 Oct (hdym `bianchi9/results/ls_rerun.*`), reading pending | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
+| Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; LS rerun done on the author's side 31 Oct (hdym `bianchi9/results/ls_rerun.*`) and read 31 Oct evening (note §"Read") | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
 | Classical projection, step 1: the one-mode toy (rung 0 of the ladder) | done 30 Oct 2026 | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
 | Classical steps 2–3 (Bianchi I + wall; full Bianchi IX, R² for agravity) | deferred: the ħ → 0 check of the quantum result, run when that needs it | — |
 | Chronology 1939–2014 and the ladder | written 31 Oct, for the author to correct | `notes/2026-10-31_chronology_1939_2014.md` |
-| Rung 1: one-loop matter on a classical background (Utiyama–DeWitt 1962), three techniques | done 31 Oct 2026; DeWitt's 1965 covariant recursion owed | `matter_loop/`, `notes/2026-10-31_rung1_utiyama_dewitt_{setup,results}.md` |
+| Rung 1: one-loop matter on a classical background (Utiyama–DeWitt 1962), four techniques | done 31 Oct 2026 (DeWitt's 1965 covariant recursion added in the evening) | `matter_loop/`, `notes/2026-10-31_rung1_utiyama_dewitt_{setup,results}.md`, `notes/2026-10-31_rung1_b2_dewitt_recursion_setup.md` |
 | Rung 2: the one-loop bubble under the ghost prescriptions (Lee–Wick 1969 / Nakanishi 1971) | p⃗ = 0 case done 30 Oct (the instrument check); p⃗ ≠ 0 and the Minkowski real-axis case next | `bubble/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
 | Rung 3: one-loop graviton on a background ('t Hooft–Veltman 1974) | — | — |
-| Pause before 1977; then Stelle and the ladder's later rungs (brief 12 §6) | — | — |
+| Pause before 1977; then Stelle and the ladder's later rungs (`notes/briefs/brief14.md` §4) | — | — |
 
 ## Layout
 
 ```
 README.md            this file
-notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs)
+notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs);
+                     notes/briefs/ holds the session briefs from brief 14 on, each self-contained
 fakeon/toy/          one-degree-of-freedom fakeon projection: code, logs, a short README (rung 0)
 bubble/              the one-loop bubble with the fakeon, Lee–Wick and principal-value prescriptions, two methods,
                      certified against the published closed forms (rung 2 at p⃗ = 0; the instrument check)

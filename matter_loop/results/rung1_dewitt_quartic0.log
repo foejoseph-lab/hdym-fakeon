@@ -1,0 +1,26 @@
+# rung1 dewitt recursion samples=6 quartic=0
+# predictions: [a1] = E + R/6; [a2] = E^2/2 + R E/6 + R^2/72 - Ric^2/180 + Riem^2/180 + Box R/30; S4: 29/15; S2xS2: 11/45
+# x^4 term of the ansatz metric: coefficient 0
+sample0: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 2243/216   Box R(0) = 108537167/5832
+   R = -2243/36, Ric^2 = 413155/81, Riem^2 = 31772069/1296,  [a2] = E**2/2 - 2243*E/216 + 218946521/279936
+sample1: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E + 911/72   Box R(0) = 11655583/972
+   R = 911/12, Ric^2 = 4814045/864, Riem^2 = 6165707/432,  [a2] = E**2/2 + 911*E/72 + 6159697/11664
+sample2: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 2153/108   Box R(0) = 3855728/243
+   R = -2153/18, Ric^2 = 657685/72, Riem^2 = 5738401/324,  [a2] = E**2/2 - 2153*E/108 + 1004737/1296
+sample3: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E + 95/24   Box R(0) = 19330595/2916
+   R = 95/4, Ric^2 = 6463603/2592, Riem^2 = 10732529/1296,  [a2] = E**2/2 + 95*E/24 + 18262963/69984
+sample4: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 362/27   Box R(0) = 21205913/5832
+   R = -724/9, Ric^2 = 6812369/2592, Riem^2 = 599731/162,  [a2] = E**2/2 - 362*E/27 + 60759905/279936
+sample5: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}
+   [a1] = E - 6617/216   Box R(0) = 86585027/2916
+   R = -6617/36, Ric^2 = 49100797/2592, Riem^2 = 13785473/432,  [a2] = E**2/2 - 6617*E/216 + 214296689/139968
+# fit over 6 background(s), 18 equations: [{c1: 1/72, c2: 1/108 - 4*c4/9, c3: 1/36 - 2*c4/3, cEE: 1/2, cRE: 1/6}]
+# fit underdetermined or failed
+S4: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}  Box R(0) = 32  [a2]_(E=0) = 3  (predicted 29/15) MISMATCH
+S2xS2: checks {'normal_coords': True, 'riemann_at_0': True, 'R_at_0_matches': True, 'Dhalf_x2': True, 'a1_check': True}  Box R(0) = 64/9  [a2]_(E=0) = 13/27  (predicted 11/45) MISMATCH
+# END rung1 dewitt recursion samples=6 quartic=0 elapsed=278.1s status=FIT-FAILED

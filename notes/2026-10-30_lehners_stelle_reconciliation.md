@@ -36,3 +36,27 @@ Their only quantitative statements are the linearized small-anisotropy equations
 - [ ] Castardelli dos Reis, Chapiro & Shapiro [1903.01044](https://arxiv.org/abs/1903.01044): their Bianchi I result that the sign of the Weyl coefficient decides growth vs. no explosive instability should be matched to your sign (−C²/(4M²), pole at M, non-tachyonic). If their stable sign is yours, cite it as the Bianchi I precursor of your adiabatic regime.
 
 Sources: [1909.01169](https://arxiv.org/abs/1909.01169) (PDF read in full for §§II–III and Fig. 1), [2312.14048](https://arxiv.org/abs/2312.14048) (abstract and § structure), `bianchi9/README.md` at hdym 20fdcf2.
+
+## Read 31 Oct 2026 (evening): the rerun against this note
+
+The author ran `bianchi9_ls.py` on 30–31 Oct (hdym 3a34e0f, `bianchi9/results/ls_rerun.log`; the `.npz` was
+not opened for this reading). What the log says, line by line against the three touch points above:
+
+- **On-branch runs coincide with GR.** Max deviation from the Einstein branch 2–5 × 10⁻⁸ for H₀/M ≤ 0.3 and
+  ≤ 2.4 × 10⁻⁷ at H₀/M = 1, both signs of β₊′(0). Fact 1 of the script holds: with "higher-derivative data taken from
+  the two-derivative solution", EH + C² gives the GR trajectory. Whatever separates Lehners–Stelle's solid
+  curves from their dashed ones is off-branch data or their numerics, not the dynamics.
+- **Their Fig. 1 data never enter the billiard.** From their start to H/M = 8 the runs contain 0 or 1 sign
+  change of β₊′ and none of β₋′ (β₋ ≡ 0 is the head-on θ = π geometry). "BKL behaviour persists" in 1909.01169
+  is a statement about a collapse with at most one wall bounce; it cannot test the chaos claim either way.
+- **H/M crosses 0.2 almost at once.** Within Δα ≈ 0.1–0.8 of the start for H₀/M = 0.01 and 0.1, and at the
+  start for 0.3 and 1. Any σ they could plausibly have used puts most of their collapse above the boundary.
+- **The seeded ghost grows, modestly.** With ε = 10⁻⁶ the off-branch deviation at the end of the run is
+  2 × 10¹–6 × 10² times the seed (22.7 for H₀/M = 0.3, sign −1; 610 for 0.1, sign −1), geometry back-reaction
+  ≤ 3.0 × 10⁻⁶. The log records growth at five H/M values only and the `.npz` was not opened, so the functional
+  form is not established by this reading; it is consistent with the power-law repeller of `bianchi9/`, and
+  calling it that is an inference from `bianchi9/`, not from this log.
+
+Net: nothing in 1909.01169 contradicts the `bianchi9/` closure, and nothing in it can confirm it; the paper
+clause of the third suggested action stands as written. Of the four suggested actions the first is done by
+this run; the eq. (11) check, the paper clause and the 1903.01044 sign match are still open.
