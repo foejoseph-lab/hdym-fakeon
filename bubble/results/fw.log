@@ -1,5 +1,5 @@
 # fw: start, mp.dps = 20
-## Feynman-Wheeler mixed term Sigma' (one +i eps, one -i eps propagator), D = 4, cutoff |k| <= Lambda
+## principal-value (FW) mixed term Sigma' (one +i eps, one -i eps propagator), D = 4, cutoff |k| <= Lambda
 ### m1 = 1, m2 = 0.5: pseudothreshold (m1-m2)^2 = 0.25, threshold 2.25
   T=0.1: d Sigma'/d ln Lambda^2 (Lambda 50->500) = (0.0 + 0.04749621973j), (500->5000) = (0.0 + 0.04749432398j)   eq. 2.6 = (0.0 + 0.04749430483j)   deviation ratio 100.03 (100 for 1/Lambda^2)   2 Im(-i Sigma') = -0.22595658365   eq. 4.3 = -0.22595658365
     [ok] T=0.1 eq. 2.6 nonlocal divergence coefficient: deviation 1.91e-8 (tol 9.5e-7)
@@ -36,4 +36,4 @@
   D=2 T=1.0: 2 Im(-i Sigma') = 0.0   published 0.0
     [ok] D=2 T=1.0 sec. 7 imaginary part: deviation 0.0 (tol 1.0e-12)
 # worst deviation 1.25e-5 at T=0.5 Lambda=200.0 eq. 3.1 (O(1/Lambda^2))
-# END fw elapsed=0.2s status=PASS
+# END fw elapsed=0.4s status=PASS

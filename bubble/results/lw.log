@@ -1,6 +1,6 @@
 # lw: start, mp.dps = 20
 ## Lee-Wick pair a = +-i (M = 1), 1801.00915 eq. 5.5; f = (+-) + (-+) terms, g = (++) + (--) terms
-## route (a): continuation around t = 0 on |t| = 1, along the real axis, a semicircle (radius min(0.1, half the distance to the nearest requested T) = 0.05 here) around the LW threshold t = 2; monodromy tracked by continuity
+## method P: continuation around t = 0 on |t| = 1, along the real axis, a semicircle (radius min(0.1, half the distance to the nearest requested T) = 0.05 here) around the LW threshold t = 2; monodromy tracked by continuity
 ### D = 4
     continuation D=4 T=0.5 upper: ints=(0, -1) jumps=1 worst_ratio=0.00134
     sweep D=4 upper a=((0.0 + 1.0j),(0.0 - 1.0j)) Tmax=8.0: 342 path points, final ints=(0, -1) worst_ratio=0.0413 at t=(2.225 + 1.0e-14j) (competing candidates 2.55 apart)
@@ -24,7 +24,7 @@
     [ok] D=4 T=0.5 |f_d| vs continued published term: deviation 1.0e-14 (tol 1.0e-12)
     [ok] D=4 T=0.5 g_d = 0: deviation 3.29e-16 (tol 1.0e-12)
     [ok] D=4 T=0.5 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=0.5 J_LW route (a) = route (b): deviation 1.65e-24 (tol 1.0e-12)
+    [ok] D=4 T=0.5 J_LW method P = method M: deviation 1.65e-24 (tol 1.0e-12)
     [ok] D=4 T=0.5 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.0: f_AV = (-3.02798785024272 + 0.0j)  published -3.02798785024272 | g_AV = (0.0325663391187364 + 0.0j)  g = 0.0325663391187364 | f_d = (0.0 - 1.3904114e-14j) (|continued published term| 0.0) | g_d = (0.0 + 6.36e-16j) | tracking worst ratio 0.0023
     [ok] D=4 T=1.0 f_AV vs eq. 5.8: deviation 0.0 (tol 1.0e-12)
@@ -32,7 +32,7 @@
     [ok] D=4 T=1.0 |f_d| vs continued published term: deviation 1.39e-14 (tol 1.0e-12)
     [ok] D=4 T=1.0 g_d = 0: deviation 6.36e-16 (tol 1.0e-12)
     [ok] D=4 T=1.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=1.0 J_LW route (a) = route (b): deviation 1.32e-23 (tol 1.0e-12)
+    [ok] D=4 T=1.0 J_LW method P = method M: deviation 1.32e-23 (tol 1.0e-12)
     [ok] D=4 T=1.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.5: f_AV = (-3.92232500587809 + 0.0j)  published -3.92232500587809 | g_AV = (0.07127163298879 + 0.0j)  g = 0.07127163298879 | f_d = (0.0 - 2.3754202e-14j) (|continued published term| 0.0) | g_d = (0.0 + 9.04e-16j) | tracking worst ratio 0.014
     [ok] D=4 T=1.5 f_AV vs eq. 5.8: deviation 0.0 (tol 1.0e-12)
@@ -40,7 +40,7 @@
     [ok] D=4 T=1.5 |f_d| vs continued published term: deviation 2.38e-14 (tol 1.0e-12)
     [ok] D=4 T=1.5 g_d = 0: deviation 9.04e-16 (tol 1.0e-12)
     [ok] D=4 T=1.5 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=1.5 J_LW route (a) = route (b): deviation 6.62e-24 (tol 1.0e-12)
+    [ok] D=4 T=1.5 J_LW method P = method M: deviation 6.62e-24 (tol 1.0e-12)
     [ok] D=4 T=1.5 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.9: f_AV = (-5.45051062607817 + 0.0j)  published -5.45051062607817 | g_AV = (0.111128835080914 + 0.0j)  g = 0.111128835080914 | f_d = (0.0 - 7.2280825e-14j) (|continued published term| 0.0) | g_d = (0.0 + 1.08e-15j) | tracking worst ratio 0.036
     [ok] D=4 T=1.9 f_AV vs eq. 5.8: deviation 6.78e-21 (tol 1.0e-11)
@@ -48,7 +48,7 @@
     [ok] D=4 T=1.9 |f_d| vs continued published term: deviation 7.23e-14 (tol 1.0e-11)
     [ok] D=4 T=1.9 g_d = 0: deviation 1.08e-15 (tol 1.0e-12)
     [ok] D=4 T=1.9 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=1.9 J_LW route (a) = route (b): deviation 1.99e-23 (tol 1.0e-12)
+    [ok] D=4 T=1.9 J_LW method P = method M: deviation 1.99e-23 (tol 1.0e-12)
     [ok] D=4 T=1.9 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=2.1: f_AV = (-6.79994516132564 + 0.0j)  published -6.79994516132573 | g_AV = (0.133583927779291 + 0.0j)  g = 0.133583927779291 | f_d = (0.0 - 1.9158103j) (|continued published term| 1.9158103) | g_d = (0.0 + 1.16e-15j) | tracking worst ratio 0.036
     [ok] D=4 T=2.1 f_AV vs eq. 5.8: deviation 8.9e-14 (tol 1.0e-11)
@@ -56,7 +56,7 @@
     [ok] D=4 T=2.1 |f_d| vs continued published term: deviation 3.27e-14 (tol 1.0e-11)
     [ok] D=4 T=2.1 g_d = 0: deviation 1.16e-15 (tol 1.0e-12)
     [ok] D=4 T=2.1 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=2.1 J_LW route (a) = route (b): deviation 1.41e-16 (tol 1.0e-12)
+    [ok] D=4 T=2.1 J_LW method P = method M: deviation 1.41e-16 (tol 1.0e-12)
     [ok] D=4 T=2.1 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=3.0: f_AV = (-4.65969863251317 + 0.0j)  published -4.65969863251318 | g_AV = (0.250583561359931 + 0.0j)  g = 0.250583561359931 | f_d = (0.0 - 4.6832098j) (|continued published term| 4.6832098) | g_d = (0.0 + 1.41e-15j) | tracking worst ratio 0.041
     [ok] D=4 T=3.0 f_AV vs eq. 5.8: deviation 1.25e-14 (tol 1.0e-12)
@@ -64,7 +64,7 @@
     [ok] D=4 T=3.0 |f_d| vs continued published term: deviation 1.75e-14 (tol 1.0e-12)
     [ok] D=4 T=3.0 g_d = 0: deviation 1.41e-15 (tol 1.0e-12)
     [ok] D=4 T=3.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=3.0 J_LW route (a) = route (b): deviation 1.98e-17 (tol 1.0e-12)
+    [ok] D=4 T=3.0 J_LW method P = method M: deviation 1.98e-17 (tol 1.0e-12)
     [ok] D=4 T=3.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=5.0: f_AV = (-2.38464662054586 + 0.0j)  published -2.38464662054587 | g_AV = (0.557040099610879 + 0.0j)  g = 0.557040099610879 | f_d = (0.0 - 5.7586345j) (|continued published term| 5.7586345) | g_d = (0.0 + 1.58e-15j) | tracking worst ratio 0.041
     [ok] D=4 T=5.0 f_AV vs eq. 5.8: deviation 2.19e-15 (tol 1.0e-12)
@@ -72,7 +72,7 @@
     [ok] D=4 T=5.0 |f_d| vs continued published term: deviation 7.61e-15 (tol 1.0e-12)
     [ok] D=4 T=5.0 g_d = 0: deviation 1.58e-15 (tol 1.0e-12)
     [ok] D=4 T=5.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=5.0 J_LW route (a) = route (b): deviation 3.47e-18 (tol 1.0e-12)
+    [ok] D=4 T=5.0 J_LW method P = method M: deviation 3.47e-18 (tol 1.0e-12)
     [ok] D=4 T=5.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=8.0: f_AV = (-0.789569461507672 + 0.0j)  published -0.789569461507672 | g_AV = (1.01598037203994 + 0.0j)  g = 1.01598037203994 | f_d = (0.0 - 6.083668j) (|continued published term| 6.083668) | g_d = (0.0 + 1.45e-15j) | tracking worst ratio 0.041
     [ok] D=4 T=8.0 f_AV vs eq. 5.8: deviation 5.07e-16 (tol 1.0e-12)
@@ -80,7 +80,7 @@
     [ok] D=4 T=8.0 |f_d| vs continued published term: deviation 3.81e-15 (tol 1.0e-12)
     [ok] D=4 T=8.0 g_d = 0: deviation 1.45e-15 (tol 1.0e-12)
     [ok] D=4 T=8.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=4 T=8.0 J_LW route (a) = route (b): deviation 8.03e-19 (tol 1.0e-12)
+    [ok] D=4 T=8.0 J_LW method P = method M: deviation 8.03e-19 (tol 1.0e-12)
     [ok] D=4 T=8.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
 ### D = 2
     continuation D=2 T=0.5 upper: ints=(0, -1) jumps=71 [D=2: integer labels degenerate up to (n, n); jumps not meaningful] worst_ratio=0.00142
@@ -105,7 +105,7 @@
     [ok] D=2 T=0.5 |f_d| vs continued published term: deviation 1.57e-14 (tol 1.0e-12)
     [ok] D=2 T=0.5 g_d = 0: deviation 3.23e-15 (tol 1.0e-12)
     [ok] D=2 T=0.5 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=0.5 J_LW route (a) = route (b): deviation 1.06e-22 (tol 1.0e-12)
+    [ok] D=2 T=0.5 J_LW method P = method M: deviation 1.06e-22 (tol 1.0e-12)
     [ok] D=2 T=0.5 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.0: f_AV = (4.83679830462458 + 0.0j)  published 4.83679830462458 | g_AV = (-0.319732318210161 + 0.0j)  g = -0.319732318210161 | f_d = (0.0 + 2.9455996e-14j) (|continued published term| 0.0) | g_d = (0.0 - 2.94e-15j) | tracking worst ratio 0.0019
     [ok] D=2 T=1.0 f_AV vs sec. 5 D=2: deviation 1.36e-20 (tol 1.0e-12)
@@ -113,7 +113,7 @@
     [ok] D=2 T=1.0 |f_d| vs continued published term: deviation 2.95e-14 (tol 1.0e-12)
     [ok] D=2 T=1.0 g_d = 0: deviation 2.94e-15 (tol 1.0e-12)
     [ok] D=2 T=1.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=1.0 J_LW route (a) = route (b): deviation 1.06e-22 (tol 1.0e-12)
+    [ok] D=2 T=1.0 J_LW method P = method M: deviation 1.06e-22 (tol 1.0e-12)
     [ok] D=2 T=1.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.5: f_AV = (7.31394034098566 + 0.0j)  published 7.31394034098566 | g_AV = (-0.45667461456699 + 0.0j)  g = -0.45667461456699 | f_d = (0.0 + 8.5548068e-14j) (|continued published term| 0.0) | g_d = (0.0 - 2.53e-15j) | tracking worst ratio 0.027
     [ok] D=2 T=1.5 f_AV vs sec. 5 D=2: deviation 6.78e-21 (tol 1.0e-12)
@@ -121,7 +121,7 @@
     [ok] D=2 T=1.5 |f_d| vs continued published term: deviation 8.55e-14 (tol 1.0e-12)
     [ok] D=2 T=1.5 g_d = 0: deviation 2.53e-15 (tol 1.0e-12)
     [ok] D=2 T=1.5 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=1.5 J_LW route (a) = route (b): deviation 2.12e-22 (tol 1.0e-12)
+    [ok] D=2 T=1.5 J_LW method P = method M: deviation 2.12e-22 (tol 1.0e-12)
     [ok] D=2 T=1.5 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=1.9: f_AV = (18.0882826545182 - 4.0938961299117e-20j)  published 18.0882826545182 | g_AV = (-0.550319768606349 + 0.0j)  g = -0.550319768606349 | f_d = (0.0 + 9.8378809e-13j) (|continued published term| 0.0) | g_d = (0.0 - 2.15e-15j) | tracking worst ratio 0.097
     [ok] D=2 T=1.9 f_AV vs sec. 5 D=2: deviation 9.1e-20 (tol 1.0e-11)
@@ -129,7 +129,7 @@
     [ok] D=2 T=1.9 |f_d| vs continued published term: deviation 9.84e-13 (tol 1.0e-11)
     [ok] D=2 T=1.9 g_d = 0: deviation 2.15e-15 (tol 1.0e-12)
     [ok] D=2 T=1.9 Re f_d = 0, Im f_AV = 0: deviation 4.09e-20 (tol 1.0e-12)
-    [ok] D=2 T=1.9 J_LW route (a) = route (b): deviation 3.48e-21 (tol 1.0e-12)
+    [ok] D=2 T=1.9 J_LW method P = method M: deviation 3.48e-21 (tol 1.0e-12)
     [ok] D=2 T=1.9 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=2.1: f_AV = (-1.96731935802606 + 0.0j)  published -1.96731935802706 | g_AV = (-0.591544952906941 + 0.0j)  g = -0.591544952906941 | f_d = (0.0 + 19.625374j) (|continued published term| 19.625374) | g_d = (0.0 - 1.97e-15j) | tracking worst ratio 0.097
     [ok] D=2 T=2.1 f_AV vs sec. 5 D=2: deviation 1.01e-12 (tol 1.0e-11)
@@ -137,7 +137,7 @@
     [ok] D=2 T=2.1 |f_d| vs continued published term: deviation 3.2e-15 (tol 1.0e-11)
     [ok] D=2 T=2.1 g_d = 0: deviation 1.97e-15 (tol 1.0e-12)
     [ok] D=2 T=2.1 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=2.1 J_LW route (a) = route (b): deviation 2.0e-14 (tol 1.0e-12)
+    [ok] D=2 T=2.1 J_LW method P = method M: deviation 2.0e-14 (tol 1.0e-12)
     [ok] D=2 T=2.1 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=3.0: f_AV = (-1.72163576385598 + 0.0j)  published -1.72163576385602 | g_AV = (-0.732873763619056 + 0.0j)  g = -0.732873763619056 | f_d = (0.0 + 5.6198518j) (|continued published term| 5.6198518) | g_d = (0.0 - 1.2e-15j) | tracking worst ratio 0.097
     [ok] D=2 T=3.0 f_AV vs sec. 5 D=2: deviation 3.37e-14 (tol 1.0e-12)
@@ -145,7 +145,7 @@
     [ok] D=2 T=3.0 |f_d| vs continued published term: deviation 2.33e-15 (tol 1.0e-12)
     [ok] D=2 T=3.0 g_d = 0: deviation 1.2e-15 (tol 1.0e-12)
     [ok] D=2 T=3.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=3.0 J_LW route (a) = route (b): deviation 6.71e-16 (tol 1.0e-12)
+    [ok] D=2 T=3.0 J_LW method P = method M: deviation 6.71e-16 (tol 1.0e-12)
     [ok] D=2 T=3.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=5.0: f_AV = (-1.36761449566192 + 0.0j)  published -1.36761449566193 | g_AV = (-0.855980713116177 + 0.0j)  g = -0.855980713116177 | f_d = (0.0 + 2.7422069j) (|continued published term| 2.7422069) | g_d = (0.0 - 1.87e-16j) | tracking worst ratio 0.097
     [ok] D=2 T=5.0 f_AV vs sec. 5 D=2: deviation 6.53e-15 (tol 1.0e-12)
@@ -153,7 +153,7 @@
     [ok] D=2 T=5.0 |f_d| vs continued published term: deviation 1.35e-15 (tol 1.0e-12)
     [ok] D=2 T=5.0 g_d = 0: deviation 1.87e-16 (tol 1.0e-12)
     [ok] D=2 T=5.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=5.0 J_LW route (a) = route (b): deviation 1.3e-16 (tol 1.0e-12)
+    [ok] D=2 T=5.0 J_LW method P = method M: deviation 1.3e-16 (tol 1.0e-12)
     [ok] D=2 T=5.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
   T=8.0: f_AV = (-1.06555432050394 + 0.0j)  published -1.06555432050394 | g_AV = (-0.832077111008854 + 0.0j)  g = -0.832077111008854 | f_d = (0.0 + 1.6223115j) (|continued published term| 1.6223115) | g_d = (0.0 + 2.25e-16j) | tracking worst ratio 0.097
     [ok] D=2 T=8.0 f_AV vs sec. 5 D=2: deviation 2.16e-15 (tol 1.0e-12)
@@ -161,34 +161,26 @@
     [ok] D=2 T=8.0 |f_d| vs continued published term: deviation 7.54e-16 (tol 1.0e-12)
     [ok] D=2 T=8.0 g_d = 0: deviation 2.25e-16 (tol 1.0e-12)
     [ok] D=2 T=8.0 Re f_d = 0, Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
-    [ok] D=2 T=8.0 J_LW route (a) = route (b): deviation 4.3e-17 (tol 1.0e-12)
+    [ok] D=2 T=8.0 J_LW method P = method M: deviation 4.3e-17 (tol 1.0e-12)
     [ok] D=2 T=8.0 tracking unambiguous (ratio < 0.5): deviation 0.0 (tol 0.0)
-### D = 3: route (b) PV against the continued closed forms of eq. 5.12 (Re[f0 + g] at T +- i0)
-  Euclidean t=-1.69: closed f0+g = (3.84085982766063 + 1.78535745761998e-23j)   route (b) = (3.84085982766063 + 0.0j)
-    [ok] D=3 Euclidean t=-1.69 eq. 5.12 closed = route (b): deviation 3.39e-21 (tol 1.0e-12)
-  T=0.5: route (b) [f0+g] = (4.45864204140889 + 0.0j)   Re closed(T+i0) = 4.45864204140889   Re closed(T-i0) = 4.45864204140889   Im f0(T+i0) = 6.6389137e-15 (2 pi/sqrt T = 8.8857659 above threshold)
-    [ok] D=3 T=0.5 eq. 5.12 Re closed = route (b): deviation 0.0 (tol 1.0e-11)
-    [ok] D=3 T=0.5 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=1.0: route (b) [f0+g] = (4.80780422753874 + 0.0j)   Re closed(T+i0) = 4.80780422753874   Re closed(T-i0) = 4.80780422753874   Im f0(T+i0) = 1.06568e-14 (2 pi/sqrt T = 6.2831853 above threshold)
-    [ok] D=3 T=1.0 eq. 5.12 Re closed = route (b): deviation 0.0 (tol 1.0e-11)
-    [ok] D=3 T=1.0 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=1.5: route (b) [f0+g] = (5.51145177164856 + 0.0j)   Re closed(T+i0) = 5.51145177164856   Re closed(T-i0) = 5.51145177164856   Im f0(T+i0) = 2.337514e-14 (2 pi/sqrt T = 5.1301993 above threshold)
-    [ok] D=3 T=1.5 eq. 5.12 Re closed = route (b): deviation 0.0 (tol 1.0e-11)
-    [ok] D=3 T=1.5 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=1.9: route (b) [f0+g] = (7.47353151049087 + 0.0j)   Re closed(T+i0) = 7.47353151049087   Re closed(T-i0) = 7.47353151049087   Im f0(T+i0) = 1.3223001e-13 (2 pi/sqrt T = 4.5583017 above threshold)
-    [ok] D=3 T=1.9 eq. 5.12 Re closed = route (b): deviation 2.71e-20 (tol 1.0e-11)
-    [ok] D=3 T=1.9 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=2.1: route (b) [f0+g] = (7.2054246210577 + 0.0j)   Re closed(T+i0) = 7.20542462105771   Re closed(T-i0) = 7.20542462105771   Im f0(T+i0) = 4.3358098 (2 pi/sqrt T = 4.3358098 above threshold)
-    [ok] D=3 T=2.1 eq. 5.12 Re closed = route (b): deviation 1.03e-14 (tol 1.0e-11)
-    [ok] D=3 T=2.1 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=3.0: route (b) [f0+g] = (3.64821445450133 + 0.0j)   Re closed(T+i0) = 3.64821445450134   Re closed(T-i0) = 3.64821445450134   Im f0(T+i0) = 3.6275987 (2 pi/sqrt T = 3.6275987 above threshold)
-    [ok] D=3 T=3.0 eq. 5.12 Re closed = route (b): deviation 6.05e-15 (tol 1.0e-11)
-    [ok] D=3 T=3.0 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
-  T=5.0: route (b) [f0+g] = (2.11412780309954 + 0.0j)   Re closed(T+i0) = 2.11412780309955   Re closed(T-i0) = 2.11412780309955   Im f0(T+i0) = 2.8099259 (2 pi/sqrt T = 2.8099259 above threshold)
-    [ok] D=3 T=5.0 eq. 5.12 Re closed = route (b): deviation 2.81e-15 (tol 1.0e-11)
-    [ok] D=3 T=5.0 Schwarz reflection of the closed form (consistency of the transcription only): deviation 3.39e-21 (tol 1.0e-12)
-  T=8.0: route (b) [f0+g] = (1.34585843010253 + 0.0j)   Re closed(T+i0) = 1.34585843010253   Re closed(T-i0) = 1.34585843010253   Im f0(T+i0) = 2.2214415 (2 pi/sqrt T = 2.2214415 above threshold)
-    [ok] D=3 T=8.0 eq. 5.12 Re closed = route (b): deviation 1.39e-15 (tol 1.0e-11)
-    [ok] D=3 T=8.0 Schwarz reflection of the closed form (consistency of the transcription only): deviation 0.0 (tol 1.0e-12)
+### D = 3: method M PV against the continued closed forms of eq. 5.12 (Re[f0 + g] at T +- i0)
+  Euclidean t=-1.69: closed f0+g = (3.84085982766063 + 1.78535745761998e-23j)   method M = (3.84085982766063 + 0.0j)
+    [ok] D=3 Euclidean t=-1.69 eq. 5.12 closed = method M: deviation 3.39e-21 (tol 1.0e-12)
+  T=0.5: method M [f0+g] = (4.45864204140889 + 0.0j)   Re closed(T+i0) = 4.45864204140889   Re closed(T-i0) = 4.45864204140889   Im f0(T+i0) = 6.6389137e-15 (2 pi/sqrt T = 8.8857659 above threshold)
+    [ok] D=3 T=0.5 eq. 5.12 Re closed = method M: deviation 0.0 (tol 1.0e-11)
+  T=1.0: method M [f0+g] = (4.80780422753874 + 0.0j)   Re closed(T+i0) = 4.80780422753874   Re closed(T-i0) = 4.80780422753874   Im f0(T+i0) = 1.06568e-14 (2 pi/sqrt T = 6.2831853 above threshold)
+    [ok] D=3 T=1.0 eq. 5.12 Re closed = method M: deviation 0.0 (tol 1.0e-11)
+  T=1.5: method M [f0+g] = (5.51145177164856 + 0.0j)   Re closed(T+i0) = 5.51145177164856   Re closed(T-i0) = 5.51145177164856   Im f0(T+i0) = 2.337514e-14 (2 pi/sqrt T = 5.1301993 above threshold)
+    [ok] D=3 T=1.5 eq. 5.12 Re closed = method M: deviation 0.0 (tol 1.0e-11)
+  T=1.9: method M [f0+g] = (7.47353151049087 + 0.0j)   Re closed(T+i0) = 7.47353151049087   Re closed(T-i0) = 7.47353151049087   Im f0(T+i0) = 1.3223001e-13 (2 pi/sqrt T = 4.5583017 above threshold)
+    [ok] D=3 T=1.9 eq. 5.12 Re closed = method M: deviation 2.71e-20 (tol 1.0e-11)
+  T=2.1: method M [f0+g] = (7.2054246210577 + 0.0j)   Re closed(T+i0) = 7.20542462105771   Re closed(T-i0) = 7.20542462105771   Im f0(T+i0) = 4.3358098 (2 pi/sqrt T = 4.3358098 above threshold)
+    [ok] D=3 T=2.1 eq. 5.12 Re closed = method M: deviation 1.03e-14 (tol 1.0e-11)
+  T=3.0: method M [f0+g] = (3.64821445450133 + 0.0j)   Re closed(T+i0) = 3.64821445450134   Re closed(T-i0) = 3.64821445450134   Im f0(T+i0) = 3.6275987 (2 pi/sqrt T = 3.6275987 above threshold)
+    [ok] D=3 T=3.0 eq. 5.12 Re closed = method M: deviation 6.05e-15 (tol 1.0e-11)
+  T=5.0: method M [f0+g] = (2.11412780309954 + 0.0j)   Re closed(T+i0) = 2.11412780309955   Re closed(T-i0) = 2.11412780309955   Im f0(T+i0) = 2.8099259 (2 pi/sqrt T = 2.8099259 above threshold)
+    [ok] D=3 T=5.0 eq. 5.12 Re closed = method M: deviation 2.81e-15 (tol 1.0e-11)
+  T=8.0: method M [f0+g] = (1.34585843010253 + 0.0j)   Re closed(T+i0) = 1.34585843010253   Re closed(T-i0) = 1.34585843010253   Im f0(T+i0) = 2.2214415 (2 pi/sqrt T = 2.2214415 above threshold)
+    [ok] D=3 T=8.0 eq. 5.12 Re closed = method M: deviation 1.39e-15 (tol 1.0e-11)
 # worst deviation 1.01e-12 at D=2 T=2.1 f_AV vs sec. 5 D=2
-# END lw elapsed=81.7s status=PASS
+# END lw elapsed=94.1s status=PASS

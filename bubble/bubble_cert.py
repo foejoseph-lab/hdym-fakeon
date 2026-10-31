@@ -1,4 +1,4 @@
-"""bubble_cert.py -- the trusted checker for rung 1.  Recomputes the published closed forms that bubble_checks.py
+"""bubble_cert.py -- the trusted checker for the bubble (the instrument check; rung 2 at p=0 on the 31 Oct ladder).  Recomputes the published closed forms that bubble_checks.py
 claims to hit in ball arithmetic (Arb via python-flint: every number is an interval that rigorously contains the
 true value) and compares with the generator's numbers in results/*.json.  Nothing here imports bubble_lib.py.
 
@@ -10,7 +10,7 @@ What is certified
   fakeon.json  the exact T +- i0 limits for ordinary masses (D = 4: ln T + sum_j [(1-x_j) ln(1-x_j) + x_j ln x_j - 1] -+ i pi (x2-x1);
                D = 3: (2/sqrt T)[asinh sqrt(x1/(x2-x1)) + asinh sqrt((1-x2)/(x2-x1))] + i pi/sqrt T;  D = 2: the PV log plus i pi
                residues), 2001.01942 eq. 6.6 and 4.1, 1801.00915 eq. 5.4 (= the D = 4 real part);  the generator's f_+, f_AV and
-               route-(b) differences must agree.
+               method-M differences must agree.
   fw.json      2001.01942 eq. 2.6 (coefficient), 4.3, 3.1 and the sec. 7 imaginary parts: closed forms are algebraic, the check is
                that the generator's deviations are within the tolerances it declares (1/Lambda^2 for 2.6 and 3.1).
 Rigorous integration: acb.integral on [0, 1]; the integrands are holomorphic in a neighbourhood of the segment for the t
@@ -117,7 +117,7 @@ if lw:
         check(f"D=2 T={row['T']} f_AV", row["f_AV"], acb(fav))
         check(f"D=2 T={row['T']} g_AV", row["g_AV"], acb(g))
         check(f"D=2 T={row['T']} |f_d| vs continued published term", abs(C(row["f_d"])), acb(fd))
-    say("## 1801.00915 eq. 5.12, Euclidean closed forms (D = 3), against the generator's route (b)")
+    say("## 1801.00915 eq. 5.12, Euclidean closed forms (D = 3), against the generator's method M")
     e = lw["D3_euclid"]
     t = arb(e["t"])
     r = (-t).sqrt()
@@ -127,8 +127,8 @@ if lw:
     g = (I / r) * (((2 * si + r) / (2 * si - r)).log() + ((2 * smi - r) / (2 * smi + r)).log())
     tot = f0 + g
     gen = C(e["J_mom"]) * 32 * PI / acb(0, 1)
-    say(f"  t={e['t']}: f0+g = {tot.str(20)}   generator route (b) = {gen.str(20)}")
-    check("D=3 Euclidean eq. 5.12 vs route (b)", gen, tot)
+    say(f"  t={e['t']}: f0+g = {tot.str(20)}   generator method M = {gen.str(20)}")
+    check("D=3 Euclidean eq. 5.12 vs method M", gen, tot)
 
 # ---- fakeon.json ----------------------------------------------------------------------------------------------------
 fk = load("fakeon")
@@ -160,13 +160,13 @@ if fk:
             check(f"{key} T={row['T']} f_+", row["f_plus"], fplus)
             check(f"{key} T={row['T']} f_AV", row["f_AV"], acb(fav))
             dB = C(row["B_PV_mom"]) - C(row["B_F_mom"])
-            check(f"{key} T={row['T']} eq. 6.6 (B_PV - B_F, route b)", dB.real, d66)
+            check(f"{key} T={row['T']} eq. 6.6 (B_PV - B_F, method M)", dB.real, d66)
             check(f"{key} T={row['T']} eq. 6.6 imaginary part zero (identity by construction)", dB.imag, arb(0))
             bf = C(row["B_F_mom"])
             check(f"{key} T={row['T']} eq. 4.1 (2 Im(-i B_F))", 2 * (acb(0, -1) * bf).imag, im41)
             if "eq54" in row:
                 check(f"{key} T={row['T']} eq. 5.4 generator value vs exact f_AV", row["eq54"], fav)
-    say("## D = 3 and D = 2 ordinary masses: the exact limits against the generator's route (b)")
+    say("## D = 3 and D = 2 ordinary masses: the exact limits against the generator's method M")
     for D in (3, 2):
         pref = {3: 1 / (8 * PI), 2: 1 / (4 * PI)}[D]
         for row in fk[f"D{D}"]:
@@ -192,13 +192,13 @@ if fk:
                     fplus = integral01(lambda x, analytic, a1=a1, a2=a2, T=T: 1 / (a1 * (1 - x) + a2 * x - T * x * (1 - x)))
             BF = acb(0, 1) * pref * fplus          # B_F = i * pref * f_+
             BPV = acb(0, 1) * pref * fplus.real
-            check(f"D={D} {row['lab']} T={row['T']} B_F route (b) vs exact", row["B_F_mom"], BF)
-            check(f"D={D} {row['lab']} T={row['T']} B_PV route (b) vs exact", row["B_PV_mom"], BPV)
+            check(f"D={D} {row['lab']} T={row['T']} B_F method M vs exact", row["B_F_mom"], BF)
+            check(f"D={D} {row['lab']} T={row['T']} B_PV method M vs exact", row["B_PV_mom"], BPV)
 
 # ---- fw.json --------------------------------------------------------------------------------------------------------
 fw = load("fw")
 if fw:
-    say("## Feynman-Wheeler: 2001.01942 eqs. 2.6, 4.3, 3.1 and sec. 7 (algebraic closed forms)")
+    say("## principal-value (FW): 2001.01942 eqs. 2.6, 4.3, 3.1 and sec. 7 (algebraic closed forms)")
     a1, a2 = arb(1), arb("0.25")
     m1, m2 = a1.sqrt(), a2.sqrt()
     for row in fw["m1_m2"]:

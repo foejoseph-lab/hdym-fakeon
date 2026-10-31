@@ -819,7 +819,7 @@
  "_meta": {
   "worst": 1.0052020369912982e-12,
   "worst_what": "D=2 T=2.1 f_AV vs sec. 5 D=2",
-  "elapsed": 81.67842626571655,
+  "elapsed": 94.07274389266968,
   "status": "PASS",
   "dps": 20
  }

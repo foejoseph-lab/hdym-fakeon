@@ -1,22 +1,22 @@
-"""bubble_checks.py -- rung 1 of the perturbative ladder: the one-loop bubble of a fakeon scalar against the
-published numbers, computed two independent ways (bubble_lib.py: route (a) Feynman parameters with the average
-continuation, route (b) momentum-space residues with the principal value at the pinch), then the Lee-Wick and
-Feynman-Wheeler prescriptions on the same integral.  Untrusted generator; bubble_cert.py recomputes the published
+"""bubble_checks.py -- the one-loop bubble (the instrument check; rung 2 at p=0 on the 31 Oct ladder) of a fakeon scalar against the
+published numbers, computed two independent ways (bubble_lib.py: method P Feynman parameters with the average
+continuation, method M momentum-space residues with the principal value at the pinch), then the Lee-Wick and
+principal-value (FW) prescriptions on the same integral.  Untrusted generator; bubble_cert.py recomputes the published
 closed forms in ball arithmetic and compares.
 
 Sections (all run by default; each is a separate log when run alone):
     --fakeon   ordinary masses, average continuation: 1801.00915 (5.4), 2001.01942 (6.6), (4.1); D = 2, 3, 4
-               route (a) = route (b); (6.3) the fakeon as the E -> 0 limit of a Lee-Wick pair
+               method P = method M; (6.3) the fakeon as the E -> 0 limit of a Lee-Wick pair
     --lw       the Lee-Wick pair a = +-i M^2 (1801.00915 eq. 5.5): (5.8) D = 4, the D = 2 closed form, (5.12) D = 3,
-               the half-difference f_d, f_+ = f_- below the LW threshold, route (a) = route (b)
-    --fw       Feynman-Wheeler mixed term 2001.01942: (2.6) nonlocal divergence, (4.3) pseudothreshold imaginary
+               the half-difference f_d, f_+ = f_- below the LW threshold, method P = method M
+    --fw       principal-value (FW) mixed term 2001.01942: (2.6) nonlocal divergence, (4.3) pseudothreshold imaginary
                part, (3.1) finite part with the cutoff |k| <= Lambda
     --fig13    1703.04584 propagator (2.1), m = 3, M = 1: Im J(p0) across the LW threshold, Re J = 0, the kink at
                p0 = sqrt(2), the half-difference against the rigid-contour residue term of sec. 3
 
 Runs (Spyder):
     import sys
-    %cd C:\\GitHub\\hdym-fakeon\\loops\\scalar
+    %cd C:\\GitHub\\hdym-fakeon\\bubble
     !"{sys.executable}" -B -u bubble_checks.py --fakeon > results\\fakeon.log
     !"{sys.executable}" -B -u bubble_checks.py --lw     > results\\lw.log
     !"{sys.executable}" -B -u bubble_checks.py --fw     > results\\fw.log
@@ -42,10 +42,11 @@ I = L.I
 PI = L.PI
 mp.mp.dps = 20
 
-# tolerances: route (a) carries the end-point offset delta = 10^-(dps-6) = 1e-14 and O(sqrt delta) at a threshold;
+# tolerances: method P carries the end-point offset delta = 10^-(dps-6) = 1e-14 and O(sqrt delta) at a threshold;
 # quadratures are good to ~1e-18; (2.6) and (3.1) are approached as 1/Lambda^2.
 TOL_EXACT = mp.mpf("1e-12")
 TOL_LAM = mp.mpf("2e-5")
+args_schwarz = False
 
 
 def say(*a):
@@ -104,8 +105,8 @@ def run_fakeon():
     pref = mp.mpc(0, 1)
     tref = pref ** 2
     Ts = [mp.mpf(x) for x in ["0.5", "3", "4.5", "6", "10", "20"]]
-    say("## D = 4, ordinary masses, route (a) f_+-(T) = straight integral at T +- i0, f_AV = (f_+ + f_-)/2;")
-    say("##   route (b) PV / Feynman momentum integrals, UV-subtracted at t_ref = -1 in both routes")
+    say("## D = 4, ordinary masses, method P f_+-(T) = straight integral at T +- i0, f_AV = (f_+ + f_-)/2;")
+    say("##   method M PV / Feynman momentum integrals, UV-subtracted at t_ref = -1 in both methods")
     for (a1, a2, lab) in [(mp.mpf(1), mp.mpf(1), "m1=m2=1"), (mp.mpf(1), mp.mpf("2.25"), "m1=1,m2=1.5")]:
         say(f"### {lab}  (threshold (m1+m2)^2 = {ns((mp.sqrt(a1)+mp.sqrt(a2))**2, 6)})")
         rows = []
@@ -123,8 +124,8 @@ def run_fakeon():
                        B_PV_par=cplx(Bpar_pv), B_PV_mom=cplx(Bmom_pv), B_F_par=cplx(Bpar_F), B_F_mom=cplx(Bmom_F))
             say(f"  T={ns(T,4)}: f_AV = {ns(fav)}   f_+ - f_- = {ns(fp - fm, 10)}")
             S.check(f"{lab} T={T} D=4 Im f_AV = 0", mp.im(fav), TOL_EXACT)
-            S.check(f"{lab} T={T} D=4 PV route (a) = route (b)", Bpar_pv - Bmom_pv, TOL_EXACT)
-            S.check(f"{lab} T={T} D=4 Feynman route (a) = route (b)", Bpar_F - Bmom_F, TOL_EXACT)
+            S.check(f"{lab} T={T} D=4 PV method P = method M", Bpar_pv - Bmom_pv, TOL_EXACT)
+            S.check(f"{lab} T={T} D=4 Feynman method P = method M", Bpar_F - Bmom_F, TOL_EXACT)
             if a1 == a2 == 1:
                 # 1801.00915 eq. 5.4: f_AV = (1/2) int ln[(1 - z x(1-x))^2], z = p^2/m^2 (subdivided at the roots)
                 pts = [mp.mpf(0)]
@@ -151,7 +152,7 @@ def run_fakeon():
                 S.check(f"{lab} T={T} f_+ - f_- = -2 pi i (x2-x1)", (fp - fm) + 2 * PI * I * (x2 - x1), TOL_EXACT)
             rows.append(row)
         S.data[f"D4_{lab}"] = rows
-    say("## D = 3 and D = 2, ordinary masses: route (a) average = route (b) PV, and the Feynman prescriptions")
+    say("## D = 3 and D = 2, ordinary masses: method P average = method M PV, and the Feynman prescriptions")
     for D in (3, 2):
         pref_D = {2: I / (4 * PI), 3: I / (8 * PI)}[D]
         rows = []
@@ -165,13 +166,13 @@ def run_fakeon():
                 Bmom_pv = L.B_momentum(D, p0, a1, a2, "PV")
                 Bmom_F = L.B_momentum(D, p0, a1, a2, "feynman")
                 say(f"  D={D} {lab} T={ns(T,3)}: B_PV = {ns(Bmom_pv)}   B_F = {ns(Bmom_F)}")
-                S.check(f"{lab} T={T} D={D} PV (a)=(b)", Bpar_pv - Bmom_pv, TOL_EXACT)
-                S.check(f"{lab} T={T} D={D} Feynman (a)=(b)", Bpar_F - Bmom_F, TOL_EXACT)
+                S.check(f"{lab} T={T} D={D} PV P=M", Bpar_pv - Bmom_pv, TOL_EXACT)
+                S.check(f"{lab} T={T} D={D} Feynman P=M", Bpar_F - Bmom_F, TOL_EXACT)
                 rows.append(dict(D=D, lab=lab, T=float(T), B_PV_par=cplx(Bpar_pv), B_PV_mom=cplx(Bmom_pv),
                                  B_F_par=cplx(Bpar_F), B_F_mom=cplx(Bmom_F)))
         S.data[f"D{D}"] = rows
     say("## 1801.00915 eq. 6.3: the fakeon propagator as the E -> 0 limit of (1/2)[1/(p^2-m^2+iE^2) + 1/(p^2-m^2-iE^2)]")
-    say("##   J_E(T=6) - B_PV(T=6), m = 1, both routes (b); expected -> 0 (as E^2 in D = 4, E^4 in D = 3)")
+    say("##   J_E(T=6) - B_PV(T=6), m = 1, both by method M; expected -> 0 (as E^2 in D = 4, E^4 in D = 3)")
     T = mp.mpf(6)
     p0 = mp.sqrt(T)
     rows = []
@@ -200,7 +201,7 @@ def run_lw():
     pref = mp.mpc(0, 1)
     tref = pref ** 2
     say("## Lee-Wick pair a = +-i (M = 1), 1801.00915 eq. 5.5; f = (+-) + (-+) terms, g = (++) + (--) terms")
-    say("## route (a): continuation around t = 0 on |t| = 1, along the real axis, a semicircle (radius min(0.1, half the distance to the nearest requested T) = 0.05 here) around the LW threshold t = 2; monodromy tracked by continuity")
+    say("## method P: continuation around t = 0 on |t| = 1, along the real axis, a semicircle (radius min(0.1, half the distance to the nearest requested T) = 0.05 here) around the LW threshold t = 2; monodromy tracked by continuity")
     for D in (4, 2):
         say(f"### D = {D}")
         res = {}
@@ -238,7 +239,7 @@ def run_lw():
             S.check(f"D={D} T={T} |f_d| vs continued published term", abs(fd) - fd_pub, TOL_EXACT * (10 if abs(T - 2) < mp.mpf("0.2") else 1))
             S.check(f"D={D} T={T} g_d = 0", gd, TOL_EXACT)
             S.check(f"D={D} T={T} Re f_d = 0, Im f_AV = 0", abs(mp.re(fd)) + abs(mp.im(fav)), TOL_EXACT)
-            S.check(f"D={D} T={T} J_LW route (a) = route (b)", Jpar - Jmom, TOL_EXACT)
+            S.check(f"D={D} T={T} J_LW method P = method M", Jpar - Jmom, TOL_EXACT)
             S.check(f"D={D} T={T} tracking unambiguous (ratio < 0.5)", 0 if worst_ratio < mp.mpf("0.5") else worst_ratio, mp.mpf(0))
             rows.append(dict(T=float(T), f_plus=cplx(fp), f_minus=cplx(fm), f_AV=cplx(fav), f_d=cplx(fd), g_AV=cplx(gav),
                              g_d=cplx(gd), f0_pub=num(f0), g_pub=num(g), f_AV_pub=num(fav_pub), fd_pub=num(fd_pub),
@@ -246,14 +247,14 @@ def run_lw():
         if D == 4:
             S.data["D4_Iref"] = cplx(Iref)
         S.data[f"D{D}"] = rows
-    say("### D = 3: route (b) PV against the continued closed forms of eq. 5.12 (Re[f0 + g] at T +- i0)")
+    say("### D = 3: method M PV against the continued closed forms of eq. 5.12 (Re[f0 + g] at T +- i0)")
     rows = []
     # Euclidean anchor first
     t = mp.mpf("-1.69")
     f0c, gc = L.lw_closed_D3_euclid(t)
     Jm = sum(L.B_momentum(3, mp.mpc(0, mp.sqrt(-t)), a, b) for a in (I, -I) for b in (I, -I)) / 4
-    say(f"  Euclidean t={t}: closed f0+g = {ns(f0c + gc)}   route (b) = {ns(Jm * 32 * PI / I)}")
-    S.check("D=3 Euclidean t=-1.69 eq. 5.12 closed = route (b)", Jm * 32 * PI / I - (f0c + gc), TOL_EXACT)
+    say(f"  Euclidean t={t}: closed f0+g = {ns(f0c + gc)}   method M = {ns(Jm * 32 * PI / I)}")
+    S.check("D=3 Euclidean t=-1.69 eq. 5.12 closed = method M", Jm * 32 * PI / I - (f0c + gc), TOL_EXACT)
     S.data["D3_euclid"] = dict(t=float(t), f0=cplx(f0c), g=cplx(gc), J_mom=cplx(Jm))
 
     def closed_D3(tc):
@@ -272,10 +273,11 @@ def run_lw():
         fp0, gp0 = closed_D3(mp.mpc(T, dl))
         fm0, gm0 = closed_D3(mp.mpc(T, -dl))
         re_p, re_m = mp.re(fp0 + gp0), mp.re(fm0 + gm0)
-        say(f"  T={ns(T,4)}: route (b) [f0+g] = {ns(fg_mom)}   Re closed(T+i0) = {ns(re_p)}   Re closed(T-i0) = {ns(re_m)}"
+        say(f"  T={ns(T,4)}: method M [f0+g] = {ns(fg_mom)}   Re closed(T+i0) = {ns(re_p)}   Re closed(T-i0) = {ns(re_m)}"
             f"   Im f0(T+i0) = {ns(mp.im(fp0), 8)} (2 pi/sqrt T = {ns(2 * PI / mp.sqrt(T), 8)} above threshold)")
-        S.check(f"D=3 T={T} eq. 5.12 Re closed = route (b)", fg_mom - re_p, TOL_EXACT * 10)
-        S.check(f"D=3 T={T} Schwarz reflection of the closed form (consistency of the transcription only)", re_p - re_m, TOL_EXACT)
+        S.check(f"D=3 T={T} eq. 5.12 Re closed = method M", fg_mom - re_p, TOL_EXACT * 10)
+        if args_schwarz:
+            S.check(f"D=3 T={T} Schwarz reflection of the closed form (consistency of the transcription only)", L.schwarz_gap(re_p, re_m), TOL_EXACT)
         rows.append(dict(T=float(T), fg_mom=cplx(fg_mom), f0_plus=cplx(fp0), g_plus=cplx(gp0), J_mom=cplx(Jm)))
     S.data["D3"] = rows
     S.end()
@@ -284,7 +286,7 @@ def run_lw():
 # ------------------------------------------------------------------------------------------------------------------
 def run_fw():
     S = Section("fw")
-    say("## Feynman-Wheeler mixed term Sigma' (one +i eps, one -i eps propagator), D = 4, cutoff |k| <= Lambda")
+    say("## principal-value (FW) mixed term Sigma' (one +i eps, one -i eps propagator), D = 4, cutoff |k| <= Lambda")
     a1, a2 = mp.mpf(1), mp.mpf("0.25")
     say(f"### m1 = 1, m2 = 0.5: pseudothreshold (m1-m2)^2 = 0.25, threshold 2.25")
     rows = []
@@ -369,6 +371,21 @@ def run_fig13():
         S.check(f"p0={p0} Re J = 0", mp.re(v), TOL_EXACT)
         rows.append(dict(p0=float(p0), J=cplx(v)))
     S.data["grid"] = rows
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+        fine = [mp.mpf(5) / 10 + mp.mpf(k) * (mp.mpf(2)) / 160 for k in range(161)]
+        ys = [float(mp.im(J(p0)) - mp.im(J(I))) for p0 in fine]
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.plot([float(p) for p in fine], ys, lw=1.5)
+        ax.axvline(float(mp.sqrt(2)), ls="--", lw=0.8, color="gray")
+        ax.set_xlabel("p0"); ax.set_ylabel("Im J(p0) - Im J(i)")
+        ax.set_title("1703.04584 eq. 2.1, m=3, M=1 (their fig. 13): kink at p0 = sqrt 2")
+        fig.tight_layout(); fig.savefig(os.path.join(RES, "fig13.png"), dpi=150); plt.close(fig)
+        say("   plot saved: results/fig13.png (compare by eye with 1703.04584 fig. 13)")
+    except Exception as e:  # matplotlib absent: the numbers above are the record
+        say(f"   plot not saved ({e})")
     r2 = mp.sqrt(2)
     hs = [mp.mpf("0.02"), mp.mpf("0.01"), mp.mpf("0.005")]
     say("   one-sided derivatives of Im J at the LW threshold p0 = sqrt 2 (p^2 = 2 M^2):")
@@ -408,8 +425,10 @@ if __name__ == "__main__":
     for s in ("fakeon", "lw", "fw", "fig13"):
         ap.add_argument(f"--{s}", action="store_true")
     ap.add_argument("--dps", type=int, default=20)
+    ap.add_argument("--schwarz", action="store_true", help="also run the Schwarz-reflection consistency check (not standing; brief 12 sec. 2.4)")
     args = ap.parse_args()
     mp.mp.dps = args.dps
+    args_schwarz = args.schwarz
     sel = [s for s in ("fakeon", "lw", "fw", "fig13") if getattr(args, s)] or ["fakeon", "lw", "fw", "fig13"]
     for s in sel:
         globals()[f"run_{s}"]()

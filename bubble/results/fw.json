@@ -212,7 +212,7 @@
  "_meta": {
   "worst": 1.2499843752116586e-05,
   "worst_what": "T=0.5 Lambda=200.0 eq. 3.1 (O(1/Lambda^2))",
-  "elapsed": 0.23288226127624512,
+  "elapsed": 0.387803316116333,
   "status": "PASS",
   "dps": 20
  }

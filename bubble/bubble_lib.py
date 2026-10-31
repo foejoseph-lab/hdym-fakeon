@@ -1,7 +1,6 @@
 """bubble_lib.py -- the one-loop bubble of scalar fields under the Feynman, fakeon (average continuation),
-Lee-Wick and Feynman-Wheeler prescriptions, in D = 2, 3, 4, computed two independent ways.  Rung 1 of the
-perturbative ladder (brief 11 sec. 5b).  Untrusted generator: mpmath, arbitrary precision, no certification here
-(that is bubble_cert.py).
+Lee-Wick and principal-value (FW) prescriptions, in D = 2, 3, 4, computed two independent ways.  The instrument check (brief 12 sec. 4); the p=0 case of rung 2 on the 31 Oct ladder.
+Untrusted generator: mpmath, arbitrary precision, no certification here (that is bubble_cert.py).
 
 Conventions
 -----------
@@ -10,7 +9,7 @@ Units: the Lee-Wick scale M = 1 (so a = +-i for the LW pair of 1801.00915 eq. 5.
 
     B_D(t; a1, a2) = int d^D k/(2 pi)^D  1/((k^2 - a1) ((k-p)^2 - a2))
 
-Route (a), Feynman parameters (valid as written in the Euclidean region t < 0, then continued in complex t):
+Method P, Feynman parameters (valid as written in the Euclidean region t < 0, then continued in complex t):
     B_D = i Gamma(2 - D/2)/(4 pi)^{D/2} * I_D(t),   I_D = int_0^1 dx g_D(Delta),  Delta = a1 (1-x) + a2 x - t x (1-x)
     g_2 = 1/Delta,  g_3 = Delta^{-1/2},  g_4 = ln Delta (D = 4 is log divergent; the finite part is -(i/16 pi^2) I_4
     up to an additive constant that cancels in differences I_4(t) - I_4(t_ref)).
@@ -24,17 +23,17 @@ jumps across them.  The analytic continuation adds the monodromy of the integran
 segment: 2 pi i (1 - x_j) for ln Delta, 2 pi i Res_j for 1/Delta.  The integers are tracked by continuity along the
 path (continuation, continuation_sweep; D = 4 and D = 2).  For ordinary (real) masses the only cut is the real
 axis above threshold and f_+- are elementary (I_pm_real_masses, all D).  The LW pair in D = 3 (square-root
-branch points) is done on the momentum-space route only, against the continued closed forms of 1801.00915 eq. 5.12.
+branch points) is done by method M only, against the continued closed forms of 1801.00915 eq. 5.12.
     Average continuation (1801.00915 eq. 4.1/4.4):  f_AV = (f_+ + f_-)/2,   f_d = (f_+ - f_-)/2.
 
-Route (b), momentum space, the nonanalytic Wick rotation of 1703.04584 in the rest frame: the k0 integral along
+Method M, momentum space, the nonanalytic Wick rotation of 1703.04584 in the rest frame: the k0 integral along
 the imaginary axis by residues (closing to the right, the two poles k0 = w1 and k0 = p0 + w2 with their sum
 -(w1 + w2)/(2 w1 w2 [(w1+w2)^2 - p0^2])), with omega_i = sqrt(k^2 + a_i) (Re > 0),
     B_D(p0) = +i int d^{D-1}k/(2 pi)^{D-1}  (w1 + w2) / (2 w1 w2 [(w1 + w2)^2 - p0^2]),
 an analytic function of p0 until the two poles pinch the contour at p0 = w1(k) + w2(k) for a real k = k*; there the
 LW/fakeon prescription is the principal value in k (1703.04584 eqs. 3.11, 4.8: the average of the two continuations),
 the Feynman prescription adds i pi times the residue (p0 -> p0 + i eps; see B_momentum).
-The Feynman-Wheeler propagator P 1/(k^2 - m^2) = (1/2)[1/(k^2 - m^2 + i eps) + 1/(k^2 - m^2 - i eps)] gives mixed
+The principal-value (FW) propagator P 1/(k^2 - m^2) = (1/2)[1/(k^2 - m^2 + i eps) + 1/(k^2 - m^2 - i eps)] gives mixed
 terms with one +i eps and one -i eps propagator (2001.01942 eq. 2.3):
     Sigma'(p0) = (i/2) int d^{D-1}k/(2 pi)^{D-1} (w1 - w2) / (w1 w2 [p0^2 - (w1 - w2)^2])   (+ the i eps parts),
 whose large-k tail (a1 - a2)/(4 k^3 p0^2) is the nonlocal divergence of 2001.01942 eq. 2.6.
@@ -47,7 +46,7 @@ PI = mp.pi
 I = mp.mpc(0, 1)
 
 # --------------------------------------------------------------------------------------------------------------
-# Route (a): Feynman parameters
+# Method P: Feynman parameters
 # --------------------------------------------------------------------------------------------------------------
 
 
@@ -89,7 +88,7 @@ def log_delta_anchored(x, t, a1, a2, roots=None, n=None):
 
 
 def I_straight(D, t, a1, a2, extra_pts=()):
-    """int_0^1 dx g_D(Delta) along the straight segment with the anchored phase (route a, one sheet).
+    """int_0^1 dx g_D(Delta) along the straight segment with the anchored phase (method P, one sheet).
 
     extra_pts: additional subdivision points in (0, 1)."""
     t, a1, a2 = mp.mpc(t), mp.mpc(a1), mp.mpc(a2)
@@ -250,7 +249,7 @@ def continuation(D, T, a1, a2, upper=True, rho=1, nsteps=160, delta_end=None, lo
 
 
 def average_continuation(D, T, a1, a2, **kw):
-    """f_AV, f_d, f_+, f_- at real T > 0 for I_D (route a)."""
+    """f_AV, f_d, f_+, f_- at real T > 0 for I_D (method P)."""
     fp, ip = continuation(D, T, a1, a2, upper=True, **kw)
     fm, im = continuation(D, T, a1, a2, upper=False, **kw)
     return (fp + fm) / 2, (fp - fm) / 2, fp, fm, (ip, im)
@@ -361,7 +360,7 @@ def _pv_window(sub, lo, c, hi):
 
 
 # --------------------------------------------------------------------------------------------------------------
-# Route (b): momentum space, rest frame
+# Method M: momentum space, rest frame
 # --------------------------------------------------------------------------------------------------------------
 
 
@@ -422,13 +421,13 @@ def pinch_k(p0, a1, a2):
 
 
 def B_momentum(D, p0, a1, a2, prescription="PV", p0_ref=None, kmax=None):
-    """-i^{-1}... returns B_D(p0; a1, a2) (route b) with the pinch, if any, treated by:
+    """-i^{-1}... returns B_D(p0; a1, a2) (method M) with the pinch, if any, treated by:
         'PV'       principal value in k (fakeon / Lee-Wick average continuation),
         'feynman'  p0 -> p0 + i eps (adds -i pi * residue),
         'minus'    p0 -> p0 - i eps.
     p0 may be real (> 0) or purely imaginary (Euclidean).  If p0_ref is given, returns the UV-finite difference
     B(p0) - B(p0_ref) (p0_ref Euclidean, no pinch) in one integral; required in D = 4.
-    kmax: finite cutoff on |k| (for the Feynman-Wheeler divergence study); default infinity."""
+    kmax: finite cutoff on |k| (for the principal-value (FW) divergence study); default infinity."""
     p0 = mp.mpc(p0)
     ang = angular(D)
     pw = D - 2
@@ -494,7 +493,7 @@ def B_momentum(D, p0, a1, a2, prescription="PV", p0_ref=None, kmax=None):
 
 
 def h_fw_mixed(k, p0, a1, a2):
-    """Integrand of the Feynman-Wheeler mixed term Sigma' (one +i eps, one -i eps propagator) after the k0
+    """Integrand of the principal-value (FW) mixed term Sigma' (one +i eps, one -i eps propagator) after the k0
     residues: Sigma' = (i/2) int d^{D-1}k/(2 pi)^{D-1} (w1 - w2)/(w1 w2 (p0^2 - (w1 - w2)^2))."""
     w1, w2 = omega(k, a1), omega(k, a2)
     d = w1 - w2
@@ -613,3 +612,13 @@ def fw_D4_im_closed(t, a1, a2):
     m1, m2 = mp.sqrt(a1), mp.sqrt(a2)
     up, um = (m1 + m2) ** 2 - t, (m1 - m2) ** 2 - t
     return -mp.sqrt(up * um) / (8 * PI * t) if (um > 0 and t > 0) else mp.mpf(0)
+
+
+def schwarz_gap(fp, fm):
+    """Schwarz reflection, f(t - i0) = conj f(t + i0) for a function real on the Euclidean axis: returns the gap
+    fp - fm (real parts) or fp - conj(fm).  A tool to call when something looks odd, not a standing check (brief 12
+    sec. 2.4); removed from the default run of bubble_checks.py on 31 Oct 2026, available via --schwarz."""
+    try:
+        return fp - mp.conj(fm)
+    except Exception:
+        return fp - fm

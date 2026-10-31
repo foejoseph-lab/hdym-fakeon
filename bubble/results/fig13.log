@@ -45,6 +45,7 @@
     [ok] p0=2.4 Re J = 0: deviation 0.0 (tol 1.0e-12)
    2.5     1.2283810626346e-5        0.0
     [ok] p0=2.5 Re J = 0: deviation 0.0 (tol 1.0e-12)
+   plot saved: results/fig13.png (compare by eye with 1703.04584 fig. 13)
    one-sided derivatives of Im J at the LW threshold p0 = sqrt 2 (p^2 = 2 M^2):
      h=0.02: left 0.0012729929   right -0.00018816765   jump -0.0014611606
      h=0.01: left 0.0018646477   right -0.00018997742   jump -0.0020546251
@@ -60,4 +61,4 @@
      p0=2.5: J_d = (-0.0001149284947 + 0.0j)   published magnitude 0.0002298569894   ratio |J_d|/published = 0.5
     [ok] J_d is real (the LW discontinuity is on the real part of J): deviation 0.0 (tol 1.0e-12)
 # worst deviation 6.46e-27 at p0=1.2 Re J = 0
-# END fig13 elapsed=9.9s status=PASS
+# END fig13 elapsed=62.0s status=PASS

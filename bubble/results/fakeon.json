@@ -841,8 +841,8 @@
  ],
  "_meta": {
   "worst": 3.674005408715528e-20,
-  "worst_what": "m1=m2=1 T=6.0 D=2 PV (a)=(b)",
-  "elapsed": 1.8945000171661377,
+  "worst_what": "m1=m2=1 T=6.0 D=2 PV P=M",
+  "elapsed": 3.442774772644043,
   "status": "PASS",
   "dps": 20
  }

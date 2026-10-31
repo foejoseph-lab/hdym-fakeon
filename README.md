@@ -23,31 +23,36 @@ flow, where the projection stops being usable, and how both compare with agravit
 | step | status | where |
 |---|---|---|
 | Literature: is it unaddressed, what are the exact equations | done 30 Oct 2026 | `notes/2026-10-30_literature_sweep.md` |
-| Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; rerun pending | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
-| Path B step 1: the projection on a one-mode toy | done 30 Oct 2026 | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
-| Step 2: the projection on Bianchi I + one Taub wall, constraint reduced alongside | deferred: the ħ → 0 check of the quantum result, run when that needs it | — |
-| Step 3: full Bianchi IX, add R² for agravity, compare on the same backgrounds | — | — |
-| Route 1 (perturbative, fakeon against agravity at one loop), rung 1: the scalar bubble two ways against the published numbers | done 30 Oct 2026 | `loops/scalar/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
-| Route 1, rung 2: fakeon QED, then Yang–Mills self-energies and cutting equations | next | — |
-| Route 1, rungs 3–4: the h/χ/φ multiplet against agravity, then the unaddressed piece | — | — |
+| Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; LS rerun done on the author's side 31 Oct (hdym `bianchi9/results/ls_rerun.*`), reading pending | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
+| Classical projection, step 1: the one-mode toy (rung 0 of the ladder) | done 30 Oct 2026 | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
+| Classical steps 2–3 (Bianchi I + wall; full Bianchi IX, R² for agravity) | deferred: the ħ → 0 check of the quantum result, run when that needs it | — |
+| Chronology 1939–2014 and the ladder | written 31 Oct, for the author to correct | `notes/2026-10-31_chronology_1939_2014.md` |
+| Rung 1: one-loop matter on a classical background (Utiyama–DeWitt 1962), three techniques | done 31 Oct 2026; DeWitt's 1965 covariant recursion owed | `matter_loop/`, `notes/2026-10-31_rung1_utiyama_dewitt_{setup,results}.md` |
+| Rung 2: the one-loop bubble under the ghost prescriptions (Lee–Wick 1969 / Nakanishi 1971) | p⃗ = 0 case done 30 Oct (the instrument check); p⃗ ≠ 0 and the Minkowski real-axis case next | `bubble/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
+| Rung 3: one-loop graviton on a background ('t Hooft–Veltman 1974) | — | — |
+| Pause before 1977; then Stelle and the ladder's later rungs (brief 12 §6) | — | — |
 
 ## Layout
 
 ```
 README.md            this file
 notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs)
-fakeon/toy/          one-degree-of-freedom fakeon projection: code, logs, a short README
-loops/scalar/        rung 1 of the perturbative route: the scalar bubble with the fakeon, Lee-Wick and
-                     Feynman-Wheeler prescriptions, two methods, certified against the published closed forms
+fakeon/toy/          one-degree-of-freedom fakeon projection: code, logs, a short README (rung 0)
+bubble/              the one-loop bubble with the fakeon, Lee–Wick and principal-value prescriptions, two methods,
+                     certified against the published closed forms (rung 2 at p⃗ = 0; the instrument check)
+matter_loop/         one-loop quantized matter on a classical background: the 1962 computation redone with the
+                     techniques of 1962, 1951/65 and 1972–74 (rung 1)
 ```
 
-The goal is a quantum treatment of the spin-2 mode with a fakeon against agravity; the classical projection work
-(`fakeon/toy/`, the Bianchi steps) is its ħ → 0 check. The perturbative route is a ladder — scalar, QED,
-Yang–Mills, the gravitational multiplet — each rung reproducing published results before anything new; later
-rungs get sibling folders `loops/qed/`, `loops/ym/`, `loops/gravity/`.
+Folders are named by **concept**, not by year, author or method, and techniques accumulate inside them (the
+author, 31 Oct 2026); a new folder appears only when a new concept does. The ladder itself is historical and is
+in `notes/2026-10-31_chronology_1939_2014.md` §5: the toy (1950) → matter on a background (1962) → the bubble
+under prescriptions (1969–71) → the graviton loop (1974) → pause → Stelle 1977 and onward to agravity. Each rung is
+redone with the technique of its day, then with each later technique; the goal — a quantum treatment of the spin-2
+mode with a fakeon against agravity — is unchanged, and the classical projection work is its ħ → 0 check.
 
-Later folders follow hdym's pattern: one folder per sub-question, each with a short README (what it asks, how to
-run, what is in `results/`), code at the top of the folder, outputs written straight into `results/`.
+Each folder follows hdym's pattern: a short README (what it asks, how to run, what is in `results/`), code at the
+top of the folder, outputs written straight into `results/`.
 
 ## Relation to the other repositories
 
