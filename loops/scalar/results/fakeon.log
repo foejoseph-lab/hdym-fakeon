@@ -1,0 +1,152 @@
+# fakeon: start, mp.dps = 20
+## D = 4, ordinary masses, route (a) f_+-(T) = straight integral at T +- i0, f_AV = (f_+ + f_-)/2;
+##   route (b) PV / Feynman momentum integrals, UV-subtracted at t_ref = -1 in both routes
+### m1=m2=1  (threshold (m1+m2)^2 = 4.0)
+  T=0.5: f_AV = -0.0878249162963749   f_+ - f_- = 0.0
+    [ok] m1=m2=1 T=0.5 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=0.5 D=4 PV route (a) = route (b): deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=0.5 D=4 Feynman route (a) = route (b): deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=0.5 eq. 5.4: deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=m2=1 T=0.5 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=0.5 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=3.0: f_AV = -0.790800423843855   f_+ - f_- = 0.0
+    [ok] m1=m2=1 T=3.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 D=4 PV route (a) = route (b): deviation 6.62e-24 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 D=4 Feynman route (a) = route (b): deviation 6.62e-24 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 eq. 5.4: deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=m2=1 T=3.0 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=4.5: f_AV = (-1.76895093981335 + 0.0j)   f_+ - f_- = (0.0 - 2.094395102j)
+    [ok] m1=m2=1 T=4.5 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=4.5 D=4 PV route (a) = route (b): deviation 6.27e-21 (tol 1.0e-12)
+    [ok] m1=m2=1 T=4.5 D=4 Feynman route (a) = route (b): deviation 6.27e-21 (tol 1.0e-12)
+    [ok] m1=m2=1 T=4.5 eq. 5.4: deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.00663145596216 + 0.0j)  eq. 6.6 = 0.00663145596216;   2 Im(-i B_F) = 0.0132629119243  eq. 4.1 = 0.0132629119243
+    [ok] m1=m2=1 T=4.5 eq. 6.6: deviation 5.29e-23 (tol 1.0e-12)
+    [ok] m1=m2=1 T=4.5 eq. 4.1: deviation 1.06e-22 (tol 1.0e-12)
+    [ok] m1=m2=1 T=4.5 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+  T=6.0: f_AV = (-1.23965400369905 + 0.0j)   f_+ - f_- = (0.0 - 3.627598728j)
+    [ok] m1=m2=1 T=6.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 D=4 PV route (a) = route (b): deviation 2.92e-21 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 D=4 Feynman route (a) = route (b): deviation 2.92e-21 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 eq. 5.4: deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.0114860186546 + 0.0j)  eq. 6.6 = 0.0114860186546;   2 Im(-i B_F) = 0.0229720373092  eq. 4.1 = 0.0229720373092
+    [ok] m1=m2=1 T=6.0 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+  T=10.0: f_AV = (-0.40166851924409 + 0.0j)   f_+ - f_- = (0.0 - 4.866934411j)
+    [ok] m1=m2=1 T=10.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=10.0 D=4 PV route (a) = route (b): deviation 1.87e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=10.0 D=4 Feynman route (a) = route (b): deviation 1.87e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=10.0 eq. 5.4: deviation 2.96e-21 (tol 1.0e-12)
+           B_PV - B_F = (0.0154101111015 + 0.0j)  eq. 6.6 = 0.0154101111015;   2 Im(-i B_F) = 0.0308202222031  eq. 4.1 = 0.0308202222031
+    [ok] m1=m2=1 T=10.0 eq. 6.6: deviation 1.32e-23 (tol 1.0e-12)
+    [ok] m1=m2=1 T=10.0 eq. 4.1: deviation 2.65e-23 (tol 1.0e-12)
+    [ok] m1=m2=1 T=10.0 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+  T=20.0: f_AV = (0.582453645784024 + 0.0j)   f_+ - f_- = (0.0 - 5.619851785j)
+    [ok] m1=m2=1 T=20.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 D=4 PV route (a) = route (b): deviation 1.44e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 D=4 Feynman route (a) = route (b): deviation 1.44e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 eq. 5.4: deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.0177940635854 + 0.0j)  eq. 6.6 = 0.0177940635854;   2 Im(-i B_F) = 0.0355881271709  eq. 4.1 = 0.0355881271709
+    [ok] m1=m2=1 T=20.0 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+### m1=1,m2=1.5  (threshold (m1+m2)^2 = 6.25)
+  T=0.5: f_AV = 0.405001838655035   f_+ - f_- = 0.0
+    [ok] m1=1,m2=1.5 T=0.5 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=0.5 D=4 PV route (a) = route (b): deviation 1.65e-24 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=0.5 D=4 Feynman route (a) = route (b): deviation 1.65e-24 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=1,m2=1.5 T=0.5 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=0.5 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=3.0: f_AV = 0.0566016798707345   f_+ - f_- = 0.0
+    [ok] m1=1,m2=1.5 T=3.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=3.0 D=4 PV route (a) = route (b): deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=3.0 D=4 Feynman route (a) = route (b): deviation 0.0 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=1,m2=1.5 T=3.0 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=3.0 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=4.5: f_AV = -0.269480063318609   f_+ - f_- = 0.0
+    [ok] m1=1,m2=1.5 T=4.5 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=4.5 D=4 PV route (a) = route (b): deviation 6.62e-24 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=4.5 D=4 Feynman route (a) = route (b): deviation 6.62e-24 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=1,m2=1.5 T=4.5 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=4.5 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=6.0: f_AV = -0.964446279330107   f_+ - f_- = 0.0
+    [ok] m1=1,m2=1.5 T=6.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=6.0 D=4 PV route (a) = route (b): deviation 2.65e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=6.0 D=4 Feynman route (a) = route (b): deviation 2.65e-23 (tol 1.0e-12)
+           B_PV - B_F = (0.0 + 0.0j)  eq. 6.6 = 0.0;   2 Im(-i B_F) = 0.0  eq. 4.1 = 0.0
+    [ok] m1=1,m2=1.5 T=6.0 eq. 6.6: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=6.0 eq. 4.1: deviation 0.0 (tol 1.0e-12)
+  T=10.0: f_AV = (-0.666733832362028 + 0.0j)   f_+ - f_- = (0.0 - 3.799249457j)
+    [ok] m1=1,m2=1.5 T=10.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=10.0 D=4 PV route (a) = route (b): deviation 1.82e-20 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=10.0 D=4 Feynman route (a) = route (b): deviation 1.82e-20 (tol 1.0e-12)
+           B_PV - B_F = (0.012029514123 + 0.0j)  eq. 6.6 = 0.012029514123;   2 Im(-i B_F) = 0.024059028246  eq. 4.1 = 0.024059028246
+    [ok] m1=1,m2=1.5 T=10.0 eq. 6.6: deviation 1.32e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=10.0 eq. 4.1: deviation 2.65e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=10.0 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+  T=20.0: f_AV = (0.412272716409017 + 0.0j)   f_+ - f_- = (0.0 - 5.177078757j)
+    [ok] m1=1,m2=1.5 T=20.0 D=4 Im f_AV = 0: deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 D=4 PV route (a) = route (b): deviation 8.52e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 D=4 Feynman route (a) = route (b): deviation 8.52e-23 (tol 1.0e-12)
+           B_PV - B_F = (0.016392117107 + 0.0j)  eq. 6.6 = 0.016392117107;   2 Im(-i B_F) = 0.0327842342141  eq. 4.1 = 0.0327842342141
+    [ok] m1=1,m2=1.5 T=20.0 eq. 6.6: deviation 2.65e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 eq. 4.1: deviation 5.29e-23 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 f_+ - f_- = -2 pi i (x2-x1): deviation 0.0 (tol 1.0e-12)
+## D = 3 and D = 2, ordinary masses: route (a) average = route (b) PV, and the Feynman prescriptions
+  D=3 m1=m2=1 T=3.0: B_PV = (0.0 + 0.0605064118857138j)   B_F = (0.0 + 0.0605064118857138j)
+    [ok] m1=m2=1 T=3.0 D=3 PV (a)=(b): deviation 5.29e-23 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 D=3 Feynman (a)=(b): deviation 5.29e-23 (tol 1.0e-12)
+  D=3 m1=m2=1 T=6.0: B_PV = (0.0 + 0.0372375341625755j)   B_F = (-0.0510310363079829 + 0.0372375341625755j)
+    [ok] m1=m2=1 T=6.0 D=3 PV (a)=(b): deviation 1.3e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 D=3 Feynman (a)=(b): deviation 1.3e-20 (tol 1.0e-12)
+  D=3 m1=m2=1 T=20.0: B_PV = (0.0 + 0.00856271381317113j)   B_F = (-0.0279508497187474 + 0.00856271381317113j)
+    [ok] m1=m2=1 T=20.0 D=3 PV (a)=(b): deviation 2.26e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 D=3 Feynman (a)=(b): deviation 2.26e-20 (tol 1.0e-12)
+  D=3 m1=1,m2=1.5 T=3.0: B_PV = (0.0 + 0.0392067988476499j)   B_F = (0.0 + 0.0392067988476499j)
+    [ok] m1=1,m2=1.5 T=3.0 D=3 PV (a)=(b): deviation 0.0 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=3.0 D=3 Feynman (a)=(b): deviation 0.0 (tol 1.0e-12)
+  D=3 m1=1,m2=1.5 T=6.0: B_PV = (0.0 + 0.0744750683251511j)   B_F = (0.0 + 0.0744750683251511j)
+    [ok] m1=1,m2=1.5 T=6.0 D=3 PV (a)=(b): deviation 3.18e-22 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=6.0 D=3 Feynman (a)=(b): deviation 3.18e-22 (tol 1.0e-12)
+  D=3 m1=1,m2=1.5 T=20.0: B_PV = (0.0 + 0.0112352111715619j)   B_F = (-0.0279508497187474 + 0.0112352111715619j)
+    [ok] m1=1,m2=1.5 T=20.0 D=3 PV (a)=(b): deviation 5.82e-22 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 D=3 Feynman (a)=(b): deviation 5.83e-22 (tol 1.0e-12)
+  D=2 m1=m2=1 T=3.0: B_PV = (0.0 + 0.192450089729875j)   B_F = (0.0 + 0.192450089729875j)
+    [ok] m1=m2=1 T=3.0 D=2 PV (a)=(b): deviation 2.12e-22 (tol 1.0e-12)
+    [ok] m1=m2=1 T=3.0 D=2 Feynman (a)=(b): deviation 2.12e-22 (tol 1.0e-12)
+  D=2 m1=m2=1 T=6.0: B_PV = (0.0 - 0.0605064118857138j)   B_F = (-0.144337567297406 - 0.0605064118857138j)
+    [ok] m1=m2=1 T=6.0 D=2 PV (a)=(b): deviation 3.67e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=6.0 D=2 Feynman (a)=(b): deviation 3.67e-20 (tol 1.0e-12)
+  D=2 m1=m2=1 T=20.0: B_PV = (0.0 - 0.0256881414395134j)   B_F = (-0.0279508497187474 - 0.0256881414395134j)
+    [ok] m1=m2=1 T=20.0 D=2 PV (a)=(b): deviation 3.59e-20 (tol 1.0e-12)
+    [ok] m1=m2=1 T=20.0 D=2 Feynman (a)=(b): deviation 3.59e-20 (tol 1.0e-12)
+  D=2 m1=1,m2=1.5 T=3.0: B_PV = (0.0 + 0.0791826485134632j)   B_F = (0.0 + 0.0791826485134632j)
+    [ok] m1=1,m2=1.5 T=3.0 D=2 PV (a)=(b): deviation 1.06e-22 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=3.0 D=2 Feynman (a)=(b): deviation 1.06e-22 (tol 1.0e-12)
+  D=2 m1=1,m2=1.5 T=6.0: B_PV = (0.0 + 0.362452579751165j)   B_F = (0.0 + 0.362452579751165j)
+    [ok] m1=1,m2=1.5 T=6.0 D=2 PV (a)=(b): deviation 3.81e-21 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=6.0 D=2 Feynman (a)=(b): deviation 3.81e-21 (tol 1.0e-12)
+  D=2 m1=1,m2=1.5 T=20.0: B_PV = (0.0 - 0.0232256010813412j)   B_F = (-0.0303413643225353 - 0.0232256010813412j)
+    [ok] m1=1,m2=1.5 T=20.0 D=2 PV (a)=(b): deviation 1.06e-22 (tol 1.0e-12)
+    [ok] m1=1,m2=1.5 T=20.0 D=2 Feynman (a)=(b): deviation 1.09e-22 (tol 1.0e-12)
+## 1801.00915 eq. 6.3: the fakeon propagator as the E -> 0 limit of (1/2)[1/(p^2-m^2+iE^2) + 1/(p^2-m^2-iE^2)]
+##   J_E(T=6) - B_PV(T=6), m = 1, both routes (b); expected -> 0 (as E^2 in D = 4, E^4 in D = 3)
+  D=3 E=0.2: J_E - B_PV = (0.0 - 1.5835e-5j)
+  D=3 E=0.1: J_E - B_PV = (0.0 - 9.944e-7j)   ratio to previous E: 15.92
+  D=3 E=0.05: J_E - B_PV = (0.0 - 6.2169e-8j)   ratio to previous E: 16.0
+  D=3 E=0.025: J_E - B_PV = (0.0 - 3.8856e-9j)   ratio to previous E: 16.0
+    [ok] D=3 eq. 6.3 E->0 convergence ratio >= 3: deviation 0.0 (tol 0.0)
+  D=4 E=0.2: J_E - B_PV = (0.0 - 0.00022486j)
+  D=4 E=0.1: J_E - B_PV = (0.0 - 5.7134e-5j)   ratio to previous E: 3.936
+  D=4 E=0.05: J_E - B_PV = (0.0 - 1.4339e-5j)   ratio to previous E: 3.985
+  D=4 E=0.025: J_E - B_PV = (0.0 - 3.5882e-6j)   ratio to previous E: 3.996
+    [ok] D=4 eq. 6.3 E->0 convergence ratio >= 3: deviation 0.0 (tol 0.0)
+# worst deviation 3.67e-20 at m1=m2=1 T=6.0 D=2 PV (a)=(b)
+# END fakeon elapsed=1.9s status=PASS

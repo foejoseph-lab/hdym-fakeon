@@ -25,9 +25,11 @@ flow, where the projection stops being usable, and how both compare with agravit
 | Literature: is it unaddressed, what are the exact equations | done 30 Oct 2026 | `notes/2026-10-30_literature_sweep.md` |
 | Reconciliation of `bianchi9/` with Lehners & Stelle 1909.01169 | mapped; rerun pending | `notes/2026-10-30_lehners_stelle_reconciliation.md` |
 | Path B step 1: the projection on a one-mode toy | done 30 Oct 2026 | `fakeon/toy/`, `notes/2026-10-30_step1_toy.md` |
-| Step 2: the projection on Bianchi I + one Taub wall, constraint reduced alongside | next | — |
+| Step 2: the projection on Bianchi I + one Taub wall, constraint reduced alongside | deferred: the ħ → 0 check of the quantum result, run when that needs it | — |
 | Step 3: full Bianchi IX, add R² for agravity, compare on the same backgrounds | — | — |
-| Path A (perturbative, fakeon against agravity at one loop) | not started; consistency check only | — |
+| Route 1 (perturbative, fakeon against agravity at one loop), rung 1: the scalar bubble two ways against the published numbers | done 30 Oct 2026 | `loops/scalar/`, `notes/2026-10-30_rung1_fakeon_scalar_bubble.md` |
+| Route 1, rung 2: fakeon QED, then Yang–Mills self-energies and cutting equations | next | — |
+| Route 1, rungs 3–4: the h/χ/φ multiplet against agravity, then the unaddressed piece | — | — |
 
 ## Layout
 
@@ -35,7 +37,14 @@ flow, where the projection stops being usable, and how both compare with agravit
 README.md            this file
 notes/               dated working notes and write-ups (lab-notebook style lives here, not in READMEs)
 fakeon/toy/          one-degree-of-freedom fakeon projection: code, logs, a short README
+loops/scalar/        rung 1 of the perturbative route: the scalar bubble with the fakeon, Lee-Wick and
+                     Feynman-Wheeler prescriptions, two methods, certified against the published closed forms
 ```
+
+The goal is a quantum treatment of the spin-2 mode with a fakeon against agravity; the classical projection work
+(`fakeon/toy/`, the Bianchi steps) is its ħ → 0 check. The perturbative route is a ladder — scalar, QED,
+Yang–Mills, the gravitational multiplet — each rung reproducing published results before anything new; later
+rungs get sibling folders `loops/qed/`, `loops/ym/`, `loops/gravity/`.
 
 Later folders follow hdym's pattern: one folder per sub-question, each with a short README (what it asks, how to
 run, what is in `results/`), code at the top of the folder, outputs written straight into `results/`.

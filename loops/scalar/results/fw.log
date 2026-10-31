@@ -1,0 +1,39 @@
+# fw: start, mp.dps = 20
+## Feynman-Wheeler mixed term Sigma' (one +i eps, one -i eps propagator), D = 4, cutoff |k| <= Lambda
+### m1 = 1, m2 = 0.5: pseudothreshold (m1-m2)^2 = 0.25, threshold 2.25
+  T=0.1: d Sigma'/d ln Lambda^2 (Lambda 50->500) = (0.0 + 0.04749621973j), (500->5000) = (0.0 + 0.04749432398j)   eq. 2.6 = (0.0 + 0.04749430483j)   deviation ratio 100.03 (100 for 1/Lambda^2)   2 Im(-i Sigma') = -0.22595658365   eq. 4.3 = -0.22595658365
+    [ok] T=0.1 eq. 2.6 nonlocal divergence coefficient: deviation 1.91e-8 (tol 9.5e-7)
+    [ok] T=0.1 eq. 2.6 approached as 1/Lambda^2 (deviation ratio in [90, 110]): deviation 0.0 (tol 0.0)
+    [ok] T=0.1 eq. 4.3 pseudothreshold imaginary part: deviation 4.24e-22 (tol 1.0e-12)
+  T=1.0: d Sigma'/d ln Lambda^2 (Lambda 50->500) = (0.0 + 0.004749105087j), (500->5000) = (0.0 + 0.004749427229j)   eq. 2.6 = (0.0 + 0.004749430483j)   deviation ratio 99.984 (100 for 1/Lambda^2)   2 Im(-i Sigma') = 0.0   eq. 4.3 = 0.0
+    [ok] T=1.0 eq. 2.6 nonlocal divergence coefficient: deviation 3.25e-9 (tol 9.5e-8)
+    [ok] T=1.0 eq. 2.6 approached as 1/Lambda^2 (deviation ratio in [90, 110]): deviation 0.0 (tol 0.0)
+    [ok] T=1.0 eq. 4.3 pseudothreshold imaginary part: deviation 0.0 (tol 1.0e-12)
+  T=5.0: d Sigma'/d ln Lambda^2 (Lambda 50->500) = (0.0 + 0.0009498118308j), (500->5000) = (0.0 + 0.0009498853539j)   eq. 2.6 = (0.0 + 0.0009498860966j)   deviation ratio 99.983 (100 for 1/Lambda^2)   2 Im(-i Sigma') = 0.0   eq. 4.3 = 0.0
+    [ok] T=5.0 eq. 2.6 nonlocal divergence coefficient: deviation 7.43e-10 (tol 1.9e-8)
+    [ok] T=5.0 eq. 2.6 approached as 1/Lambda^2 (deviation ratio in [90, 110]): deviation 0.0 (tol 0.0)
+    [ok] T=5.0 eq. 4.3 pseudothreshold imaginary part: deviation 0.0 (tol 1.0e-12)
+### m2 = 0, m1 = m = 1: eq. 3.1  i(4pi)^2 Sigma' = -(m^2/p^2) ln(4 Lambda^2/m^2) - ((p^2-m^2)/p^2) ln((p^2-m^2+i eps)/p^2)
+  T=0.5 Lambda=200.0: i(4pi)^2 Sigma' = (-23.9658706883 + 3.14159265359j)   eq. 3.1 = (-23.9658581884 + 3.14159265359j)   diff = (-1.25e-5 + 6.776e-21j)
+    [ok] T=0.5 Lambda=200.0 eq. 3.1 (O(1/Lambda^2)): deviation 1.25e-5 (tol 0.00025)
+  T=0.5 Lambda=2000.0: i(4pi)^2 Sigma' = (-33.1761986854 + 3.14159265359j)   eq. 3.1 = (-33.1761985604 + 3.14159265359j)   diff = (-1.25e-7 + 6.776e-21j)
+    [ok] T=0.5 Lambda=2000.0 eq. 3.1 (O(1/Lambda^2)): deviation 1.25e-7 (tol 2.5e-6)
+  T=3.0 Lambda=200.0: i(4pi)^2 Sigma' = (-3.7240051815 + 0.0j)   eq. 3.1 = (-3.723999626 - 3.33333333333e-31j)   diff = (-5.556e-6 + 3.333e-31j)
+    [ok] T=3.0 Lambda=200.0 eq. 3.1 (O(1/Lambda^2)): deviation 5.56e-6 (tol 0.00025)
+  T=3.0 Lambda=2000.0: i(4pi)^2 Sigma' = (-5.25905641022 + 0.0j)   eq. 3.1 = (-5.25905635466 - 3.33333333333e-31j)   diff = (-5.556e-8 + 3.333e-31j)
+    [ok] T=3.0 Lambda=2000.0 eq. 3.1 (O(1/Lambda^2)): deviation 5.56e-8 (tol 2.5e-6)
+### D = 3 and D = 2 (2001.01942 sec. 7), m1 = 1, m2 = 0.5: 2 Im(-i Sigma') = -theta(u-)/(4 sqrt p^2) (D=3), -theta(u-)/sqrt(u+ u-) (D=2)
+  D=3 T=0.1: 2 Im(-i Sigma') = -0.790569415042   published -0.790569415042
+    [ok] D=3 T=0.1 sec. 7 imaginary part: deviation 1.69e-21 (tol 1.0e-12)
+  D=3 T=0.2: 2 Im(-i Sigma') = -0.559016994375   published -0.559016994375
+    [ok] D=3 T=0.2 sec. 7 imaginary part: deviation 1.69e-21 (tol 1.0e-12)
+  D=3 T=1.0: 2 Im(-i Sigma') = 0.0   published 0.0
+    [ok] D=3 T=1.0 sec. 7 imaginary part: deviation 0.0 (tol 1.0e-12)
+  D=2 T=0.1: 2 Im(-i Sigma') = -1.76090181265   published -1.76090181265
+    [ok] D=2 T=0.1 sec. 7 imaginary part: deviation 3.39e-21 (tol 1.0e-12)
+  D=2 T=0.2: 2 Im(-i Sigma') = -3.12347523777   published -3.12347523777
+    [ok] D=2 T=0.2 sec. 7 imaginary part: deviation 6.78e-21 (tol 1.0e-12)
+  D=2 T=1.0: 2 Im(-i Sigma') = 0.0   published 0.0
+    [ok] D=2 T=1.0 sec. 7 imaginary part: deviation 0.0 (tol 1.0e-12)
+# worst deviation 1.25e-5 at T=0.5 Lambda=200.0 eq. 3.1 (O(1/Lambda^2))
+# END fw elapsed=0.2s status=PASS
