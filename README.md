@@ -5,12 +5,13 @@ community has not yet addressed. The comparison theory is agravity (Salvio & Str
 
 ## The rule of the project (author, 31 Oct 2026)
 
-Every result on the path to the goal, from the first paper that computes something (Pais–Uhlenbeck 1950) up to
-at least agravity, is redone with the technique of its day and then with each later technique **until the
+Every result on the path to the goal, from Utiyama–DeWitt 1962 up to at least agravity, is redone with the technique of its day and then with each later technique **until the
 techniques stale out**, with the intent of extracting usable and missed mathematical techniques. Agreement
 between techniques is the pass condition, not the product; the product is what each technique sees that the
 others do not, recorded in `notes/TECHNIQUES.md` at the end of every rung. A rung is not left with a known open
-computation while the next one starts.
+computation while the next one starts. Results before 1962 that the path rests on are presumed fact unless
+history marked them wrong; Pais–Uhlenbeck 1950 is such an input, and `fakeon/toy/` is the classical projection
+exercised on it, not a rung.
 
 ## The question
 
