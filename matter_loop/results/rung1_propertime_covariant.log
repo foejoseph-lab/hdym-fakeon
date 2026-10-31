@@ -1,0 +1,29 @@
+# rung1 propertime covariant
+#   proper-time two-prop n=0: rel.diff vs exact at Lambda=1e3, Delta=0.7: 5.15E-8
+#   proper-time two-prop n=1: rel.diff vs exact at Lambda=1e3, Delta=0.7: 2.45E-13
+#   proper-time two-prop n=2: rel.diff vs exact at Lambda=1e3, Delta=0.7: 1.14E-19
+#   proper-time one-prop n=0: rel.diff vs exact at Lambda=1e3, m=0.8: 2.05E-13
+#   proper-time one-prop n=1: rel.diff vs exact at Lambda=1e3, m=0.8: 8.74E-20
+# metric expansion and densities
+# tadpole symbol (covariant measure)
+# bubble
+# tadpole
+# --- Lambda^4 (x16pi^2) ---
+#   bubble: NOT a combination of ['sqrtg2']; p^0 part = -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/32
+#   tadpole: NOT a combination of ['sqrtg2']; p^0 part = (h11**2 + 2*h12**2 + 2*h13**2 + 2*h14**2 + h22**2 + 2*h23**2 + 2*h24**2 + h33**2 + 2*h34**2 + h44**2)/8
+#   total: (-1/4) sqrtg2   [expected -1/4]
+# --- Lambda^2 (x16pi^2) ---
+#   bubble: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = m**2*(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/16
+#   tadpole: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = -m**2*(h11**2 + 2*h12**2 + 2*h13**2 + 2*h14**2 + h22**2 + 2*h23**2 + 2*h24**2 + h33**2 + 2*h34**2 + h44**2)/4
+#   total: (1/2) m2sqrtg2 + ((6*xi - 1)/12) sqrtgR2   [expected 1/2, -(1/6 - xi)/2]
+# --- log Lambda^2 (x16pi^2) ---
+#   total p^0: (-1/4) m4sqrtg2   [expected -1/4]
+#   total p^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected -(6 xi - 1)/12]
+#   total p^4: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   all orders covariant and as expected: True
+# --- heat-kernel coefficients at second order in h, derived from Tr e^{-tD} ---
+#   a_0^(2) derived == Vassilevich eq. 4.26 [sqrt g]
+#   a_2^(2) derived == Vassilevich eq. 4.27 [sqrt g (-m^2 + (1/6 - xi) R)]
+#   a_4^(2) derived == Vassilevich eq. 4.28 [sqrt g [m^4/2 + (xi - 1/6) m^2 R + Ric^2/60 + (60xi^2 - 20xi + 1) R^2/120]]
+#   heat-kernel coefficients reproduced: True
+# END rung1 propertime covariant elapsed=451.7s status=OK

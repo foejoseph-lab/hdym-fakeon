@@ -1,0 +1,29 @@
+# rung1 propertime plain
+#   proper-time two-prop n=0: rel.diff vs exact at Lambda=1e3, Delta=0.7: 5.15E-8
+#   proper-time two-prop n=1: rel.diff vs exact at Lambda=1e3, Delta=0.7: 2.45E-13
+#   proper-time two-prop n=2: rel.diff vs exact at Lambda=1e3, Delta=0.7: 1.14E-19
+#   proper-time one-prop n=0: rel.diff vs exact at Lambda=1e3, m=0.8: 2.05E-13
+#   proper-time one-prop n=1: rel.diff vs exact at Lambda=1e3, m=0.8: 8.74E-20
+# metric expansion and densities
+# tadpole symbol
+# bubble
+# tadpole
+# --- Lambda^4 (x16pi^2) ---
+#   bubble: NOT a combination of ['sqrtg2']; p^0 part = -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/32
+#   tadpole: (0) sqrtg2
+#   total: NOT a combination of ['sqrtg2']; p^0 part = -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/32
+# --- Lambda^2 (x16pi^2) ---
+#   bubble: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = m**2*(h11**2 - 2*h11*h22 - 2*h11*h33 - 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + h22**2 - 2*h22*h33 - 2*h22*h44 + 4*h23**2 + 4*h24**2 + h33**2 - 2*h33*h44 + 4*h34**2 + h44**2)/16
+#   tadpole: (1/2) m2sqrtg2 + (xi/2) sqrtgR2
+#   total: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = 0
+# --- log Lambda^2 (x16pi^2) ---
+#   total p^0: (-1/4) m4sqrtg2   [expected -1/4]
+#   total p^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected -(6 xi - 1)/12]
+#   total p^4: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   all orders covariant and as expected: False
+# --- heat-kernel coefficients at second order in h, derived from Tr e^{-tD} ---
+#   a_0^(2) derived != table; fit: None; difference from table: (h11**2 + 2*h12**2 + 2*h13**2 + 2*h14**2 + h22**2 + 2*h23**2 + 2*h24**2 + h33**2 + 2*h34**2 + h44**2)/2
+#   a_2^(2) derived != table; fit: None; difference from table: 136 terms
+#   a_4^(2) derived == Vassilevich eq. 4.28 [sqrt g [m^4/2 + (xi - 1/6) m^2 R + Ric^2/60 + (60xi^2 - 20xi + 1) R^2/120]]
+#   heat-kernel coefficients reproduced: False
+# END rung1 propertime plain elapsed=206.1s status=LOG-OK_POWER-ORDERS-NONCOVARIANT

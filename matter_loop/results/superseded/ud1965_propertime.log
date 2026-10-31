@@ -1,0 +1,26 @@
+# ud1965_propertime: Schwinger proper time, lower cutoff t >= 1/Lambda^2, bubble + tadpole
+# proper-time integrals, large-Lambda forms vs exact incomplete gamma:
+#   proper-time two-prop n=0: rel.diff vs exact at Lambda=1e3, Delta=0.7: 5.15E-8
+#   proper-time two-prop n=1: rel.diff vs exact at Lambda=1e3, Delta=0.7: 2.45E-13
+#   proper-time two-prop n=2: rel.diff vs exact at Lambda=1e3, Delta=0.7: 1.14E-19
+#   proper-time one-prop n=0: rel.diff vs exact at Lambda=1e3, m=0.8: 2.05E-13
+#   proper-time one-prop n=1: rel.diff vs exact at Lambda=1e3, m=0.8: 8.74E-20
+# densities from the metric (second order in h)
+# bubble, proper time
+# tadpole, proper time
+# --- Lambda^4 (x16pi^2) ---
+#   bubble: NOT prop. to sqrt(g)^(2): -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/32
+#   tadpole: 0 * sqrt(g)^(2), residual 0
+#   total: NOT prop. to sqrt(g)^(2): -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/32
+#   expected total: -1/4 * sqrt(g)^(2)
+# --- Lambda^2 (x16pi^2) ---
+#   bubble: NOT a combination
+#   tadpole: 1/2 * m^2 sqrt(g)^(2) + xi/2 * (sqrt(g) R)^(2), residual 0
+#   total: NOT a combination
+#   expected total: 1/2 * m^2 sqrt(g)^(2) + -(1/6 - xi)/2 * (sqrt(g) R)^(2)
+# --- log Lambda^2 (x16pi^2) ---
+#   total p^0: -1/4 * m^4 sqrt(g)^(2)        [expected -1/4]
+#   total p^2: -(6*xi - 1)/12 * m^2 (sqrt(g) R)^(2)    [expected -(6 xi - 1)/12]
+#   total p^4: -1/120 * Ric^2 + -(60*xi**2 - 20*xi + 1)/240 * R^2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   all three orders covariant and as expected: False
+# --- Tr e^{-tD} at second order in h: small-t expansion, derived ---

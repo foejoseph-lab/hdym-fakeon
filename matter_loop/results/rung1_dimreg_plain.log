@@ -1,0 +1,14 @@
+# rung1 dimreg plain: pole parts in units of 1/eps = 1/(8 pi^2 (n-4))
+#   int d^n l (l^2)^0/(l^2+Delta)^2 -> -epsinv
+#   int d^n l (l^2)^1/(l^2+Delta)^2 -> 2*Delta*epsinv
+#   int d^n l (l^2)^2/(l^2+Delta)^2 -> -3*Delta**2*epsinv
+#   int d^n k (k^2)^0/(k^2+m^2)   -> epsinv*m**2
+#   int d^n k (k^2)^1/(k^2+m^2)   -> -epsinv*m**4
+# bubble
+# tadpole
+# --- coefficient of 1/eps ---
+#   p^0: {'m4sqrtg2': 1/4}   [expected 1/4]
+#   p^2: {'m2sqrtgR2': (6*xi - 1)/12}   [expected (6 xi - 1)/12]
+#   p^4: {'Ric2': 1/120, 'R2': (60*xi**2 - 20*xi + 1)/240}, residual 0   [expected 1/120, (60 xi^2 - 20 xi + 1)/240 = 1974 eq. 3.40]
+#   matches 1974 eq. 3.40 and the log orders of (a), (b): True
+# END rung1 dimreg plain elapsed=52.0s status=OK

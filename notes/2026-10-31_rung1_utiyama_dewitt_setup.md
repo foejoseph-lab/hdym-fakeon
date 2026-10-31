@@ -16,7 +16,8 @@ hep-th/0306138 instead.
 
 1. **'t Hooft & Veltman, Ann. Inst. H. Poincaré A 20, 69 (1974), §3 — read 31 Oct from the open numdam PDF.**
    Conventions: Euclidean ("purely imaginary time") metric; 1/ε ≡ 1/(8π²(n − 4)) (eq. 3.3); R defined in
-   their Appendix A. The one-loop algorithm (eqs. 3.1–3.3): for L = −½∂φ_i∂φ_i + φ_i N^μ_ij ∂_μφ_j + ½φ_i M_ij φ_j,
+   their Appendix A **with the opposite sign to ours** (their eq. 3.18 is negative on spheres) — added 31 Oct
+   after review; the comparison in the results note uses this flip. The one-loop algorithm (eqs. 3.1–3.3): for L = −½∂φ_i∂φ_i + φ_i N^μ_ij ∂_μφ_j + ½φ_i M_ij φ_j,
    ΔL = (1/ε) Tr(¼X² + (1/24)Y_μνY_μν), X = M − N^μN^μ, Y_μν = ∂_μN^ν − ∂_νN^μ + N^μN^ν − N^νN^μ. Covariant
    version for a real scalar, L = √g(−½∂_μφ g^μν∂_νφ + φN^μ∂_μφ + ½φMφ) (eq. 3.39):
 
