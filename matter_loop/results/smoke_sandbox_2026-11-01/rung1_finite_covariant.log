@@ -1,0 +1,58 @@
+# rung1 finite covariant: finite p^4 log p^2 part, massless scalar, regulators cutoff,propertime,dimreg
+# --- spin projectors ---
+#   Ric^2 = {'P2': 1/4, 'P0s': 1} (resid 0);  R^2 = {'P2': 0, 'P0s': 3} (resid 0)   [P3 expects 1/4, 1 and 0, 3]
+# --- tree level: -(M_P^2/2) int sqrt(g) R at second order, derived from the metric ---
+#   Q_tree = {'P2': M_P**2/8, 'P0s': -M_P**2/4}, residual 0   [P4: P2 coefficient > 0, P0s coefficient < 0]
+# --- regulator: cutoff ---
+#   m = 0: below p^4 only power divergences remain: Lambda-free part zero: True; log part zero: True
+#   c_L (log Lambda^2): {'Ric2': -1/120, 'R2': -(60*xi**2 - 20*xi + 1)/240}, resid 0   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   c_p (log p^2):      {'Ric2': 1/120, 'R2': (60*xi**2 - 20*xi + 1)/240}, resid 0   [P1 expects c_p = -c_L]
+#   K  (constant):      None, resid NONZERO (1105 terms)
+#   P1 c_p = -c_L: True
+#   c_L on projectors: P2 = -1/480, P0s = -(6*xi - 1)**2/48   [P3: -1/480 and -(3/4)(xi-1/6)^2]
+#   K transverse (first-order variation under h -> h + p e + e p vanishes identically): False
+#   K on the complete basis {P2, P0s, (p h p)^2, p^2 (p h h p), p^4 h^2}: {'P2': -37/14400, 'P0s': -(2160*xi**2 - 570*xi + 29)/2880, 'pph_sq': -(30*xi - 1)/2880, 'p2_phhp': 1/720, 'p4_h2': (60*xi - 13)/5760}, resid 0
+#   (64s)
+# --- regulator: propertime ---
+#   m = 0: below p^4 only power divergences remain: Lambda-free part zero: True; log part zero: True
+#   c_L (log Lambda^2): {'Ric2': -1/120, 'R2': -(60*xi**2 - 20*xi + 1)/240}, resid 0   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   c_p (log p^2):      {'Ric2': 1/120, 'R2': (60*xi**2 - 20*xi + 1)/240}, resid 0   [P1 expects c_p = -c_L]
+#   K  (constant):      {'Ric2': (-46 + 15*EulerGamma)/1800, 'R2': (-1800*xi**2 + 900*EulerGamma*xi**2 - 300*EulerGamma*xi + 500*xi - 1 + 15*EulerGamma)/3600}, resid 0
+#   P1 c_p = -c_L: True
+#   c_L on projectors: P2 = -1/480, P0s = -(6*xi - 1)**2/48   [P3: -1/480 and -(3/4)(xi-1/6)^2]
+#   K transverse (first-order variation under h -> h + p e + e p vanishes identically): True
+#   (71s)
+# --- regulator: dimreg ---
+#   m = 0: below p^4 only power divergences remain: Lambda-free part zero: True; log part zero: True
+#   dim reg: pole reported through the dictionary 1/eps <-> -(1/16pi^2) log Lambda^2; coefficient of log mu^2 equals c_L: True
+#   c_L (log Lambda^2): {'Ric2': -1/120, 'R2': -(60*xi**2 - 20*xi + 1)/240}, resid 0   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   c_p (log p^2):      {'Ric2': 1/120, 'R2': (60*xi**2 - 20*xi + 1)/240}, resid 0   [P1 expects c_p = -c_L]
+#   K  (constant):      {'Ric2': -23/900, 'R2': -(1800*xi**2 - 500*xi + 1)/3600}, resid 0
+#   P1 c_p = -c_L: True
+#   c_L on projectors: P2 = -1/480, P0s = -(6*xi - 1)**2/48   [P3: -1/480 and -(3/4)(xi-1/6)^2]
+#   K transverse (first-order variation under h -> h + p e + e p vanishes identically): True
+#   (79s)
+# --- P2: regulator differences in the constant K ---
+#   K[cutoff] - K[propertime] = None, resid NONZERO (1690 terms)   [P2: local and covariant means resid 0; not scored: a non-transverse K is in the pair]
+#   K[cutoff] - K[dimreg] = None, resid NONZERO (1105 terms)   [P2: local and covariant means resid 0; not scored: a non-transverse K is in the pair]
+#   K[propertime] - K[dimreg] = {'Ric2': EulerGamma/120, 'R2': EulerGamma*(60*xi**2 - 20*xi + 1)/240}, resid 0   [P2: local and covariant means resid 0]
+# --- P5: resummed inverse propagator per spin sector (units: coefficient of h.P.h in 2Q; 1/16pi^2 restored) ---
+#   [cutoff] G^-1_P2(p^2) = M_P**2*p2/4 + -p2**2*(60*log(Lambda) - 30*log(p2) + 37)/(115200*pi**2)
+#   [cutoff] G^-1_P0s(p^2) = -M_P**2*p2/2 + -p2**2*(4320*xi**2*log(Lambda) - 2160*xi**2*log(p2) + 2160*xi**2 - 1440*xi*log(Lambda) + 720*xi*log(p2) - 570*xi + 120*log(Lambda) - 60*log(p2) + 29)/(23040*pi**2)
+#   [cutoff] spin-2: a = M_P**2/4, b = 1/(3840*pi**2) (coefficient of p^4 log(p^2/Lambda^2)), k = -37/(115200*pi**2)  [P5: a > 0, b > 0: True]
+#   [cutoff] spin-2, M_P^2 << p^2 << Lambda^2:  G_2 ~ 1/(1/(3840*pi**2) p^4 log(p^2/Lambda^2))
+#   [cutoff] spin-2, no bare C^2 term: Euclidean zero of G_2^-1 at  p^2 = (M_P**2/4) / (1/(3840*pi**2) log(Lambda^2/p^2) - (-37/(115200*pi**2)))
+#   [cutoff] spin-0 p^4 log coefficient -(6*xi - 1)**2/48: zero at xi = 1/6
+#   [propertime] G^-1_P2(p^2) = M_P**2*p2/4 + p2**2*(-30*log(Lambda) + 15*log(p2) - 46 + 15*EulerGamma)/(57600*pi**2)
+#   [propertime] G^-1_P0s(p^2) = -M_P**2*p2/2 + p2**2*(-1080*xi**2*log(Lambda) + 540*xi**2*log(p2) - 1080*xi**2 + 540*EulerGamma*xi**2 + 360*xi*log(Lambda) - 180*xi*log(p2) - 180*EulerGamma*xi + 300*xi - 30*log(Lambda) + 15*log(p2) - 19 + 15*EulerGamma)/(5760*pi**2)
+#   [propertime] spin-2: a = M_P**2/4, b = 1/(3840*pi**2) (coefficient of p^4 log(p^2/Lambda^2)), k = (-46 + 15*EulerGamma)/(57600*pi**2)  [P5: a > 0, b > 0: True]
+#   [propertime] spin-2, M_P^2 << p^2 << Lambda^2:  G_2 ~ 1/(1/(3840*pi**2) p^4 log(p^2/Lambda^2))
+#   [propertime] spin-2, no bare C^2 term: Euclidean zero of G_2^-1 at  p^2 = (M_P**2/4) / (1/(3840*pi**2) log(Lambda^2/p^2) - ((-46 + 15*EulerGamma)/(57600*pi**2)))
+#   [propertime] spin-0 p^4 log coefficient -(6*xi - 1)**2/48: zero at xi = 1/6
+#   [dimreg] G^-1_P2(p^2) = M_P**2*p2/4 + -p2**2*(30*log(Lambda) - 15*log(p2) + 46)/(57600*pi**2)
+#   [dimreg] G^-1_P0s(p^2) = -M_P**2*p2/2 + -p2**2*(1080*xi**2*log(Lambda) - 540*xi**2*log(p2) + 1080*xi**2 - 360*xi*log(Lambda) + 180*xi*log(p2) - 300*xi + 30*log(Lambda) - 15*log(p2) + 19)/(5760*pi**2)
+#   [dimreg] spin-2: a = M_P**2/4, b = 1/(3840*pi**2) (coefficient of p^4 log(p^2/Lambda^2)), k = -23/(28800*pi**2)  [P5: a > 0, b > 0: True]
+#   [dimreg] spin-2, M_P^2 << p^2 << Lambda^2:  G_2 ~ 1/(1/(3840*pi**2) p^4 log(p^2/Lambda^2))
+#   [dimreg] spin-2, no bare C^2 term: Euclidean zero of G_2^-1 at  p^2 = (M_P**2/4) / (1/(3840*pi**2) log(Lambda^2/p^2) - (-23/(28800*pi**2)))
+#   [dimreg] spin-0 p^4 log coefficient -(6*xi - 1)**2/48: zero at xi = 1/6
+# END rung1 finite covariant elapsed=232.5s status=LOG-OK_FINITE-NONTRANSVERSE[cutoff]

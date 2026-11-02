@@ -98,7 +98,8 @@ into the W² coefficient. (Written out, not run: a one-line conversion.)
 
 ## 4. Findings beyond the reproduction
 
-1. **The measure matters at ∞⁴ and ∞², and only there.** With φ as the integration variable the Λ⁴ term is
+1. **The measure matters at ∞⁴ and ∞², and only there** [corrected 1 Nov: and in the *finite* p⁴ constant; the log
+   order never sees it — §8.2]. With φ as the integration variable the Λ⁴ term is
    off from −¼√g⁽²⁾ by −⅛h_ijh_ij = ½(ln√g)⁽²⁾ (units Λ⁴/16π²); with χ = g^{1/4}φ it is right. The
    identification with ln√g is a hand step on the logged difference, not a separate logged check. **How this
    was found, for the record:** the first proper-time script (`results/superseded/ud1965_propertime.py`)
@@ -190,3 +191,124 @@ unseen (rule 10); the recursion is attributed to it through Avramidi hep-th/9510
 
 **Still open from §6:** the 1/p⁴ resummation (finite p⁴ log p² part of Π), the unshifted-cutoff placement for
 §4.2, spinor and vector matter.
+
+## 8. Addendum, 1 Nov evening: the three owed items — rung 1 closed
+
+Code: `matter_loop/rung1_run.py --placement unshifted` and `matter_loop/rung1_finite.py` (new), machinery appended to
+`ud1962_lib.py` (dated block). Smoke-tested in the sandbox at full settings (there is no smaller setting: 256 components
+either run or do not); the logs below are to be regenerated on the author's machine with the README commands and
+committed (rule 15). Predictions were written in the two headers before the runs; one was corrected before the run and
+the correction is in the header (P5, below).
+
+### 8.1 Cutoff placement (`rung1_run.py --regulator cutoff --placement unshifted`)
+
+Hard cutoff |k| < Λ on the propagator momentum itself, no Feynman parameter; the two-propagator product expanded at
+large k (every power of p lowers the UV degree by one, so the Λ⁴, Λ², log Λ² coefficients are exact and the finite part
+from this expansion is not reported). The script also recomputes the shifted placement and prints the difference.
+
+Predicted (surface-term formula for shifting a cut-off integral, header): Λ⁴ identical, log identical, Λ² different by a
+non-covariant p² term. **Found, plain measure:** Λ⁴ identical; log identical; Λ² (unshifted − shifted) =
+(1/576) p² (h² + 2 h_ij h_ij) in units Λ²/16π² — the same non-covariant tensor structure as the Λ⁴ term itself,
+−(1/192)(h² + 2 h_ij h_ij). Status `LOG-OK_POWER-ORDERS-NONCOVARIANT`, as predicted.
+
+**§4.2 upgraded:** the hard momentum cutoff fails covariance at Λ⁴ with *either* placement, Feynman-shifted or unshifted
+(the Λ⁴ term does not depend on the placement at all); the placement dependence is confined to Λ². The coefficient
+(1/576) and the tensor structure were not predicted; only which orders move and which do not. What 1962 did with its ∞⁴ and ∞²
+remains undecidable from the abstract; what is now decided is that no placement of a hard momentum cutoff gives them.
+Covariant-measure variant: on the author's machine (README).
+
+### 8.2 The finite p⁴ part (`rung1_finite.py`)
+
+Massless scalar; the p⁴ part is bubble-only because the tadpole carries no p, but it is the full sum at this order.
+Q(p⁴) = c_L log Λ² + c_p log p² + K, each fitted to {Ric², R²} and to the Barnes–Rivers forms p⁴ h·P⁽²⁾·h, p⁴ h·P⁽⁰ˢ⁾·h
+(Ric² = ¼P⁽²⁾ + P⁽⁰ˢ⁾, R² = 3P⁽⁰ˢ⁾, checked in the log). Three regulators: (a) Feynman-parametrised hard cutoff;
+(b1) proper time on the graphs; (c) dimensional regularization, MS-bar, **with the n-dimensional angular averages and
+n-dimensional dot products** (the 31 Oct dim-reg driver took them in d = 4, which is exact for the pole and wrong for
+the finite part — a bug of 1 Nov's first draft, caught by c_L coming out 16π² off and by the {Ric², R²} fit of K failing in dim reg where
+it cannot; the explicit Ward test was added together with the fix and then found the measure effect; fixed before any
+number was recorded). Two partial sandbox runs preceded the final header and are kept, with their timestamps, in
+`results/superseded/rung1_finite_{cutoff_only_sandbox_2027,dimreg_only_sandbox_2041}.log`; the first three-regulator
+run, with the d = 4 averages, was overwritten and survives only in the session transcript.
+
+| prediction (header) | outcome |
+|---|---|
+| P1: c_p = −c_L in all three (bookkeeping; cannot fail if the split is right) | **holds**, all three, both measures |
+| P3: spin-2 log coefficient −1/480 for all ξ; spin-0 −(3/4)(ξ−1/6)², zero at conformal coupling (arithmetic on the 31 Oct c_L and the projector identity) | **holds** |
+| P4: tree −(M_P²/2)∫√g R → +M_P²/8 on P⁽²⁾, −M_P²/4 on P⁽⁰ˢ⁾ (Fierz–Pauli 1 : −2, Euclidean conformal-factor sign) | **holds**, derived from (√g R)⁽²⁾ in code |
+| P2: K regulator-dependent, differences local and covariant | **holds between the covariant regulators; fails for the cutoff and for the plain measure — see below** |
+| P5: see 8.3 | corrected before the first execution; the log tests only a > 0, b > 0 (P4 and P3 again) |
+
+**K, the regulator constant** (units 1/16π²; dim reg: pole dropped, MS-bar, μ² identified with Λ²; a quadratic form in h
+is "transverse" when its first-order variation under h → h + pε + εp vanishes identically in h and ε — the linearized
+Ward identity as a bilinear statement, tested in the log; the weaker test K(pure gauge) = 0 is not equivalent, as the
+1 Nov review showed with (p h p)² − p⁴h², and the first version of the script used the weaker one; the verdicts did not
+change because every "yes" row is also an exact {Ric², R²} fit):
+
+| regulator | measure | K transverse? | K |
+|---|---|---|---|
+| (c) dim reg MS-bar | either (δ(0) = 0) | **yes** | −(23/900) Ric² − (1800ξ² − 500ξ + 1)/3600 R² = (1/120)(−46/15) Ric² + … |
+| (b1) proper time on graphs | χ = g^{1/4}φ | **yes** | K_dimreg + γ_E·(1/120 Ric² + (60ξ²−20ξ+1)/240 R²) — i.e. **exactly −γ_E·c_L**, the known proper-time-cutoff ↔ MS-bar offset |
+| (b1) proper time on graphs | φ | **no** | non-transverse part −(5ξ−1)/240 (p h p)² + (20ξ−3)/960 p⁴h² (on the complete 5-element basis, log) |
+| (a) hard cutoff (shifted placement; the unshifted finite part was not computed) | either | **no** | non-transverse part, φ: −(15ξ−2)/1440 (p h p)² + (1/720) p²(p h h p) + (6ξ−1)/576 p⁴h²; χ: different numbers, log |
+
+The status label `LOG-OK_FINITE-NONTRANSVERSE[...]` and the rule that P2 pairs containing a non-transverse K are reported
+but not scored were introduced after the first, cutoff-only run (which ended `status=OK` with the same non-transverse
+K); they describe the result, not a prediction — as in §4.1. **P2 as written failed** for the cutoff and for proper time
+with φ. Also from the logs: the measure changes K only in its spin-0 and non-transverse parts — the spin-2 (TT)
+constant is measure-independent in every regulator (cutoff −37/14400 with φ and with χ; proper time (−46+15γ_E)/7200
+with both; the fit's P⁽²⁾ coefficient equals h·P⁽²⁾KP⁽²⁾·h because the three non-transverse basis elements vanish under
+P⁽²⁾ on both sides).
+
+Readings. (i) The −46/15 on Ric² in MS-bar (μ² ≡ Λ² in the table) is, from memory, the massless-scalar
+graviton-self-energy constant of the 1974 dim-reg literature [m?: the scalar-loop paper is Capper & Ramón Medrano PRD 9,
+1641 (1974), not Capper–Duff–Halpern PRD 10, 461, which is the photon loop; the Barvinsky–Vilkovisky second-order form
+factor for the massless scalar carries 23/450 against a log coefficient 1/60, ratio 46/15 — both unverified; to be
+checked against a listing before it is leaned on]. It was not aimed at. If a listing confirms it, it is an independent
+check of the n-dimensional machinery; until then the checks are the bilinear Ward identity and the γ_E relation to
+proper time. (ii) **Finding 1 of §4 is corrected:** the measure matters at ∞⁴, ∞² *and in the finite p⁴ constant*; the log order
+is the only order that never sees it. With φ the proper-time finite part violates the linearized Ward identity by a
+local, ξ-dependent polynomial; with χ it is transverse and differs from MS-bar by γ_E alone. (iii) The hard cutoff
+breaks the Ward identity in the finite parts with either measure — the finite-part analogue of its Λ⁴ failure; a non-covariant
+regulator leaves a Λ-independent non-transverse local polynomial, removed by non-covariant counterterms exactly like
+the Λ⁴ piece.
+(iv) The "−1/12 discipline" (the author's phrase, 1 Nov: a regulated finite number means something only with the
+subtracted piece shown beside it and the unobservability of the subtraction argued), applied: every finite number above is written with its regulator, its measure, the subtracted
+piece (c_L log Λ²) and the test of whether the remainder is a local covariant polynomial; the ones that pass are
+(c) and (b1)+χ, and their difference is γ_E, unobservable.
+
+### 8.3 The 1/p⁴ resummation
+
+Per spin sector, coefficient of h·P·h in 2Q, 1/16π² restored, massless scalar, Euclidean, MS-bar (μ² ≡ Λ²) /
+proper-time-χ / cutoff differing only in the spin-2 constant k (for the cutoff, k is the TT projection of a
+non-transverse K):
+
+    G₂⁻¹(p²) = (M_P²/4) p²  +  (1/3840π²) p⁴ [ log(p²/Λ²) − 46/15 (+ γ_E for proper time; −37/30 in place of −46/15 for the cutoff) ]
+    G₀⁻¹(p²) = −(M_P²/2) p²  −  (3/4)(ξ − 1/6)² (2/16π²) p⁴ log(Λ²/p²) + …     (no spin-0 running at ξ = 1/6)
+
+P5 as corrected before the first execution of the script (the header quotes the first wording verbatim and records the
+sequence): the induced spin-2 p⁴ coefficient carries the asymptotic-freedom sign — it grows with p² — and is therefore
+*negative* for p² < Λ² e^{46/15}. What the log tests is only a > 0 and b > 0, which are P4 and P3 again; the rest is a
+formula printed and read:
+(i) for M_P² ≪ p² ≪ Λ², G₂ ≈ 1/[(1/3840π²) p⁴ log(p²/Λ²)]: the abstract's "∼ 1/p⁴", with a logarithmically running
+coefficient — Stelle's 1/k⁴ fifteen years early, not as a pole but as a running term; (ii) with no bare C² term,
+G₂⁻¹ has a **Euclidean** zero at p² = 960π² M_P²/(log(Λ²/p²) + 46/15), i.e. p ≈ 30–50 M_P for Λ = 60–4000 M_P (hand
+evaluation of the printed formula; self-consistent in Λ only above that, and at the zero the one-loop term equals the
+tree term by definition, so the location sits at the edge of the one-loop truncation unless N_S is large), a spacelike
+pole = a Lorentzian tachyon, not Stelle's ghost; Stelle's
+ghost (negative-residue pole at m² = (M_P²/4)/B) is what a *positive* bare Euclidean C² coefficient B at the scale p
+gives when it dominates the negative log; N_S scalars divide the pole position by N_S. Which of the two the 1962
+abstract meant by "semiclassical Green's function ∼ 1/p⁴" cannot be decided from the abstract; both are 1/p⁴ at large p.
+Nothing here is a statement about the quantum gravity theory — it is the matter loop dressing a classical propagator,
+which is all 1962 had — and it is the bridge to rung 3 (the graviton loop lands in the same two slots) and to 1977.
+
+### 8.4 Still open from §6, after this
+
+Spinor and vector (abelian) matter: not done; a decision for the author (brief §6). The 1962 text: unseen. The
+covariant-measure unshifted-placement run: predicted, not run (author's machine). **Rung 1 closes when** the four logs
+of §8 are regenerated on the author's machine and committed (rule 15), the covariant unshifted run is in, and the
+author has decided on spinor/vector matter; no other computation of rung 1 is owed.
+
+History: §8 added 1 Nov evening; finding 1 of §4 corrected the same evening (the "only there" was wrong at the finite p⁴
+order; found by the {Ric², R²} fit and the Ward test of `rung1_finite.py`, not by rereading). Fresh-agent review of
+1 Nov night folded in before the patch: Ward test made bilinear; status-label history stated; P5's first wording
+quoted verbatim in the header; −46/15 flagged everywhere; "closed" qualified; the 133/10 clause removed.

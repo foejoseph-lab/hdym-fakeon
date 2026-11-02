@@ -3,6 +3,9 @@
 Rung 1 driver: one real scalar on g = delta + h, one loop, second order in h; bubble + tadpole.
 
   --regulator cutoff      1962: hard momentum cutoff on the (Feynman-parametrised) loop momentum
+  --placement shifted     (cutoff only; default) |l| < Lambda on the Feynman-shifted momentum l = k + x p
+  --placement unshifted   (cutoff only) |k| < Lambda on the propagator momentum k itself, no Feynman parameter;
+                          large-k expansion, exact in Lambda^4, Lambda^2, log Lambda^2 (added 1 Nov 2026)
   --regulator propertime  1965: Schwinger proper time with lower cutoff t >= 1/Lambda^2
   --measure plain         operator K = -d(sqrt g g^{mu nu} d) + sqrt g (m^2 + xi R)   [phi as the integration variable]
   --measure covariant     operator g^(-1/4) K g^(-1/4)   [chi = g^(1/4) phi: DeWitt's covariant measure]
@@ -16,6 +19,14 @@ Expectations (units 1/16pi^2), from W = 1/2 Tr ln D = -1/2 int dt/t Tr e^{-tD} w
   Lambda^4 -> -1/4 sqrt(g);  Lambda^2 -> -(1/2) a_2 = 1/2 m^2 sqrt g - (1/2)(1/6 - xi) sqrt g R;
   log -> -(1/2) a_4 = -(1/4) m^4 - (1/2)(xi - 1/6) m^2 R - (1/120) Ric^2 - ((60 xi^2 - 20 xi + 1)/240) R^2;
 and the p^4 log coefficients are 't Hooft-Veltman 1974 eq. (3.40) with Delta L = -(A Ric^2 + B R^2).
+
+Prediction for --placement unshifted (written 1 Nov 2026 before the run; surface-term formula for shifting a
+cut-off integral, int_{|k|<L} [F(k+a) - F(k)] = sum_n (1/n!) a^n . oint n dS d^(n-1)F, with F ~ k^0 at large k):
+  Lambda^4 : IDENTICAL to the shifted placement (the order-a surface term is odd and vanishes), hence still
+             not proportional to sqrt(g)^(2) -- the hard cutoff fails covariance at Lambda^4 with either placement;
+  Lambda^2 : DIFFERS from the shifted placement by a non-covariant term quadratic in p (order a^2 surface term);
+  log      : IDENTICAL (the first surface term that could touch it is finite);
+so the expected status is LOG-OK_POWER-ORDERS-NONCOVARIANT and the log line equals eq. (3.40) as before.
 """
 import time, argparse, itertools
 import sympy as sp
@@ -24,6 +35,7 @@ import ud1962_lib as U
 ap = argparse.ArgumentParser()
 ap.add_argument('--regulator', choices=['cutoff', 'propertime'], required=True)
 ap.add_argument('--measure', choices=['plain', 'covariant'], default='plain')
+ap.add_argument('--placement', choices=['shifted', 'unshifted'], default='shifted')
 ap.add_argument('--heatkernel', action='store_true')
 ap.add_argument('--log', default=None)
 args = ap.parse_args()
@@ -34,7 +46,8 @@ def say(*a):
     print(s, flush=True)
     if out: out.write(s + '\n'); out.flush()
 
-name = f'rung1 {args.regulator} {args.measure}'
+unshifted = args.regulator == 'cutoff' and args.placement == 'unshifted'
+name = f'rung1 {args.regulator} {args.measure}' + (' unshifted' if unshifted else '')
 say(f'# {name}')
 pi2 = 16*sp.pi**2
 xi, m = U.xi, U.m
@@ -43,6 +56,8 @@ cov = args.measure == 'covariant'
 if args.regulator == 'cutoff':
     two, one = U.radial_two_prop, U.radial_one_prop
     U.check_radials(say)
+    if unshifted:
+        U.check_radial_hard(say)
 else:
     two, one = U.pt_two_prop, U.pt_one_prop
     U.check_pt_radials(say)
@@ -54,9 +69,31 @@ say('# tadpole symbol' + (' (covariant measure)' if cov else ''))
 sigma2 = U.tadpole_symbol(cov, ME)
 
 vertex = U.V1cov if cov else U.V1
-say('# bubble')
-Pi = U.bubble_Pi(two, vertex)
+say('# bubble' + (' (cutoff on the unshifted propagator momentum, large-k expansion)' if unshifted else ''))
+if unshifted:
+    raw = U.bubble_raw_unshifted(vertex)
+    Pi = {key: U.split(val) for key, val in raw.items()}
+else:
+    Pi = U.bubble_Pi(two, vertex)
 Gb = {part: U.quad_form(Pi, part) for part in ('L4', 'L2', 'log')}
+if unshifted:
+    say('# bubble again with the shifted placement, for the difference')
+    Pi_sh = U.bubble_Pi(two, vertex)
+    Gb_sh = {part: U.quad_form(Pi_sh, part) for part in ('L4', 'L2', 'log')}
+    say('# --- unshifted minus shifted placement, bubble (x16pi^2) ---')
+    for part in ('L4', 'L2', 'log'):
+        d = sp.expand(16*sp.pi**2*(Gb[part] - Gb_sh[part]))
+        if d == 0:
+            say(f'#   {part}: identical')
+        else:
+            # the four scalars quadratic in h and in p: fit the difference onto them
+            htr = U.h_tr
+            b1 = U.p2*htr**2
+            b2 = U.p2*sum(U.H[i, j]**2 for i in range(4) for j in range(4))
+            b3 = htr*sum(U.P[i]*U.P[j]*U.H[i, j] for i in range(4) for j in range(4))
+            b4 = sum(U.P[i]*U.P[j]*U.H[i, k]*U.H[j, k] for i in range(4) for j in range(4) for k in range(4))
+            fd, rd = U.fit(d, [b1, b2, b3, b4], ['p2_h2', 'p2_hh', 'h_pph', 'phhp'])
+            say(f'#   {part}: differs; fit onto {{p^2 h^2, p^2 h_ij h_ij, h p_i p_j h_ij, p_i h_ik h_jk p_j}} = {fd}, residual {rd}')
 say('# tadpole')
 Gt = U.split(U.tadpole_from_symbol(sigma2, one(0), one(2)))
 W = {part: sp.expand(Gb[part] + Gt[part]) for part in ('L4', 'L2', 'log')}

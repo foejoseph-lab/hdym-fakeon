@@ -427,3 +427,273 @@ def dimreg_one_prop(power):
     n = sp.Symbol('n')
     expr = sp.gamma(a + n/2)*sp.gamma(1 - a - n/2)/(sp.gamma(n/2)*sp.gamma(1))*(m**2)**(a + n/2 - 1)/(4*sp.pi)**(n/2)
     return _pole(expr, n)
+
+
+# ================================================================ additions of 1 Nov 2026 (rung 1 finish)
+# ---------------------------------------------------------------- hard cutoff on the UNSHIFTED loop momentum
+Tsym = sp.Symbol('T', positive=True)        # T = Lambda^2
+_radial_cache = {}
+
+
+def radial_hard(a, n, M2):
+    """(1/8pi^2) int_0^Lam dk k^(3+2a)/(k^2+M2)^n  =  (1/16pi^2) int_0^T dt t^(1+a)/(t+M2)^n,  T = Lam^2,
+    large-T asymptotics keeping T^2, T, log T, T^0 and dropping O(1/T).  Exact elementary integral by t = s - M2:
+    int_{M2}^{T+M2} (s-M2)^(1+a) s^(-n) ds = sum_k C(1+a,k) (-M2)^(1+a-k) int s^(k-n) ds."""
+    key = (a, n, M2)
+    if key in _radial_cache:
+        return _radial_cache[key]
+    s = sp.Symbol('s', positive=True)
+    res = sp.Integer(0)
+    for k in range(a + 2):
+        c = sp.binomial(a + 1, k)*(-M2)**(a + 1 - k)
+        q = k - n
+        if q == -1:
+            # log(T+M2) - log(M2) = log T + log(1 + M2/T) - log M2 -> log T - log M2 + O(1/T)
+            term = 2*lgL - sp.log(M2) if M2 != 0 else 2*lgL
+        else:
+            # [(T+M2)^(q+1) - M2^(q+1)]/(q+1); expand (T+M2)^(q+1) for large T to the order needed
+            if M2 == 0:
+                term = Tsym**(q + 1)/(q + 1)
+            else:
+                ser = sp.series((Tsym + M2)**(q + 1), Tsym, sp.oo, 4).removeO() if q + 1 < 0 else sp.expand((Tsym + M2)**(q + 1))
+                term = (ser - M2**(q + 1))/(q + 1)
+        res += c*term
+    res = sp.expand(res)
+
+    def _nonneg_in(expr, sym):
+        """drop the terms of an expanded sum that carry a negative power of sym"""
+        kept_ = sp.Integer(0)
+        for t_ in sp.Add.make_args(expr):
+            powers = [e_.exp for e_ in t_.atoms(sp.Pow) if e_.base == sym]
+            if any(pw_ < 0 for pw_ in powers):
+                continue
+            kept_ += t_
+        return kept_
+
+    kept = _nonneg_in(res, Tsym)
+    kept = sp.expand(kept.subs(Tsym, Lam**2)/(16*sp.pi**2))
+    kept = sp.expand(_nonneg_in(kept, Lam))
+    _radial_cache[key] = kept
+    return kept
+
+
+def check_radial_hard(say):
+    """numerical check of radial_hard against the exact integral for the (a, n) pairs the unshifted bubble uses"""
+    worst = 0
+    for a in range(0, 5):
+        for n in range(2, 7):
+            exact = sp.integrate(lsym**(3 + 2*a)/(lsym**2 + m**2)**n, (lsym, 0, Lam))/(8*sp.pi**2)
+            sub = {Lam: 1000, m: sp.Rational(4, 5)}
+            ex = sp.N(exact.subs(sub), 40); se = sp.N(radial_hard(a, n, m**2).subs(sub), 40)
+            if ex != 0:
+                rel = abs((ex - se)/ex)
+                worst = max(worst, rel)
+    say(f'#   radial_hard: worst rel.diff vs exact over a=0..4, n=2..6 at Lambda=1e3, m=0.8: {sp.N(worst, 3)}')
+
+
+_eps_p = sp.Symbol('eps_p')
+
+
+def bubble_raw_unshifted(vertex=None, pmax=4):
+    """Pi_{ij rs}(p) with the hard cutoff |k| < Lambda on the propagator momentum k itself (no Feynman parameter).
+    1/((k^2+m^2)((k-p)^2+m^2)) = (k^2+m^2)^-2 sum_j (-u)^j,  u = (p^2 - 2 k.p)/(k^2+m^2); every power of p lowers
+    the UV degree by one, the p^0 term has UV degree 4, so terms of p-degree > 4 carry no Lambda dependence and are
+    dropped (pmax).  Exact in Lambda^4, Lambda^2, log Lambda^2; the finite part from this expansion is NOT the
+    finite part of the integral (the large-k expansion is not uniform in the infrared) and is not reported."""
+    vertex = vertex or V1
+    k = list(L)
+    kmp = [ki - pi for ki, pi in zip(k, P)]
+    Va = vertex([-ki for ki in k], kmp, P)
+    Vb = vertex([-ki for ki in kmp], k, [-pi for pi in P])
+    k2 = dot(k, k)
+    kp = dot(k, P)
+    M2 = m**2
+    Dinv = sp.Symbol('Dinv')      # stands for 1/(k^2+m^2)
+    u = (_eps_p**2*p2 - 2*_eps_p*kp)*Dinv
+    geo = sp.expand(sum((-u)**j for j in range(pmax + 1)))
+    geo = sum(geo.coeff(_eps_p, d)*_eps_p**d for d in range(pmax + 1))
+    out = {}
+    for (i, j, r, s) in itertools.product(range(4), repeat=4):
+        if i > j or r > s:
+            continue
+        num = sp.expand(Va[i, j]*Vb[r, s]).subs({pi: _eps_p*pi for pi in P})
+        num = sp.expand(num)
+        num = sum(num.coeff(_eps_p, d)*_eps_p**d for d in range(pmax + 1))
+        tot = sp.expand(num*geo*Dinv**2)
+        tot = sum(tot.coeff(_eps_p, d)*_eps_p**d for d in range(pmax + 1))
+        tot = sp.expand(tot.subs(_eps_p, 1))
+        # angular average over k-hat, then radial by (a, n)
+        poly = sp.Poly(tot, *L, Dinv)
+        val = sp.Integer(0)
+        for monom, coeff in poly.terms():
+            kexps, n = monom[:4], monom[4]
+            c = ang_avg_monomial(kexps)
+            if c == 0:
+                continue
+            a = sum(kexps)//2
+            val += coeff*c*radial_hard(a, n, M2)
+        out[(i, j, r, s)] = sp.expand(-sp.Rational(1, 2)*val)
+    return out
+
+
+# ---------------------------------------------------------------- spin projectors (Barnes-Rivers), quadratic forms
+def _theta(i, j):
+    return delta[i, j] - P[i]*P[j]/p2
+
+
+def projector_forms():
+    """p^4 * (h . P2 . h) and p^4 * (h . P0s . h) as polynomials in (p, h);  theta = delta - p p/p^2,
+    P2 = 1/2 (theta theta + theta theta) - 1/3 theta theta,  P0s = 1/3 theta_{mu nu} theta_{rho sigma}."""
+    th = sp.Matrix(4, 4, lambda i, j: _theta(i, j))
+    hth = sum(H[i, j]*th[i, j] for i in range(4) for j in range(4))             # theta . h
+    hthth = sum(H[i, j]*th[i, r]*th[j, s]*H[r, s] for i in range(4) for j in range(4) for r in range(4) for s in range(4))
+    P0s = sp.Rational(1, 3)*hth**2
+    P2 = hthth - P0s
+    f2 = sp.expand(sp.cancel(sp.together(p2**2*P2)))
+    f0 = sp.expand(sp.cancel(sp.together(p2**2*P0s)))
+    return f2, f0
+
+
+# ---------------------------------------------------------------- massless finite part, three regulators
+Ssym = sp.Symbol('S', positive=True)     # stands for p^2 inside logs
+LS = sp.Symbol('logS')                   # log p^2, kept as a symbol for fitting
+epsd = sp.Symbol('epsd')                 # n = 4 + epsd (dim reg; finite parts need the n-dimensional angular averages)
+mu = sp.Symbol('mu', positive=True)      # dim reg scale
+
+
+def ang_avg_monomial_n(exps, n):
+    """n-dimensional angular average of a monomial in the first 4 components of l (only those appear);
+    <l_{i1}...l_{i2A}> = (l^2)^A  prod (e_i - 1)!! / prod_{j<A} (n + 2j)."""
+    if any(e % 2 for e in exps):
+        return sp.Integer(0)
+    A = sum(exps)//2
+    num = 1
+    for e in exps:
+        num *= _dfact(e)
+    den = sp.Integer(1)
+    for j in range(A):
+        den *= (n + 2*j)
+    return num/den
+
+
+def dimreg_two_prop_full(power):
+    """int d^n l/(2pi)^n (l^2)^a/(l^2+Delta)^2, n = 4 + epsd, MS-bar (mu^(4-n) e^{gamma epsd/2} (4 pi)^(-epsd/2) stripped),
+    expanded to O(epsd^0).  Returned in NATURAL units as  A/epsd + B  (A, B carry their own 1/16pi^2).  The n-dimensional
+    angular averages are applied by the caller BEFORE the epsd-expansion (bubble_finite)."""
+    a = power//2
+    n = 4 + epsd
+    expr = (mu**(-epsd)*sp.gamma(a + n/2)*sp.gamma(2 - a - n/2)/sp.gamma(n/2)*Dl**(a + n/2 - 2)/(4*sp.pi)**(n/2)
+            *(4*sp.pi)**(epsd/2)*sp.exp(-EulerGamma*epsd/2))
+    return expr    # kept exact in epsd; expanded after the angular average
+
+
+lsq = sp.Symbol('lsq', positive=True)     # the n-dimensional l^2 (the loop momentum has components beyond the 4 of p and h)
+
+
+def _mom(a, b):
+    """momentum a*l + b*p, with l the n-dimensional loop momentum and p the 4-dimensional external one"""
+    return (sp.sympify(a), sp.sympify(b))
+
+
+def _dot_n(u, v):
+    (a, b), (c, d) = u, v
+    return a*c*lsq + (a*d + b*c)*dot(L, P) + b*d*p2
+
+
+def _comp(u, i):
+    a, b = u
+    return a*L[i] + b*P[i]
+
+
+def V1_n(k, q, p_, covariant=False):
+    """first-order vertex with n-dimensional dot products; k, q as (a, b) pairs, p_ = (0, +-1)"""
+    kq = _dot_n(k, q)
+    pp = _dot_n(p_, p_)
+    V = sp.Matrix(4, 4, lambda i, j:
+        sp.Rational(1, 2)*(_comp(k, i)*_comp(q, j) + _comp(k, j)*_comp(q, i))
+        - sp.Rational(1, 2)*delta[i, j]*(kq - m**2)
+        + xi*(pp*delta[i, j] - _comp(p_, i)*_comp(p_, j)))
+    if covariant:
+        corr = sp.Rational(1, 4)*((_dot_n(k, k) + m**2) + (_dot_n(q, q) + m**2))
+        V = V - corr*delta
+    return V
+
+
+def ang_avg_n(expr, n):
+    """angular average over the n-dimensional l of a polynomial in l1..l4 and lsq: l_{i1}..l_{i2A} -> lsq^A * (n-dim tensor
+    average); returns a polynomial in lsq."""
+    poly = sp.Poly(sp.expand(expr), *L, lsq)
+    res = sp.Integer(0)
+    for monom, coeff in poly.terms():
+        c = ang_avg_monomial_n(monom[:4], n)
+        if c == 0:
+            continue
+        res += coeff*c*lsq**(sum(monom[:4])//2 + monom[4])
+    return sp.expand(res)
+
+
+def bubble_finite(regulator, covariant=False):
+    """Massless bubble, all 256 components, Feynman-parametrised, x-integrated; returns per component the p^4-relevant
+    expression with log Lambda^2 (via lgL) or the dim-reg pole (via epsinv = 1/(8 pi^2 epsd)) and log p^2 as the symbol LS.
+    regulator: 'cutoff' (Feynman-parametrised, shifted), 'propertime', 'dimreg'.
+    n-dimensional dot products throughout (lsq); for 'cutoff' and 'propertime' n = 4 exactly."""
+    Delta = x*(1 - x)*Ssym
+    k = _mom(1, x); kmp = _mom(1, x - 1)
+    mk = _mom(-1, -x); mkmp = _mom(-1, 1 - x)
+    pp_ = _mom(0, 1); mp_ = _mom(0, -1)
+    Va = V1_n(mk, kmp, pp_, covariant).subs(m, 0)
+    Vb = V1_n(mkmp, k, mp_, covariant).subs(m, 0)
+    n = 4 + epsd if regulator == 'dimreg' else 4
+    if regulator == 'cutoff':
+        R = {pw: radial_two_prop(pw) for pw in (0, 2, 4)}
+    elif regulator == 'propertime':
+        R = {pw: pt_two_prop(pw) for pw in (0, 2, 4)}
+    else:
+        # expand each radial integral ONCE: R = A/epsd + B + O(epsd)
+        R = {}
+        for pw in (0, 2, 4):
+            ser = sp.series(dimreg_two_prop_full(pw), epsd, 0, 1).removeO()
+            ser = sp.expand(sp.expand_log(sp.expand(ser), force=True))
+            R[pw] = (sp.expand(ser.coeff(epsd, -1)), sp.expand(ser.coeff(epsd, 0)))
+    out = {}
+    for (i, j, r, s) in itertools.product(range(4), repeat=4):
+        if i > j or r > s:
+            continue
+        avg = ang_avg_n(Va[i, j]*Vb[r, s], n)
+        poly = sp.Poly(avg, lsq)
+        val = sp.Integer(0)
+        for (pw,), coeff in poly.terms():
+            if regulator == 'dimreg':
+                # coeff is rational in epsd through the n-dimensional averages: coeff = c0 + c1 epsd + ...
+                c0 = coeff.subs(epsd, 0)
+                c1 = sp.diff(coeff, epsd).subs(epsd, 0)
+                A, B = R[2*pw]
+                val += c0*A*8*sp.pi**2*epsinv + sp.expand(c0*B + c1*A)
+            else:
+                val += coeff*R[2*pw]
+        val = sp.expand(-sp.Rational(1, 2)*val.subs(Dl, Delta))
+        val = sp.expand(sp.expand_log(val, force=True))
+        val = val.subs({sp.log(Ssym): LS, sp.log(x): _lx, sp.log(1 - x): _l1x})
+        out[(i, j, r, s)] = _xint(val)
+    return out
+
+
+_lx, _l1x = sp.symbols('logx log1mx')
+_xint_cache = {}
+
+
+def _xint_monomial(k, i, j):
+    """int_0^1 x^k log(x)^i log(1-x)^j dx, i, j in {0, 1}"""
+    key = (k, i, j)
+    if key not in _xint_cache:
+        _xint_cache[key] = sp.simplify(sp.integrate(x**k*sp.log(x)**i*sp.log(1 - x)**j, (x, 0, 1)))
+    return _xint_cache[key]
+
+
+def _xint(expr):
+    """x-integral over [0, 1] of a polynomial in x, logx, log1mx (and anything else), by the monomial table"""
+    poly = sp.Poly(sp.expand(expr), x, _lx, _l1x)
+    res = sp.Integer(0)
+    for (k, i, j), c in poly.terms():
+        res += c*_xint_monomial(k, i, j)
+    return sp.expand(res)

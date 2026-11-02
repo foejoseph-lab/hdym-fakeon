@@ -25,6 +25,25 @@ eqs. 3.15–3.16. Setup: `../notes/2026-10-31_rung1_utiyama_dewitt_setup.md`. Re
     python3 rung1_dewitt.py --samples 6 --jobs 6             --log results/rung1_dewitt_samples.log
     python3 rung1_dewitt.py --samples 6 --jobs 6 --quartic 0 --log results/rung1_dewitt_quartic0.log
 
+Added 1 Nov 2026 (the three items that closed rung 1; single-threaded sympy, no `--jobs`; predicted wall clock on the
+author's machine in brackets, measured in the 2-core sandbox: 4.5 min, 3 min, 3 min):
+
+    python3 rung1_run.py --regulator cutoff --measure plain     --placement unshifted --log results/rung1_cutoff_plain_unshifted.log       [3-5 min]
+    python3 rung1_run.py --regulator cutoff --measure covariant --placement unshifted --log results/rung1_cutoff_covariant_unshifted.log   [3-5 min]
+    python3 rung1_finite.py --measure plain      --log results/rung1_finite_plain.log       [2-4 min]
+    python3 rung1_finite.py --measure covariant  --log results/rung1_finite_covariant.log   [2-4 min]
+
+`--placement unshifted` puts the hard cutoff on the propagator momentum k itself (no Feynman parameter; large-k
+expansion, exact in Λ⁴, Λ², log Λ²) and prints the difference from the shifted placement per order. `rung1_finite.py`
+is the finite p⁴ log p² part of the massless matter loop under all three regulators (dim reg with n-dimensional
+angular averages), its spin-2/spin-0 decomposition, the linearized Ward-identity test of the regulator constant, and
+the 1/p⁴ resummation with the tree term derived from (√g R)⁽²⁾. Predictions are in both headers; results note §8.
+Statuses of the sandbox smoke runs, expected to reproduce: `LOG-OK_POWER-ORDERS-NONCOVARIANT` for both placement runs
+(the covariant one predicted, not yet run);
+`LOG-OK_FINITE-NONTRANSVERSE[cutoff,propertime]` for the plain-measure finite run and
+`LOG-OK_FINITE-NONTRANSVERSE[cutoff]` for the covariant one (the cutoff's finite part is not transverse with either
+measure; proper time's is transverse only with DeWitt's measure; dim reg's always).
+
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
 Vassilevich hep-th/0306138 eqs. 4.26–4.28.
@@ -35,9 +54,11 @@ coordinates on random generic backgrounds (exact rationals, no expansion in h; `
 `../notes/2026-10-31_rung1_b2_dewitt_recursion_setup.md`.
 
 **Files.** `ud1962_lib.py` — conventions (header), vertices, angular averages, the three regulators'
-integrals, metric expansion to second order, the tadpole as an operator symbol, fitting. `rung1_run.py` —
-cutoff and proper time. `rung1_dimreg.py` — dimensional regularization. `rung1_dewitt.py` — the covariant
-recursion. `results/` — the six graph logs and the two recursion logs (and `results/superseded/`, the development scripts and logs, kept because one of
+integrals, metric expansion to second order, the tadpole as an operator symbol, fitting; dated block of 1 Nov: the
+unshifted-cutoff bubble, Barnes–Rivers projector forms, the massless finite part with n-dimensional dot products.
+`rung1_run.py` — cutoff (both placements) and proper time. `rung1_dimreg.py` — dimensional regularization, pole only.
+`rung1_finite.py` — finite p⁴ part, Ward test, resummation. `rung1_dewitt.py` — the covariant
+recursion. `results/` — the six graph logs, the two recursion logs, the two placement logs and the two finite-part logs (and `results/superseded/`, the development scripts and logs, kept because one of
 them records a prediction that failed — see the results note §4.1); each ends
 `# END <name> elapsed=<s>s status=...` with status `OK`, `LOG-OK_POWER-ORDERS-NONCOVARIANT` (the expected
 outcome for a hard cutoff, and for proper time with the plain measure), or `MISMATCH`.
@@ -46,4 +67,8 @@ outcome for a hard cutoff, and for proper time with the plain measure), or `MISM
 the graphs and equal 't Hooft–Veltman (3.40); the covariant recursion on generic backgrounds reproduces them
 and adds the Riem² coefficient the graphs cannot see (Euler term −1/360); the ∞⁴ and ∞² assignments of the
 abstract are reproduced only by proper time with the covariant measure — the Feynman-parametrised hard cutoff
-does not give them, and the plain measure misses ∞⁴ by exactly ½(ln√g)⁽²⁾ (units Λ⁴/16π²).
+does not give them with either cutoff placement (the placement changes only the Λ² term, by (1/576)p²(h² + 2h_ijh_ij)),
+and the plain measure misses ∞⁴ by exactly ½(ln√g)⁽²⁾ (units Λ⁴/16π²). The finite p⁴ constant (1 Nov): transverse in dim reg, where
+it equals −46/15 on Ric²/120 [m?: recalled as the 1974 MS-bar value, unverified], and, up to Euler's γ, in proper time
+with DeWitt's measure; not transverse with the plain measure or with a hard cutoff. Resummed, the spin-2 inverse propagator is
+(M_P²/4)p² + (1/3840π²)p⁴ log(p²/Λ²) + …: the abstract's 1/p⁴ with a running coefficient (results note §8.3).
