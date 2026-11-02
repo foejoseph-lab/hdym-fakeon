@@ -1,0 +1,30 @@
+# rung1 cutoff plain unshifted
+#   radial two-prop k=0: rel.diff vs exact at Lambda=1e3, Delta=0.7: 1.06E-7
+#   radial two-prop k=1: rel.diff vs exact at Lambda=1e3, Delta=0.7: 1.47E-12
+#   radial two-prop k=2: rel.diff vs exact at Lambda=1e3, Delta=0.7: 2.74E-18
+#   radial one-prop k=0: rel.diff vs exact at Lambda=1e3, m=0.8: 4.10E-13
+#   radial one-prop k=1: rel.diff vs exact at Lambda=1e3, m=0.8: 5.24E-19
+#   radial_hard: worst rel.diff vs exact over a=0..4, n=2..6 at Lambda=1e3, m=0.8: 0.00000320
+# metric expansion and densities
+# tadpole symbol
+# bubble (cutoff on the unshifted propagator momentum, large-k expansion)
+# bubble again with the shifted placement, for the difference
+# --- unshifted minus shifted placement, bubble (x16pi^2) ---
+#   L4: identical
+#   L2: differs; fit onto {p^2 h^2, p^2 h_ij h_ij, h p_i p_j h_ij, p_i h_ik h_jk p_j} = {'p2_h2': 1/576, 'p2_hh': 1/288, 'h_pph': 0, 'phhp': 0}, residual 0
+#   log: identical
+# tadpole
+# --- Lambda^4 (x16pi^2) ---
+#   bubble: NOT a combination of ['sqrtg2']; p^0 part = -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/192
+#   tadpole: (0) sqrtg2
+#   total: NOT a combination of ['sqrtg2']; p^0 part = -(3*h11**2 + 2*h11*h22 + 2*h11*h33 + 2*h11*h44 + 4*h12**2 + 4*h13**2 + 4*h14**2 + 3*h22**2 + 2*h22*h33 + 2*h22*h44 + 4*h23**2 + 4*h24**2 + 3*h33**2 + 2*h33*h44 + 4*h34**2 + 3*h44**2)/192
+# --- Lambda^2 (x16pi^2) ---
+#   bubble: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = -m**2*(h11*h22 + h11*h33 + h11*h44 - h12**2 - h13**2 - h14**2 + h22*h33 + h22*h44 - h23**2 - h24**2 + h33*h44 - h34**2)/12
+#   tadpole: (1/2) m2sqrtg2 + (xi/2) sqrtgR2
+#   total: NOT a combination of ['m2sqrtg2', 'sqrtgR2']; p^0 part = -m**2*(3*h11**2 - 2*h11*h22 - 2*h11*h33 - 2*h11*h44 + 8*h12**2 + 8*h13**2 + 8*h14**2 + 3*h22**2 - 2*h22*h33 - 2*h22*h44 + 8*h23**2 + 8*h24**2 + 3*h33**2 - 2*h33*h44 + 8*h34**2 + 3*h44**2)/48
+# --- log Lambda^2 (x16pi^2) ---
+#   total p^0: (-1/4) m4sqrtg2   [expected -1/4]
+#   total p^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected -(6 xi - 1)/12]
+#   total p^4: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240]
+#   all orders covariant and as expected: False
+# END rung1 cutoff plain unshifted elapsed=233.8s status=LOG-OK_POWER-ORDERS-NONCOVARIANT
