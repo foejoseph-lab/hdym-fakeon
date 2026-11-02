@@ -697,3 +697,123 @@ def _xint(expr):
     for (k, i, j), c in poly.terms():
         res += c*_xint_monomial(k, i, j)
     return sp.expand(res)
+
+
+# ================================================================ additions of 2 Nov 2026 (Sakharov 1967 back pass: the massive mode)
+LM = sp.Symbol('logm2')                  # log m^2, kept as a symbol for fitting (the massive analogue of LS)
+
+
+def _taylor_in_Delta(f, order):
+    """coefficients f(m^2), f'(m^2), f''(m^2)/2, ... of the Taylor expansion of f(Delta) about Delta = m^2"""
+    out = []
+    for k in range(order + 1):
+        out.append(sp.expand(sp.diff(f, Dl, k).subs(Dl, m**2)/sp.factorial(k)))
+    return out
+
+
+def dimreg_one_prop_full(power):
+    """int d^n k/(2pi)^n (k^2)^a/(k^2+m^2), n = 4 + epsd, MS-bar factors as in dimreg_two_prop_full; exact in epsd."""
+    a = power//2
+    n = 4 + epsd
+    return (mu**(-epsd)*sp.gamma(a + n/2)*sp.gamma(1 - a - n/2)/sp.gamma(n/2)*(m**2)**(a + n/2 - 1)/(4*sp.pi)**(n/2)
+            *(4*sp.pi)**(epsd/2)*sp.exp(-EulerGamma*epsd/2))
+
+
+def _eps_split(expr):
+    """A/epsd + B + O(epsd) of an expression exact in epsd, with the logs expanded"""
+    ser = sp.series(expr, epsd, 0, 1).removeO()
+    ser = sp.expand(sp.expand_log(sp.expand(ser), force=True))
+    return sp.expand(ser.coeff(epsd, -1)), sp.expand(ser.coeff(epsd, 0))
+
+
+def bubble_massive(regulator, covariant=False, order=2):
+    """MASSIVE bubble, all components, Feynman-parametrised, expanded in the external momentum to O(p^(2*order)) about
+    p = 0 (Delta = m^2 + x(1-x) p^2 Taylor-expanded about m^2), x-integrated.  Per component: the full regulated
+    expression -- Lambda^4, Lambda^2, log Lambda^2 (lgL) or the dim-reg pole (epsinv), log m^2 (LM), log mu (dim reg) and
+    the constant.  regulator: 'cutoff' (Feynman-shifted hard cutoff), 'propertime', 'dimreg' (n-dimensional angular
+    averages and dot products, MS-bar).  The -1/2 of Pi is included."""
+    xs = x*(1 - x)
+    if regulator == 'dimreg':
+        n = 4 + epsd
+        k = _mom(1, x); kmp = _mom(1, x - 1); mk = _mom(-1, -x); mkmp = _mom(-1, 1 - x)
+        Va = V1_n(mk, kmp, _mom(0, 1), covariant)
+        Vb = V1_n(mkmp, k, _mom(0, -1), covariant)
+        R = {}
+        for pw in (0, 2, 4):
+            A, B = _eps_split(dimreg_two_prop_full(pw))
+            R[pw] = (_taylor_in_Delta(A, order), _taylor_in_Delta(B, order))
+    else:
+        n = 4
+        k = [li + x*pi for li, pi in zip(L, P)]
+        kmp = [ki - pi for ki, pi in zip(k, P)]
+        vertex = V1cov if covariant else V1
+        Va = vertex([-ki for ki in k], kmp, P)
+        Vb = vertex([-ki for ki in kmp], k, [-pi for pi in P])
+        rad = radial_two_prop if regulator == 'cutoff' else pt_two_prop
+        R = {pw: _taylor_in_Delta(rad(pw), order) for pw in (0, 2, 4)}
+    out = {}
+    for (i, j, r, s) in itertools.product(range(4), repeat=4):
+        if i > j or r > s:
+            continue
+        if regulator == 'dimreg':
+            avg = ang_avg_n(Va[i, j]*Vb[r, s], n)
+            poly = sp.Poly(avg, lsq)
+        else:
+            avg = ang_avg(Va[i, j]*Vb[r, s])
+            poly = sp.Poly(avg, lsym)
+        val = sp.Integer(0)
+        for (pw,), coeff in poly.terms():
+            if regulator == 'dimreg':
+                c0 = coeff.subs(epsd, 0)
+                c1 = sp.diff(coeff, epsd).subs(epsd, 0)
+                TA, TB = R[2*pw]
+                for kk in range(order + 1):
+                    val += (xs*Ssym)**kk*(c0*TA[kk]*8*sp.pi**2*epsinv + c0*TB[kk] + c1*TA[kk])
+            else:
+                for kk in range(order + 1):
+                    val += coeff*(xs*Ssym)**kk*R[pw][kk]
+        val = sp.expand(-sp.Rational(1, 2)*val)
+        val = sp.expand(sp.expand_log(val, force=True))
+        val = val.subs({sp.log(m): LM/2})
+        out[(i, j, r, s)] = _xint(val)
+    return out
+
+
+def perp_symbol(covariant_measure=False, ME=None):
+    """the coefficient of k_perp^2 in the second-order symbol: the flat-trace part -d_mu(sqrt g delta^{mu nu} d_nu) of K acts on
+    the n - 4 loop-momentum components the 4-dimensional h never sees, giving sqrt(g) k_perp^2 (times g^{-1/4} on both sides
+    with the covariant measure, i.e. (g^{-1/4} sqrt g g^{-1/4})^(2) = 0: the trace term's k_perp^2 vanishes identically with
+    DeWitt's measure).  tadpole_symbol builds the symbol from the 4-dimensional x-space expansion and so carries only
+    k_1..k_4; in dimensional regularization the missing k_perp^2 = k^2 - sum_{i<=4} k_i^2 averages to (n - 4)/n k^2 and feeds the
+    FINITE part through the pole (c_1 A).  Found 2 Nov 2026: without it the dim-reg p^0 constant came out -1/8 instead of
+    the heat-kernel/MS-bar -3/8 with the plain measure, while the covariant measure gave -3/8 -- a measure dependence that dim
+    reg cannot have (the g^{-1/4} factors contribute int d^n k * 1 = 0); the pole is unaffected."""
+    ME = ME or metric_expansion()
+    f = ME['gm14']*ME['sqrtg']*ME['gm14'] if covariant_measure else ME['sqrtg']
+    return _cross(sp.expand(_trunc(f)).coeff(_eps, 2), ME)
+
+
+def tadpole_dimreg_full(sigma2, covariant_measure=False, ME=None):
+    """the tadpole in dimensional regularization WITH its finite part: n-dimensional angular averages of the symbol,
+    one-propagator integrals exact in epsd then split; returns the quadratic form with epsinv for the pole.
+    The k_perp^2 piece of the flat trace term (perp_symbol) is added: it has no pole and a finite part (n-4)/n * A."""
+    n = 4 + epsd
+    J = {}
+    for deg in (0, 2):
+        A, B = _eps_split(dimreg_one_prop_full(deg))
+        J[deg] = (A, B)
+    poly = sp.Poly(sp.expand(sigma2), *KS)
+    val = sp.Integer(0)
+    # k_perp^2 -> ((n-4)/n) k^2 = (epsd/n) k^2:  c0 = 0, c1 = 1/4
+    val += perp_symbol(covariant_measure, ME)*sp.Rational(1, 4)*J[2][0]
+    for monom, coeff in poly.terms():
+        c = ang_avg_monomial_n(monom, n)
+        if c == 0:
+            continue
+        deg = sum(monom)
+        c0 = c.subs(epsd, 0); c1 = sp.diff(c, epsd).subs(epsd, 0)
+        A, B = J[deg]
+        val += coeff*(c0*A*8*sp.pi**2*epsinv + c0*B + c1*A)
+    val = sp.expand(sp.Rational(1, 2)*val)
+    val = sp.expand(sp.expand_log(val, force=True)).subs({sp.log(m): LM/2})
+    return sp.expand(val)

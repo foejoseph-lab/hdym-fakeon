@@ -264,7 +264,12 @@ Readings. (i) The −46/15 on Ric² in MS-bar (μ² ≡ Λ² in the table) is, f
 graviton-self-energy constant of the 1974 dim-reg literature [m?: the scalar-loop paper is Capper & Ramón Medrano PRD 9,
 1641 (1974), not Capper–Duff–Halpern PRD 10, 461, which is the photon loop; the Barvinsky–Vilkovisky second-order form
 factor for the massless scalar carries 23/450 against a log coefficient 1/60, ratio 46/15 — both unverified; to be
-checked against a listing before it is leaned on]. It was not aimed at. If a listing confirms it, it is an independent
+checked against a listing before it is leaned on]. **Checked 2 Nov (handoff of that date, "Reference check"):** the 46/15 is
+verified — Gorbar & Shapiro hep-ph/0210388 eq. (3.7), massless limit of the massive-scalar Weyl² form factor, gives
+−(1/60)[ln(p²/m²) − 46/15], the constant being 1/30 + 1/90 + 1/150 = 23/450 — so the n-dimensional machinery has its
+independent check; the reference half was wrong twice: PRD 9, 1641 is Capper & Ramón Medrano, "Gravitational Slavnov-Ward
+identities" (not the scalar loop), PRD 10, 461 is the photon loop as said, and the scalar-loop graviton-propagator paper is
+Capper, Nuovo Cim. A 25, 29 (1975) [v: reference lists of 1410.8845 and Capper's INSPIRE record; text unseen]. It was not aimed at. If a listing confirms it, it is an independent
 check of the n-dimensional machinery; until then the checks are the bilinear Ward identity and the γ_E relation to
 proper time. (ii) **Finding 1 of §4 is corrected:** the measure matters at ∞⁴, ∞² *and in the finite p⁴ constant*; the log order
 is the only order that never sees it. With φ the proper-time finite part violates the linearized Ward identity by a
@@ -316,3 +321,71 @@ History: §8 added 1 Nov evening; finding 1 of §4 corrected the same evening (t
 order; found by the {Ric², R²} fit and the Ward test of `rung1_finite.py`, not by rereading). Fresh-agent review of
 1 Nov night folded in before the patch: Ward test made bilinear; status-label history stated; P5's first wording
 quoted verbatim in the header; −46/15 flagged everywhere; "closed" qualified; the 133/10 clause removed.
+
+## 9. Addendum, 2 Nov: the back pass to Sakharov 1967 — the massive orders (`rung1_massive.py`)
+
+Why: Sakharov (Dokl. Akad. Nauk SSSR 177, 70 (1967) [m]) read the cutoff-dependent R term of the matter loop as the origin of the
+Einstein term — gravity induced by matter [m]. Taken up at the time (Zel'dovich [m?]; Adler RMP 54, 729 (1982) [m]) and dead of a
+diagnosed cause (Visser 2002 [m]: the induced G of massless fields is regulator-dependent). The vacuum's back pass from rung 1 reaches it first
+(chronology §1; author, 1 Nov: no literature hunt, one run, the "−1/12 discipline", a verdict paragraph and one ledger row).
+
+What ran: the same graphs with m ≠ 0, the external momentum Taylor-expanded about p = 0 (exact order by order), the p⁰ and p²
+orders written as c₄Λ⁴ + c₂Λ² + c_L log Λ² (dim reg: the pole, through the 1 Nov dictionary) + c_m log m² + K, each fitted to the
+covariant density of its order (√g⁽²⁾, (√g R)⁽²⁾), the bilinear Ward test on every p² piece, the Λ² term printed beside the m² log
+term; three regulators × two measures. Predictions P0–P5 in the header, written before the first run; P2–P4 are the heat-kernel/
+MS-bar values (a₁ = (1/6 − ξ)R; Γ(−2+ε), Γ(−1+ε)) that the *graphs* had so far reproduced only in their divergent parts.
+Smoke-tested in the sandbox (426 s plain, 796 s covariant, final script; no smaller setting exists); the logs are to be regenerated on the
+author's machine with the README commands and committed (rule 15). **Nothing below is a result until they are.**
+
+| prediction | outcome (sandbox) |
+|---|---|
+| P0: Λ⁴, Λ², log Λ² at p⁰, p², log at p⁴ reproduce the 31 Oct logs (and the massive dim-reg pole equals the cutoff's log coefficient) | **holds**, all six runs, line for line for the lines §2 shows (the non-covariant p² Λ² structures have no 31 Oct counterpart) |
+| P1: c_m = −c_L at p⁰, p², p⁴ (the logs come as log(Λ²/m²), log(μ²/m²)) | **holds** |
+| P2: K₀ covariant and K₂ transverse for dim reg (either measure) and proper time with χ only; not for the cutoff (either measure) or proper time with φ — the p⁴ pattern of §8.2 repeated | **holds** (status labels `LOG-OK_FINITE-NONTRANSVERSE[cutoff,propertime]` with φ, `[cutoff]` with χ) |
+| P3: K_d[proper time, χ] − K_d[dim reg] = −γ_E c_L^(d) at d = 0 and 2, nothing else | **holds** at both orders |
+| P4: K₀[dim reg] = (3/2)c_L⁽⁰⁾ = −3/8; K₂[dim reg] = c_L⁽²⁾ = (1/6 − ξ)/2 | **holds — after a code correction at p⁰, see below**; p² held on the first run |
+| P5: the Sakharov reading | printed; see the paragraph below |
+
+**The constants** (units 1/16π²; dim reg MS-bar with μ² ≡ Λ² in the dictionary):
+
+| regulator | measure | K₀ on m⁴√g⁽²⁾ | K₂ on m²(√g R)⁽²⁾ |
+|---|---|---|---|
+| (c) dim reg | either | **−3/8** | **(1/6 − ξ)/2** |
+| (b1) proper time | χ | −3/8 + γ_E/4 = −3/8 − γ_E c_L⁽⁰⁾ | (1 − γ_E)(1/6 − ξ)/2 |
+| (b1) proper time | φ | not covariant: (1 + 2γ_E)/64 h² − (2γ_E − 1)/32 h_ijh_ij | not transverse (log) |
+| (a) hard cutoff (shifted) | φ and χ, **identical** | not covariant: (1/96)(h² + 2h_ijh_ij) — the Λ⁴ tensor structure again | not transverse; φ: (9ξ−2)/72 p²h² + 5/288 p²h_ijh_ij − (3ξ−1)/24 h(php) − 1/48 (phhp); χ differs only in the ξ-independent constants (log) |
+
+Beside them, from the same logs (§2 numbers, reproduced): Λ² at p² = −(1/6 − ξ)/2 (√g R)⁽²⁾ for proper time with χ, non-covariant
+otherwise; Λ² at p⁰ = ½ m²√g⁽²⁾ for proper time with χ, non-covariant for the cutoff, **zero** for proper time with φ.
+
+**A code correction, recorded (rule 11).** The first full plain-measure run gave K₀[dim reg] = −1/8 against the predicted −3/8, while
+the covariant run started beside it gave −3/8. Redoing the p⁰ order exactly in n by hand (bubble and tadpole separately, the same
+n-dimensional averages) agreed with the code on the bubble and disagreed on the tadpole: `tadpole_symbol` builds the second-order
+symbol from the 4-dimensional x-space expansion, so its flat trace term √g δ^{μν}k_μk_ν carried k₁..k₄ only and lacked the k_⊥² of the
+n − 4 loop-momentum components the 4-dimensional h never sees; k_⊥² → (n−4)/n k² has no pole and feeds the finite part through it.
+With DeWitt's measure the k_⊥² coefficient is (g^{−1/4}√g g^{−1/4})⁽²⁾ = 0, which is why that run was right by itself. The
+prediction-independent reason the fix is right: in dim reg the two measures must agree exactly (the g^{−1/4} factors contribute
+∫dⁿk·1 = 0); the first run broke that, and after the fix the dim-reg blocks of the plain and covariant logs are identical line for
+line. Fixed (`perp_symbol`, `tadpole_dimreg_full`); the first log kept as
+`results/superseded/rung1_massive_plain_sandbox_4d_tadpole_symbol.log`, the exact-in-n check script beside it as
+`rung1_massive_p0_exact_in_n_check.py`; the prediction was not touched. Nothing earlier is affected: the massless p⁴ part is bubble-only and `rung1_dimreg.py` reports the pole
+only. This is the massive-order twin of the 1 Nov d = 4 slip (averages and dot products, caught once) — the second catch, third object,
+of "exact for the pole, wrong for the finite part"; it goes into the ledger as a rule.
+
+**The −1/12 discipline, applied, and the Sakharov verdict.** With S_E = −(M_P²/2)∫√g R the loop induces, per (√g R)⁽²⁾,
+M_P²(ind) = −(2/16π²)[c₂Λ² + c_L m² log(Λ²/m²) + K₂]: for the covariant cases (1/16π²)(1/6 − ξ)[Λ² − m² log(Λ²/m²) − m²(1 − γ_E)]
+(proper time, χ) and (1/16π²)(1/6 − ξ) m²[log(m²/μ²) − 1] (dim reg). The Λ² piece fails the first slot — it is absent in dim reg and
+non-covariant under the hard cutoff with either measure and either placement (§2, §8.1): there is no regulator-independent statement
+in it. The m² log piece passes: its coefficient (1/6 − ξ)/2 is the same in all six runs, its sign is that of (1/6 − ξ), it vanishes at
+conformal coupling (a₁ = 0), and it fixes the running d M_P²(ind)/d log μ² = −(1/16π²)(1/6 − ξ) m² from that term — and nothing
+else: the value is K₂-dependent, i.e. scheme-dependent, and massless fields give nothing in dim reg at this order (read off the m²
+prefactor of every dim-reg term; no massless dim-reg p² run exists or is needed — Visser's point [m]). **Verdict, on this loop:**
+Sakharov's induced G is a reading of rung 1's a₁, not a technique; as a determination of G it stays dead here (its value was never in
+the loop, only in the regulator or the scheme); what survives is the universal m²R log order — the same object as the p⁴ log of §8,
+one order down. The k_⊥² slip was caught by the failed prediction P4 and the dim-reg measure mismatch, not by the −1/12 printout.
+
+History: §9 added 2 Nov from the sandbox smoke logs; to be re-read against the author's logs when committed. Fresh-agent review of
+2 Nov (rule 9), 20 findings, folded in before the patch: the cutoff K₂ measure difference misdescribed (ξ-terms → ξ-independent
+constants); the dim-reg measure-agreement argument made the primary justification of the k_⊥² fix; the exact-in-n check script
+committed; "third time" → second catch, third object; the −1/12-made-it-visible sentence replaced; literature marks added; the ledger
+row qualified as sandbox; the leftover-log assert added; the k_⊥² check and the running printout relabelled.

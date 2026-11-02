@@ -43,6 +43,19 @@ END statuses of the committed logs: `LOG-OK_POWER-ORDERS-NONCOVARIANT` for both 
 `LOG-OK_FINITE-NONTRANSVERSE[cutoff]` for the covariant one (the cutoff's finite part is not transverse with either
 measure; proper time's is transverse only with DeWitt's measure; dim reg's always).
 
+Added 2 Nov 2026 (the back pass to Sakharov 1967: the massive orders; two runs; single-threaded sympy; predicted wall clock on the
+author's machine in brackets, from the sandbox's 426 s and 796 s at 2 cores and the 1 Nov ratio):
+
+    python3 rung1_massive.py --measure plain      --log results/rung1_massive_plain.log       [6-8 min]
+    python3 rung1_massive.py --measure covariant  --log results/rung1_massive_covariant.log   [11-14 min]
+
+`rung1_massive.py` is the same graphs with m ≠ 0, expanded about p = 0: the p⁰ (m⁴√g) and p² (m²R) orders under all three
+regulators, each as Λ⁴ + Λ² + log Λ² + log m² + constant, the constant fitted to the covariant density and Ward-tested, the Λ² term
+beside the m² log term (the "−1/12 discipline"); the induced Planck mass printed per regulator. Predictions P0–P5 in the header
+(heat-kernel/MS-bar values for the constants); results note §9. Expected END statuses: `LOG-OK_FINITE-NONTRANSVERSE[cutoff,propertime]`
+(plain) and `LOG-OK_FINITE-NONTRANSVERSE[cutoff]` (covariant). The dim-reg tadpole now carries the k_⊥² of the flat trace term
+(`ud1962_lib.perp_symbol`; results note §9 for the slip it fixed, kept in `results/superseded/rung1_massive_plain_sandbox_4d_tadpole_symbol.log`).
+
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
 Vassilevich hep-th/0306138 eqs. 4.26–4.28.
@@ -56,7 +69,7 @@ coordinates on random generic backgrounds (exact rationals, no expansion in h; `
 integrals, metric expansion to second order, the tadpole as an operator symbol, fitting; dated block of 1 Nov: the
 unshifted-cutoff bubble, Barnes–Rivers projector forms, the massless finite part with n-dimensional dot products.
 `rung1_run.py` — cutoff (both placements) and proper time. `rung1_dimreg.py` — dimensional regularization, pole only.
-`rung1_finite.py` — finite p⁴ part, Ward test, resummation. `rung1_dewitt.py` — the covariant
+`rung1_finite.py` — finite p⁴ part, Ward test, resummation. `rung1_massive.py` — the massive p⁰, p² orders (2 Nov). `rung1_dewitt.py` — the covariant
 recursion. `results/` — the six graph logs, the two recursion logs, the two placement logs and the two finite-part logs (and `results/superseded/`, the development scripts and logs, kept because one of
 them records a prediction that failed — see the results note §4.1); each ends
 `# END <name> elapsed=<s>s status=...` with status `OK`, `LOG-OK_POWER-ORDERS-NONCOVARIANT` (the expected
@@ -68,6 +81,6 @@ and adds the Riem² coefficient the graphs cannot see (Euler term −1/360); the
 abstract are reproduced only by proper time with the covariant measure — the Feynman-parametrised hard cutoff
 does not give them with either cutoff placement (the placement changes only the Λ² term, by (1/576)p²(h² + 2h_ijh_ij)),
 and the plain measure misses ∞⁴ by exactly ½(ln√g)⁽²⁾ (units Λ⁴/16π²). The finite p⁴ constant (1 Nov): transverse in dim reg, where
-it equals −46/15 on Ric²/120 [m?: recalled as the 1974 MS-bar value, unverified], and, up to Euler's γ, in proper time
+it equals −46/15 on Ric²/120 [v 2 Nov: the massless limit of the Gorbar–Shapiro form factor, hep-ph/0210388 eq. 3.7], and, up to Euler's γ, in proper time
 with DeWitt's measure; not transverse with the plain measure or with a hard cutoff. Resummed, the spin-2 inverse propagator is
 (M_P²/4)p² + (1/3840π²)p⁴ log(p²/Λ²) + …: the abstract's 1/p⁴ with a running coefficient (results note §8.3).
