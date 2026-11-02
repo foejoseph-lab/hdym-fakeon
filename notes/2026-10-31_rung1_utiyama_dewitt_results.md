@@ -215,7 +215,7 @@ non-covariant p² term. **Found, plain measure:** Λ⁴ identical; log identical
 (the Λ⁴ term does not depend on the placement at all); the placement dependence is confined to Λ². The coefficient
 (1/576) and the tensor structure were not predicted; only which orders move and which do not. What 1962 did with its ∞⁴ and ∞²
 remains undecidable from the abstract; what is now decided is that no placement of a hard momentum cutoff gives them.
-Covariant-measure variant: on the author's machine (README).
+Covariant-measure variant, run on the author's machine 1 Nov night (`rung1_cutoff_covariant_unshifted.log`): the same (1/576)p²(h² + 2h_ijh_ij) shift at Λ², Λ⁴ and log identical — the placement shift is the same with either measure.
 
 ### 8.2 The finite p⁴ part (`rung1_finite.py`)
 
@@ -227,7 +227,8 @@ n-dimensional dot products** (the 31 Oct dim-reg driver took them in d = 4, whic
 the finite part — a bug of 1 Nov's first draft, caught by c_L coming out 16π² off and by the {Ric², R²} fit of K failing in dim reg where
 it cannot; the explicit Ward test was added together with the fix and then found the measure effect; fixed before any
 number was recorded). Two partial sandbox runs preceded the final header and are kept, with their timestamps, in
-`results/superseded/rung1_finite_{cutoff_only_sandbox_2027,dimreg_only_sandbox_2041}.log`; the first three-regulator
+`results/superseded/rung1_finite_{cutoff_only_sandbox_2027,dimreg_only_sandbox_2041}.log` (the full sandbox smoke logs
+were superseded by the author's runs the same night and removed in the housekeeping patch); the first three-regulator
 run, with the d = 4 averages, was overwritten and survives only in the session transcript.
 
 | prediction (header) | outcome |
@@ -303,10 +304,13 @@ which is all 1962 had — and it is the bridge to rung 3 (the graviton loop land
 
 ### 8.4 Still open from §6, after this
 
-Spinor and vector (abelian) matter: not done; a decision for the author (brief §6). The 1962 text: unseen. The
-covariant-measure unshifted-placement run: predicted, not run (author's machine). **Rung 1 closes when** the four logs
-of §8 are regenerated on the author's machine and committed (rule 15), the covariant unshifted run is in, and the
-author has decided on spinor/vector matter; no other computation of rung 1 is owed.
+Spinor and vector (abelian) matter: not done; a decision for the author (brief §6). The 1962 text: unseen. **Rung 1 closed as to computation, 1 Nov
+night** (the 31 Oct criterion also listed the spinor/vector decision; the author left that as a standing option rather than a condition, 1 Nov in conversation): the four logs of §8 were run on the author's machine and committed (`results/rung1_cutoff_{plain,covariant}_unshifted.log`,
+`results/rung1_finite_{plain,covariant}.log`); the three with sandbox counterparts are identical to them except for
+timings; the covariant unshifted run is in. Spinor/vector matter remains the author's decision; Pauli–Villars was
+excluded by the author's vintage line (author, in conversation, 1 Nov: "a cutoff on methods has to exist somewhere"), so what a covariant 1962-era
+regulator would have given for the ∞⁴, ∞² assignments stays unanswered by design. The sandbox smoke logs were removed in
+the same housekeeping patch as this paragraph.
 
 History: §8 added 1 Nov evening; finding 1 of §4 corrected the same evening (the "only there" was wrong at the finite p⁴
 order; found by the {Ric², R²} fit and the Ward test of `rung1_finite.py`, not by rereading). Fresh-agent review of

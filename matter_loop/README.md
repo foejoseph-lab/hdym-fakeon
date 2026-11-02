@@ -25,11 +25,11 @@ eqs. 3.15–3.16. Setup: `../notes/2026-10-31_rung1_utiyama_dewitt_setup.md`. Re
     python3 rung1_dewitt.py --samples 6 --jobs 6             --log results/rung1_dewitt_samples.log
     python3 rung1_dewitt.py --samples 6 --jobs 6 --quartic 0 --log results/rung1_dewitt_quartic0.log
 
-Added 1 Nov 2026 (the three items that closed rung 1; single-threaded sympy, no `--jobs`; predicted wall clock on the
-author's machine in brackets, measured in the 2-core sandbox: 4.5 min, 3 min, 3 min):
+Added 1 Nov 2026 (the three items that closed rung 1, four runs; single-threaded sympy, no `--jobs`; predicted wall clock on the
+author's machine in brackets, measured on the author's machine 1 Nov: 234 s, 301 s, 154 s, 149 s):
 
     python3 rung1_run.py --regulator cutoff --measure plain     --placement unshifted --log results/rung1_cutoff_plain_unshifted.log       [3-5 min]
-    python3 rung1_run.py --regulator cutoff --measure covariant --placement unshifted --log results/rung1_cutoff_covariant_unshifted.log   [3-5 min]
+    python3 rung1_run.py --regulator cutoff --measure covariant --placement unshifted --log results/rung1_cutoff_covariant_unshifted.log   [3-5 min; measured 301 s]
     python3 rung1_finite.py --measure plain      --log results/rung1_finite_plain.log       [2-4 min]
     python3 rung1_finite.py --measure covariant  --log results/rung1_finite_covariant.log   [2-4 min]
 
@@ -38,8 +38,7 @@ expansion, exact in Λ⁴, Λ², log Λ²) and prints the difference from the sh
 is the finite p⁴ log p² part of the massless matter loop under all three regulators (dim reg with n-dimensional
 angular averages), its spin-2/spin-0 decomposition, the linearized Ward-identity test of the regulator constant, and
 the 1/p⁴ resummation with the tree term derived from (√g R)⁽²⁾. Predictions are in both headers; results note §8.
-Statuses of the sandbox smoke runs, expected to reproduce: `LOG-OK_POWER-ORDERS-NONCOVARIANT` for both placement runs
-(the covariant one predicted, not yet run);
+END statuses of the committed logs: `LOG-OK_POWER-ORDERS-NONCOVARIANT` for both placement runs;
 `LOG-OK_FINITE-NONTRANSVERSE[cutoff,propertime]` for the plain-measure finite run and
 `LOG-OK_FINITE-NONTRANSVERSE[cutoff]` for the covariant one (the cutoff's finite part is not transverse with either
 measure; proper time's is transverse only with DeWitt's measure; dim reg's always).
