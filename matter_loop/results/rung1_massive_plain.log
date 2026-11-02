@@ -1,0 +1,86 @@
+# rung1 massive plain: massive scalar loop at p^0 and p^2 (Sakharov 1967 back pass), regulators cutoff,propertime,dimreg
+# metric expansion, densities, tadpole symbol
+#   (sqrt g R)^(2) on {p^2 h^2, p^2 h_ij h_ij, h p_i p_j h_ij, p_i h_ik h_jk p_j} = {'p2_h2': 1/4, 'p2_hh': -1/4, 'h_pph': -1/2, 'phhp': 1/2}, resid 0
+#   Ward: (sqrt g R)^(2) transverse True; sqrt(g)^(2) transverse False (it is not: the p^0 density is invariant only together with the second-order gauge transformation of sqrt(g)^(1); at p^0 the test is the fit to sqrt(g)^(2) alone)
+# --- regulator: cutoff ---
+#   (40s for the graphs)
+#   -- p^0 (cosmological order; units 1/16pi^2) --
+#   Lambda^4: NOT a combination of ['sqrtg2']; on ['h2', 'hh']: {'h2': -1/192, 'hh': -1/96}, resid 0   [expected -1/4 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2: NOT a combination of ['m2sqrtg2']; on ['m2h2', 'm2hh']: {'m2h2': 1/48, 'm2hh': -1/12}, resid 0   [expected 1/2 for proper time chi]
+#   log Lambda^2: (-1/4) m4sqrtg2   [expected -1/4 (P0)]
+#   P1 at p^0, c_m = -c_L: True
+#   K_0 (constant): NOT a combination of ['m4sqrtg2']; on ['m4h2', 'm4hh']: {'m4h2': 1/96, 'm4hh': 1/48}, resid 0   [expected P2: covariant for dim reg and proper time chi only; P4: -3/8 in dim reg]
+#   -- p^2 (Newton order; units 1/16pi^2) --
+#   Lambda^4 at p^2 is zero: True
+#   Lambda^2: NOT a combination of ['sqrtgR2']; on ['p2_h2', 'p2_hh', 'h_pph', 'phhp']: {'p2_h2': 5/576, 'p2_hh': -(18*xi - 1)/144, 'h_pph': -xi/8, 'phhp': (12*xi - 1)/48}, resid 0   [expected -(1/6 - xi)/2 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2 piece transverse: False
+#   log Lambda^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected (1/6 - xi)/2 = -(6 xi - 1)/12 (P0)]
+#   log piece transverse: True
+#   P1 at p^2, c_m = -c_L: True
+#   K_2 (constant): NOT a combination of ['m2sqrtgR2']; on ['m2p2_h2', 'm2p2_hh', 'm2h_pph', 'm2phhp']: {'m2p2_h2': (9*xi - 2)/72, 'm2p2_hh': 5/288, 'm2h_pph': -(3*xi - 1)/24, 'm2phhp': -1/48}, resid 0   [expected P2: transverse for dim reg and proper time chi only; P4: (1/6 - xi)/2 in dim reg]
+#   K_2 transverse (first-order variation under h -> h + p e + e p vanishes identically): False
+#   -- p^4 (check only) --
+#   log Lambda^2: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240 (P0)]
+#   P1 at p^4, c_m = -c_L: True   (the massive p^4 constant is the low-energy expansion, not reported)
+#   (57s)
+# --- regulator: propertime ---
+#   (43s for the graphs)
+#   -- p^0 (cosmological order; units 1/16pi^2) --
+#   Lambda^4: NOT a combination of ['sqrtg2']; on ['h2', 'hh']: {'h2': -1/32, 'hh': -1/16}, resid 0   [expected -1/4 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2: (0) m2sqrtg2   [expected 1/2 for proper time chi]
+#   log Lambda^2: (-1/4) m4sqrtg2   [expected -1/4 (P0)]
+#   P1 at p^0, c_m = -c_L: True
+#   K_0 (constant): NOT a combination of ['m4sqrtg2']; on ['m4h2', 'm4hh']: {'m4h2': (1 + 2*EulerGamma)/64, 'm4hh': -(-1 + 2*EulerGamma)/32}, resid 0   [expected P2: covariant for dim reg and proper time chi only; P4: -3/8 in dim reg]
+#   -- p^2 (Newton order; units 1/16pi^2) --
+#   Lambda^4 at p^2 is zero: True
+#   Lambda^2: NOT a combination of ['sqrtgR2']; on ['p2_h2', 'p2_hh', 'h_pph', 'phhp']: {'p2_h2': -(6*xi - 1)/48, 'p2_hh': -(6*xi - 1)/48, 'h_pph': 0, 'phhp': (6*xi - 1)/24}, resid 0   [expected -(1/6 - xi)/2 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2 piece transverse: False
+#   log Lambda^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected (1/6 - xi)/2 = -(6 xi - 1)/12 (P0)]
+#   log piece transverse: True
+#   P1 at p^2, c_m = -c_L: True
+#   K_2 (constant): NOT a combination of ['m2sqrtgR2']; on ['m2p2_h2', 'm2p2_hh', 'm2h_pph', 'm2phhp']: {'m2p2_h2': (12*EulerGamma*xi + 12*xi - 2*EulerGamma - 1)/96, 'm2p2_hh': -(-1 + EulerGamma)*(6*xi - 1)/48, 'm2h_pph': -EulerGamma*(6*xi - 1)/24, 'm2phhp': (-1 + EulerGamma)*(6*xi - 1)/24}, resid 0   [expected P2: transverse for dim reg and proper time chi only; P4: (1/6 - xi)/2 in dim reg]
+#   K_2 transverse (first-order variation under h -> h + p e + e p vanishes identically): False
+#   -- p^4 (check only) --
+#   log Lambda^2: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240 (P0)]
+#   P1 at p^4, c_m = -c_L: True   (the massive p^4 constant is the low-energy expansion, not reported)
+#   (62s)
+# --- regulator: dimreg ---
+#   k_perp^2 coefficient of the trace term (second order): {'sqrtg2': 1} x sqrt(g)^(2)   (check of the 2 Nov correction: plain 1, covariant 0)
+#   (74s for the graphs)
+#   -- p^0 (cosmological order; units 1/16pi^2) --
+#   Lambda^4: (0) sqrtg2   [expected -1/4 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2: (0) m2sqrtg2   [expected 1/2 for proper time chi]
+#   log Lambda^2: (-1/4) m4sqrtg2   [expected -1/4 (P0)]
+#   log mu^2 coefficient equals c_L: True
+#   P1 at p^0, c_m = -c_L: True
+#   K_0 (constant): (-3/8) m4sqrtg2   [expected P2: covariant for dim reg and proper time chi only; P4: -3/8 in dim reg]
+#   -- p^2 (Newton order; units 1/16pi^2) --
+#   Lambda^4 at p^2 is zero: True
+#   Lambda^2: (0) sqrtgR2   [expected -(1/6 - xi)/2 for proper time chi; non-covariant otherwise (31 Oct)]
+#   Lambda^2 piece transverse: True
+#   log Lambda^2: (-(6*xi - 1)/12) m2sqrtgR2   [expected (1/6 - xi)/2 = -(6 xi - 1)/12 (P0)]
+#   log piece transverse: True
+#   log mu^2 coefficient equals c_L: True
+#   P1 at p^2, c_m = -c_L: True
+#   K_2 (constant): (-(6*xi - 1)/12) m2sqrtgR2   [expected P2: transverse for dim reg and proper time chi only; P4: (1/6 - xi)/2 in dim reg]
+#   K_2 transverse (first-order variation under h -> h + p e + e p vanishes identically): True
+#   -- p^4 (check only) --
+#   log Lambda^2: (-1/120) Ric2 + (-(60*xi**2 - 20*xi + 1)/240) R2   [expected -1/120, -(60 xi^2 - 20 xi + 1)/240 (P0)]
+#   P1 at p^4, c_m = -c_L: True   (the massive p^4 constant is the low-energy expansion, not reported)
+#   (87s)
+# --- P2: covariance/transversality pattern of the constants ---
+#   [cutoff, plain] K_0 covariant: False; K_2 transverse: False   [P2 expects False for both]
+#   [propertime, plain] K_0 covariant: False; K_2 transverse: False   [P2 expects False for both]
+#   [dimreg, plain] K_0 covariant: True; K_2 transverse: True   [P2 expects True for both]
+#   P2 pattern as predicted: True
+# --- P3, P4: the transverse constants against the heat-kernel/MS-bar values ---
+#   K_0[dimreg] = -3/8   [P4: -3/8];   K_2[dimreg] = -(6*xi - 1)/12   [P4: (1/6 - xi)/2]
+#   P4 holds: True
+#   P3 not scorable (needs dim reg and a transverse proper-time constant: expected only with the covariant measure)
+# --- P5: the Sakharov reading (printed, not interpreted further) ---
+#   [cutoff] K_2 not transverse: no covariant induced M_P^2 can be read off (the -1/12 discipline fails at the first slot)
+#   [propertime] K_2 not transverse: no covariant induced M_P^2 can be read off (the -1/12 discipline fails at the first slot)
+#   [dimreg] M_P^2(induced) = m**2*xi/(16*pi**2) - m**2/(96*pi**2) + (-m**2*xi/(8*pi**2) + m**2/(48*pi**2))*log(m) + (m**2*xi/(8*pi**2) - m**2/(48*pi**2))*log(mu)
+#   [dimreg] d M_P^2(induced) / d log(scale^2), from the m^2 log term alone = m**2*(6*xi - 1)/(96*pi**2)   (universal: sign of (1/6 - xi), zero at xi = 1/6)
+#   Lambda^2 term: absent in dim reg, non-covariant under the hard cutoff -> fails the first slot; m^2 log term: same coefficient in all regulators and measures -> passes; its constant K_2 is scheme-dependent -> the induced value is not fixed, only its running.
+# END rung1 massive plain elapsed=224.8s status=LOG-OK_FINITE-NONTRANSVERSE[cutoff,propertime]
