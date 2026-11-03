@@ -28,6 +28,7 @@ The two methods, for B_D(p²) = ∫d^Dk/(2π)^D 1/((k² − m₁²)((k − p)² 
 | `bubble_checks.py --lw` | the Lee–Wick pair m² = ±iM²: (5.8) in D = 4, the D = 2 closed form, (5.12) in D = 3, f_d above the LW threshold, f₊ = f₋ below it, methods P = M | `lw.log`, `lw.json` |
 | `bubble_checks.py --fw` | principal-value (FW) mixed term: the nonlocal divergence (2.6), the pseudothreshold imaginary part (4.3), the finite part (3.1), the D = 3, 2 imaginary parts of §7 | `fw.log`, `fw.json` |
 | `bubble_checks.py --fig13` | 1703.04584 propagator (2.1) with m = 3, M = 1: Im J(p⁰) across the LW threshold, Re J = 0, the cusp at p⁰ = √2, the half-difference of the two continuations against the rigid-contour residue of their §3 | `fig13.log`, `fig13.json` |
+| `bubble_frame.py` (2 Nov; rung 2, technique of the day) | the complex-conjugate-pair bubble at p⃗ ≠ 0 with the Lee–Wick energy contour and real spatial loop momenta — Nakanishi 1971's computation (restated in hep-th/0609206 eqs. 3.3–3.6): the boosted-frame method M against the rest frame at the same s, the moving threshold s_min(|p⃗|) = 4(Re E_{p⃗/2})² − p⃗², continuity across it, the |p⃗| → 0 limit against the three rest-frame prescriptions, method P as the anchor; predictions P1–P5 in the header | `frame.log`, `frame.json` |
 | `bubble_cert.py` | trusted checker: the published closed forms in ball arithmetic (Arb via python-flint), compared with the generator's numbers in the `.json` files | `cert.log` |
 
 **Spyder:**
@@ -39,6 +40,7 @@ import sys
 !"{sys.executable}" -B -u bubble_checks.py --fw     > results\fw.log
 !"{sys.executable}" -B -u bubble_checks.py --fig13  > results\fig13.log
 !"{sys.executable}" -B -u bubble_cert.py            > results\cert.log
+!"{sys.executable}" -B -u bubble_frame.py --json results/frame.json > results\frame.log     [2 Nov; 8-12 min predicted from 1131 s on the 2-core sandbox]
 ```
 
 Wall clock on one core: `--lw` about 90 s (four continuation sweeps per dimension, two dimensions), the rest
