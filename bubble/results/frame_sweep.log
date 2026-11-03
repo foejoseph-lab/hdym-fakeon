@@ -1,0 +1,43 @@
+# bubble_frame: complex-ghost-pair bubble at p_vec != 0, Lee-Wick contour, real k_vec; a1 = (0.0 + 1.0j), a2 = (0.0 - 1.0j), D = 4, s_ref = -1.0, dps = 15
+# thresholds: rest frame 2 Re(sqrt(a1))^2 = (M + M*)^2 = 2.0 ; s_min(|p|) = 0.3: 1.9555062, 0.8: 1.7054382   [P2 expects each below the rest-frame value]
+# --- sweep: s = 1.0..4.0 step 0.5; rest frame (PV) and boosted |p| = 0.3,0.8; s_min marked ---
+#   |p| = 0.3: s_min = 1.9555062
+#   |p| = 0.3 s = 1.0 < s_min: B_rest = (0.0 + 0.005330679809j)  B_boost = (1.915483243e-20 + 0.005330679809j)  |diff| = 2.602e-18 (19s)
+#   |p| = 0.3 s = 1.5 < s_min: B_rest = (0.0 + 0.008162407909j)  B_boost = (-4.903896373e-19 + 0.008162407909j)  |diff| = 1.042e-17 (19s)
+#   |p| = 0.3 s = 2.0 > s_min: B_rest = (0.0 + 0.01835553842j)  B_boost = (2.143988065e-23 + 0.01422716657j)  |diff| = 0.004128 (36s)
+#   |p| = 0.3 s = 2.5 > s_min: B_rest = (0.0 + 0.01373245291j)  B_boost = (-9.696228913e-21 + 0.01076563082j)  |diff| = 0.002967 (58s)
+#   |p| = 0.3 s = 3.0 > s_min: B_rest = (0.0 + 0.01049714443j)  B_boost = (-2.669345024e-23 + 0.008233642335j)  |diff| = 0.002264 (70s)
+#   |p| = 0.3 s = 3.5 > s_min: B_rest = (0.0 + 0.008070304307j)  B_boost = (-2.550667453e-23 + 0.006270330745j)  |diff| = 0.0018 (72s)
+#   |p| = 0.3 s = 4.0 > s_min: B_rest = (0.0 + 0.006159520298j)  B_boost = (3.875486289e-21 + 0.004683950527j)  |diff| = 0.001476 (66s)
+#   |p| = 0.8: s_min = 1.7054382
+#   |p| = 0.8 s = 1.0 < s_min: B_rest = (0.0 + 0.005330679809j)  B_boost = (-4.012227306e-20 + 0.005330679809j)  |diff| = 8.683e-19 (22s)
+#   |p| = 0.8 s = 1.5 < s_min: B_rest = (0.0 + 0.008162407909j)  B_boost = (-1.206922931e-18 + 0.008162407909j)  |diff| = 1.048e-17 (22s)
+#   |p| = 0.8 s = 2.0 > s_min: B_rest = (0.0 + 0.01835553842j)  B_boost = (-1.668442948e-22 + 0.008560223554j)  |diff| = 0.009795 (38s)
+#   |p| = 0.8 s = 2.5 > s_min: B_rest = (0.0 + 0.01373245291j)  B_boost = (3.00320058e-22 + 0.00654714647j)  |diff| = 0.007185 (42s)
+#   |p| = 0.8 s = 3.0 > s_min: B_rest = (0.0 + 0.01049714443j)  B_boost = (1.030711786e-20 + 0.004935820644j)  |diff| = 0.005561 (40s)
+#   |p| = 0.8 s = 3.5 > s_min: B_rest = (0.0 + 0.008070304307j)  B_boost = (-2.292930544e-21 + 0.003600567899j)  |diff| = 0.00447 (45s)
+#   |p| = 0.8 s = 4.0 > s_min: B_rest = (0.0 + 0.006159520298j)  B_boost = (-1.847461106e-22 + 0.002465228926j)  |diff| = 0.003694 (51s)
+# --- GMRS certification (Nakanishi 2006 eq. 3.7) ---
+#   |p| = 0.3: Jacobian on a 13x12 grid (k_par in [-3, p+3], k_perp in (0, 4]) and at |k| ~ 50: min |J| = 0.000992, signs [1]   [G1: one sign; a grid check, not a proof]
+#   |p| = 0.3 s = 1.0: Re[F(s)-F(s0)] = 0.005434951  F(s)-F(s0) = (0.005434951 + 0.011203995j)  c_Re = (5.3084308e-18 - 1.0j)  c_full = (-0.39268634 - 0.19048839j)
+#   |p| = 0.3 s = 1.5: Re[F(s)-F(s0)] = 0.0026032229  F(s)-F(s0) = (0.0026032229 + 0.010652304j)  c_Re = (-1.8465319e-16 - 1.0j)  c_full = (-0.23060875 - 0.056356443j)
+#   |p| = 0.3 s = 2.0: Re[F(s)-F(s0)] = -0.0034615358  F(s)-F(s0) = (-0.0034615358 + 0.0056728599j)  c_Re = (-2.8073287e-18 - 1.0j)  c_full = (0.44463814 - 0.2713148j)
+#   |p| = 0.3 s = 3.0: Re[F(s)-F(s0)] = 0.0025319885  F(s)-F(s0) = (0.0025319885 - 0.0021798038j)  c_Re = (3.8189492e-18 - 1.0j)  c_full = (0.49444417 - 0.5743301j)
+#   |p| = 0.3 s = 3.5: Re[F(s)-F(s0)] = 0.0044953001  F(s)-F(s0) = (0.0044953001 - 0.0034101709j)  c_Re = (2.1512963e-18 - 1.0j)  c_full = (0.48150727 - 0.6347247j)
+#   |p| = 0.3 s = 4.0: Re[F(s)-F(s0)] = 0.0060816803  F(s)-F(s0) = (0.0060816803 - 0.0041994227j)  c_Re = (2.2315733e-18 - 1.0j)  c_full = (0.46756898 - 0.67714189j)
+#   |p| = 0.3: constancy of c_Re over the sweep: relative spread 4.26e-14   [G2: < 1e-6 for one of them]
+#   |p| = 0.3: constancy of c_full over the sweep: relative spread 2.26   [G2: < 1e-6 for one of them]
+#   |p| = 0.3: c_Re (the physical channel: B is pure imaginary, F complex, so c_full cannot be constant) = (5.308430804e-18 - 1.0j); |c_Re + i| = 9.33e-15   [G2: c = -i to 1e-6, from F = i B]
+#   |p| = 0.3: G2 holds: True
+#   |p| = 0.8: Jacobian on a 13x12 grid (k_par in [-3, p+3], k_perp in (0, 4]) and at |k| ~ 50: min |J| = 0.00205, signs [1]   [G1: one sign; a grid check, not a proof]
+#   |p| = 0.8 s = 1.0: Re[F(s)-F(s0)] = 0.0012164667  F(s)-F(s0) = (0.0012164667 + 0.0095883575j)  c_Re = (-3.3229512e-17 - 1.0j)  c_full = (-0.12485943 - 0.015840808j)
+#   |p| = 0.8 s = 1.5: Re[F(s)-F(s0)] = -0.0016152614  F(s)-F(s0) = (-0.0016152614 + 0.007880523j)  c_Re = (7.4738567e-16 - 1.0j)  c_full = (0.19670481 - 0.040318351j)
+#   |p| = 0.8 s = 2.0: Re[F(s)-F(s0)] = -0.0020130771  F(s)-F(s0) = (-0.0020130771 + 0.0023492423j)  c_Re = (2.3206481e-19 - 1.0j)  c_full = (0.49409664 - 0.42339379j)
+#   |p| = 0.8 s = 3.0: Re[F(s)-F(s0)] = 0.0016113258  F(s)-F(s0) = (0.0016113258 - 0.0013304195j)  c_Re = (6.2102882e-18 - 1.0j)  c_full = (0.49096411 - 0.59462686j)
+#   |p| = 0.8 s = 3.5: Re[F(s)-F(s0)] = 0.0029465786  F(s)-F(s0) = (0.0029465786 - 0.0022123641j)  c_Re = (-8.8008873e-19 - 1.0j)  c_full = (0.48014747 - 0.6394934j)
+#   |p| = 0.8 s = 4.0: Re[F(s)-F(s0)] = 0.0040819175  F(s)-F(s0) = (0.0040819175 - 0.0028449021j)  c_Re = (-1.1883292e-19 - 1.0j)  c_full = (0.46909361 - 0.6730641j)
+#   |p| = 0.8: constancy of c_Re over the sweep: relative spread 4.42e-14   [G2: < 1e-6 for one of them]
+#   |p| = 0.8: constancy of c_full over the sweep: relative spread 7.04   [G2: < 1e-6 for one of them]
+#   |p| = 0.8: c_Re (the physical channel: B is pure imaginary, F complex, so c_full cannot be constant) = (-3.322951169e-17 - 1.0j); |c_Re + i| = 8.66e-15   [G2: c = -i to 1e-6, from F = i B]
+#   |p| = 0.8: G2 holds: True
+# END bubble_frame elapsed=601.7s status=PASS
