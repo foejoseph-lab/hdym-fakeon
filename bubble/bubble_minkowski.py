@@ -19,16 +19,17 @@ poles by the sign of Im, generically, and checks the residue sum against a direc
 
 [derived] D1.  For (a1, a2) = (i, -i) the UHP poles are +w1 and p0 - w2, and the residue sum is
         h_{+-} = -(i/2) (w1 - w2) / (w1 w2 [p0^2 - (w1 - w2)^2])
-   -- with NO positive-energy term (w1 + w2)/(...) at all: it is exactly the mixed term of one +i eps and one -i eps propagator
-   (2001.01942 eq. 2.3, bubble_lib.h_fw_mixed) with complex masses.  The real-axis contour treats a = +i as an anti-Feynman
+   -- with NO positive-energy term (w1 + w2)/(...) at all: it is the mixed term of one +i eps and one -i eps propagator
+   (2001.01942 eq. 2.3, bubble_lib.h_fw_mixed, which is written for the (-i, +i) ordering: the sign of (w1 - w2) flips with the
+   ordering) with complex masses.  The real-axis contour treats a = +i as an anti-Feynman
    (-i eps) propagator and a = -i as a Feynman one.  (-+) is the same with w1 <-> w2.  For (-i, -i): h_{--} = the standard
    (Lee-Wick contour) value of bubble_lib.h_bubble; for (i, i): h_{++} = MINUS that value (both propagators anti-Feynman: the
    complex conjugate structure).
 [derived] D2.  Large-k tail in the rest frame (u = 1/k):  h_{+-} = u^3 (p0^2 - u^2)/(2 p0^4) + O(u^7), identical for (-+).  Hence
         B_Lambda(p0) = ln(Lambda) / (4 pi^2 p0^2) + C(p0) + O(Lambda^-2),
-   a LOGARITHMIC divergence with a NONLOCAL coefficient 1/p0^2 (not a polynomial in p: no counterterm absorbs it) which is REAL
-   (in these conventions the finite bubble is imaginary, -(i/16 pi^2) I_4, so the divergence sits in the other, anti-Hermitian,
-   part).  The Euclidean subtraction of bubble_frame does not remove it: B_Lambda(s) - B_Lambda(s_ref) ~ (1/4 pi^2)(1/p0^2 -
+   a LOGARITHMIC divergence with a NONLOCAL coefficient 1/p0^2 (not a polynomial in p: no counterterm absorbs it) which is REAL in B
+   (the ordinary local log of a bubble is imaginary in B, +i/(8 pi^2) ln Lambda: the two sit in different parts; in 1612.06510's
+   language the ordinary one is anti-Hermitian and this one is not).  The Euclidean subtraction of bubble_frame does not remove it: B_Lambda(s) - B_Lambda(s_ref) ~ (1/4 pi^2)(1/p0^2 -
    1/p0_ref^2) ln Lambda.  The next term, -u^5/(2 p0^4), converges; the u^5 term odd in (a1 - a2) vanishes for a = +-i since
    a1^2 - a2^2 = 0.
 [derived] D3.  In the boosted frame the same tail holds with p0^2 = s + p_vec^2, so at fixed s the coefficient of ln Lambda is
@@ -62,7 +63,7 @@ subtracted difference would be the surprise and would say D2 is wrong.
 
 RECORD OF THE SMOKE (rule 11; 3 Nov 00:10 ET, sandbox, dps 12, Lambda 10/30/100, s = 2.5; log results/smoke_sandbox_2026-11-03/
 minkowski_smoke1.log).  The header above is kept as written.
-  - P5, P4 PASS as written (residue sum = direct quadrature to 4e-13; (--) = Lee-Wick to 0; (++) = -Lee-Wick to 0).
+  - P5, P4 PASS as written (residue sum = direct quadrature to 4e-13; four sample points, the header said three; (--) = Lee-Wick to 0; (++) = -Lee-Wick to 0).
   - Rest frame: slope 0.0101304 vs predicted 1/(4 pi^2 s) = 0.0101321, rel err 1.7e-4: D2 holds.
   - D3 IS WRONG.  Boosted slope 0.0101312 + 1e-6 i -> the SAME 1/(4 pi^2 s), not 1/(4 pi^2 (s + p^2)).  The tail expansion of D2
     dropped the O(1) term k_hat.p_vec in w1 - w2 in the boosted frame: w1 - w2 = x + (a1 - a2 - p^2 + x^2)/(2k) + ..., x = k_hat.p_vec,
@@ -80,6 +81,34 @@ minkowski_smoke1.log).  The header above is kept as written.
     is 15 s at dps 12 and 28 s at dps 15, Lambda = 300 (sandbox).  B_ref is computed once per frame, Lambda stops at 300, P6 at
     Lambda = 30.  Expected 5-10 min (rule 16 holds).  Second smoke (dps 12, Lambda 10/30/100): status=PASS as re-scored,
     results/smoke_sandbox_2026-11-03/minkowski_smoke2.log.
+
+AFTER THE READ (rule 28, 3 Nov 17:50 ET; the author's full run, results/minkowski.log, status=PASS, compared with the sandbox smoke
+before the paper was opened: boost numbers identical, rest s = 2.5 differing at 1e-6 -- the window bug in B_rest, found by the review).  1612.06510 read 3 Nov 17:45 (EPJC 77 (2017) 84; a fetch-summary of secs. 1-3, 5 and
+app. A, not yet the full text).  Their formulation IS this one: loop energy along the real axis, residues closing in the upper half
+plane, hard cutoff on the space momenta, rest frame.  Their propagator is the physical pole TIMES the pair, S = 1/(p^2 - m^2 + i eps) *
+M^4/((p^2)^2 + M^4), poles at p^2 = +-i M^2 (our a = +-i), partial fractions 1/x - (1/2)/(x - i) - (1/2)/(x + i) at m = 0.
+  D1  their power counting, "a propagator calculated on the pole of another falls off half less rapidly": the same statement.  MATCH.
+  D2  not in the paper for the bare pair.  Their D = 4 trivial-numerator coefficient is c_00 = 0: the physical pole's cross terms
+      cancel the nonlocal log.  P7 below checks that with our building blocks (prediction from the D2 tail with the (-+) selection:
+      (0, +i) has tail i(a1 - a2)/(4 p0^2) = +1/4 per unit, (+i, -i) has 1/2; weights 2(-1/2) and 1/2: 1/4 * (-1) + 1/2 * 1/2 = 0).
+  D3  WRONG as written (smoke record); they take p = (0, p_s) and "find (3.2) again": the divergent part is a function of p^2 only.
+      Our corrected 1/(4 pi^2 s) in both frames AGREES with them.
+  P3  the frame dependence of the FINITE part is not discussed in the paper (they state Sigma "is expected to be a function of p^2
+      only" and check it for the divergent part).  Candidate "what the era did not write"; to be confirmed on the full text.
+  D4  the (++)/(--) sign flip and the cancellation of the local log in the four-pair sum: not in the paper in that form; their
+      "the usual divergences are anti-Hermitian, these are not" is the same fact seen from the counterterm side.
+  M1  accurate and shallower than the derived lines.
+  "No Euclidean region to subtract at": their sec. 5, "the analytic continuation to Euclidean space is not possible".  MATCH.
+  Their D = 6 headline, Sigma = -M^4/(2 (4 pi)^3) [M^2/(p^2)^2 - i/p^2] ln(Lambda^2/M^2) + ..., is the same mechanism one dimension up
+  (two nonlocal structures there, one here).  Reading note for the ledger (author, 17:50): the large-k_s "pinch", Omega ~ p_s - i eta
+  and Omega-bar ~ p_s + i eta closing on the real k0 axis from both sides, is a conjugate pair squeezing the contour, not a pole
+  collision -- the same misreading hdym's Krein pairs invited first.
+
+  P7 (added 3 Nov 17:55, author's yes; scored).  The weighted six-pair sum of real-axis bubbles with S's partial-fraction weights
+      (1, -1/2, -1/2; the massless physical pole as a1 = -i*10^-10, Feynman) has log-slope |c| < 10^-5 at s = 2.5, rest frame,
+      from Lambda = 30 to 300 (c_00 = 0 of 1612.06510 eq. 3.4-3.6), while the bare pair's is 1/(4 pi^2 s).  Sandbox 3 Nov 17:48 (dps 12):
+      total -3.6e-7 + 9.1e-7 i (the finite-Lambda remainder, O(Lambda^-2) by D2), bare pair 0.0101311; m = 0 only -- the m != 0
+      entries of their table have m-dependent weights and are not checked here.
 
 Run (from bubble/):   python3 -B -u bubble_minkowski.py --json results/minkowski.json > results/minkowski.log
 Smoke (sandbox):      python3 -B -u bubble_minkowski.py --smoke
@@ -149,10 +178,14 @@ def B_rest(p0, a1, a2, lam):
     bounded away from zero in the rest frame since w1 - w2 is purely imaginary there)."""
     f = lambda k: k * k * h_real(*omegas_rest(k, a1, a2), p0)
     pts = [mp.mpf(0), mp.mpf(1)]
+    # windows only for the terms whose denominator is (w1+w2)^2 - p0^2, i.e. Im a1 and Im a2 of one sign ((++), (--), (0,-i)); the
+    # mixed terms have p0^2 - (w1-w2)^2, bounded away from zero.  (Review of 3 Nov, must-fix: applied to the mixed term too, the
+    # forced 1e-3 windows at a real k_t made the rest-frame s = 2.5 values dps-dependent at 7e-7 -- C_rest(2.5) off by 1.5e-3 relative
+    # in the author's first log; slopes and every PASS/FAIL unaffected, the error being Lambda-independent.)
     kt2 = (p0 ** 4 - 2 * p0 ** 2 * (a1 + a2) + (a1 - a2) ** 2) / (4 * p0 ** 2)
     kt = mp.sqrt(kt2)
-    if mp.re(kt) > 0 and abs(mp.im(kt)) < 1:
-        r, im = mp.re(kt), max(abs(mp.im(kt)), mp.mpf('1e-3'))
+    if mp.sign(mp.im(a1)) == mp.sign(mp.im(a2)) and mp.re(kt) > 0 and 0 < abs(mp.im(kt)) < 1:
+        r, im = mp.re(kt), abs(mp.im(kt))
         pts += [r - 4 * im, r - im, r, r + im, r + 4 * im]
     pts += [lam]
     pts = sorted(set(x for x in pts if 0 <= x <= lam))
@@ -279,7 +312,24 @@ if not args.smoke:
 else:
     print("  (skipped in smoke)")
 
-print(f"\nstatus={'PASS' if ok else 'FAIL'}  (P1 {p1}, P2 {p2}, P4 {p4}, P5 {p5})")
+# ---------------------------------------------------------------- P7: the partial-fraction cancellation (1612.06510 c_00 = 0), rest frame
+print("\n## P7: S x S with S = 1/x - (1/2)/(x - i) - (1/2)/(x + i) (1612.06510 eq. 2.2 at m = 0): weighted six-pair sum, log-slope should vanish")
+p0 = mp.sqrt(mp.mpf('2.5')); l7 = [mp.mpf(30), mp.mpf(300)]
+eps7 = mp.mpc(0, -1e-10)          # massless Feynman propagator, m^2 - i eps
+S7 = {}
+for lab, (a1, a2) in {'(0,0)': (eps7, eps7), '(0,+i)': (eps7, a_plus), '(0,-i)': (eps7, a_minus), '(+i,+i)': (a_plus, a_plus),
+                      '(-i,-i)': (a_minus, a_minus), '(+i,-i)': (a_plus, a_minus)}.items():
+    v = [B_rest(p0, a1, a2, l) for l in l7]
+    S7[lab] = (v[1] - v[0]) / mp.log(l7[1] / l7[0])
+    print(f"  {lab:8s} log-slope {fmt(S7[lab])}")
+tot7 = S7['(0,0)'] - (S7['(0,+i)'] + S7['(0,-i)']) + (S7['(+i,+i)'] + S7['(-i,-i)']) / 4 + S7['(+i,-i)'] / 2
+nl7 = -S7['(0,+i)'] + S7['(+i,-i)'] / 2
+print(f"  weighted sum {fmt(tot7)}   (nonlocal part alone {fmt(nl7)}; bare pair {fmt(S7['(+i,-i)'])}, 1/(4 pi^2 s) = {fmt(1 / (4 * PI ** 2 * p0 ** 2))})")
+p7 = abs(tot7) < mp.mpf(10) ** -5
+print(f"  P7 {'PASS' if p7 else 'FAIL'} (|weighted log-slope| < 1e-5: c_00 = 0)"); ok &= p7
+out['checks']['P7'] = {'slopes': {k: [float(mp.re(v)), float(mp.im(v))] for k, v in S7.items()}, 'total': [float(mp.re(tot7)), float(mp.im(tot7))], 'pass': bool(p7)}
+
+print(f"\nstatus={'PASS' if ok else 'FAIL'}  (P1 {p1}, P2 {p2}, P4 {p4}, P5 {p5}, P7 {p7})")
 if args.json:
     with open(args.json, 'w') as f:
         json.dump(out, f, indent=1)
