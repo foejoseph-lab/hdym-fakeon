@@ -1,0 +1,5 @@
+# window-variation check of bubble_lib.B_momentum_boost, 2 Nov 2026 (sandbox, dps 15): s = 2.5, |p| = 0.8, a = +-i
+#   win = 5, dense = 4: B = (3.00320058020079e-22 + 0.00654714646951348j) (75s)
+#   win = 10, dense = 5: B = (3.00320058020079e-22 + 0.00654714646951348j) (103s)
+#   win = 3, dense = 6: B = (3.00320058020079e-22 + 0.00654714646951348j) (112s)
+# END window_variation_check

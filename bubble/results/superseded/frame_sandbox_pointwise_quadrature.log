@@ -1,0 +1,27 @@
+# bubble_frame: complex-ghost-pair bubble at p_vec != 0, Lee-Wick contour, real k_vec; a1 = (0.0 + 1.0j), a2 = (0.0 - 1.0j), D = 4, s_ref = -1.0, dps = 15
+# thresholds: rest frame 2 Re(sqrt(a1))^2 = (M + M*)^2 = 2.0 ; s_min(|p|) = 0.3: 1.9555062, 0.8: 1.7054382   [P2 expects each below the rest-frame value]
+# --- P5 anchor: method P (average continuation) vs rest-frame method M (PV) ---
+#   s = 1.0: M_rest(PV) = (0.0 + 0.005330679809j)  P = (1.3409747e-24 + 0.005330679809j)  |diff| = 1.13e-17  [P5: < 1.0e-8] (8s)
+#   s = 1.8: M_rest(PV) = (0.0 + 0.01120879544j)  P = (-1.406112546e-18 + 0.01120879544j)  |diff| = 2.23e-18  [P5: < 1.0e-8] (16s)
+#   s = 2.5: M_rest(PV) = (0.0 + 0.01373245291j)  P = (2.109172172e-18 + 0.0137324529j)  |diff| = 8.49e-12  [P5: < 1.0e-8] (18s)
+#   s = 4.0: M_rest(PV) = (0.0 + 0.006159520298j)  P = (1.3409747e-24 + 0.006159520297j)  |diff| = 1.44e-12  [P5: < 1.0e-8] (17s)
+# --- boosted frame, method M with real k_vec: B(s, |p|) against the rest frame at the same s ---
+#   |p| = 0.3, s = 1.0 (below s_min): B = (-1.686039967e-26 + 0.005330679809j)  |B - B_rest| = 2.6e-18  [P1: agree] (18s)
+#   |p| = 0.3, s = 1.8 (below s_min): B = (-5.139966501e-26 + 0.01120879544j)  |B - B_rest| = 1.39e-17  [P1: agree] (18s)
+#   |p| = 0.3, s = 2.5 (above s_min): B = (-8.351627099e-25 + 0.01074993142j)  |B - B_rest| = 0.00298  [P2: differ] (121s)
+#   |p| = 0.3, s = 4.0 (above s_min): B = (5.303659702e-25 + 0.004348554307j)  |B - B_rest| = 0.00181  [P2: differ] (114s)
+#   |p| = 0.8, s = 1.0 (below s_min): B = (-3.764943616e-26 + 0.005330679809j)  |B - B_rest| = 2.6e-18  [P1: agree] (19s)
+#   |p| = 0.8, s = 1.8 (above s_min): B = (-3.142909453e-26 + 0.009530701919j)  |B - B_rest| = 0.00168  [P2: differ] (51s)
+#   |p| = 0.8, s = 2.5 (above s_min): B = (-6.030457513e-25 + 0.006577407813j)  |B - B_rest| = 0.00716  [P2: differ] (58s)
+#   |p| = 0.8, s = 4.0 (above s_min): B = (6.436416651e-25 + 0.002500884117j)  |B - B_rest| = 0.00366  [P2: differ] (154s)
+# --- P3: continuity across s_min at |p| = 0.8 ---
+#   h = 0.1: |B(s_min + h) - B(s_min - h)| = 0.000471 (78s)
+#   h = 0.03: |B(s_min + h) - B(s_min - h)| = 0.0001553 (79s)
+#   h = 0.01: |B(s_min + h) - B(s_min - h)| = 5.163e-5 (131s)
+# --- P4: |p| -> 0 at s = 2.5 against the rest-frame principal value and the two i-epsilon prescriptions ---
+#   rest frame: PV = (0.0 + 0.01373245291j); +i eps = (-0.01193662073 + 0.01373245291j); -i eps = (0.01193662073 + 0.01373245291j)
+#   |p| = 0.3: B = (-8.351627099e-25 + 0.01074993142j)  |B - PV| = 0.002983  |B - (+i eps)| = 0.0123 (0s)
+#   |p| = 0.1: B = (4.720911908e-25 + 0.01268962362j)  |B - PV| = 0.001043  |B - (+i eps)| = 0.01198 (115s)
+#   |p| = 0.03: B = (-1.810825516e-20 + 0.01334048818j)  |B - PV| = 0.000392  |B - (+i eps)| = 0.01194 (117s)
+#   P4 (difference to the PV decreases as |p| -> 0): True
+# END bubble_frame elapsed=1131.1s status=PASS

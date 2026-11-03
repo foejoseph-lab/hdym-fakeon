@@ -622,3 +622,79 @@ def schwarz_gap(fp, fm):
         return fp - mp.conj(fm)
     except Exception:
         return fp - fm
+
+
+# ================================================================ additions of 2 Nov 2026 (rung 2: the bubble at p_vec != 0)
+def kstar_boost(p0sq, p, a1):
+    """Radius k* of the pinch CIRCLE in the boosted frame: on the plane k_par = p/2 the sum w1 + w2 = 2 Re sqrt(p^2/4 + k_perp^2 + a1)
+    is real for a complex-conjugate pair (the symmetry k -> p - k fixes that plane pointwise), and it equals p0 at k_perp = k*
+    whenever p0 > 2 Re E_{p/2}, i.e. s > s_min(|p|) = 4 (Re E_{p/2})^2 - p^2.  None below.  (Found 2 Nov evening: the first
+    version of bubble_frame.py said there was no pinch at p_vec != 0; there is one, on this circle, and the first run's
+    above-threshold numbers were off by ~0.5% for want of breakpoints at it -- results note, rung 2 section.)"""
+    p0 = mp.sqrt(mp.mpf(p0sq)) if mp.mpf(p0sq) > 0 else None
+    if p0 is None:
+        return None
+    g = lambda k: 2 * mp.re(mp.sqrt(p * p / 4 + k * k + a1)) - p0
+    if g(mp.mpf(0)) >= 0:
+        return None
+    return mp.findroot(g, (mp.mpf(0), 10 * p0), solver='bisect')
+
+
+def h_boost(kpar, kperp, p0sq, p, a1, a2):
+    """integrand of B/i after the k0 residues along the Lee-Wick contour, boosted frame (cylindrical k = (kpar, kperp)),
+    p0sq = p0^2 (negative allowed: Euclidean)"""
+    k2 = kpar * kpar + kperp * kperp
+    w1 = mp.sqrt(k2 + a1)
+    w2 = mp.sqrt((kpar - p) ** 2 + kperp * kperp + a2)
+    s = w1 + w2
+    return s / (2 * w1 * w2 * (s * s - p0sq))
+
+
+def B_momentum_boost(s, p, a1, a2, s_ref=-1, win=5, dense=4):
+    """Method M in the boosted frame, D = 4: B(p0^2 = s + p^2, p) - B(p0^2 = s_ref + p^2, p), the subtraction at the Euclidean point
+    s_ref in the same frame (Lorentz invariant below all thresholds).  Near the pinch circle the denominator is ~ alpha (k_perp - k*)
+    + i gamma (kpar - p/2): the 3-dimensional integral is ABSOLUTELY convergent (a 1/r singularity on a circle), but the iterated
+    k_perp integral at fixed kpar has a near-pole at distance ~ |kpar - p/2| from the real axis, so it gets Gauss-Legendre windows of
+    width win*|kpar - p/2| around k* (tanh-sinh would put nodes on top of it), and the kpar integral breakpoints at p/2 +- 10^-j,
+    j < dense.  For a pair that is NOT complex conjugate (the CLOP shift) the near-pole sits at k_perp with Re(w1 + w2) = p0, at a
+    distance ~ |Im(w1 + w2)| there, for every kpar: the same windowing is applied with that width (2 Nov, after the fresh-agent review:
+    the first CLOP smoke used a pointwise quadrature for those points and they moved by 1-3% between breakpoint sets).  The width floor
+    10^-(dps-4) only matters for tanh-sinh nodes within 10^-12 of p/2, whose weight is negligible.  Converged to 14 digits at dps 15
+    across (win, dense) = (5,4), (10,5), (3,6) for the conjugate pair (s = 2.5, |p| = 0.8: 0.0065471464695135 i; log in
+    results/superseded/frame_window_variation_check.log)."""
+    p = mp.mpf(p); s = mp.mpf(s); s_ref = mp.mpf(s_ref)
+    p0sq = s + p * p; r = s_ref + p * p
+    conj_pair = abs(a2 - mp.conj(a1)) < mp.mpf(10) ** (-(mp.mp.dps - 8))
+    tiny = mp.mpf(10) ** (-(mp.mp.dps - 4))
+    p0 = mp.sqrt(p0sq) if p0sq > 0 else None
+
+    def near_pole(kpar):
+        """(k_perp where Re(w1 + w2) = p0, |Im(w1 + w2)| there) or None"""
+        if p0 is None:
+            return None
+        g = lambda kperp: mp.re(mp.sqrt(kpar * kpar + kperp * kperp + a1) + mp.sqrt((kpar - p) ** 2 + kperp * kperp + a2)) - p0
+        if g(mp.mpf(0)) >= 0:
+            return None
+        kq = mp.findroot(g, (mp.mpf(0), 10 * p0 + abs(kpar) + p), solver='bisect')
+        im = abs(mp.im(mp.sqrt(kpar * kpar + kq * kq + a1) + mp.sqrt((kpar - p) ** 2 + kq * kq + a2)))
+        return kq, im
+
+    def inner(kpar):
+        f = lambda kperp: kperp * (h_boost(kpar, kperp, p0sq, p, a1, a2) - h_boost(kpar, kperp, r, p, a1, a2))
+        np_ = near_pole(kpar)
+        if np_ is None:
+            return mp.quad(f, [0, mp.mpf(1) / 2, 2, mp.inf])
+        kq, im = np_
+        w = min(max(win * im, tiny), max(kq / 2, tiny))
+        pts = sorted(set(x for x in [0, kq - 4 * w, kq - w, kq, kq + w, kq + 4 * w, kq + 2, mp.inf] if x >= 0))
+        tot = mp.mpf(0)
+        for a_, b_ in zip(pts[:-1], pts[1:]):
+            if kq - 4 * w - tiny <= a_ and b_ <= kq + 4 * w + tiny:
+                tot += mp.quad(f, [a_, b_], method='gauss-legendre')
+            else:
+                tot += mp.quad(f, [a_, b_])
+        return tot
+
+    c = p / 2
+    pts = [-mp.inf, -2, 0] + [c - mp.mpf(10) ** (-j) for j in range(0, dense)] + [c] + [c + mp.mpf(10) ** (-j) for j in range(0, dense)] + [p + 2, mp.inf]
+    return I * mp.quad(inner, sorted(set(pts))) / (4 * PI ** 2)

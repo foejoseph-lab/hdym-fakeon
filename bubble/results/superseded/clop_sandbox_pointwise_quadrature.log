@@ -1,0 +1,53 @@
+# bubble_clop: CLOP mass-shift limit on the complex-ghost-pair bubble; a = +-i, shift on line 1, deltas +-0.1,0.03,0.01, D = 4, s_ref = -1.0, dps = 15
+# --- P1: rest frame, method M, the mass-shift limit against PV and the two i-epsilon values ---
+#   s = 2.5: PV = (0.0 + 0.01373245291j)  +i eps = (-0.01193662073 + 0.01373245291j)  -i eps = (0.01193662073 + 0.01373245291j)  |gap| = 0.023873
+#   delta = +0.1: B = (0.008568801179 + 0.01217771955j)  |B - (+i eps)| = 0.02056  |B - (-i eps)| = 0.003709  |B - PV| = 0.008709 (0s)
+#   delta = +0.03: B = (0.01089119037 + 0.01340307667j)  |B - (+i eps)| = 0.02283  |B - (-i eps)| = 0.001096  |B - PV| = 0.0109 (0s)
+#   delta = +0.01: B = (0.01158865717 + 0.01363407588j)  |B - (+i eps)| = 0.02353  |B - (-i eps)| = 0.0003616  |B - PV| = 0.01159 (0s)
+#   delta -> 0+ approaches -i eps; approach monotone: True
+#   delta = -0.1: B = (-0.01251467467 + 0.009932503002j)  |B - (+i eps)| = 0.003844  |B - (-i eps)| = 0.02474  |B - PV| = 0.01308 (0s)
+#   delta = -0.03: B = (-0.01215345711 + 0.01247878864j)  |B - (+i eps)| = 0.001272  |B - (-i eps)| = 0.02412  |B - PV| = 0.01222 (0s)
+#   delta = -0.01: B = (-0.0120122802 + 0.01330177377j)  |B - (+i eps)| = 0.0004373  |B - (-i eps)| = 0.02395  |B - PV| = 0.01202 (0s)
+#   delta -> 0- approaches +i eps; approach monotone: True
+#   |lim+ - lim-| / |(+i eps) - (-i eps)| = 0.98869   [P1: within 10% of 1 at the smallest delta]
+#   s = 4.0: PV = (0.0 + 0.006159520298j)  +i eps = (-0.01722902798 + 0.006159520298j)  -i eps = (0.01722902798 + 0.006159520298j)  |gap| = 0.034458
+#   delta = +0.1: B = (0.01540703952 + 0.006164595303j)  |B - (+i eps)| = 0.03264  |B - (-i eps)| = 0.001822  |B - PV| = 0.01541 (0s)
+#   delta = +0.03: B = (0.01668222944 + 0.006170355931j)  |B - (+i eps)| = 0.03391  |B - (-i eps)| = 0.0005469  |B - PV| = 0.01668 (0s)
+#   delta = +0.01: B = (0.01704682877 + 0.006163901983j)  |B - (+i eps)| = 0.03428  |B - (-i eps)| = 0.0001823  |B - PV| = 0.01705 (0s)
+#   delta -> 0+ approaches -i eps; approach monotone: True
+#   delta = -0.1: B = (-0.01650331967 + 0.003966774926j)  |B - (+i eps)| = 0.00231  |B - (-i eps)| = 0.0338  |B - PV| = 0.01665 (0s)
+#   delta = -0.03: B = (-0.01702241054 + 0.005470013181j)  |B - (+i eps)| = 0.0007198  |B - (-i eps)| = 0.03426  |B - PV| = 0.01704 (0s)
+#   delta = -0.01: B = (-0.01716121014 + 0.005926604111j)  |B - (+i eps)| = 0.0002426  |B - (-i eps)| = 0.03439  |B - PV| = 0.01716 (0s)
+#   delta -> 0- approaches +i eps; approach monotone: True
+#   |lim+ - lim-| / |(+i eps) - (-i eps)| = 0.99277   [P1: within 10% of 1 at the smallest delta]
+# --- P2: rest frame, method P with the shifted pair: upper = lower continuation; delta -> 0+- against f_+, f_- ---
+#   s = 2.5 unshifted: B(f_+) = (-0.01193662072 + 0.0137324529j)  B(f_-) = (0.01193662072 + 0.0137324529j)
+#   delta = +0.1: P_upper = (0.008568801182 + 0.01217771956j)  |upper - lower| = 2.27e-11 (ints (-1, 0)/(-1, 0))  |P - M| = 1.13e-11  |P - B(f_+)| = 0.02056  |P - B(f_-)| = 0.003709 (17s)
+#   delta = +0.03: P_upper = (0.01089119037 + 0.01340307668j)  |upper - lower| = 2.32e-11 (ints (-1, 0)/(-1, 0))  |P - M| = 1.16e-11  |P - B(f_+)| = 0.02283  |P - B(f_-)| = 0.001096 (18s)
+#   delta = +0.01: P_upper = (0.01158865718 + 0.01363407589j)  |upper - lower| = 2.29e-11 (ints (-1, 0)/(-1, 0))  |P - M| = 1.15e-11  |P - B(f_+)| = 0.02353  |P - B(f_-)| = 0.0003616 (19s)
+#   delta -> 0+: approach to one of f_+, f_- monotone: True
+#   delta = -0.1: P_upper = (-0.01251467466 + 0.009932502997j)  |upper - lower| = 1.57e-11 (ints (0, -1)/(0, -1))  |P - M| = 7.84e-12  |P - B(f_+)| = 0.003844  |P - B(f_-)| = 0.02474 (17s)
+#   delta = -0.03: P_upper = (-0.0121534571 + 0.01247878863j)  |upper - lower| = 2.02e-11 (ints (0, -1)/(0, -1))  |P - M| = 1.01e-11  |P - B(f_+)| = 0.001272  |P - B(f_-)| = 0.02412 (17s)
+#   delta = -0.01: P_upper = (-0.01201228019 + 0.01330177376j)  |upper - lower| = 2.19e-11 (ints (0, -1)/(0, -1))  |P - M| = 1.09e-11  |P - B(f_+)| = 0.0004373  |P - B(f_-)| = 0.02395 (17s)
+#   delta -> 0-: approach to one of f_+, f_- monotone: True
+# --- P3: the full Lee-Wick propagator (four-pair sum), shift on line 1: the two limits against the PV sum ---
+#   s = 2.5: J_PV (unshifted, principal value on the cross terms) = (0.0 + 0.006628476746j)
+#   delta = +0.1: J = (-2.168404345e-19 + 0.005888504571j)  |J - J_PV| = 0.00074 (0s)
+#   delta = +0.03: J = (1.084202172e-19 + 0.006475761593j)  |J - J_PV| = 0.0001527 (0s)
+#   delta = +0.01: J = (2.168404345e-19 + 0.006583355154j)  |J - J_PV| = 4.512e-5 (0s)
+#   delta -> 0+: approach to J_PV monotone: True   [P3: both signs]
+#   delta = -0.1: J = (2.168404345e-19 + 0.004683313746j)  |J - J_PV| = 0.001945 (0s)
+#   delta = -0.03: J = (-1.084202172e-19 + 0.005988971307j)  |J - J_PV| = 0.0006395 (0s)
+#   delta = -0.01: J = (1.084202172e-19 + 0.006408992449j)  |J - J_PV| = 0.0002195 (0s)
+#   delta -> 0-: approach to J_PV monotone: True   [P3: both signs]
+# --- P4: boosted frame |p| = 0.8, method M: the shift is a regular perturbation of the real-momentum integral ---
+#   s = 2.5: B_boost(delta = 0) = (-6.030457513e-25 + 0.006577407813j)  B_rest(PV) = (0.0 + 0.01373245291j)  |diff| = 0.007155 (frame dependence, bubble_frame.py) (79s)
+#   delta = +0.1: B_boost = (0.00289715284 + 0.007601069338j)  |B - B_boost(0)| = 0.003073 (68s)
+#   delta = +0.03: B_boost = (0.000896109991 + 0.00685006174j)  |B - B_boost(0)| = 0.0009367 (75s)
+#   delta = +0.01: B_boost = (0.0003030791169 + 0.006635961837j)  |B - B_boost(0)| = 0.0003087 (86s)
+#   delta -> 0+: approach to the unshifted boosted integral monotone: True   [P4]
+#   delta = -0.1: B_boost = (-0.003329826435 + 0.005596587929j)  |B - B_boost(0)| = 0.003471 (92s)
+#   delta = -0.03: B_boost = (-0.0009461502303 + 0.00628621062j)  |B - B_boost(0)| = 0.0009899 (100s)
+#   delta = -0.01: B_boost = (-0.0003084838326 + 0.006462715475j)  |B - B_boost(0)| = 0.0003291 (88s)
+#   delta -> 0-: approach to the unshifted boosted integral monotone: True   [P4]
+# END bubble_clop elapsed=716.2s status=PASS
