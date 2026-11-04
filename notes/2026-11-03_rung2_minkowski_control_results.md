@@ -3,9 +3,8 @@
 The control for rung 2's forward pass: the bubble of the complex-conjugate pair computed the way anyone would have written it before
 Lee–Wick's contour existed — loop energy along the real k⁰ axis, real spatial momenta, a hard cutoff on |k⃗| in the frame of the
 computation. In 2017 this is the "Minkowski formulation" of Aglietti–Anselmi 1612.06510 (EPJC 77, 84). Code and logs: `bubble/bubble_minkowski.py`,
-`bubble/results/minkowski.{log,json}` (the author's full run, 3 Nov, 276 s, dps 15, with the script before P7 and before the review's
-window fix; **the author's re-run is pending**, and the two numbers that change — rest-frame s = 2.5 absolute values at 7·10⁻⁷ and
-C_rest(2.5) — are given below from the sandbox full run of 3 Nov evening, marked; sandbox logs are not committed, rule 15).
+`bubble/results/minkowski.{log,json}` (the author's re-run of 3 Nov evening with P7 and the review's window fix, 277 s, dps 15, commit 3c0ba46; identical to the
+sandbox full run on every printed digit; sandbox logs are not committed, rule 15).
 Setup and the two techniques before it: `notes/2026-11-02_rung2_1971_crack_results.md`.
 
 **Rule 28 (brief 16 amendment, 2 Nov 23:46), first use.** Nothing from 1612.06510 or later was fetched before the run. The header's
@@ -50,10 +49,10 @@ Subtraction at a real s_ref = 0.5 leaves (1/4π²)(1/s − 1/s_ref) ln Λ.
 | predicted 1/(4π² s) | 0.0253303 | same | 0.0101321 | same |
 | rel. error | 4.0·10⁻⁵ | 6.7·10⁻⁵ | 1.6·10⁻⁵ | 1.4·10⁻⁵ |
 | slope of B(s) − B(s_ref), rel. error vs (1/4π²)(1/s − 1/s_ref) | 1.2·10⁻⁴ | 3.6·10⁻⁴ | 9.7·10⁻⁵ | 2.6·10⁻⁴ |
-| C = lim [B_Λ − ln Λ/(4π²s)] | −0.0068343 | −0.0112123 + 0.0021890 i | −0.00047910 (sandbox, window fix; the author's first log −0.00047983) | −0.0012663 + 0.00098393 i |
+| C = lim [B_Λ − ln Λ/(4π²s)] | −0.0068343 | −0.0112123 + 0.0021890 i | −0.00047910 (the author's first log had −0.00047983: the window bug, review of 3 Nov) | −0.0012663 + 0.00098393 i |
 | convergence of C (last two Λ) | 1.1·10⁻⁶ | 1.9·10⁻⁶ | 1.8·10⁻⁷ | 1.5·10⁻⁷ |
 
-(`minkowski.log`, P1–P3, except the rest s = 2.5 column, sandbox full run pending the author's re-run; the O(Λ⁻²) next term is −u⁵/(2p₀⁴), and the slopes approach the prediction like Λ⁻².) P1 and P2 **hold** as re-scored.
+(`minkowski.log`, P1–P3; the O(Λ⁻²) next term is −u⁵/(2p₀⁴), and the slopes approach the prediction like Λ⁻².) P1 and P2 **hold** as re-scored.
 
 ## 3. Frames: where the Lorentz-invariance failure is, and where it is not
 
@@ -97,20 +96,20 @@ nonlocal log. Our tail formula predicts that: for the (0, +i) pair the upper hal
 whose 1/k³ coefficient is i(a₁ − a₂)/(4p₀²) = +1/(4p₀²) against the bare pair's 1/(2p₀²); the weights 2·(−1/2) and 1/2 give
 (1/4)(−1) + (1/2)(1/2) = 0. Sandbox (dps 12 in the smoke, dps 15 in the full sandbox run, Λ = 30 → 300, s = 2.5, the massless Feynman pole
 as a₁ = −10⁻¹⁰ i, i.e. 1/(k² + iε)): weighted log-slope −3.6·10⁻⁷ + 9.1·10⁻⁷ i (the O(Λ⁻²) remainder) against the bare pair's 0.0101311
-— **PASS in the sandbox; the author's re-run pending.** This is the m = 0 entry only; the m ≠ 0 entries of their table have m-dependent
+— **PASS** (`minkowski.log`, P7). This is the m = 0 entry only; the m ≠ 0 entries of their table have m-dependent
 weights and are not checked. So the bare Lee–Wick pair (the 1801.00915 model) keeps the nonlocal log; a Stelle-type propagator with the
 physical pole cancels it at trivial numerator and needs derivative vertices (their c₀,₁ = 1, c₁,₁ = 3, …) to show it. Neither paper
 says this in one sentence.
 
-## 5. Against 1612.06510 (read 3 Nov 17:45, after the run; fetch summary of §§1–3, 5, app. A; the full text to be read)
+## 5. Against 1612.06510 (read 3 Nov 17:45 after the run, fetch summary of §§1–3, 5, app. A; §3 and footnote 1 read in full 19:10)
 
 | ours | theirs | |
 |---|---|---|
 | formulation: real k⁰ axis, residues in the UHP, hard cutoff on |k⃗|, rest frame | the same, stated as the definition of "Minkowski theories"; cutoff Λ_UV on space momenta | match |
 | D1, the mixed structure | "a propagator calculated on the pole of another falls off half less rapidly" (§5, eq. 5.1–5.2) | match |
-| D2, ln Λ/(4π² s) for the bare pair | not stated; their D = 4 trivial-numerator entry is c₀,₀ = 0 for S × S | reconciled by P7 at m = 0 (sandbox; the author's re-run pending) |
+| D2, ln Λ/(4π² s) for the bare pair | not stated; their D = 4 trivial-numerator entry is c₀,₀ = 0 for S × S, listed in (3.6) without explanation (c₁,₀ = 0 gets one, "an eikonal cancellation") | reconciled by P7 at m = 0; P7 is the explanation of c₀,₀ = 0 |
 | D3 (wrong): frame-dependent divergence | they take p = (0, p_s) and "find (3.2) again": the divergent part is a function of p² only | they had it right; our corrected result agrees |
-| P3: the finite part is frame dependent | not discussed ("Σ is expected to be a function of p² only", checked for the divergent part; footnote 1: a Lorentz-invariant scheme would be more rigorous, only the logs matter) | **not in the paper**; candidate "not written" |
+| P3: the finite part is frame dependent | **not in the paper** [v, full text of §3 read 3 Nov 19:10]: "Σ(p) is expected to be a function of p² only"; computed at p = (p₀, 0) with "the Lorentz invariant result retrieved by means of the replacement p₀² → p²"; spacelike p "obtained by means of the analytic continuation in p²"; the explicit p = (0, p_s) check recovers (3.2), whose finite part is written "+ (finite)"; footnote 1: a Lorentz-invariant regularization would be more rigorous, "we are only interested in the logarithmic divergences, which … are independent of this choice" | **the replacement p₀² → p² is justified for the log and not for the finite part**, and the paper applies it to both. What the era did not write |
 | D4: (++) sign flip; local log cancels in the four-pair sum | not in that form; "non-Hermitian" counterterms | same fact, other side |
 | no Euclidean region to subtract at | §5: "the analytic continuation to Euclidean space is not possible" | match |
 | D = 6 headline Σ = −M⁴/(2(4π)³)[M²/(p²)² − i/p²] ln(Λ²/M²) + … | | same mechanism one dimension up, two nonlocal structures |
@@ -125,7 +124,9 @@ part 1), CLOP (no cure of that crack, part 1), and no prescription (a covariant 
 note). The 2017 region-wise continuation and the 2018 average continuation are the answers; they come on the back sweep from 2017 (ordering
 rule). Rung 2's forward pass is complete for the era; review against intent with the author before rung 3 ('t Hooft–Veltman 1974).
 
-Status: `minkowski.log` status=PASS (P1, P2, P4, P5); P7 PASS in the sandbox only until the author's re-run. Fresh-agent review (rule 9)
+Status: `minkowski.log` (3c0ba46) status=PASS (P1, P2, P4, P5, P7). Readings accepted by the author 3 Nov 19:23 (review against intent):
+"CLOP's Lorentz invariance is method P's" (part 1); "p₀² → p² holds for the log, not the finite part"; "the Lee–Wick contour and the
+real axis swap which divergence is local". Fresh-agent review (rule 9)
 of 3 Nov evening: 18 findings, 2 must-fix (the `B_rest` windows applied to the mixed term — fixed, numbers above updated; the claim that the
 author's log and the smoke agreed on every number — withdrawn, they differed at 10⁻⁶ in exactly the affected block), all folded in; the
 reviewer re-derived the residue sums, the tails and the angular identity and found them correct. Claim tags (hdym's, adopted 3 Nov pending the author's yes): the
