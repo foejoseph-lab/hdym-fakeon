@@ -1,0 +1,30 @@
+# rung3_dewitt_bundle: a_2 on 4 random algebraic curvature tensors, seed 20261104, bundles ['scalar', 'vector'], jobs 1
+# backgrounds done in 2118 s
+sample0: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True, 'a0_x2_vector': True}; Box R(0) = 0; Tr a1_scalar(0) = 85/72 - 85*xi/12; Tr a1_vector(0) = -85/36
+   Tr a2_scalar(0) = 7225*xi**2/288 - 7225*xi/864 + 14967413/466560   predicted 7225*xi**2/288 - 7225*xi/864 + 14967413/466560   diff 0
+   Tr a2_vector(0) = 38414491/233280   predicted 38414491/233280   diff 0
+sample1: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True, 'a0_x2_vector': True}; Box R(0) = 0; Tr a1_scalar(0) = 215*xi/9 - 215/54; Tr a1_vector(0) = 215/27
+   Tr a2_scalar(0) = 46225*xi**2/162 - 46225*xi/486 + 7491161/93312   predicted 46225*xi**2/162 - 46225*xi/486 + 7491161/93312   diff 0
+   Tr a2_vector(0) = -8067683/46656   predicted -8067683/46656   diff 0
+sample2: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True, 'a0_x2_vector': True}; Box R(0) = 0; Tr a1_scalar(0) = 2191/216 - 2191*xi/36; Tr a1_vector(0) = -2191/108
+   Tr a2_scalar(0) = 4800481*xi**2/2592 - 4800481*xi/7776 + 414262/3645   predicted 4800481*xi**2/2592 - 4800481*xi/7776 + 414262/3645   diff 0
+   Tr a2_vector(0) = 31851311/116640   predicted 31851311/116640   diff 0
+sample3: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True, 'a0_x2_vector': True}; Box R(0) = 0; Tr a1_scalar(0) = 887*xi/12 - 887/72; Tr a1_vector(0) = 887/36
+   Tr a2_scalar(0) = 786769*xi**2/288 - 786769*xi/864 + 537461/3240   predicted 786769*xi**2/288 - 786769*xi/864 + 537461/3240   diff 0
+   Tr a2_vector(0) = 3623617/9720   predicted 3623617/9720   diff 0
+
+## scalar: Tr a_2(0) = (6*xi - 1)**2/72 R^2 + -1/180 Ric^2 + 1/180 Riem^2   (residuals zero: True);  after GB: xi**2/2 - xi/6 + 1/120 R^2 + 1/60 Ric^2
+   (1/2) Tr a_2 - (3.40) = [1/360, -1/90, 1/360]   predicted (d/360)(1,-4,1) = [1/360, -1/90, 1/360]: MATCH
+   after GB, (1/2) Tr a_2 = xi**2/4 - xi/12 + 1/240 R^2 + 1/120 Ric^2  vs method M xi**2/4 - xi/12 + 1/240 R^2 + 1/120 Ric^2
+   P1 (rung 1): MATCH
+
+## vector: Tr a_2(0) = -1/9 R^2 + 43/90 Ric^2 + -11/180 Riem^2   (residuals zero: True);  after GB: -1/20 R^2 + 7/30 Ric^2
+   (1/2) Tr a_2 - (3.40) = [1/90, -2/45, 1/90]   predicted (d/360)(1,-4,1) = [1/90, -2/45, 1/90]: MATCH
+   after GB, (1/2) Tr a_2 = -1/40 R^2 + 7/60 Ric^2  vs method M -1/40 R^2 + 7/60 Ric^2
+   P2 (memory, Gilkey): MATCH
+
+## maxwell = vector - 2 scalar(0): Tr a_2 = [-5/36, 22/45, -13/180]   predicted (1/180)(-25, 88, -13) = [-5/36, 22/45, -13/180]; after GB /2: -1/30 R^2 + 1/10 Ric^2 (method M: -1/30, 1/10)
+P4 PASS: a_0's x^2 part is c R^a_{mu b nu} x^mu x^nu with c = [1/6, 1/6, 1/6, 1/6] (re-scored: +1/6; the header said -1/6)
+
+status=PASS
+END rung3_dewitt_bundle 2119 s
