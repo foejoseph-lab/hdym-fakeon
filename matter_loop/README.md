@@ -56,6 +56,16 @@ beside the m² log term (the "−1/12 discipline"); the induced Planck mass prin
 (plain) and `LOG-OK_FINITE-NONTRANSVERSE[cutoff]` (covariant). The dim-reg tadpole now carries the k_⊥² of the flat trace term
 (`ud1962_lib.perp_symbol`; results note §9 for the slip it fixed, kept in `results/superseded/rung1_massive_plain_sandbox_4d_tadpole_symbol.log`).
 
+Added 4 Nov 2026 (rung 3, step 1, method M — 't Hooft–Veltman 1974 eq. (3.40) as code on bundles; summary and plan
+`../notes/2026-11-04_rung3_thooft_veltman_summary.md`; one run, seconds):
+
+    python3 hv1974_master.py --samples 8 --log results/hv1974_master.log
+
+`hv1974_master.py` evaluates (3.40) pointwise on random algebraic curvature tensors for a scalar (any ξ), a vector in Feynman gauge
+and Maxwell (vector minus two ghosts), fits R², Ric², Riem² and reduces by Gauss–Bonnet. Standard curvature sign ('t Hooft–Veltman's
+R is minus the standard one; header). Scalar reproduces (5.23) and rung 1's ξ-polynomial; Maxwell comes out conformal, (1/10)(Ric² − R²/3),
+twelve times the conformal scalar. Single-method until the DeWitt recursion on the bundle (method P, next). Review of 4 Nov folded in.
+
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
 Vassilevich hep-th/0306138 eqs. 4.26–4.28.
