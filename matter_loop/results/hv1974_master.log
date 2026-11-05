@@ -1,0 +1,25 @@
+# hv1974_master: (3.40) on 8 random algebraic curvature tensors, seed 20261104; standard curvature sign
+
+## scalar(0): fit R^2 1/240  Ric^2 1/120  Riem^2 0   (residuals on the other 5 backgrounds all zero: True)
+   after Gauss-Bonnet:  R^2 1/240   Ric^2 1/120
+
+## scalar(1/6): fit R^2 -1/360  Ric^2 1/120  Riem^2 0   (residuals on the other 5 backgrounds all zero: True)
+   after Gauss-Bonnet:  R^2 -1/360   Ric^2 1/120
+
+## scalar(xi): fit R^2 xi**2/4 - xi/12 + 1/240  Ric^2 1/120  Riem^2 0   (residuals on the other 5 backgrounds all zero: True)
+   after Gauss-Bonnet:  R^2 xi**2/4 - xi/12 + 1/240   Ric^2 1/120
+
+## vector: fit R^2 -1/15  Ric^2 17/60  Riem^2 -1/24   (residuals on the other 5 backgrounds all zero: True)
+   after Gauss-Bonnet:  R^2 -1/40   Ric^2 7/60
+
+## maxwell: fit R^2 -3/40  Ric^2 4/15  Riem^2 -1/24   (residuals on the other 5 backgrounds all zero: True)
+   after Gauss-Bonnet:  R^2 -1/30   Ric^2 1/10
+
+P1 PASS: scalar(0) = R^2/240 + Ric^2/120 (their 5.23); scalar(xi) R^2 = 1/4 (xi-1/6)^2 - 1/360, Ric^2 = 1/120 (rung 1)
+   scalar(1/6) = -1/360 R^2 + 1/120 Ric^2  (conformal: R^2/Ric^2 = -1/3)
+P2 PASS: maxwell conformal, R^2 = -Ric^2/3   (R^2 -1/30, Ric^2 1/10)
+P3 PASS: maxwell Ric^2 = 1/10 = 12 x 1/120, R^2 = -1/30 [memory + hand sum; single method until P]
+P4 PASS: Riem^2 coefficient vector -1/24, scalar 0; GB shift as stated
+
+status=PASS  (P1 True, P2 True, P3 True, P4 True)
+END hv1974_master 0 s
