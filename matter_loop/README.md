@@ -64,7 +64,14 @@ Added 4 Nov 2026 (rung 3, step 1, method M — 't Hooft–Veltman 1974 eq. (3.40
 `hv1974_master.py` evaluates (3.40) pointwise on random algebraic curvature tensors for a scalar (any ξ), a vector in Feynman gauge
 and Maxwell (vector minus two ghosts), fits R², Ric², Riem² and reduces by Gauss–Bonnet. Standard curvature sign ('t Hooft–Veltman's
 R is minus the standard one; header). Scalar reproduces (5.23) and rung 1's ξ-polynomial; Maxwell comes out conformal, (1/10)(Ric² − R²/3),
-twelve times the conformal scalar. Single-method until the DeWitt recursion on the bundle (method P, next). Review of 4 Nov folded in.
+twelve times the conformal scalar. Review of 4 Nov folded in. Method P (same evening):
+
+    python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [~16 min wall at sandbox speed; 4 cores]
+
+`rung3_dewitt_bundle.py` is DeWitt's recursion on a bundle (matrix a_k, the connection in the transport equation so a₀ is the parallel
+propagator, the endomorphism as a field), rung 1's normal-coordinate machinery copied with credit. One-background smoke in the sandbox:
+Tr a₂ equals rung 1's ξ-polynomial (scalar) and the Gilkey coefficients (vector) exactly; the rule-12 check is that half of it differs
+from (3.40) by exactly (d/360)·Gauss–Bonnet and agrees after. Fresh review folded in; what the backgrounds cannot see is in the header.
 
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
