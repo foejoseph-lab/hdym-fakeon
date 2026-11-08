@@ -116,7 +116,53 @@ Lesson, 4 Nov evening, not physics: `--jobs 4` on Windows re-imports an unguarde
 until the machine was restarted; the author lost an evening of compute to it. Fixed 8 Nov (main guard, non-empty logs refused, a line
 per finished background).
 
-## 4. For the ledger when the rows are written
+## 4. Step 2, pure gravity by method M, 8 Nov (sandbox; the author's runs pending) — and what the paper's printed operator is not
+
+**2a, their operator as I first transcribed it.** (4.31) at φ̃ = 0, transcribed (wrongly, see below) and contracted as
+½h^α_β X^{βμ}_{αν} h^ν_μ, with the P⁻¹ replacement (5.3)–(5.4): Tr(P⁻¹X̄) = −10R where (5.16) needs 6R, and no sign or index-order
+reading of its five terms reproduces (5.15) and (5.16), even modulo Gauss–Bonnet (`graviton_loop/hv1974_graviton_M.py --transcribed`,
+`results/hv1974_graviton_M_v1_transcribed431.log`). Its Ω and ghost pieces are fine: Tr Ω² = −6Riem² (5.14) and the ghost's
+−(17/60)R² − (7/30)Ric² (5.21) on every background.
+
+**2b, the operator derived from the action** (`graviton_loop/graviton_operator_derive.py`; the machinery validated first on Maxwell in
+Feynman gauge, where it gives −D² + Ric exactly). The Euler–Lagrange operator of √g R − ½C² at the origin of normal coordinates, by
+numeric jet probes: minimal (no mixed-index second-derivative terms; the ∂²h coefficient is exactly P δ^{μν}), and its endomorphism is
+exactly a combination of the six covariant structures,
+
+    E h = −R h + ½R δ tr h + (Ric h + h Ric) − δ tr(Ric h) − Ric tr h + 2R_{ambn}h_{mn}      [Gilkey's E of −(D² + E); standard sign]
+
+with Tr E = −6R (their +6R_HV: (5.16) exact), Tr E² = 2R² + 6Ric² + 3·GB ((5.15) modulo Gauss–Bonnet — their "apart from total
+derivatives" after (5.14)), and, through (3.40) with the ghost, on six random backgrounds:
+
+| | pre-GB (R², Ric², Riem²) | after Gauss–Bonnet | the paper |
+|---|---|---|---|
+| ghost (vector, E = +Ric, ×(−2)) | (−1/5, −17/30, 1/12) | (−17/60, −7/30) | (5.21) at φ̃ = 0 ✓ |
+| h-loop alone | (1/8, 11/15, −1/2) | (7/24, 7/12) | not printed; = (5.24) − (5.21) |
+| **pure gravity, h + ghost** | (71/120, −119/60, 7/12) | **(1/120, 7/20)** | **(5.24) ✓** |
+
+(`results/hv1974_graviton_M_sandbox.log`, 8 Nov; the (3.40) traces of the derived E on the derivation's background differ from the
+fixed predictions by (7/12)·GB and (1/2)·GB, the Gauss–Bonnet multiples the fit then removes.)
+
+**The printed (4.31), and a retraction.** Between 15:10 and 18:30 on 8 Nov this note claimed that (4.31) as printed was not the
+operator of the paper's §5. The fresh review derived E by hand independently (the same six coefficients), reconstructed which (4.31)
+would match it, and the print re-read at 4× showed my transcription had two misplaced subscripts (the δ placements of the two R
+terms; δ^β_α R^μ_ν in the second Ricci term). Correctly transcribed, (4.31) **is** the derived operator, exactly, on two seeds, with
+E = P⁻¹X̄ when the paper's Ric and R are read as minus the standard ones and its R^{βμ}_{αν} as the standard Riemann — a convention
+statement the matter-loop sign argument could not fix for the Riemann sector. The paper is consistent from operator to result; the
+derivation stands as the independent confirmation, and the misreading as the record. (`hv1974_graviton_M.py --transcribed` must
+print "E == derived E: True"; `--transcribed --misread` is the 15:10 run.)
+
+**Records (rule 11):** the hand sign of the connection term in normal coordinates was wrong (+⅓(Ric h + h Ric), not −⅓; the code
+computes it from Γ); the first derivation stored the off-diagonal Euler–Lagrange components unhalved — E then fitted no covariant
+structure and the kinetic normalisation read 2 — caught by the Maxwell check, fixed; (5.15) was predicted exact and holds modulo GB;
+the method-M script lacked the adjoint symmetrization of X̄ (Tr E blind to it, Tr E² not); and the claim against the print, above.
+Four errors of mine in one afternoon, each caught by a check that was already in the rules: the validation on a known case, the
+fresh review, the re-read of the source at the point of disagreement.
+
+**Next:** method P on the h-bundle and the ghost (DeWitt's recursion, 10-dimensional: the author's machine), then 3a (gravity + scalar,
+(6.3) → 203/80), 3b (the improved tensor as a field redefinition), 3c (Einstein–Maxwell, 137/60).
+
+## 5. For the ledger when the rows are written
 
 The field-choice / δ(0) = 0 sentence (rung 1 ⇄ rung 3); the doubling trick and the non-covariant P⁻¹ as a 1974 technique; the
 Weyl transformation (7.2–7.7) as the tool §7 reaches for; the "11 times the unit term" bookkeeping; (3.22) — on a conformally flat
