@@ -74,6 +74,12 @@ propagator, the endomorphism as a field), rung 1's normal-coordinate machinery c
 Tr a₂ equals rung 1's ξ-polynomial (scalar) and the Gilkey coefficients (vector) exactly; the rule-12 check is that half of it differs
 from (3.40) by exactly (d/360)·Gauss–Bonnet and agrees after. Fresh review folded in; what the backgrounds cannot see is in the header.
 
+Step 2 (8 Nov): the same script carries the graviton bundle (10-dimensional, the induced connection, the endomorphism derived in
+`../graviton_loop/` as a field) and 't Hooft–Veltman's ghost; predictions from method M by a₂ = 2M + (d/180)(1, −4, 1); slow — an
+overnight on the author's machine:
+
+    python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --bundles graviton,ghost --log results/rung3_dewitt_graviton.log
+
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
 Vassilevich hep-th/0306138 eqs. 4.26–4.28.

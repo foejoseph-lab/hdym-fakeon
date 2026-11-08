@@ -53,6 +53,17 @@ SMOKE RECORD (rule 11; sandbox 4 Nov 20:10, one background, --samples 1 --bundle
   values (review, 4 Nov).  The 'a0_x2_vector': False in the smoke line is the pre-rewrite -1/6 assertion.
 
 Run:  python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [the author, 4 Nov: 2118 s with --jobs 1]
+Step 2 (8 Nov): the graviton bundle (10-dimensional symmetric tensors, the induced Levi-Civita connection, the endomorphism derived in
+graviton_loop/graviton_operator_derive.py as a field E(x)) and 't Hooft-Veltman's ghost (vector, E = +Ric):
+      python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --bundles graviton,ghost --log results/rung3_dewitt_graviton.log
+  Predictions (rule 25, 8 Nov 16:40, before the first run): the pre-GB Tr a_2 equals 2 x method M's pre-GB coefficients plus
+  (d/180)(1, -4, 1) -- the identity that held for the scalar and the vector -- i.e. graviton (11/36, 56/45, -17/18), ghost
+  (2/9, 43/90, -11/180); after Gauss-Bonnet half of it equals method M: graviton (7/24, 7/12), ghost (17/60, 7/30) [the ghost here
+  is the plain vector-with-E=+Ric a_2; the FP factor -2 is applied in the sum]; and graviton - 2 ghost after GB = (1/120, 7/20), (5.24).
+  Timing: the 10-dimensional bundle is slow -- a one-background sandbox run (8 Nov 16:45) was still in the recursion after 25 min on
+  one core and was stopped by the session's limit before the fit; the bundle construction and the recursion ran without error, the
+  per-sample and fit lines for 'graviton' are UNEXERCISED in the sandbox, and the author's overnight run is their first execution.
+  The "# sampleN done at N s" lines are the timer; expect hours per background single-core, divided by --jobs.
 (8 Nov: the body is under a main guard -- on Windows multiprocessing re-imports the file and the unguarded 4 Nov version forked
 workers forever, each truncating the log; the log is now refused if non-empty, and a line is printed per finished background.)
 """
@@ -246,12 +257,63 @@ def run_background(R, label, bundles):
     # Ricci field with one index up: R^a_b(x) = g^{ac} R_{cb}, R_{cb} = R^r_{c r b}
     Ricf = {(c, b): trunc(sum(Rup[(r, c, r, b)] for r in idx), 2) for c in idx for b in idx}
     Ricup = [[trunc(sum(ginv[a][c] * Ricf[(c, b)] for c in idx), 2) for b in idx] for a in idx]
+    # fields needed by the graviton bundles: R(x), Ric^a_b(x), R^a_{m b n}(x) as polynomials to x^2 (all from the ansatz)
+    Rupf = {k: trunc(v, 2) for k, v in Rup.items()}                      # R^a_{s m n}(x)
     for name in bundles:
         if name == 'scalar':
             d = 1; Nc = [mzero(1) for _ in idx]; Ef = [[-xi * Rsf]]
         elif name == 'vector':
             d = 4; Nc = [[[G[a][mu][b] for b in idx] for a in idx] for mu in idx]          # (N_mu)^a_b = Gamma^a_{mu b}
             Ef = [[-Ricup[a][b] for b in idx] for a in idx]
+        elif name == 'ghost':                                                              # the FP ghost of 't Hooft-Veltman (5.19): E = +Ric
+            d = 4; Nc = [[[G[a][mu][b] for b in idx] for a in idx] for mu in idx]
+            Ef = [[Ricup[a][b] for b in idx] for a in idx]
+        elif name == 'graviton':
+            # the 10-dimensional bundle of symmetric tensors h_{ab} (lower indices) in the basis E_aa, E_ab + E_ba; the induced
+            # connection (N_mu h)_{ab} = -Gamma^c_{mu a} h_{cb} - Gamma^c_{mu b} h_{ac}; the endomorphism of graviton_operator_derive.py
+            # as a field, with the index positions of the lower-index h:  (E h)_{ab} = -R h_{ab} + (1/2) R g_{ab} tr h + (Ric h + h Ric)_{ab}
+            # - g_{ab} tr(Ric h) - Ric_{ab} tr h + 2 R_{a m b n} h^{m n},  traces with g^{-1}(x).
+            d = 10
+            SP = [(a, b) for a in idx for b in idx if a <= b]
+            def sym_of_coords(c):
+                h = [[sp.Integer(0)] * 4 for _ in idx]
+                for (a, b), v in zip(SP, c):
+                    h[a][b] = h[a][b] + v
+                    if a != b:
+                        h[b][a] = h[b][a] + v
+                return h
+            def coords_of_sym(h):
+                return [h[a][b] for (a, b) in SP]
+            def op_mat(f):
+                cols = []
+                for p in SP:
+                    e = [[sp.Integer(0)] * 4 for _ in idx]
+                    e[p[0]][p[1]] += 1
+                    if p[0] != p[1]:
+                        e[p[1]][p[0]] += 1
+                    cols.append(coords_of_sym(f(e)))
+                return [[trunc(cols[j][i], 2) for j in range(10)] for i in range(10)]
+            def conn(mu):
+                def f(h):
+                    return [[-sum(G[c][mu][a] * h[c][b] + G[c][mu][b] * h[a][c] for c in idx) for b in idx] for a in idx]
+                return f
+            Nc = [op_mat(conn(mu)) for mu in idx]
+            Rlowf = {}
+            for a, m, b, n in itertools.product(idx, repeat=4):
+                Rlowf[(a, m, b, n)] = trunc(sum(g[a][r] * Rupf[(r, m, b, n)] for r in idx), 2)
+            Riclowf = {(a, b): trunc(sum(Rupf[(r, a, r, b)] for r in idx), 2) for a in idx for b in idx}
+            def endo(h):
+                trh = sum(ginv[m][n] * h[m][n] for m in idx for n in idx)
+                hup = [[sum(ginv[m][p] * h[p][q] * ginv[q][n] for p in idx for q in idx) for n in idx] for m in idx]     # h^{mn}
+                trRich = sum(Riclowf[(m, n)] * hup[m][n] for m in idx for n in idx)
+                Rich = [[sum(Riclowf[(a, c)] * ginv[c][p] * h[p][b] for c in idx for p in idx) for b in idx] for a in idx]       # (Ric h)_{ab} = Ric_{ac} g^{cp} h_{pb}
+                out_ = [[None] * 4 for _ in idx]
+                for a in idx:
+                    for b in idx:
+                        out_[a][b] = trunc(-Rsf * h[a][b] + Rsf / 2 * g[a][b] * trh + Rich[a][b] + Rich[b][a] - g[a][b] * trRich
+                                           - Riclowf[(a, b)] * trh + 2 * sum(Rlowf[(a, m, b, n)] * hup[m][n] for m in idx for n in idx), 2)
+                return out_
+            Ef = op_mat(endo)
         else:
             raise ValueError(name)
         a0 = transport(0, None, Nc, d, 4, init=meye(d))
@@ -300,7 +362,7 @@ def main():
     ap.add_argument('--samples', type=int, default=4)
     ap.add_argument('--jobs', type=int, default=1)
     ap.add_argument('--seed', type=int, default=20261104)
-    ap.add_argument('--bundles', default='scalar,vector')
+    ap.add_argument('--bundles', default='scalar,vector', help="scalar,vector (step 1) or graviton,ghost (step 2; 8 Nov)")
     ap.add_argument('--log', default=None)
     args = ap.parse_args()
     t0 = time.time()
@@ -332,16 +394,22 @@ def main():
         Rs_, Ric2_, Riem2_ = r['inv']
         for b in bundles:
             pr = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72)) * Rs_**2 - Ric2_ / 180 + Riem2_ / 180,
-                  'vector': -Rs_**2 / 9 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_}[b]
+                  'vector': -Rs_**2 / 9 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_,
+                  'ghost': sp.Rational(2, 9) * Rs_**2 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_,
+                  'graviton': sp.Rational(11, 36) * Rs_**2 + sp.Rational(56, 45) * Ric2_ - sp.Rational(17, 18) * Riem2_}[b]
             say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted {sp.expand(pr)}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
         ok &= all(checks.values())
     if len(reps) < 3:
         say("fewer than 3 backgrounds: no fit"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
     # ---- fits
     M = {'scalar': (xi**2 / 4 - xi / 12 + sp.Rational(1, 240), sp.Rational(1, 120), sp.Integer(0), 1),
-         'vector': (-sp.Rational(1, 15), sp.Rational(17, 60), -sp.Rational(1, 24), 4)}            # hv1974_master.py pre-GB, and d
+         'vector': (-sp.Rational(1, 15), sp.Rational(17, 60), -sp.Rational(1, 24), 4),            # hv1974_master.py pre-GB, and d
+         'ghost': (sp.Rational(1, 10), sp.Rational(17, 60), -sp.Rational(1, 24), 4),              # the vector with E = +Ric through (3.40)
+         'graviton': (sp.Rational(1, 8), sp.Rational(11, 15), -sp.Rational(1, 2), 10)}            # graviton_loop/hv1974_graviton_M.py, h-loop pre-GB
     predP = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72), -sp.Rational(1, 180), sp.Rational(1, 180)),
-             'vector': (-sp.Rational(1, 9), sp.Rational(43, 90), -sp.Rational(11, 180))}
+             'vector': (-sp.Rational(1, 9), sp.Rational(43, 90), -sp.Rational(11, 180)),
+             'ghost': (sp.Rational(2, 9), sp.Rational(43, 90), -sp.Rational(11, 180)),
+             'graviton': (sp.Rational(11, 36), sp.Rational(56, 45), -sp.Rational(17, 18))}       # a_2 = 2 M + (d/180)(1,-4,1), derived from method M
     res = {}
     for b in bundles:
         cR2, cRic2, cRiem2, fit_ok = fit(reps, f'a2_{b}')
@@ -355,8 +423,11 @@ def main():
         say(f"   (1/2) Tr a_2 - (3.40) = {diff}   predicted (d/360)(1,-4,1) = {want}: {'MATCH' if p3 else 'MISMATCH'}")
         say(f"   after GB, (1/2) Tr a_2 = {sp.expand(gbR2 / 2)} R^2 + {sp.expand(gbRic2 / 2)} Ric^2  vs method M {sp.expand(mR2 - mRiem2)} R^2 + {sp.expand(mRic2 + 4 * mRiem2)} Ric^2")
         pP = all(sp.expand(c - p) == 0 for c, p in zip((cR2, cRic2, cRiem2), predP[b]))
-        say(f"   {'P1' if b == 'scalar' else 'P2'} ({'rung 1' if b == 'scalar' else 'memory, Gilkey'}): {'MATCH' if pP else 'MISMATCH'}")
+        say(f"   {'P1' if b == 'scalar' else 'P2'} ({'rung 1' if b == 'scalar' else ('memory, Gilkey' if b == 'vector' else 'from method M by a_2 = 2M + (d/180)(1,-4,1)')}): {'MATCH' if pP else 'MISMATCH'}")
         ok &= fit_ok and p3 and (pP if b == 'scalar' else True)
+    if 'graviton' in bundles and 'ghost' in bundles:
+        pg = [sp.expand(v - 2 * s_) for v, s_ in zip(res['graviton'], res['ghost'])]
+        say(f"\n## pure gravity = graviton - 2 ghost: Tr a_2 = {pg};  after GB /2: {sp.expand((pg[0] - pg[2]) / 2)} R^2 + {sp.expand((pg[1] + 4 * pg[2]) / 2)} Ric^2  (5.24: 1/120, 7/20)")
     if 'vector' in bundles and 'scalar' in bundles:
         mx = [sp.expand(v - 2 * s.subs(xi, 0)) for v, s in zip(res['vector'], res['scalar'])]
         say(f"\n## maxwell = vector - 2 scalar(0): Tr a_2 = {mx}   predicted (1/180)(-25, 88, -13) = {[sp.Rational(k, 180) for k in (-25, 88, -13)]}; after GB /2: {sp.expand((mx[0] - mx[2]) / 2)} R^2 + {sp.expand((mx[1] + 4 * mx[2]) / 2)} Ric^2 (method M: -1/30, 1/10)")
