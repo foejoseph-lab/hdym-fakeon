@@ -1,0 +1,24 @@
+# hv1974_graviton_M: the h-bundle (10) and the ghost (4) through (3.40) on 6 random algebraic curvature tensors, seed 20261108; E = the operator derived from the action (graviton_operator_derive.py)
+sample0: R = 577/9, Ric^2 = 5425063/2592, Riem^2 = 1076053/216;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+sample1: R = 1825/18, Ric^2 = 806249/162, Riem^2 = 6591643/324;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+sample2: R = -6559/36, Ric^2 = 24557209/2592, Riem^2 = 19164619/1296;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+sample3: R = -5389/36, Ric^2 = 2998229/432, Riem^2 = 19896271/1296;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+sample4: R = -1855/36, Ric^2 = 4000889/2592, Riem^2 = 165715/48;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+sample5: R = -1657/18, Ric^2 = 6658817/1296, Riem^2 = 493042/27;  Tr Omega^2 + 6 Riem^2 = 0 [P1 True];  [Tr E^2 - (2R^2 + 6Ric^2)]/GB = 3 [P2 True];  Tr E / R = -6 [P3 True];  E == derived E: True
+
+## h: pre-GB R^2 19/24  Ric^2 -17/12  Riem^2 1/2  (residuals zero: True);  after GB: R^2 7/24  Ric^2 7/12
+
+## ghost: pre-GB R^2 -1/5  Ric^2 -17/30  Riem^2 1/12  (residuals zero: True);  after GB: R^2 -17/60  Ric^2 -7/30
+
+## total: pre-GB R^2 71/120  Ric^2 -119/60  Riem^2 7/12  (residuals zero: True);  after GB: R^2 1/120  Ric^2 7/20
+
+## h_noPinv: pre-GB R^2 29/48  Ric^2 -7/24  Riem^2 -1/16  (residuals zero: True);  after GB: R^2 2/3  Ric^2 -13/24
+
+P1-P3 (5.14), (5.15) mod GB, (5.16) on every background: PASS
+P4 ghost = -(17/60) R^2 - (7/30) Ric^2 (5.21): PASS
+P5 h-loop alone = (7/24) R^2 + (7/12) Ric^2 (derived): PASS
+P6 pure gravity = (1/120) R^2 + (7/20) Ric^2 (5.24): PASS
+P7 (reported) without the P^-1 replacement the h-loop after GB would be R^2 2/3, Ric^2 -13/24
+
+status=PASS
+END hv1974_graviton_M 1 s
