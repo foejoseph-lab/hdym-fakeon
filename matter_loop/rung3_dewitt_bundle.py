@@ -52,20 +52,14 @@ SMOKE RECORD (rule 11; sandbox 4 Nov 20:10, one background, --samples 1 --bundle
   P3, GB, maxwell, P4's re-scored path, status) has NOT run on real data: exercised only on mock backgrounds carrying the predicted
   values (review, 4 Nov).  The 'a0_x2_vector': False in the smoke line is the pre-rewrite -1/6 assertion.
 
-Run:  python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [sandbox timing in the header record]
+Run:  python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [the author, 4 Nov: 2118 s with --jobs 1]
+(8 Nov: the body is under a main guard -- on Windows multiprocessing re-imports the file and the unguarded 4 Nov version forked
+workers forever, each truncating the log; the log is now refused if non-empty, and a line is printed per finished background.)
 """
 import time, argparse, itertools, random, sys
 import sympy as sp
 
-ap = argparse.ArgumentParser()
-ap.add_argument('--samples', type=int, default=4)
-ap.add_argument('--jobs', type=int, default=1)
-ap.add_argument('--seed', type=int, default=20261104)
-ap.add_argument('--bundles', default='scalar,vector')
-ap.add_argument('--log', default=None)
-args = ap.parse_args()
-t0 = time.time()
-out = open(args.log, 'w') if args.log else None
+out = None
 
 
 def say(*a):
@@ -294,55 +288,84 @@ def fit(reps, key):
     return sp.factor(sol[c1]), sp.factor(sol[c2]), sp.factor(sol[c3]), all(r == 0 for r in resid)
 
 
-bundles = args.bundles.split(',')
-say(f"# rung3_dewitt_bundle: a_2 on {args.samples} random algebraic curvature tensors, seed {args.seed}, bundles {bundles}, jobs {args.jobs}")
-rng = random.Random(args.seed)
-Rlist = [riemann_sample(rng) for _ in range(args.samples)]
-t1 = time.time()
-if args.jobs > 1:
-    import multiprocessing as mp
-    with mp.Pool(args.jobs) as pool:
-        reps = pool.starmap(run_background, [(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist)])
-else:
-    reps = [run_background(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist)]
-say(f"# backgrounds done in {time.time() - t1:.0f} s")
-ok = True
-for r in reps:
-    checks = {k: v for k, v in r.items() if isinstance(v, bool)}
-    say(f"{r['label']}: checks {checks}; Box R(0) = {r['boxR_at_0']}; " + '; '.join(f"Tr a1_{b}(0) = {r[f'a1_{b}']}" for b in bundles))
-    Rs_, Ric2_, Riem2_ = r['inv']
+
+
+def _worker(a):
+    return run_background(*a)
+
+
+def main():
+    global out, args
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--samples', type=int, default=4)
+    ap.add_argument('--jobs', type=int, default=1)
+    ap.add_argument('--seed', type=int, default=20261104)
+    ap.add_argument('--bundles', default='scalar,vector')
+    ap.add_argument('--log', default=None)
+    args = ap.parse_args()
+    t0 = time.time()
+    if args.log:
+        import os
+        if os.path.exists(args.log) and os.path.getsize(args.log) > 0:
+            print(f"refusing to overwrite the non-empty log {args.log} (the 4 Nov truncation); move it first"); sys.exit(1)
+        out = open(args.log, 'w')
+    bundles = args.bundles.split(',')
+    say(f"# rung3_dewitt_bundle: a_2 on {args.samples} random algebraic curvature tensors, seed {args.seed}, bundles {bundles}, jobs {args.jobs}")
+    rng = random.Random(args.seed)
+    Rlist = [riemann_sample(rng) for _ in range(args.samples)]
+    t1 = time.time()
+    reps = []
+    if args.jobs > 1:
+        import multiprocessing as mp
+        with mp.Pool(args.jobs) as pool:
+            for rep in pool.imap_unordered(_worker, [(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist)]):
+                reps.append(rep); say(f"# {rep['label']} done at {time.time() - t1:.0f} s")
+        reps.sort(key=lambda r: r['label'])
+    else:
+        for i, Rk in enumerate(Rlist):
+            reps.append(run_background(Rk, f'sample{i}', bundles)); say(f"# sample{i} done at {time.time() - t1:.0f} s")
+    say(f"# backgrounds done in {time.time() - t1:.0f} s")
+    ok = True
+    for r in reps:
+        checks = {k: v for k, v in r.items() if isinstance(v, bool)}
+        say(f"{r['label']}: checks {checks}; Box R(0) = {r['boxR_at_0']}; " + '; '.join(f"Tr a1_{b}(0) = {r[f'a1_{b}']}" for b in bundles))
+        Rs_, Ric2_, Riem2_ = r['inv']
+        for b in bundles:
+            pr = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72)) * Rs_**2 - Ric2_ / 180 + Riem2_ / 180,
+                  'vector': -Rs_**2 / 9 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_}[b]
+            say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted {sp.expand(pr)}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
+        ok &= all(checks.values())
+    if len(reps) < 3:
+        say("fewer than 3 backgrounds: no fit"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
+    # ---- fits
+    M = {'scalar': (xi**2 / 4 - xi / 12 + sp.Rational(1, 240), sp.Rational(1, 120), sp.Integer(0), 1),
+         'vector': (-sp.Rational(1, 15), sp.Rational(17, 60), -sp.Rational(1, 24), 4)}            # hv1974_master.py pre-GB, and d
+    predP = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72), -sp.Rational(1, 180), sp.Rational(1, 180)),
+             'vector': (-sp.Rational(1, 9), sp.Rational(43, 90), -sp.Rational(11, 180))}
+    res = {}
     for b in bundles:
-        pr = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72)) * Rs_**2 - Ric2_ / 180 + Riem2_ / 180,
-              'vector': -Rs_**2 / 9 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_}[b]
-        say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted {sp.expand(pr)}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
-    ok &= all(checks.values())
-if len(reps) < 3:
-    say("fewer than 3 backgrounds: no fit"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
-# ---- fits
-M = {'scalar': (xi**2 / 4 - xi / 12 + sp.Rational(1, 240), sp.Rational(1, 120), sp.Integer(0), 1),
-     'vector': (-sp.Rational(1, 15), sp.Rational(17, 60), -sp.Rational(1, 24), 4)}            # hv1974_master.py pre-GB, and d
-predP = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72), -sp.Rational(1, 180), sp.Rational(1, 180)),
-         'vector': (-sp.Rational(1, 9), sp.Rational(43, 90), -sp.Rational(11, 180))}
-res = {}
-for b in bundles:
-    cR2, cRic2, cRiem2, fit_ok = fit(reps, f'a2_{b}')
-    res[b] = (cR2, cRic2, cRiem2)
-    gbR2, gbRic2 = sp.expand(cR2 - cRiem2), sp.expand(cRic2 + 4 * cRiem2)
-    say(f"\n## {b}: Tr a_2(0) = {cR2} R^2 + {cRic2} Ric^2 + {cRiem2} Riem^2   (residuals zero: {fit_ok});  after GB: {gbR2} R^2 + {gbRic2} Ric^2")
-    mR2, mRic2, mRiem2, d = M[b]
-    diff = [sp.expand(c / 2 - m) for c, m in zip((cR2, cRic2, cRiem2), (mR2, mRic2, mRiem2))]
-    want = [sp.Rational(d, 360) * k for k in (1, -4, 1)]
-    p3 = all(sp.expand(x - y) == 0 for x, y in zip(diff, want))
-    say(f"   (1/2) Tr a_2 - (3.40) = {diff}   predicted (d/360)(1,-4,1) = {want}: {'MATCH' if p3 else 'MISMATCH'}")
-    say(f"   after GB, (1/2) Tr a_2 = {sp.expand(gbR2 / 2)} R^2 + {sp.expand(gbRic2 / 2)} Ric^2  vs method M {sp.expand(mR2 - mRiem2)} R^2 + {sp.expand(mRic2 + 4 * mRiem2)} Ric^2")
-    pP = all(sp.expand(c - p) == 0 for c, p in zip((cR2, cRic2, cRiem2), predP[b]))
-    say(f"   {'P1' if b == 'scalar' else 'P2'} ({'rung 1' if b == 'scalar' else 'memory, Gilkey'}): {'MATCH' if pP else 'MISMATCH'}")
-    ok &= fit_ok and p3 and (pP if b == 'scalar' else True)
-if 'vector' in bundles and 'scalar' in bundles:
-    mx = [sp.expand(v - 2 * s.subs(xi, 0)) for v, s in zip(res['vector'], res['scalar'])]
-    say(f"\n## maxwell = vector - 2 scalar(0): Tr a_2 = {mx}   predicted (1/180)(-25, 88, -13) = {[sp.Rational(k, 180) for k in (-25, 88, -13)]}; after GB /2: {sp.expand((mx[0] - mx[2]) / 2)} R^2 + {sp.expand((mx[1] + 4 * mx[2]) / 2)} Ric^2 (method M: -1/30, 1/10)")
-if 'vector' in bundles:
-    p4 = all(r.get('a0_x2_vector', False) and r.get('a0_x2_coeff') == sp.Rational(1, 6) for r in reps)
-    say(f"P4 {'PASS' if p4 else 'FAIL'}: a_0's x^2 part is c R^a_{{mu b nu}} x^mu x^nu with c = {[r.get('a0_x2_coeff') for r in reps]} (re-scored: +1/6; the header said -1/6)")
-say(f"\nstatus={'PASS' if ok else 'FAIL'}")
-say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s")
+        cR2, cRic2, cRiem2, fit_ok = fit(reps, f'a2_{b}')
+        res[b] = (cR2, cRic2, cRiem2)
+        gbR2, gbRic2 = sp.expand(cR2 - cRiem2), sp.expand(cRic2 + 4 * cRiem2)
+        say(f"\n## {b}: Tr a_2(0) = {cR2} R^2 + {cRic2} Ric^2 + {cRiem2} Riem^2   (residuals zero: {fit_ok});  after GB: {gbR2} R^2 + {gbRic2} Ric^2")
+        mR2, mRic2, mRiem2, d = M[b]
+        diff = [sp.expand(c / 2 - m) for c, m in zip((cR2, cRic2, cRiem2), (mR2, mRic2, mRiem2))]
+        want = [sp.Rational(d, 360) * k for k in (1, -4, 1)]
+        p3 = all(sp.expand(x - y) == 0 for x, y in zip(diff, want))
+        say(f"   (1/2) Tr a_2 - (3.40) = {diff}   predicted (d/360)(1,-4,1) = {want}: {'MATCH' if p3 else 'MISMATCH'}")
+        say(f"   after GB, (1/2) Tr a_2 = {sp.expand(gbR2 / 2)} R^2 + {sp.expand(gbRic2 / 2)} Ric^2  vs method M {sp.expand(mR2 - mRiem2)} R^2 + {sp.expand(mRic2 + 4 * mRiem2)} Ric^2")
+        pP = all(sp.expand(c - p) == 0 for c, p in zip((cR2, cRic2, cRiem2), predP[b]))
+        say(f"   {'P1' if b == 'scalar' else 'P2'} ({'rung 1' if b == 'scalar' else 'memory, Gilkey'}): {'MATCH' if pP else 'MISMATCH'}")
+        ok &= fit_ok and p3 and (pP if b == 'scalar' else True)
+    if 'vector' in bundles and 'scalar' in bundles:
+        mx = [sp.expand(v - 2 * s.subs(xi, 0)) for v, s in zip(res['vector'], res['scalar'])]
+        say(f"\n## maxwell = vector - 2 scalar(0): Tr a_2 = {mx}   predicted (1/180)(-25, 88, -13) = {[sp.Rational(k, 180) for k in (-25, 88, -13)]}; after GB /2: {sp.expand((mx[0] - mx[2]) / 2)} R^2 + {sp.expand((mx[1] + 4 * mx[2]) / 2)} Ric^2 (method M: -1/30, 1/10)")
+    if 'vector' in bundles:
+        p4 = all(r.get('a0_x2_vector', False) and r.get('a0_x2_coeff') == sp.Rational(1, 6) for r in reps)
+        say(f"P4 {'PASS' if p4 else 'FAIL'}: a_0's x^2 part is c R^a_{{mu b nu}} x^mu x^nu with c = {[r.get('a0_x2_coeff') for r in reps]} (re-scored: +1/6; the header said -1/6)")
+    say(f"\nstatus={'PASS' if ok else 'FAIL'}")
+    say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s")
+
+
+if __name__ == '__main__':      # the 4 Nov lesson: on Windows a pool re-imports this file, and an unguarded body forks forever
+    main()

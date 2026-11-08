@@ -68,7 +68,8 @@ twelve times the conformal scalar. Review of 4 Nov folded in. Method P (same eve
 
     python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [~16 min wall at sandbox speed; 4 cores]
 
-`rung3_dewitt_bundle.py` is DeWitt's recursion on a bundle (matrix a_k, the connection in the transport equation so a₀ is the parallel
+(8 Nov: the script body is under a main guard — the 4 Nov `--jobs 4` run forked forever on Windows — a non-empty log is refused, and
+a line is printed per finished background.) `rung3_dewitt_bundle.py` is DeWitt's recursion on a bundle (matrix a_k, the connection in the transport equation so a₀ is the parallel
 propagator, the endomorphism as a field), rung 1's normal-coordinate machinery copied with credit. One-background smoke in the sandbox:
 Tr a₂ equals rung 1's ξ-polynomial (scalar) and the Gilkey coefficients (vector) exactly; the rule-12 check is that half of it differs
 from (3.40) by exactly (d/360)·Gauss–Bonnet and agrees after. Fresh review folded in; what the backgrounds cannot see is in the header.

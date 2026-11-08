@@ -95,7 +95,28 @@ each header says which (rule 15).
 
 **Size**: large (chronology §5); several sessions; rule 16 per run. Step 1 first, this session.
 
-## 3. For the ledger when the rows are written
+## 3. Step 1, closed 4 Nov (author's runs 916253a, 739b1af) — rule 12 satisfied for scalar, vector, Maxwell
+
+| | method M, `hv1974_master.py` ((3.40) pointwise) | method P, `rung3_dewitt_bundle.py` (DeWitt's recursion on the bundle, Tr a₂) | agreement |
+|---|---|---|---|
+| scalar(ξ), pre-GB | (ξ²/4 − ξ/12 + 1/240) R² + Ric²/120 | (6ξ − 1)²/72 R² − Ric²/180 + Riem²/180 (= rung 1's [a₂] with E = −ξR) | ½P − M = (1/360)(1, −4, 1)·(R², Ric², Riem²): the Gauss–Bonnet density, as predicted |
+| scalar(ξ), after GB | same | (ξ²/4 − ξ/12 + 1/240) R² + Ric²/120 | exact |
+| vector (Feynman gauge), pre-GB | −R²/15 + (17/60)Ric² − Riem²/24 | −R²/9 + (43/90)Ric² − (11/180)Riem² (Gilkey's a₂, from memory, now [grid] on four backgrounds) | ½P − M = (1/90)(1, −4, 1) |
+| vector, after GB | −R²/40 + (7/60)Ric² | same | exact |
+| Maxwell = vector − 2 ghosts | −R²/30 + Ric²/10 = C²/20 | (1/180)(−25 R² + 88 Ric² − 13 Riem²); after GB /2: the same | exact; conformal, 12 × the conformal scalar |
+
+Four random algebraic curvature tensors (seed 20261104), exact rationals; every input check PASS; on each background Tr a₂ equals the
+predicted value to the last digit of 7–9-digit rationals (`results/rung3_dewitt_bundle.log`, 2118 s single-threaded on the author's
+machine, 4 Nov). The two methods share no code beyond the random tensors. Also found: the parallel propagator's x² part is
++(1/6)R^a_{μbν}x^μx^ν (the header's hand sign was wrong; the run decided — rule 11) and a₁ = R/6 − ξR, −R/3 for the two bundles.
+What these backgrounds cannot see (review of 4 Nov, in the header): the two total-derivative coefficients (□E, □R: zero by the
+ansatz's x⁴ term) and, for the vector, the Ω² coefficient separately from E² and RE (confirmed in combination only).
+
+Lesson, 4 Nov evening, not physics: `--jobs 4` on Windows re-imports an unguarded script, forking workers that each truncated the log
+until the machine was restarted; the author lost an evening of compute to it. Fixed 8 Nov (main guard, non-empty logs refused, a line
+per finished background).
+
+## 4. For the ledger when the rows are written
 
 The field-choice / δ(0) = 0 sentence (rung 1 ⇄ rung 3); the doubling trick and the non-covariant P⁻¹ as a 1974 technique; the
 Weyl transformation (7.2–7.7) as the tool §7 reaches for; the "11 times the unit term" bookkeeping; (3.22) — on a conformally flat
