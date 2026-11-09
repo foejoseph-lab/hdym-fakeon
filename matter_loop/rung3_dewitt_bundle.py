@@ -53,6 +53,9 @@ SMOKE RECORD (rule 11; sandbox 4 Nov 20:10, one background, --samples 1 --bundle
   values (review, 4 Nov).  The 'a0_x2_vector': False in the smoke line is the pre-rewrite -1/6 assertion.
 
 Run:  python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --log results/rung3_dewitt_bundle.log      [the author, 4 Nov: 2118 s with --jobs 1]
+Checkpoint/resume (9 Nov): each finished background is written to <log>.ckpt.json; a stopped run continues with --resume (same
+command plus the flag; the log is appended to); without --resume a non-empty log is refused, never overwritten; the checkpoint is
+ignored if seed or bundles differ.  Delete the log and the .ckpt.json to start over.
 Step 2 (8 Nov): the graviton bundle (10-dimensional symmetric tensors, the induced Levi-Civita connection, the endomorphism derived in
 graviton_loop/graviton_operator_derive.py as a field E(x)) and 't Hooft-Veltman's ghost (vector, E = +Ric):
       python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --bundles graviton,ghost --log results/rung3_dewitt_graviton.log
@@ -60,10 +63,15 @@ graviton_loop/graviton_operator_derive.py as a field E(x)) and 't Hooft-Veltman'
   (d/180)(1, -4, 1) -- the identity that held for the scalar and the vector -- i.e. graviton (11/36, 56/45, -17/18), ghost
   (2/9, 43/90, -11/180); after Gauss-Bonnet half of it equals method M: graviton (7/24, 7/12), ghost (17/60, 7/30) [the ghost here
   is the plain vector-with-E=+Ric a_2; the FP factor -2 is applied in the sum]; and graviton - 2 ghost after GB = (1/120, 7/20), (5.24).
-  Timing: the 10-dimensional bundle is slow -- a one-background sandbox run (8 Nov 16:45) was still in the recursion after 25 min on
-  one core and was stopped by the session's limit before the fit; the bundle construction and the recursion ran without error, the
-  per-sample and fit lines for 'graviton' are UNEXERCISED in the sandbox, and the author's overnight run is their first execution.
-  The "# sampleN done at N s" lines are the timer; expect hours per background single-core, divided by --jobs.
+  RECORD (rule 11).  The author's run of 8-9 Nov (results/rung3_dewitt_graviton.log, 4680 s for four backgrounds with --jobs 4):
+  the ghost matched exactly; the graviton's Tr a_2 = (59/36, -55/18, 19/18) pre-GB, (7/12, 7/6) after, so (1/2) Tr a_2 after GB =
+  (7/24, 7/12) = method M's h-loop EXACTLY, and graviton - 2 ghost after GB = (1/120, 7/20) = (5.24) -- the physics passed.  The run
+  printed status=FAIL because the prediction table and the per-sample "predicted" values for the graviton were derived from a WRONG
+  hand copy of method M's pre-GB coefficients ((1/8, 11/15, -1/2) typed; (19/24, -17/12, 1/2) in the M log), the third hand-copied
+  number of the week to be wrong.  Fixed 9 Nov: method M's (3.40) is computed pointwise inside this script on the same backgrounds
+  and every prediction is derived from it; nothing is typed from a log any more.  With the right M, (1/2) Tr a_2 - M =
+  (10/360)(1, -4, 1) exactly, the identity predicted.  Step 2 is closed under rule 12 by that log; its FAIL line stays.
+  Timing: ~78 min for four backgrounds in parallel on the author's machine (single-core sandbox: > 25 min, unfinished).
 (8 Nov: the body is under a main guard -- on Windows multiprocessing re-imports the file and the unguarded 4 Nov version forked
 workers forever, each truncating the log; the log is now refused if non-empty, and a line is printed per finished background.)
 """
@@ -73,7 +81,17 @@ import sympy as sp
 out = None
 
 
-def say(*a):
+def version_line():
+    """interpreter and library versions, for the log (rung 0's scripts had it; dropped since; restored 9 Nov as a default)"""
+    import platform, sympy
+    try:
+        import mpmath; mpv = mpmath.__version__
+    except Exception:
+        mpv = '-'
+    return f"# versions: python {platform.python_version()} ({platform.system()} {platform.machine()}), sympy {sympy.__version__}, mpmath {mpv}; {sys.executable}"
+
+
+def say(*a, flush_ckpt=None):
     s = ' '.join(str(x) for x in a)
     print(s, flush=True)
     if out:
@@ -336,6 +354,17 @@ def run_background(R, label, bundles):
         a2_0 = mmap(at0, mscale(rhs2, sp.Rational(1, 2)))
         rep[f'a1_{name}'] = mtr(mmap(at0, a1))
         rep[f'a2_{name}'] = mtr(a2_0)
+        # method M at the same point: (3.40) = (1/24) Tr Omega^2 + 1/4 Tr(E(0) + R/6)^2 + (d/120)(Ric^2 - R^2/3), with
+        # Omega_{mn} = [D_m, D_n] from the connection's curvature at 0: Omega = dN_n/dx_m - dN_m/dx_n + N_m N_n - N_n N_m
+        E0 = mmap(at0, Ef)
+        Om2 = sp.Integer(0)
+        for m in idx:
+            for n in idx:
+                Omn = madd(madd(mmap(lambda e, m=m: at0(sp.diff(e, X[m])), Nc[n]), mmap(lambda e, n=n: at0(sp.diff(e, X[n])), Nc[m]), -1),
+                           madd(mmul(mmap(at0, Nc[m]), mmap(at0, Nc[n]), 0), mmul(mmap(at0, Nc[n]), mmap(at0, Nc[m]), 0), -1))
+                Om2 += mtr(mmul(Omn, Omn, 0))
+        Xm = madd(E0, mscale(meye(d), Rs / 6))
+        rep[f'hv340_{name}'] = sp.expand(sp.Rational(1, 24) * Om2 + sp.Rational(1, 4) * mtr(mmul(Xm, Xm, 0)) + sp.Rational(d, 120) * (Ric2 - Rs**2 / 3))
     return rep
 
 
@@ -364,52 +393,96 @@ def main():
     ap.add_argument('--seed', type=int, default=20261104)
     ap.add_argument('--bundles', default='scalar,vector', help="scalar,vector (step 1) or graviton,ghost (step 2; 8 Nov)")
     ap.add_argument('--log', default=None)
+    ap.add_argument('--resume', action='store_true', help='continue a stopped run from <log>.ckpt.json, appending to the log')
     args = ap.parse_args()
     t0 = time.time()
     if args.log:
         import os
         if os.path.exists(args.log) and os.path.getsize(args.log) > 0:
-            print(f"refusing to overwrite the non-empty log {args.log} (the 4 Nov truncation); move it first"); sys.exit(1)
-        out = open(args.log, 'w')
+            if args.resume and os.path.exists(args.log + '.ckpt.json'):
+                out = open(args.log, 'a'); print(f"# --resume: appending to {args.log}, checkpoint {args.log}.ckpt.json")
+            elif args.resume:
+                print(f"--resume given but no checkpoint {args.log}.ckpt.json exists; nothing to resume (to start over:  del {args.log.replace('/', chr(92))})"); sys.exit(1)
+            else:
+                print(f"refusing to overwrite the non-empty log {args.log} (the 4 Nov truncation). To continue a stopped run: --resume. To start over:  del {args.log.replace('/', chr(92))}"); sys.exit(1)
+        else:
+            out = open(args.log, 'w')
     bundles = args.bundles.split(',')
     say(f"# rung3_dewitt_bundle: a_2 on {args.samples} random algebraic curvature tensors, seed {args.seed}, bundles {bundles}, jobs {args.jobs}")
+    say(version_line())
     rng = random.Random(args.seed)
     Rlist = [riemann_sample(rng) for _ in range(args.samples)]
     t1 = time.time()
-    reps = []
-    if args.jobs > 1:
+    # checkpoint: each finished background is appended to <log>.ckpt.json (or rung3_dewitt_bundle.ckpt.json); a restart with the
+    # same seed, samples and bundles skips them (8 Nov, the author's ask: stop and resume overnight)
+    import json, os
+    ckpt_path = (args.log or 'rung3_dewitt_bundle') + '.ckpt.json'
+    done = {}
+    if os.path.exists(ckpt_path) and args.resume:
+        with open(ckpt_path) as f:
+            ck = json.load(f)
+        if ck.get('seed') == args.seed and ck.get('bundles') == bundles:
+            done = {r['label']: r for r in ck['reps']}
+            say(f"# resumed from {ckpt_path}: {sorted(done)} already done")
+        else:
+            say(f"# {ckpt_path} is for another seed/bundles; ignored")
+
+    def save(rep):
+        done[rep['label']] = rep
+        ser = []
+        for r in done.values():
+            ser.append({k: (str(v) if not isinstance(v, (bool, str, int)) else v) for k, v in r.items()})
+        tmp = ckpt_path + '.tmp'
+        with open(tmp, 'w') as f:
+            json.dump({'seed': args.seed, 'bundles': bundles, 'reps': ser}, f)
+        os.replace(tmp, ckpt_path)
+
+    def restore(r):
+        out_ = {}
+        for k, v in r.items():
+            if isinstance(v, (bool, int)) or k == 'label':
+                out_[k] = v
+            else:
+                val = sp.sympify(v)
+                out_[k] = tuple(val) if k == 'inv' else val
+        return out_
+    todo = [(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist) if f'sample{i}' not in done]
+    reps = [restore(r) for r in done.values() if isinstance(r.get('inv'), str)]
+    if args.jobs > 1 and todo:
         import multiprocessing as mp
         with mp.Pool(args.jobs) as pool:
-            for rep in pool.imap_unordered(_worker, [(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist)]):
-                reps.append(rep); say(f"# {rep['label']} done at {time.time() - t1:.0f} s")
-        reps.sort(key=lambda r: r['label'])
+            for rep in pool.imap_unordered(_worker, todo):
+                reps.append(rep); save(rep); say(f"# {rep['label']} done at {time.time() - t1:.0f} s", flush_ckpt=ckpt_path)
     else:
-        for i, Rk in enumerate(Rlist):
-            reps.append(run_background(Rk, f'sample{i}', bundles)); say(f"# sample{i} done at {time.time() - t1:.0f} s")
+        for Rk, lab, bl in todo:
+            rep = run_background(Rk, lab, bl); reps.append(rep); save(rep); say(f"# {lab} done at {time.time() - t1:.0f} s", flush_ckpt=ckpt_path)
+    reps.sort(key=lambda r: r['label'])
     say(f"# backgrounds done in {time.time() - t1:.0f} s")
     ok = True
+    DIM0 = {'scalar': 1, 'vector': 4, 'ghost': 4, 'graviton': 10}
     for r in reps:
         checks = {k: v for k, v in r.items() if isinstance(v, bool)}
         say(f"{r['label']}: checks {checks}; Box R(0) = {r['boxR_at_0']}; " + '; '.join(f"Tr a1_{b}(0) = {r[f'a1_{b}']}" for b in bundles))
         Rs_, Ric2_, Riem2_ = r['inv']
         for b in bundles:
-            pr = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72)) * Rs_**2 - Ric2_ / 180 + Riem2_ / 180,
-                  'vector': -Rs_**2 / 9 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_,
-                  'ghost': sp.Rational(2, 9) * Rs_**2 + sp.Rational(43, 90) * Ric2_ - sp.Rational(11, 180) * Riem2_,
-                  'graviton': sp.Rational(11, 36) * Rs_**2 + sp.Rational(56, 45) * Ric2_ - sp.Rational(17, 18) * Riem2_}[b]
-            say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted {sp.expand(pr)}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
+            GBv = Riem2_ - 4 * Ric2_ + Rs_**2
+            pr = sp.expand(2 * r[f'hv340_{b}'] + sp.Rational(DIM0[b], 180) * GBv)        # a_2 = 2 (3.40) + (d/180) GB, pointwise
+            say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted 2*(3.40) + (d/180)*GB = {pr}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
         ok &= all(checks.values())
     if len(reps) < 3:
         say("fewer than 3 backgrounds: no fit"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
     # ---- fits
-    M = {'scalar': (xi**2 / 4 - xi / 12 + sp.Rational(1, 240), sp.Rational(1, 120), sp.Integer(0), 1),
-         'vector': (-sp.Rational(1, 15), sp.Rational(17, 60), -sp.Rational(1, 24), 4),            # hv1974_master.py pre-GB, and d
-         'ghost': (sp.Rational(1, 10), sp.Rational(17, 60), -sp.Rational(1, 24), 4),              # the vector with E = +Ric through (3.40)
-         'graviton': (sp.Rational(1, 8), sp.Rational(11, 15), -sp.Rational(1, 2), 10)}            # graviton_loop/hv1974_graviton_M.py, h-loop pre-GB
-    predP = {'scalar': (xi**2 / 2 - xi / 6 + sp.Rational(1, 72), -sp.Rational(1, 180), sp.Rational(1, 180)),
-             'vector': (-sp.Rational(1, 9), sp.Rational(43, 90), -sp.Rational(11, 180)),
-             'ghost': (sp.Rational(2, 9), sp.Rational(43, 90), -sp.Rational(11, 180)),
-             'graviton': (sp.Rational(11, 36), sp.Rational(56, 45), -sp.Rational(17, 18))}       # a_2 = 2 M + (d/180)(1,-4,1), derived from method M
+    # method M's pre-GB coefficients, COMPUTED here from (3.40) on the same backgrounds (9 Nov: the 8 Nov table was typed by hand
+    # from a log and the graviton row was wrong -- status=FAIL on a run whose physics passed; rule 11 record in the header)
+    def hv340_coeffs(bname):
+        rows = [(r[f'hv340_{bname}'],) + tuple(r['inv']) for r in reps]
+        c1, c2, c3 = sp.symbols('m_R2 m_Ric2 m_Riem2')
+        eqs = [sp.Eq(c1 * a**2 + c2 * b + c3 * c, v) for v, a, b, c in rows]
+        sol = sp.solve(eqs[:3], [c1, c2, c3], dict=True)[0]
+        return sp.factor(sol[c1]), sp.factor(sol[c2]), sp.factor(sol[c3])
+    DIM = {'scalar': 1, 'vector': 4, 'ghost': 4, 'graviton': 10}
+    M = {b: hv340_coeffs(b) + (DIM[b],) for b in bundles}
+    predP = {b: tuple(sp.expand(2 * m + sp.Rational(DIM[b], 180) * k) for m, k in zip(M[b][:3], (1, -4, 1))) for b in bundles}
     res = {}
     for b in bundles:
         cR2, cRic2, cRiem2, fit_ok = fit(reps, f'a2_{b}')
@@ -417,14 +490,18 @@ def main():
         gbR2, gbRic2 = sp.expand(cR2 - cRiem2), sp.expand(cRic2 + 4 * cRiem2)
         say(f"\n## {b}: Tr a_2(0) = {cR2} R^2 + {cRic2} Ric^2 + {cRiem2} Riem^2   (residuals zero: {fit_ok});  after GB: {gbR2} R^2 + {gbRic2} Ric^2")
         mR2, mRic2, mRiem2, d = M[b]
+        say(f"   method M (3.40) on the same backgrounds, pre-GB: {mR2} R^2 + {mRic2} Ric^2 + {mRiem2} Riem^2")
         diff = [sp.expand(c / 2 - m) for c, m in zip((cR2, cRic2, cRiem2), (mR2, mRic2, mRiem2))]
         want = [sp.Rational(d, 360) * k for k in (1, -4, 1)]
         p3 = all(sp.expand(x - y) == 0 for x, y in zip(diff, want))
         say(f"   (1/2) Tr a_2 - (3.40) = {diff}   predicted (d/360)(1,-4,1) = {want}: {'MATCH' if p3 else 'MISMATCH'}")
         say(f"   after GB, (1/2) Tr a_2 = {sp.expand(gbR2 / 2)} R^2 + {sp.expand(gbRic2 / 2)} Ric^2  vs method M {sp.expand(mR2 - mRiem2)} R^2 + {sp.expand(mRic2 + 4 * mRiem2)} Ric^2")
         pP = all(sp.expand(c - p) == 0 for c, p in zip((cR2, cRic2, cRiem2), predP[b]))
-        say(f"   {'P1' if b == 'scalar' else 'P2'} ({'rung 1' if b == 'scalar' else ('memory, Gilkey' if b == 'vector' else 'from method M by a_2 = 2M + (d/180)(1,-4,1)')}): {'MATCH' if pP else 'MISMATCH'}")
-        ok &= fit_ok and p3 and (pP if b == 'scalar' else True)
+        say(f"   P2 (a_2 = 2M + (d/180)(1,-4,1), M computed here): {'MATCH' if pP else 'MISMATCH'}")
+        if b == 'scalar':
+            p1s = all(sp.expand(c - p) == 0 for c, p in zip((cR2, cRic2, cRiem2), (xi**2 / 2 - xi / 6 + sp.Rational(1, 72), -sp.Rational(1, 180), sp.Rational(1, 180))))
+            say(f"   P1 (rung 1's [a_2] with E = -xi R): {'MATCH' if p1s else 'MISMATCH'}"); ok &= p1s
+        ok &= fit_ok and p3 and pP
     if 'graviton' in bundles and 'ghost' in bundles:
         pg = [sp.expand(v - 2 * s_) for v, s_ in zip(res['graviton'], res['ghost'])]
         say(f"\n## pure gravity = graviton - 2 ghost: Tr a_2 = {pg};  after GB /2: {sp.expand((pg[0] - pg[2]) / 2)} R^2 + {sp.expand((pg[1] + 4 * pg[2]) / 2)} Ric^2  (5.24: 1/120, 7/20)")

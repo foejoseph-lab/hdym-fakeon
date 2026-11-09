@@ -75,8 +75,10 @@ Tr a₂ equals rung 1's ξ-polynomial (scalar) and the Gilkey coefficients (vect
 from (3.40) by exactly (d/360)·Gauss–Bonnet and agrees after. Fresh review folded in; what the backgrounds cannot see is in the header.
 
 Step 2 (8 Nov): the same script carries the graviton bundle (10-dimensional, the induced connection, the endomorphism derived in
-`../graviton_loop/` as a field) and 't Hooft–Veltman's ghost; predictions from method M by a₂ = 2M + (d/180)(1, −4, 1); slow — an
-overnight on the author's machine:
+`../graviton_loop/` as a field) and 't Hooft–Veltman's ghost; method M's (3.40) computed on the same backgrounds inside the script and the
+prediction a₂ = 2M + (d/180)(1, −4, 1) derived from it (9 Nov: the 8 Nov hand-typed table was wrong for the graviton and printed FAIL on
+a run whose physics passed; `results/rung3_dewitt_graviton.log` is that run, step 2's closing log). Checkpoint per background,
+`--resume` to continue a stopped run, a version line in every log. The overnight on the author's machine (78 min, four cores):
 
     python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --bundles graviton,ghost --log results/rung3_dewitt_graviton.log
 

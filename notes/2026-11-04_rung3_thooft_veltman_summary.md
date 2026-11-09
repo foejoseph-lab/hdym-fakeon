@@ -116,7 +116,7 @@ Lesson, 4 Nov evening, not physics: `--jobs 4` on Windows re-imports an unguarde
 until the machine was restarted; the author lost an evening of compute to it. Fixed 8 Nov (main guard, non-empty logs refused, a line
 per finished background).
 
-## 4. Step 2, pure gravity by method M, 8 Nov (sandbox; the author's runs pending) — and what the paper's printed operator is not
+## 4. Step 2, pure gravity by method M, 8 Nov (the author's runs 4d59af7, identical to the sandbox)
 
 **2a, their operator as I first transcribed it.** (4.31) at φ̃ = 0, transcribed (wrongly, see below) and contracted as
 ½h^α_β X^{βμ}_{αν} h^ν_μ, with the P⁻¹ replacement (5.3)–(5.4): Tr(P⁻¹X̄) = −10R where (5.16) needs 6R, and no sign or index-order
@@ -137,7 +137,7 @@ derivatives" after (5.14)), and, through (3.40) with the ghost, on six random ba
 | | pre-GB (R², Ric², Riem²) | after Gauss–Bonnet | the paper |
 |---|---|---|---|
 | ghost (vector, E = +Ric, ×(−2)) | (−1/5, −17/30, 1/12) | (−17/60, −7/30) | (5.21) at φ̃ = 0 ✓ |
-| h-loop alone | (1/8, 11/15, −1/2) | (7/24, 7/12) | not printed; = (5.24) − (5.21) |
+| h-loop alone | (19/24, −17/12, 1/2) — the 8 Nov version of this row read (1/8, 11/15, −1/2), a hand copy that was wrong and that made the 9 Nov method-P run print FAIL (§4b) | (7/24, 7/12) | not printed; = (5.24) − (5.21) |
 | **pure gravity, h + ghost** | (71/120, −119/60, 7/12) | **(1/120, 7/20)** | **(5.24) ✓** |
 
 (`results/hv1974_graviton_M_sandbox.log`, 8 Nov; the (3.40) traces of the derived E on the derivation's background differ from the
@@ -159,8 +159,28 @@ the method-M script lacked the adjoint symmetrization of X̄ (Tr E blind to it, 
 Four errors of mine in one afternoon, each caught by a check that was already in the rules: the validation on a known case, the
 fresh review, the re-read of the source at the point of disagreement.
 
-**Next:** method P on the h-bundle and the ghost (DeWitt's recursion, 10-dimensional: the author's machine), then 3a (gravity + scalar,
-(6.3) → 203/80), 3b (the improved tensor as a field redefinition), 3c (Einstein–Maxwell, 137/60).
+## 4b. Step 2 closed under rule 12, 9 Nov (the author's overnight run, 4f8680a: `matter_loop/results/rung3_dewitt_graviton.log`, 4680 s)
+
+DeWitt's recursion on the 10-dimensional h-bundle (the induced connection, the derived E as a field) and on the ghost, four random
+backgrounds, exact rationals:
+
+| | method P, Tr a₂ pre-GB | ½Tr a₂ after GB | method M after GB | ½Tr a₂ − M, pre-GB |
+|---|---|---|---|---|
+| graviton | (59/36, −55/18, 19/18) | **(7/24, 7/12)** | (7/24, 7/12) | (1/36, −1/9, 1/36) = (10/360)(1, −4, 1) |
+| ghost (E = +Ric, before the −2) | (2/9, 43/90, −11/180) | (17/120, 7/60) | (17/120, 7/60) | (1/90, −2/45, 1/90) = (4/360)(1, −4, 1) |
+| **pure gravity = graviton − 2 ghost** | (43/36, −361/90, 53/45) | **(1/120, 7/20)** | (1/120, 7/20) | |
+
+The two methods agree exactly after Gauss–Bonnet and differ before it by exactly the (d/360)·GB density, as for the scalar and the vector:
+**'t Hooft–Veltman's (5.24) by two methods sharing no code beyond the random tensors. Step 2 is closed.**
+
+The run's own status line says FAIL. That is a transcription error of mine, not a result: the script's prediction table held method
+M's pre-GB graviton coefficients copied by hand from the M log as (1/8, 11/15, −1/2) where the log says (19/24, −17/12, 1/2) (the
+false row propagated into §4's table above, now corrected), so the per-sample "predicted" values and the comparison line were wrong
+while every computed number was right — visible in the log itself, whose "after GB" line equals method M's. Third hand-copied number
+of the week to be wrong. Fix (patch 0013): method M's (3.40) is computed inside the recursion script on the same backgrounds and every
+prediction derives from it; nothing is typed from one log into another any more. The FAIL line stays in the committed log (rule 11).
+
+**Next:** 3a (gravity + scalar, (6.3) → 203/80), 3b (the improved tensor as a field redefinition), 3c (Einstein–Maxwell, 137/60).
 
 ## 5. For the ledger when the rows are written
 
