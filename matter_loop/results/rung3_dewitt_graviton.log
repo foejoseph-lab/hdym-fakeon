@@ -1,0 +1,33 @@
+# rung3_dewitt_bundle: a_2 on 4 random algebraic curvature tensors, seed 20261104, bundles ['graviton', 'ghost'], jobs 4
+# sample0 done at 4637 s
+# sample2 done at 4651 s
+# sample1 done at 4665 s
+# sample3 done at 4680 s
+# backgrounds done in 4680 s
+sample0: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True}; Box R(0) = 0; Tr a1_graviton(0) = -1105/36; Tr a1_ghost(0) = 425/36
+   Tr a2_graviton(0) = 166602275/46656   predicted -1154439851/233280   diff 110413957/12960
+   Tr a2_ghost(0) = 42315991/233280   predicted 42315991/233280   diff 0
+sample1: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True}; Box R(0) = 0; Tr a1_graviton(0) = 2795/27; Tr a1_ghost(0) = -1075/27
+   Tr a2_graviton(0) = 531318043/46656   predicted -42397624/3645   diff 1790012717/77760
+   Tr a2_ghost(0) = 807517/46656   predicted 807517/46656   diff 0
+sample2: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True}; Box R(0) = 0; Tr a1_graviton(0) = -28483/108; Tr a1_ghost(0) = 10955/108
+   Tr a2_graviton(0) = 16503187/1458   predicted -1973015267/233280   diff 1537841729/77760
+   Tr a2_ghost(0) = 175865741/116640   predicted 175865741/116640   diff 0
+sample3: checks {'normal_coords': True, 'riemann_at_0': True, 'Dhalf_x2': True}; Box R(0) = 0; Tr a1_graviton(0) = 11531/36; Tr a1_ghost(0) = -4435/36
+   Tr a2_graviton(0) = 2689001/162   predicted -316535519/25920   diff 746775679/25920
+   Tr a2_ghost(0) = 42651839/19440   predicted 42651839/19440   diff 0
+
+## graviton: Tr a_2(0) = 59/36 R^2 + -55/18 Ric^2 + 19/18 Riem^2   (residuals zero: True);  after GB: 7/12 R^2 + 7/6 Ric^2
+   (1/2) Tr a_2 - (3.40) = [25/36, -407/180, 37/36]   predicted (d/360)(1,-4,1) = [1/36, -1/9, 1/36]: MISMATCH
+   after GB, (1/2) Tr a_2 = 7/24 R^2 + 7/12 Ric^2  vs method M 5/8 R^2 + -19/15 Ric^2
+   P2 (from method M by a_2 = 2M + (d/180)(1,-4,1)): MISMATCH
+
+## ghost: Tr a_2(0) = 2/9 R^2 + 43/90 Ric^2 + -11/180 Riem^2   (residuals zero: True);  after GB: 17/60 R^2 + 7/30 Ric^2
+   (1/2) Tr a_2 - (3.40) = [1/90, -2/45, 1/90]   predicted (d/360)(1,-4,1) = [1/90, -2/45, 1/90]: MATCH
+   after GB, (1/2) Tr a_2 = 17/120 R^2 + 7/60 Ric^2  vs method M 17/120 R^2 + 7/60 Ric^2
+   P2 (from method M by a_2 = 2M + (d/180)(1,-4,1)): MATCH
+
+## pure gravity = graviton - 2 ghost: Tr a_2 = [43/36, -361/90, 53/45];  after GB /2: 1/120 R^2 + 7/20 Ric^2  (5.24: 1/120, 7/20)
+
+status=FAIL
+END rung3_dewitt_bundle 4681 s
