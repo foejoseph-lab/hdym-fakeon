@@ -1,0 +1,32 @@
+# hv1974_gravscalar_M: the (h, phi) bundle (11) and the ghost through (3.40) on 12 random (curvature, v, W) backgrounds, seed 20261109
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+sample0: R = -43/4, v^2 = 10/9, tr W = 1/6  [0 s]
+sample1: R = -1471/18, v^2 = 169/36, tr W = 5/2  [1 s]
+sample2: R = 115, v^2 = 29/4, tr W = -1/3  [1 s]
+sample3: R = 115/9, v^2 = 17/4, tr W = -1  [1 s]
+sample4: R = 413/9, v^2 = 100/9, tr W = -4/3  [2 s]
+sample5: R = -95/2, v^2 = 81/4, tr W = 3/2  [2 s]
+sample6: R = -817/6, v^2 = 65/4, tr W = 7/2  [3 s]
+sample7: R = -427/9, v^2 = 5, tr W = 5/2  [3 s]
+sample8: R = -49/18, v^2 = 29/18, tr W = 3  [3 s]
+sample9: R = -3613/36, v^2 = 22/9, tr W = 9/2  [4 s]
+sample10: R = 87/2, v^2 = 10, tr W = -2/3  [4 s]
+sample11: R = -1235/12, v^2 = 85/9, tr W = -7/2  [4 s]
+
+## hphi: pre-reduction {'R2': 191/240, 'Ric2': -169/120, 'Riem2': 1/2, 'Rv2': -1/12, 'Ricvv': 0, 'v4': 1, 'trW2': -1/2, 'WW': 1}  (residuals zero: True)
+   reduced (GB, Ricci identity): {'R2': 71/240, 'Ric2': 71/120, 'Rv2': -1/12, 'Ricvv': -1, 'v4': 1, 'trW2': 1/2}
+
+## ghost: pre-reduction {'R2': -1/5, 'Ric2': -17/30, 'Riem2': 1/12, 'Rv2': 1/6, 'Ricvv': 1, 'v4': -1/2, 'trW2': 0, 'WW': 0}  (residuals zero: True)
+   reduced (GB, Ricci identity): {'R2': -17/60, 'Ric2': -7/30, 'Rv2': 1/6, 'Ricvv': 1, 'v4': -1/2}
+
+## total: pre-reduction {'R2': 143/240, 'Ric2': -79/40, 'Riem2': 7/12, 'Rv2': 1/12, 'Ricvv': 1, 'v4': 1/2, 'trW2': -1/2, 'WW': 1}  (residuals zero: True)
+   reduced (GB, Ricci identity): {'R2': 1/80, 'Ric2': 43/120, 'Rv2': 1/12, 'v4': 1/2, 'trW2': 1/2}
+
+P1 (5.22) in standard sign after the reductions, five coefficients {'R2': 1/80, 'Ric2': 43/120, 'v4': 1/2, 'Rv2': 1/12, 'Ricvv': 0}: PASS
+P1b (Box phi)^2 coefficient: 1/2; from the paper's own (5.17) through (3.35) and the halving: 1/2; printed in (5.22): 2  -> PASS against 1/2
+P2 (6.5) on shell: total = 203/320 (v^2)^2 = 203/80 R^2   (203/80 R^2 predicted): PASS
+P3 (5.21) ghost in standard sign {'R2': -17/60, 'Ric2': -7/30, 'Rv2': 1/6, 'Ricvv': 1, 'v4': -1/2, 'trW2': 0}: PASS
+P4 v = W = 0 reproduces pure gravity + the scalar loop, (1/80, 43/120): PASS
+
+status=PASS
+END hv1974_gravscalar_M 5 s
