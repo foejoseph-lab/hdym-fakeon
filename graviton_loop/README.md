@@ -17,6 +17,7 @@ in that basis; the field-space metric P = ½gg − ¼gg (5.2) and its inverse (5
 **Run** (seconds; exact rationals):
 
     python3 hv1974_graviton_M.py --samples 6 --log results/hv1974_graviton_M.log
+    python3 hv1974_gravscalar_M.py --samples 12 --log results/hv1974_gravscalar_M.log
 
 **Run** (one background, ~15 min single-threaded; the derivation) and the 10 s Maxwell validation:
 
@@ -26,6 +27,7 @@ in that basis; the field-space metric P = ½gg − ¼gg (5.2) and its inverse (5
 | file | what |
 |---|---|
 | `hv1974_graviton_M.py` (8 Nov) | method M: (3.40) on the h-bundle and the ghost, pointwise on random algebraic curvature tensors, fitted and Gauss–Bonnet-reduced; the paper's §5 pieces (5.14), (5.15) mod GB, (5.16), (5.21) scored one by one, then (5.24). Default: the operator derived from the action (closed form in the header). `--transcribed`: P⁻¹X̄ from the printed (4.31), which must agree with the derived E; `--transcribed --misread`: the first, wrong transcription, kept as the record (`results/hv1974_graviton_M_v1_transcribed431.log`: P2, P3, P5, P6 FAIL) |
+| `hv1974_gravscalar_M.py` (9 Nov; step 3a, method M) | gravity + a massless scalar: the 11-dimensional (h, φ) bundle of (4.30)–(4.33) as printed (re-read at 4×), the ghost with its ∂φ̃∂φ̃ term, (3.40) on twelve random (curvature, ∂φ̃, DDφ̃) backgrounds; eight structures fitted, Gauss–Bonnet and the Ricci identity as the reductions. (5.21) ✓, (5.22) ✓ in five coefficients, **(6.5) on shell: (203/80)R² ✓**; the (□φ̃)² coefficient is ½ where (5.22) prints 2 — the paper's own (5.17) gives ½ (rung 3 note §4c) | `hv1974_gravscalar_M.log` |
 | `graviton_operator_derive.py` (8 Nov) | step 2b: the gauge-fixed graviton operator derived from √g R − ½C² (C of (4.27)) in Riemann normal coordinates as the Euler–Lagrange operator at the origin, by numeric jet probes on a sparse polynomial ring; minimality and the kinetic normalisation measured; E fitted to the six covariant structures; the paper's traces and (5.24) checked; the printed (4.31) compared. Header: predictions, the record of the first runs (the hand sign of the connection term; the off-diagonal weighting bug caught by the Maxwell check) |
 | `maxwell_operator_check.py` | the validation of the derivation machinery on Maxwell in Feynman gauge: minimal, E = −Ric exactly, connection term +⅓Ric |
 | `results/` | the author's logs once run: `hv1974_graviton_M.log`, `graviton_operator_derive.log`, `maxwell_operator_check.log`; the sandbox's first-transcription run is committed as the record, `hv1974_graviton_M_v1_transcribed431.log`; the unhalved first derivation as `graviton_operator_derive_sandbox_v1_unhalved.log`; other sandbox logs are not (rule 15) |

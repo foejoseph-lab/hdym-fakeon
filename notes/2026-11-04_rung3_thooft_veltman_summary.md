@@ -180,7 +180,38 @@ while every computed number was right — visible in the log itself, whose "afte
 of the week to be wrong. Fix (patch 0013): method M's (3.40) is computed inside the recursion script on the same backgrounds and every
 prediction derives from it; nothing is typed from one log into another any more. The FAIL line stays in the committed log (rule 11).
 
-**Next:** 3a (gravity + scalar, (6.3) → 203/80), 3b (the improved tensor as a field redefinition), 3c (Einstein–Maxwell, 137/60).
+## 4c. Step 3a, gravity + scalar by method M, 9 Nov (sandbox; the author's run pending) — 203/80 reproduced, and a slip in (5.22)
+
+`graviton_loop/hv1974_gravscalar_M.py`: the 11-dimensional bundle (h, φ) of (4.30) with X (4.31), Y (4.32), Z (4.33) as printed — all
+re-read at 4× before typing (the first φ̃ term of (4.31) is −½δ^β_ν D^μφ̃D_αφ̃, first derivatives; at page resolution it reads as a
+second derivative) — under the convention map of 8 Nov, the ghost (5.19) with E = Ric − ∂φ̃∂φ̃, (3.40), twelve random backgrounds
+carrying a curvature tensor, v = ∂φ̃ and W = DDφ̃ independently (off shell), eight structures fitted, Gauss–Bonnet and the Ricci
+identity W·W → (tr W)² − Ric·vv as the reductions (the paper's "apart from total derivatives").
+
+| | in standard sign, after the reductions | the paper |
+|---|---|---|
+| ghost | −(17/60)R² − (7/30)Ric² + (1/6)R v² + Ric·vv − ½v⁴ | (5.21) with Ric_HV, R_HV = −standard ✓ |
+| total, five coefficients | (1/80)R² + (43/120)Ric² + ½v⁴ + (1/12)R v² + 0·Ric·vv | (5.22) ✓ (its −(1/12) is +1/12 in standard sign) |
+| total, (□φ̃)² | **½** | **(5.22) prints 2** — see below |
+| **on shell** (6.3): Ric = ½vv, R = ½v², □φ̃ = 0 | **203/320 (∂φ̃)⁴ = (203/80)R²** | **(6.5) ✓** |
+| v = W = 0 | (1/80)R² + (43/120)Ric² = (5.24) + (5.23) | ✓ |
+
+**The (□φ̃)² coefficient.** The paper's own (5.17), 2Tr(ȲP⁻¹Ȳ) = 2(□φ̃)² + 4R^{αβ}∂φ̃∂φ̃, is what our mixed block gives after the
+Ricci identity (2(tr W)² − 4Ric·vv in standard sign); through (3.35)'s ½ on Tr(𝓜 − R/6)² and the halving of the doubling it
+contributes ½(□φ̃)² to the total, and its R^{αβ}∂φ̃∂φ̃ cancels the ghost's (5.21) term — which is why (5.22) has no such term, as ours
+has none. The 2(D_μD^μφ̃)² printed in (5.22) is therefore inconsistent with the paper's own (5.17): a slip in the final line, with no
+consequence — it vanishes on shell (□φ̃ = 0) and in pure gravity, so (5.24) and (6.5) never depended on it. The fresh review of
+9 Nov (separate agent, from the page images) assembled (5.22) by hand from (5.14)–(5.18), (5.21) and (3.35) and got ½, and confirmed
+by sympy that our X and Y reproduce the printed intermediates (5.15)–(5.17) exactly; the slip is in the final addition, where the
+(3.35) factor ½ and the halving were both skipped for this one term. One caveat stays: the ½ rests on Y (4.32) as printed — only
+(5.17) tests Y's normalization — so step 3b (deriving (4.32) from the action) is what closes the claim beyond "consistent with the
+paper's own pieces".
+
+**Records (rule 11):** P3's Ric·vv sign in the header was my conversion error (their −{… + R^{αβ}∂φ∂φ …} is +Ric_std·vv; the run had
++1 and the page at 4× confirms); P1 was written against the printed 2 and re-scored against the ½ derived from (5.17) after the run.
+Single method until the recursion runs the (h, φ) bundle with φ̃(x) as a field (method P for 3a: next).
+
+**Next:** method P for 3a; 3b (the improved tensor as a field redefinition: the rule-25 prediction stands); 3c (Einstein–Maxwell, 137/60).
 
 ## 5. For the ledger when the rows are written
 
