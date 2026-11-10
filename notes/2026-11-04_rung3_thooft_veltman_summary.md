@@ -295,6 +295,38 @@ exit code 1 on FAIL; v drawn without zero components. Limits kept in the header:
 (everywhere by covariance); the randomized derivative-part probes miss with probability ~1/500 and probe 3 of 44 diagonal
 second-derivative pairs — one `--full` background closes both; E itself comes from the 11 constant probes only.
 
+**The author's runs, 9 Nov night (committed 36bcd82).** Main run (2 on-shell + 2 off-shell): status=PASS, D0–D3 on every
+background, D4 True; the `--c 0` control FAIL as intended (22 first-derivative entries, mixed column and E_φφ changed); `--full` on
+one background: every check True — which closes, on that background, the two limits kept above for the randomized probes. Timing
+note: the randomized mode does not parallelise (about 250 s per background on 16 workers, as on the sandbox's 2), `--full` took 348 s
+for nine times the work; on the author's machine `--full` is the way to run it.
+
+## 4f. Step 3b, part two, 10 Nov morning (sandbox; the author's run pending) — the ghost operator derived
+
+`graviton_loop/ghost_operator_derive.py`, on the machinery of §4e. Predictions G0–G3 in the header before the first run.
+
+| | prediction | sandbox |
+|---|---|---|
+| G0 | δh_ab = D_aη_b + D_bη_a, δφ = k·η^a∂_aφ̃ with k = 1 is the symmetry: the *ungauged* second-variation operator annihilates it on shell (η vanishing at the origin) | 0 of 32 η fields nonzero on shell; off shell 16 of 16 linear nonzero; k = 2: FAIL as intended |
+| G1 | the ghost operator M η = C[δ_ηh, δ_ηφ] has no first-derivative terms, unit second-derivative part | holds, all 60 base fields, on and off shell |
+| G2 | E_gh = Ric − c·k·∂φ̃∂φ̃, no W term | holds, on and off shell |
+| G3 | c = 0: E_gh = Ric | holds |
+
+**Where 3a stands now** (the fresh review's wording, adopted): both operators behind (5.21), (5.22) and 203/80 are two-source (the
+print and the action, plus hand derivations by two reviewers), and the map E → divergence is two-method (§4d). **Shared by both
+methods and hand-checked only:** the Faddeev–Popov −2 and the complex ghost (theory input, applied identically in both, as in step
+2); the two reductions (Gauss–Bonnet; W·W → (tr W)² − Ric·vv), coded once in `hv1974_gravscalar_M.reduce`; the on-shell substitution
+(one line there; redone by hand by the reviewer: 1/320 + 43/480 + ½ + 1/24 = 203/320). Whether that is "closed under rule 12" is
+the author's call; a bare "meets rule 12" would overstate.
+
+**Fresh review (10 Nov; mutations on scratch copies).** No error in code or physics. It supplied the reason G0 works (the
+derivative of the Noether identity: S″[δ_ηΦ̃] = −S′·(δ_η)′, so with η(0) = 0 only the field equations at the origin enter) and
+checked the off-shell output against that formula exactly. It found which η test what — linear: the field equations and k;
+diagonal quadratic: k only; off-diagonal quadratic and cubic: nothing — hence the script's 16 + 16 and no random sampling.
+Recorded against me: my first smoke printed G0 PASS having drawn no linear η on the on-shell background (fixed before any further
+run); the times I typed in the header were guesses, not clock readings (corrected from the logs' file times); an unused import of
+the print script in a script whose point is independence from it (removed).
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 
