@@ -261,3 +261,45 @@ this paragraph and of the script header said Q1 + Q2 close 3a under rule 12. Wit
 - The quartic jets of φ̃ enter no printed number (they sit in W's x² part, off-diagonal); the cubic enter through □(v²) only.
 - Review otherwise: no arithmetic error found; flint reproduces all computed values of both committed logs; spawn-mode pool and
   `--resume` behave; the covariant E agrees with `build_E` for symbolic v, W.
+
+## 4e. Step 3b, part one, 9 Nov night (sandbox; the author's run pending) — the (h, φ) operator derived from the action
+
+`graviton_loop/gravscalar_operator_derive.py`: step 2b's jet-probe derivation, rewritten on python-flint and extended to the 11
+components (h_ab, φ), on backgrounds carrying a curvature tensor and a scalar field φ̃(x); the Lagrangian is √g(R − ½(∂φ̄)²) in
+standard sign plus −½C² with the paper's gauge (4.27), C_μ = D^νh_μν − ½D_μh − c·φ∂_μφ̃. Step 2's script is untouched. Predictions
+D0–D5 in the header before the first run (rule 25).
+
+| | prediction | sandbox |
+|---|---|---|
+| D0 | φ̃ = 0 reproduces step 2's E, the scalar decouples, s = 1 | holds |
+| D1 | c = 1: no first-derivative terms at the origin, second-derivative part diag(P, 1)δ^{μν}; c = 0: first-derivative terms | holds; with c = 0, 22 nonzero entries and the mixed column and E_φφ change |
+| D2 | on shell, derived E = printed E (4.31)–(4.33), 11 × 11 | holds |
+| D3 | mixed block (Eφ)_ab = −2W_ab, (Eh)_φ = ½ tr W tr h − W·h; E_φφ = −v² — Y (4.32) with the print's normalisation | holds |
+| D4 | (a question) off shell too? | **yes**: the print is the off-shell operator; no field equations were used in (4.31)–(4.33) |
+
+**What it settles.** (i) E for the (h, φ) loop is now two-source — the print and the action — and the fresh review derived the φ̃ terms
+by hand as a third. (ii) **The (□φ̃)² coefficient of (5.22) is ½**: it depends only on the mixed block, whose two halves are both
+derived, and on there being no mixed first-derivative terms (D1); the caveat of §4c is closed, and the printed 2 is a slip in the
+paper's final addition (an inference about the paper, now supported from the action).
+
+**What it does not.** The ghost operator is not derived here: E = Ric − ∂φ̃∂φ̃ (5.19) is still from the print in code (the reviewer's
+hand variation of the gauge condition agrees with it). So the ghost row (5.21), the remaining coefficients of (5.22) and **203/80
+wait for the ghost derived in code before 3a meets rule 12 in full.** Next small step, then: vary C_μ under a diffeomorphism with
+the scalar's transformation, in the same machinery.
+
+**Fresh review (9 Nov night; 5 runs, mutations on scratch copies).** No error found; the comparison is a real two-source test.
+Caught by the run: c = −1; kinetic weight 1 instead of ½ (through s — it crashed instead of printing FAIL, fixed); φ̃'s quadratic jet
+W instead of W/2. Neutral, correctly: the metric inverse to x² instead of x³. The pool passes under a forced spawn start method.
+Folded in: no crash when the normalisation probes disagree; PASS needs D0 and at least one on-shell and one off-shell background;
+exit code 1 on FAIL; v drawn without zero components. Limits kept in the header: the first-derivative statement is at the origin
+(everywhere by covariance); the randomized derivative-part probes miss with probability ~1/500 and probe 3 of 44 diagonal
+second-derivative pairs — one `--full` background closes both; E itself comes from the 11 constant probes only.
+
+**Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
+dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
+
+## 5. For the ledger when the rows are written
+
+The field-choice / δ(0) = 0 sentence (rung 1 ⇄ rung 3); the doubling trick and the non-covariant P⁻¹ as a 1974 technique; the
+Weyl transformation (7.2–7.7) as the tool §7 reaches for; the "11 times the unit term" bookkeeping; (3.22) — on a conformally flat
+background Ric² − R²/3 is a total derivative, so one coefficient needs flat-space graphs.
