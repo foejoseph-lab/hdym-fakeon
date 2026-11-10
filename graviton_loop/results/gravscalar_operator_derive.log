@@ -1,0 +1,15 @@
+# gravscalar_operator_derive: seed 20261109, c = 1, 2 on-shell + 2 off-shell backgrounds, cubic jets on, derivative-part probes randomized, jobs 16
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+D0 phi-tilde = 0: s = 1, second-derivative part Pbig delta: True, no first-derivative terms: True, h-block == step 2's closed form: True, scalar decoupled with E = 0: True  -> PASS  [225 s]
+on shell 0: R = 21/8, v^2 = 21/4, tr W = 0, field equations hold at 0: True;  s = 1, second-derivative part: True, no first-derivative terms: True;  E == printed: True  [h-block True; (E phi)_ab = -2W: True; (E h)_phi = <Y,h>: True; E_phiphi = -v^2: True]  [476 s]
+on shell 1: R = 5/6, v^2 = 5/3, tr W = 0, field equations hold at 0: True;  s = 1, second-derivative part: True, no first-derivative terms: True;  E == printed: True  [h-block True; (E phi)_ab = -2W: True; (E h)_phi = <Y,h>: True; E_phiphi = -v^2: True]  [732 s]
+off shell 0: R = 33/2, v^2 = 71/18, tr W = 1/2, field equations hold at 0: False;  s = 1, second-derivative part: True, no first-derivative terms: True;  E == printed: True  [h-block True; (E phi)_ab = -2W: True; (E h)_phi = <Y,h>: True; E_phiphi = -v^2: True]  [986 s]
+off shell 1: R = 2471/18, v^2 = 25/4, tr W = 0, field equations hold at 0: False;  s = 1, second-derivative part: True, no first-derivative terms: True;  E == printed: True  [h-block True; (E phi)_ab = -2W: True; (E h)_phi = <Y,h>: True; E_phiphi = -v^2: True]  [1238 s]
+
+D1 (c = 1) minimal: s = 1, second-derivative part Pbig delta, no first-derivative terms, every background: PASS
+D2 on shell, derived E == printed E (11 x 11): PASS
+D3 mixed block and E_phiphi as the print's Y (4.32), Z (4.33), every background: PASS
+D4 off shell, derived E == printed E: True
+
+status=PASS
+END gravscalar_operator_derive 1238 s

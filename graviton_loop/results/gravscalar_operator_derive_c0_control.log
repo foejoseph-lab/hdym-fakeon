@@ -1,0 +1,12 @@
+# gravscalar_operator_derive: seed 20261109, c = 0, 0 on-shell + 1 off-shell backgrounds, cubic jets on, derivative-part probes randomized, jobs 16
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+off shell 0: R = -1289/36, v^2 = 21/4, tr W = -3, field equations hold at 0: False;  s = 1, second-derivative part: True, no first-derivative terms: False (nonzero entries: 22);  E == printed: False  [h-block True; (E phi)_ab = -2W: False; (E h)_phi = <Y,h>: True; E_phiphi = -v^2: False]  [251 s]
+
+D1 (c = 0) minimal: s = 1, second-derivative part Pbig delta, no first-derivative terms, every background: FAIL
+D2 on shell, derived E == printed E (11 x 11): no on-shell background run
+D3 mixed block and E_phiphi as the print's Y (4.32), Z (4.33), every background: FAIL
+D4 off shell, derived E == printed E: False
+   off shell: (derived - printed) h-block as field-equation structures: {'trEOM*1': 0, 'trEOM*dd': 0, 'EOM.h+h.EOM': 0, 'd(x)EOM': 0, 'EOM(x)d': 0};  other blocks equal: False
+
+status=FAIL
+END gravscalar_operator_derive 251 s
