@@ -213,8 +213,51 @@ Single method until the recursion runs the (h, φ) bundle with φ̃(x) as a fiel
 
 **Next:** method P for 3a; 3b (the improved tensor as a field redefinition: the rule-25 prediction stands); 3c (Einstein–Maxwell, 137/60).
 
-## 5. For the ledger when the rows are written
+## 4d. Step 3a, method P, 9 Nov evening (sandbox; the author's run pending) — the recursion on the (h, φ) bundle with φ̃(x) a field
 
-The field-choice / δ(0) = 0 sentence (rung 1 ⇄ rung 3); the doubling trick and the non-covariant P⁻¹ as a 1974 technique; the
-Weyl transformation (7.2–7.7) as the tool §7 reaches for; the "11 times the unit term" bookkeeping; (3.22) — on a conformally flat
-background Ric² − R²/3 is a total derivative, so one coefficient needs flat-space graphs.
+`matter_loop/rung3_dewitt_bundle.py --bundles gravscalar,ghostscalar --backend flint`: DeWitt's recursion on the 11-dimensional bundle
+(h_ab, φ) and on the ghost with its ∂φ̃∂φ̃ term, on backgrounds that carry, besides the random curvature tensor, a scalar field
+φ̃(x) with random jets through x⁴ (a separate random stream, seed + 1, so the curvature tensors are those of steps 1–2). E as a field,
+the covariant form of (4.31)–(4.33) after the P⁻¹ replacement (v_a = ∂_aφ̃, W_ab = D_aD_bφ̃; all contractions with g⁻¹(x)):
+
+    (E h)_ab = [the graviton's, §4] − (v_a (hv)_b + (hv)_a v_b) + ½(g_ab vhv + v_a v_b tr h) − ¼ g_ab v² tr h + ½ v² h_ab − 2 W_ab φ,
+    (E φ)   = ½ tr W tr h − W^ab h_ab − v² φ;        ghost: E^a_b = Ric^a_b − v^a v_b.
+
+Predictions written in the header before the first run (rule 25), and what the run gave on four backgrounds (26 s in all):
+
+| | prediction | result |
+|---|---|---|
+| Q1 | E(0) and Tr Ω² equal, as matrices, what `hv1974_gravscalar_M.py`'s `build_E` makes from the printed (4.31)–(4.33) at the same (Riemann, v, W(0)) — imported and evaluated in place | equal on every background, both bundles |
+| Q2 | Tr a₂(0) = 2·(3.40) + (d/180)·GB + (1/6)·□(Tr E)(0) | diff 0 on every background, both bundles; without the □E term the diff is exactly −(1/6)□(Tr E) |
+| Q4 | Tr a₁(0) = (d/6)R + Tr E(0) | holds |
+| total | ½Tr a₂[(h, φ) − 2 ghost] − method M's (3.40) total = (3/360)·GB + (1/12)·□(Tr E_h − 2 Tr E_gh) | holds |
+
+**The □E term.** This is the first run where E is not built from curvature alone, so the first that sees Gilkey's total-derivative
+term (zero in steps 1–2 by the ansatz's □R(0) = 0). Its coefficient was checked two ways before the prediction was written, because
+memory was not to be trusted (author, 9 Nov): in the literature Gilkey's Theorem 4.18.16 as quoted in arXiv 1411.7851 (Prop. 14.12's
+proof) has +60 tr(∇²E)/360, while arXiv 1507.06308 eq. (85), in the convention U = −E, prints the opposite sign for both box terms
+(+(1/6)□U, −(1/30)□R) — the two agree on every magnitude and disagree on that sign; and in code, the recursion of this script, unmodified,
+on a one-component bundle with symbolic E(x) = e₀ + e_a x^a + ½e_ab x^a x^b gives a₂(0) = ½e₀² + (1/6)Σe_aa in flat space and the same
++(1/6)□E(0) on a curved background (scratch, 54 s; not committed). +1/6, Gilkey's sign, for −(D² + E).
+
+**The flint backend.** `--backend flint` replaces sympy's polynomial arithmetic by python-flint's `fmpq_mpoly` (same exact rationals;
+the recursion, bundles and fits are the same lines). Validated by reproducing every computed number of the two committed sympy logs
+(`rung3_dewitt_bundle.log`: 2118 s → 4 s; `rung3_dewitt_graviton.log`: 4680 s → 20 s, sandbox), and the new ghost bundle agrees between
+the two backends (sympy 14 min, flint 1 s). sympy stays the default and the reference.
+
+**What this establishes and what it does not (fresh review, 9 Nov evening; separate agent, with mutation tests).** My first draft of
+this paragraph and of the script header said Q1 + Q2 close 3a under rule 12. Withdrawn: the review's must-fix.
+- *Established:* on an 11-dimensional bundle with mixing blocks and an E not built from curvature, the recursion gives
+  2·(3.40) + (d/180)·GB + (1/6)·□Tr E. Two methods for the **map** E → divergence.
+- *Not tested: E itself.* Q2 holds for any matrix field E(x) — both sides are built from the same field (a mutated coefficient still
+  gives diff 0) — and Q1 compares E(0) with method M's own input, the print. The φ̃ terms of X (4.31), Y (4.32), Z (4.33) and the
+  ghost's ∂φ̃∂φ̃ term are single-source until **3b derives them from the action; 3a's numbers ((5.21), (5.22) with ½, 203/80) meet
+  rule 12 then, not now.** (Step 2 was different: there E came from `graviton_operator_derive.py`, independently of the print.)
+- *Not tested: the x-dependence of E(x).* Tr a₂(0) feels it only through □(Tr E)(0), taken from the same field on both sides, and the
+  off-diagonal blocks' x-dependence drops out of the trace. Mutations (g(x) → δ, v^a → v_a, extra x-dependent factors) left status=PASS.
+  The physical, non-total-derivative part needs only E(0). A guard was added (Tr E(x) = −6R(x) − v²(x); ghost R(x) − v²(x), to x²);
+  the reviewer checked □(Tr E)(0) = −□(v²)(0) from the raw jets independently, and the +1/6 from the Mehler kernel (my code derivation
+  used this same recursion, so it was not independent on its own).
+- The quartic jets of φ̃ enter no printed number (they sit in W's x² part, off-diagonal); the cubic enter through □(v²) only.
+- Review otherwise: no arithmetic error found; flint reproduces all computed values of both committed logs; spawn-mode pool and
+  `--resume` behave; the covariant E agrees with `build_E` for symbolic v, W.

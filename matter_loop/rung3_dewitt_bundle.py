@@ -72,6 +72,47 @@ graviton_loop/graviton_operator_derive.py as a field E(x)) and 't Hooft-Veltman'
   and every prediction is derived from it; nothing is typed from a log any more.  With the right M, (1/2) Tr a_2 - M =
   (10/360)(1, -4, 1) exactly, the identity predicted.  Step 2 is closed under rule 12 by that log; its FAIL line stays.
   Timing: ~78 min for four backgrounds in parallel on the author's machine (single-core sandbox: > 25 min, unfinished).
+Backend (9 Nov evening): --backend flint does the same exact-rational polynomial arithmetic with python-flint (fmpq_mpoly) instead of
+sympy; sympy stays the default and the reference.  Needs  pip install -U python-flint  (0.9.0 here).  The recursion, the bundles and
+the fits are the same lines for both backends.
+Step 3a, method P (9 Nov): gravity + scalar, the 11-dimensional bundle (h_{ab}, phi) and the ghost with its phi-tilde term, on
+backgrounds that carry a scalar field phi-tilde(x) = a polynomial of degree 4 with a random rational coefficient on every monomial of degree 1-4 (seed + 1) besides the curvature:
+      python3 rung3_dewitt_bundle.py --samples 4 --bundles gravscalar,ghostscalar --backend flint --log results/rung3_dewitt_gravscalar.log
+  E for (h, phi), covariant form of 't Hooft-Veltman (4.31)-(4.33) after the P^-1 replacement (v_a = d_a phi-tilde, W_ab = D_a D_b
+  phi-tilde as FIELDS; h lower; all contractions with g^-1(x)):
+      (E h)_ab = [the graviton's] - (v_a (hv)_b + (hv)_a v_b) + (1/2)(g_ab vhv + v_a v_b tr h) - (1/4) g_ab v^2 tr h + (1/2) v^2 h_ab - 2 W_ab phi,
+      (E phi)  = (1/2) tr W tr h - W^ab h_ab - v^2 phi;          ghost: E^a_b = Ric^a_b - v^a v_b.
+  PREDICTIONS (rule 25; written 9 Nov 18:50, before the first run):
+  Q1 [exact]: E(0) and Tr Omega^2 of both bundles equal, as matrices, what graviton_loop/hv1974_gravscalar_M.py builds from the printed
+      (4.31)-(4.33) at the same (Riemann, v, W(0)) -- its build_E is imported and evaluated in place, nothing typed.  (The covariant
+      form above is my hand reduction of that script's X; Q1 is the test of the hand reduction.)
+  Q2 [derived in code 9 Nov on the scalar bundle with a symbolic E(x), flat and curved: coefficient +1/6; literature: Gilkey's
+      Thm 4.18.16 as quoted in arXiv 1411.7851 has +60 tr(nabla^2 E)/360, arXiv 1507.06308 (85) prints the opposite sign for both
+      box terms]:  Tr a_2(0) = 2 x (3.40) + (d/180) GB + (1/6) Box(Tr E)(0)  on every background, both bundles.  Box(Tr E)(0) is
+      computed from the same E(x) (normal coordinates: the flat Laplacian of Tr E at 0).  This is the first run in which E is not
+      built from curvature alone, so the first that sees the Box E term (zero in steps 1-2 by the ansatz's Box R(0) = 0).
+  Q3 [follows if Q2 holds]: the cubic and quartic jets of phi-tilde enter Tr a_2(0) only through Box(Tr E)(0) -- (3.40) knows only v
+      and W(0).
+  Q4: Tr a_1(0) = (d/6) R + Tr E(0).
+  [As first written, 18:50: "Closing 3a under rule 12 = Q1 and Q2 on every background".  WITHDRAWN after the fresh review, below.]
+  SMOKE RECORD (rule 11; sandbox 9 Nov 19:00, four backgrounds, 26 s, flint): Q1, Q2, Q4 hold on every background, both bundles;
+  without the Box E term the Q2 diff is exactly -(1/6) Box(Tr E)(0).  The ghost bundle agrees between the sympy and flint backends
+  (sympy 14 min for one background); gravscalar under sympy was not run (too slow).
+  FRESH REVIEW (9 Nov, separate agent; mutation tests on scratch copies) -- what this run does and does NOT establish:
+   * It does establish: on an 11-dimensional bundle with mixing blocks and an E not built from curvature, DeWitt's recursion gives
+     2 x (3.40) + (d/180) GB + (1/6) Box Tr E.  Two methods for the MAP  E -> divergence.
+   * It does NOT test E: Q2 holds for ANY matrix field E(x) (both sides are built from the same Ef; a mutated coefficient in endo_phi
+     still gives diff 0), and Q1 compares E(0) with method M's own input, the print.  So E -- the phi-tilde terms of X (4.31), Y (4.32),
+     Z (4.33), the ghost's v v term -- is single-source until step 3b derives it from the action.  Rule 12 is NOT satisfied for 3a's
+     numbers by this run; "closed" was my overstatement.
+   * Nothing here tests the x-dependence of E(x): Tr a_2(0) feels it only through Box(Tr E)(0), taken from the same field on both
+     sides (mutations of g(x) -> delta, v^a -> v_a, extra x-dependent factors: status stayed PASS), and the x-dependence of the
+     off-diagonal blocks drops out of the trace altogether.  The physical (non-total-derivative) part needs only E(0).  Guard added
+     after the review: Tr E(x) = -6 R(x) - v^2(x) for (h, phi) and R(x) - v^2(x) for the ghost, to x^2 (catches the traced mutations;
+     the off-diagonal blocks' x-dependence stays untestable by any trace).  The reviewer checked Box(Tr E)(0) = -Box(v^2)(0) from the
+     raw jets independently on all four backgrounds, and the +1/6 from the Mehler kernel (my "derived in code" used this same recursion).
+   * Q3 is vacuous for the quartic jets: they enter only W's x^2 part, which is off-diagonal -- dropping them changes no printed number.
+     The cubic jets enter through Box(v^2) only.
 (8 Nov: the body is under a main guard -- on Windows multiprocessing re-imports the file and the unguarded 4 Nov version forked
 workers forever, each truncating the log; the log is now refused if non-empty, and a line is printed per finished background.)
 """
@@ -88,7 +129,11 @@ def version_line():
         import mpmath; mpv = mpmath.__version__
     except Exception:
         mpv = '-'
-    return f"# versions: python {platform.python_version()} ({platform.system()} {platform.machine()}), sympy {sympy.__version__}, mpmath {mpv}; {sys.executable}"
+    try:
+        import flint; flv = flint.__version__
+    except Exception:
+        flv = '-'
+    return f"# versions: python {platform.python_version()} ({platform.system()} {platform.machine()}), sympy {sympy.__version__}, mpmath {mpv}, python-flint {flv}; {sys.executable}"
 
 
 def say(*a, flush_ckpt=None):
@@ -106,25 +151,111 @@ idx = range(N)
 QUARTIC = sp.Rational(2, 45)
 
 
-# ----------------------------------------------------------------- rung1_dewitt.py, verbatim
+# ----------------------------------------------------------------- polynomial backends (9 Nov evening)
+# 'sympy' is the reference: the functions of rung1_dewitt.py, verbatim.  'flint' does the same exact-rational arithmetic with
+# python-flint's fmpq_mpoly (FLINT, C) in the variables x1..x4, xi: a wrapper class FP with the usual operators, so the recursion,
+# the bundles and the fits below are the same lines for both.  Only multiply / truncate / differentiate / evaluate-at-0 differ.
+SX = X                      # the sympy symbols, always
+BACKEND = 'sympy'
+_ctx = None
+
+
+def use_backend(name):
+    """set the backend in this process (called at the top of run_background, so pool workers on Windows get it too)"""
+    global BACKEND, X, _ctx
+    BACKEND = name
+    if name == 'flint':
+        import flint
+        _ctx = flint.fmpq_mpoly_ctx.get(('x1', 'x2', 'x3', 'x4', 'xi'), 'degrevlex')
+        X = tuple(FP(gen) for gen in _ctx.gens()[:4])
+    elif name == 'sympy':
+        X = SX
+    else:
+        raise ValueError(name)
+
+
+class FP:
+    """an exact polynomial in x1..x4, xi over Q (flint fmpq_mpoly); mixes with ints and sympy numbers / polynomials in xi"""
+    __slots__ = ('p',)
+    _op_priority = 20.0
+
+    def __init__(self, p):
+        self.p = p
+
+    @staticmethod
+    def co(o):
+        import flint
+        if isinstance(o, FP):
+            return o.p
+        if isinstance(o, int):
+            return _ctx.constant(flint.fmpq(o))
+        o = sp.sympify(o)
+        if o.is_Rational:
+            return _ctx.constant(flint.fmpq(int(o.p), int(o.q)))
+        P = sp.Poly(o, *SX, xi)
+        return _ctx.from_dict({mon: flint.fmpq(int(c.p), int(c.q)) for mon, c in P.terms()})
+
+    def __add__(self, o): return FP(self.p + FP.co(o))
+    __radd__ = __add__
+    def __sub__(self, o): return FP(self.p - FP.co(o))
+    def __rsub__(self, o): return FP(FP.co(o) - self.p)
+    def __mul__(self, o): return FP(self.p * FP.co(o))
+    __rmul__ = __mul__
+    def __neg__(self): return FP(-self.p)
+    def __pow__(self, n): return FP(self.p ** int(n))
+
+    def __truediv__(self, o):
+        o = sp.sympify(o)
+        assert o.is_Rational and o != 0, "FP: division by a rational number only"
+        return self * (1 / o)
+
+    def __eq__(self, o): return (self.p - FP.co(o)) == 0
+    def __ne__(self, o): return not self.__eq__(o)
+    __hash__ = None
+
+    def to_sympy(self):
+        return sp.Add(*[sp.Rational(int(c.p), int(c.q)) * sp.Mul(*[v**e for v, e in zip(SX + (xi,), mon)]) for mon, c in self.p.to_dict().items()])
+
+    def filt(self, keep):
+        return FP(_ctx.from_dict({m: c for m, c in self.p.to_dict().items() if keep(sum(m[:4]))}))
+
+
 def trunc(expr, deg=DEG):
+    if isinstance(expr, FP):
+        return expr.filt(lambda t: t <= deg)
     expr = sp.expand(expr)
     if expr == 0:
         return sp.Integer(0)
-    P = sp.Poly(expr, *X)
-    return sp.Add(*[c * sp.Mul(*[x**e for x, e in zip(X, mon)]) for mon, c in P.terms() if sum(mon) <= deg])
+    P = sp.Poly(expr, *SX)
+    return sp.Add(*[c * sp.Mul(*[x**e for x, e in zip(SX, mon)]) for mon, c in P.terms() if sum(mon) <= deg])
 
 
 def homog(expr, d):
+    if isinstance(expr, FP):
+        return expr.filt(lambda t: t == d)
     expr = sp.expand(expr)
     if expr == 0:
         return sp.Integer(0)
-    P = sp.Poly(expr, *X)
-    return sp.Add(*[c * sp.Mul(*[x**e for x, e in zip(X, mon)]) for mon, c in P.terms() if sum(mon) == d])
+    P = sp.Poly(expr, *SX)
+    return sp.Add(*[c * sp.Mul(*[x**e for x, e in zip(SX, mon)]) for mon, c in P.terms() if sum(mon) == d])
 
 
 def at0(expr):
-    return sp.expand(expr).subs({x: 0 for x in X})
+    """the value at x = 0, always returned as a sympy expression (a rational, or a polynomial in xi)"""
+    if isinstance(expr, FP):
+        return expr.filt(lambda t: t == 0).to_sympy()
+    return sp.expand(expr).subs({x: 0 for x in SX})
+
+
+def pd(expr, m):
+    """d/dx^m"""
+    if isinstance(expr, FP):
+        return FP(expr.p.derivative(m))
+    return sp.diff(expr, SX[m])
+
+
+def tosp(expr):
+    return expr.to_sympy() if isinstance(expr, FP) else sp.expand(expr)
 
 
 def riemann_sample(rng, nmat=8):
@@ -170,7 +301,7 @@ def geometry(R):
 
 
 def christoffel(g, ginv):
-    dg = [[[trunc(sp.diff(g[a][b], X[c])) for c in idx] for b in idx] for a in idx]
+    dg = [[[trunc(pd(g[a][b], c)) for c in idx] for b in idx] for a in idx]
     G = [[[None] * N for _ in idx] for _ in idx]
     for mu in idx:
         for a in idx:
@@ -182,7 +313,7 @@ def christoffel(g, ginv):
 def riemann_field(G, g):
     Rup = {}
     for r, s, m, n in itertools.product(idx, repeat=4):
-        Rup[(r, s, m, n)] = trunc(sp.diff(G[r][n][s], X[m]) - sp.diff(G[r][m][s], X[n])
+        Rup[(r, s, m, n)] = trunc(pd(G[r][n][s], m) - pd(G[r][m][s], n)
                                   + sum(G[r][m][l] * G[l][n][s] - G[r][n][l] * G[l][m][s] for l in idx), 2)
     Rlow = {}
     for a, s, m, n in itertools.product(idx, repeat=4):
@@ -217,19 +348,19 @@ def mmap(f, A):
 
 
 def mtr(A):
-    return sp.expand(sum(A[i][i] for i in range(len(A))))
+    return tosp(sum(A[i][i] for i in range(len(A))))
 
 
 def box_bundle(f, Nc, ginv, sqrtg, isqrtg, deg):
     """Box_N f = (1/sqrt g) d_mu (sqrt g g^{mu nu} V_nu) + g^{mu nu} N_mu V_nu,  V_nu = d_nu f + N_nu f; f, N_mu d x d matrices."""
-    V = [madd(mmap(lambda e: sp.diff(e, X[nu]), f), mmul(Nc[nu], f, deg + 1)) for nu in idx]
+    V = [madd(mmap(lambda e, nu=nu: pd(e, nu), f), mmul(Nc[nu], f, deg + 1)) for nu in idx]
     d = len(f)
     tot = mzero(d)
     for mu in idx:
         inner = mzero(d)
         for nu in idx:
             inner = madd(inner, mmap(lambda e, mu=mu, nu=nu: trunc(sqrtg * ginv[mu][nu] * e, deg + 1), V[nu]))
-        tot = madd(tot, mmap(lambda e, mu=mu: sp.diff(e, X[mu]), inner))
+        tot = madd(tot, mmap(lambda e, mu=mu: pd(e, mu), inner))
         tot = madd(tot, mmap(lambda e: trunc(e, deg), mmul(Nc[mu], sum_mat([mmap(lambda e, nu=nu: ginv[mu][nu] * e, V[nu]) for nu in idx]), deg)))
     return mmap(lambda e: trunc(isqrtg * e, deg), tot)
 
@@ -259,7 +390,8 @@ def transport(k, RHS, Nc, d, maxdeg, init=None):
     return sum_mat([P[dd] for dd in P])
 
 
-def run_background(R, label, bundles):
+def run_background(R, label, bundles, backend='sympy', phijets=None):
+    use_backend(backend)
     rep = {'label': label}
     Ric, Rs, Ric2, Riem2 = invariants(R)
     rep['inv'] = (Rs, Ric2, Riem2)
@@ -270,13 +402,30 @@ def run_background(R, label, bundles):
     Rup, Rf = riemann_field(G, g)
     rep['riemann_at_0'] = all(sp.expand(at0(Rf[k]) - R[k]) == 0 for k in Rf)
     Rsf = trunc(sum(ginv[a][c] * ginv[b][d] * Rf[(a, b, c, d)] for a in idx for b in idx for c in idx for d in idx), 2)
-    rep['boxR_at_0'] = sp.expand(sum(sp.diff(Rsf, X[m], X[m]) for m in idx).subs({x: 0 for x in X}))
-    rep['Dhalf_x2'] = sp.expand(homog(Dhalf, 2) - sp.Rational(1, 12) * sum(Ric[(a, b)] * X[a] * X[b] for a in idx for b in idx)) == 0
+    rep['boxR_at_0'] = sp.expand(at0(sum(pd(pd(Rsf, m), m) for m in idx)))
+    rep['Dhalf_x2'] = tosp(homog(Dhalf, 2) - sp.Rational(1, 12) * sum(Ric[(a, b)] * X[a] * X[b] for a in idx for b in idx)) == 0
     # Ricci field with one index up: R^a_b(x) = g^{ac} R_{cb}, R_{cb} = R^r_{c r b}
     Ricf = {(c, b): trunc(sum(Rup[(r, c, r, b)] for r in idx), 2) for c in idx for b in idx}
     Ricup = [[trunc(sum(ginv[a][c] * Ricf[(c, b)] for c in idx), 2) for b in idx] for a in idx]
     # fields needed by the graviton bundles: R(x), Ric^a_b(x), R^a_{m b n}(x) as polynomials to x^2 (all from the ansatz)
     Rupf = {k: trunc(v, 2) for k, v in Rup.items()}                      # R^a_{s m n}(x)
+    if phijets is not None:
+        # the background scalar phi-tilde(x) and its covariant jets as fields: v_a = d_a phi (lower), W_ab = d_a d_b phi - Gamma^c_ab v_c
+        phit = sum(c * X[0]**m[0] * X[1]**m[1] * X[2]**m[2] * X[3]**m[3] for m, c in phijets)
+        vlow = [trunc(pd(phit, a), 3) for a in idx]
+        Wlow = [[trunc(pd(vlow[a], b) - sum(G[c][a][b] * vlow[c] for c in idx), 2) for b in idx] for a in idx]
+        vup = [trunc(sum(ginv[a][c] * vlow[c] for c in idx), 2) for a in idx]
+        v2f = trunc(sum(vup[a] * vlow[a] for a in idx), 2)
+        trWf = trunc(sum(ginv[a][b] * Wlow[a][b] for a in idx for b in idx), 2)
+        v0 = sp.Matrix([at0(vlow[a]) for a in idx]); W0 = sp.Matrix(4, 4, lambda a, b: at0(Wlow[a][b]))
+        rep['scalar_bg'] = (sp.expand((v0.T * v0)[0]), sp.expand(W0.trace()))
+        # method M's own construction at the same point, from the sibling script (computed in place, never typed)
+        import os
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'graviton_loop'))
+        import hv1974_gravscalar_M as GM
+        RicM = sp.Matrix(4, 4, lambda b, d: Ric[(b, d)])
+        E_M, Om2_M = GM.build_E(R, RicM, Rs, v0, W0)
+        Eg_M = RicM - v0 * v0.T
     for name in bundles:
         if name == 'scalar':
             d = 1; Nc = [mzero(1) for _ in idx]; Ef = [[-xi * Rsf]]
@@ -286,7 +435,11 @@ def run_background(R, label, bundles):
         elif name == 'ghost':                                                              # the FP ghost of 't Hooft-Veltman (5.19): E = +Ric
             d = 4; Nc = [[[G[a][mu][b] for b in idx] for a in idx] for mu in idx]
             Ef = [[Ricup[a][b] for b in idx] for a in idx]
-        elif name == 'graviton':
+        elif name == 'ghostscalar':                                                        # (5.19) with its phi-tilde term: E = Ric - v v
+            d = 4; Nc = [[[G[a][mu][b] for b in idx] for a in idx] for mu in idx]
+            Ef = [[trunc(Ricup[a][b] - vup[a] * vlow[b], 2) for b in idx] for a in idx]
+            rep['trE_field_ghostscalar'] = tosp(trunc(sum(Ef[i][i] for i in idx) - Rsf + v2f, 2)) == 0      # guard (review, 9 Nov)
+        elif name in ('graviton', 'gravscalar'):
             # the 10-dimensional bundle of symmetric tensors h_{ab} (lower indices) in the basis E_aa, E_ab + E_ba; the induced
             # connection (N_mu h)_{ab} = -Gamma^c_{mu a} h_{cb} - Gamma^c_{mu b} h_{ac}; the endomorphism of graviton_operator_derive.py
             # as a field, with the index positions of the lower-index h:  (E h)_{ab} = -R h_{ab} + (1/2) R g_{ab} tr h + (Ric h + h Ric)_{ab}
@@ -332,6 +485,30 @@ def run_background(R, label, bundles):
                                            - Riclowf[(a, b)] * trh + 2 * sum(Rlowf[(a, m, b, n)] * hup[m][n] for m in idx for n in idx), 2)
                 return out_
             Ef = op_mat(endo)
+            if name == 'gravscalar':
+                d = 11
+                def endo_phi(h):
+                    trh = sum(ginv[m][n] * h[m][n] for m in idx for n in idx)
+                    hv = [sum(h[a][b] * vup[b] for b in idx) for a in idx]                      # (h v)_a = h_ab v^b
+                    vhv = sum(vup[a] * hv[a] for a in idx)
+                    return [[trunc(-(vlow[a] * hv[b] + hv[a] * vlow[b]) + sp.Rational(1, 2) * (g[a][b] * vhv + vlow[a] * vlow[b] * trh)
+                                   - sp.Rational(1, 4) * g[a][b] * v2f * trh + sp.Rational(1, 2) * v2f * h[a][b], 2) for b in idx] for a in idx]
+                Ephi = op_mat(endo_phi)
+                Wup = [[sum(ginv[a][p] * Wlow[p][q] * ginv[q][b] for p in idx for q in idx) for b in idx] for a in idx]
+                def bottom(h):                                                                   # <Y, h> = (1/2) tr W tr h - W^ab h_ab
+                    return sp.Rational(1, 2) * trWf * sum(ginv[m][n] * h[m][n] for m in idx for n in idx) - sum(Wup[a][b] * h[a][b] for a in idx for b in idx)
+                brow = []
+                for p_ in SP:
+                    e = [[sp.Integer(0)] * 4 for _ in idx]
+                    e[p_[0]][p_[1]] += 1
+                    if p_[0] != p_[1]:
+                        e[p_[1]][p_[0]] += 1
+                    brow.append(trunc(bottom(e), 2))
+                E11 = [[trunc(Ef[i][j] + Ephi[i][j], 2) for j in range(10)] + [trunc(-2 * Wlow[SP[i][0]][SP[i][1]], 2)] for i in range(10)]
+                E11.append(brow + [-v2f])
+                Ef = E11
+                rep['trE_field_gravscalar'] = tosp(trunc(sum(Ef[i][i] for i in range(11)) + 6 * Rsf + v2f, 2)) == 0   # guard (review, 9 Nov)
+                Nc = [[Nc[mu][i] + [sp.Integer(0)] for i in range(10)] + [[sp.Integer(0)] * 11] for mu in idx]   # the scalar's line is flat
         else:
             raise ValueError(name)
         a0 = transport(0, None, Nc, d, 4, init=meye(d))
@@ -342,9 +519,9 @@ def run_background(R, label, bundles):
             for a in idx:
                 for b in idx:
                     if basis[a][b] != 0 and c is None:
-                        c = sp.cancel(homog(a0[a][b], 2) / basis[a][b])
+                        c = sp.cancel(tosp(homog(a0[a][b], 2)) / tosp(basis[a][b]))
             rep['a0_x2_coeff'] = c
-            rep['a0_x2_vector'] = c is not None and c.is_Rational and all(sp.expand(homog(a0[a][b], 2) - c * basis[a][b]) == 0 for a in idx for b in idx)
+            rep['a0_x2_vector'] = c is not None and c.is_Rational and all(tosp(homog(a0[a][b], 2) - c * basis[a][b]) == 0 for a in idx for b in idx)
         f0 = mmap(lambda e: trunc(Dhalf * e, 4), a0)
         rhs1 = madd(box_bundle(f0, Nc, ginv, sqrtg, isqrtg, 2), mmul(Ef, f0, 2))
         rhs1 = mmap(lambda e: trunc(iDhalf * e, 2), rhs1)
@@ -357,14 +534,22 @@ def run_background(R, label, bundles):
         # method M at the same point: (3.40) = (1/24) Tr Omega^2 + 1/4 Tr(E(0) + R/6)^2 + (d/120)(Ric^2 - R^2/3), with
         # Omega_{mn} = [D_m, D_n] from the connection's curvature at 0: Omega = dN_n/dx_m - dN_m/dx_n + N_m N_n - N_n N_m
         E0 = mmap(at0, Ef)
+        rep[f'boxTrE_{name}'] = sp.expand(at0(sum(pd(pd(sum(Ef[i][i] for i in range(d)), m), m) for m in idx)))   # Box(Tr E)(0)
+        rep[f'trE_{name}'] = mtr(E0)
         Om2 = sp.Integer(0)
         for m in idx:
             for n in idx:
-                Omn = madd(madd(mmap(lambda e, m=m: at0(sp.diff(e, X[m])), Nc[n]), mmap(lambda e, n=n: at0(sp.diff(e, X[n])), Nc[m]), -1),
+                Omn = madd(madd(mmap(lambda e, m=m: at0(pd(e, m)), Nc[n]), mmap(lambda e, n=n: at0(pd(e, n)), Nc[m]), -1),
                            madd(mmul(mmap(at0, Nc[m]), mmap(at0, Nc[n]), 0), mmul(mmap(at0, Nc[n]), mmap(at0, Nc[m]), 0), -1))
                 Om2 += mtr(mmul(Omn, Omn, 0))
         Xm = madd(E0, mscale(meye(d), Rs / 6))
         rep[f'hv340_{name}'] = sp.expand(sp.Rational(1, 24) * Om2 + sp.Rational(1, 4) * mtr(mmul(Xm, Xm, 0)) + sp.Rational(d, 120) * (Ric2 - Rs**2 / 3))
+        if name == 'gravscalar':        # Q1
+            rep['Q1_E0_equals_M_gravscalar'] = bool(sp.Matrix(E0).applyfunc(sp.expand) == E_M.applyfunc(sp.expand)) and sp.expand(Om2 - Om2_M) == 0
+            rep['hvM_gravscalar'] = GM.hv340(11, Om2_M, E_M, Rs, Ric2)
+        if name == 'ghostscalar':
+            rep['Q1_E0_equals_M_ghostscalar'] = bool(sp.Matrix(E0).applyfunc(sp.expand) == Eg_M.applyfunc(sp.expand)) and sp.expand(Om2 + Riem2) == 0
+            rep['hvM_ghostscalar'] = GM.hv340(4, -Riem2, Eg_M, Rs, Ric2)
     return rep
 
 
@@ -391,8 +576,9 @@ def main():
     ap.add_argument('--samples', type=int, default=4)
     ap.add_argument('--jobs', type=int, default=1)
     ap.add_argument('--seed', type=int, default=20261104)
-    ap.add_argument('--bundles', default='scalar,vector', help="scalar,vector (step 1) or graviton,ghost (step 2; 8 Nov)")
+    ap.add_argument('--bundles', default='scalar,vector', help="scalar,vector (step 1), graviton,ghost (step 2; 8 Nov) or gravscalar,ghostscalar (step 3a; 9 Nov)")
     ap.add_argument('--log', default=None)
+    ap.add_argument('--backend', default='sympy', choices=['sympy', 'flint'], help='polynomial arithmetic: sympy (reference) or flint (python-flint fmpq_mpoly; same exact rationals, much faster)')
     ap.add_argument('--resume', action='store_true', help='continue a stopped run from <log>.ckpt.json, appending to the log')
     args = ap.parse_args()
     t0 = time.time()
@@ -408,10 +594,18 @@ def main():
         else:
             out = open(args.log, 'w')
     bundles = args.bundles.split(',')
-    say(f"# rung3_dewitt_bundle: a_2 on {args.samples} random algebraic curvature tensors, seed {args.seed}, bundles {bundles}, jobs {args.jobs}")
+    say(f"# rung3_dewitt_bundle: a_2 on {args.samples} random algebraic curvature tensors, seed {args.seed}, bundles {bundles}, jobs {args.jobs}" + (f", backend {args.backend}" if args.backend != 'sympy' else ''))
     say(version_line())
     rng = random.Random(args.seed)
     Rlist = [riemann_sample(rng) for _ in range(args.samples)]
+    NOFIT = ('gravscalar', 'ghostscalar')            # backgrounds with a scalar field: pointwise comparison, no three-structure fit
+    need_phi = any(b in NOFIT for b in bundles)
+    if need_phi and any(b not in NOFIT for b in bundles):
+        print("gravscalar/ghostscalar are run on their own (their backgrounds carry phi-tilde): do not mix with the other bundles"); sys.exit(1)
+    rng2 = random.Random(args.seed + 1)            # a separate stream, so the curvature tensors are those of the earlier steps
+    def phi_sample():
+        return [(m, sp.Rational(rng2.randint(-3, 3), rng2.randint(1, 3))) for m in itertools.product(range(5), repeat=4) if 1 <= sum(m) <= 4]
+    Plist = [phi_sample() if need_phi else None for _ in range(args.samples)]
     t1 = time.time()
     # checkpoint: each finished background is appended to <log>.ckpt.json (or rung3_dewitt_bundle.ckpt.json); a restart with the
     # same seed, samples and bundles skips them (8 Nov, the author's ask: stop and resume overnight)
@@ -446,7 +640,7 @@ def main():
                 val = sp.sympify(v)
                 out_[k] = tuple(val) if k == 'inv' else val
         return out_
-    todo = [(Rk, f'sample{i}', bundles) for i, Rk in enumerate(Rlist) if f'sample{i}' not in done]
+    todo = [(Rk, f'sample{i}', bundles, args.backend, Plist[i]) for i, Rk in enumerate(Rlist) if f'sample{i}' not in done]
     reps = [restore(r) for r in done.values() if isinstance(r.get('inv'), str)]
     if args.jobs > 1 and todo:
         import multiprocessing as mp
@@ -454,12 +648,12 @@ def main():
             for rep in pool.imap_unordered(_worker, todo):
                 reps.append(rep); save(rep); say(f"# {rep['label']} done at {time.time() - t1:.0f} s", flush_ckpt=ckpt_path)
     else:
-        for Rk, lab, bl in todo:
-            rep = run_background(Rk, lab, bl); reps.append(rep); save(rep); say(f"# {lab} done at {time.time() - t1:.0f} s", flush_ckpt=ckpt_path)
+        for Rk, lab, bl, be, pj in todo:
+            rep = run_background(Rk, lab, bl, be, pj); reps.append(rep); save(rep); say(f"# {lab} done at {time.time() - t1:.0f} s", flush_ckpt=ckpt_path)
     reps.sort(key=lambda r: r['label'])
     say(f"# backgrounds done in {time.time() - t1:.0f} s")
     ok = True
-    DIM0 = {'scalar': 1, 'vector': 4, 'ghost': 4, 'graviton': 10}
+    DIM0 = {'scalar': 1, 'vector': 4, 'ghost': 4, 'graviton': 10, 'gravscalar': 11, 'ghostscalar': 4}
     for r in reps:
         checks = {k: v for k, v in r.items() if isinstance(v, bool)}
         say(f"{r['label']}: checks {checks}; Box R(0) = {r['boxR_at_0']}; " + '; '.join(f"Tr a1_{b}(0) = {r[f'a1_{b}']}" for b in bundles))
@@ -467,8 +661,25 @@ def main():
         for b in bundles:
             GBv = Riem2_ - 4 * Ric2_ + Rs_**2
             pr = sp.expand(2 * r[f'hv340_{b}'] + sp.Rational(DIM0[b], 180) * GBv)        # a_2 = 2 (3.40) + (d/180) GB, pointwise
+            if b in NOFIT:
+                bx = r[f'boxTrE_{b}']; pr2 = sp.expand(pr + bx / 6); df = sp.expand(r[f'a2_{b}'] - pr2)
+                q4 = sp.expand(r[f'a1_{b}'] - (sp.Rational(DIM0[b], 6) * Rs_ + r[f'trE_{b}'])) == 0
+                say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   Q2 predicted 2*(3.40) + (d/180)*GB + (1/6)*Box(Tr E) = {pr2}   diff {df}")
+                say(f"      [Box(Tr E)(0) = {bx}; without the Box E term the diff would be {sp.expand(r[f'a2_{b}'] - pr)}; (3.40) here = {r[f'hv340_{b}']}, by the sibling's build_E = {r[f'hvM_{b}']}; Q4 a_1: {'MATCH' if q4 else 'MISMATCH'}]")
+                ok &= (df == 0) and q4 and sp.expand(r[f'hv340_{b}'] - r[f'hvM_{b}']) == 0
+                continue
             say(f"   Tr a2_{b}(0) = {r[f'a2_{b}']}   predicted 2*(3.40) + (d/180)*GB = {pr}   diff {sp.expand(r[f'a2_{b}'] - pr)}")
         ok &= all(checks.values())
+        if 'gravscalar' in bundles and 'ghostscalar' in bundles:
+            GBv = Riem2_ - 4 * Ric2_ + Rs_**2
+            totP = sp.expand((r['a2_gravscalar'] - 2 * r['a2_ghostscalar']) / 2)
+            totM = sp.expand(r['hvM_gravscalar'] - 2 * r['hvM_ghostscalar'])
+            td = sp.expand(sp.Rational(11 - 8, 360) * GBv + (r['boxTrE_gravscalar'] - 2 * r['boxTrE_ghostscalar']) / 12)
+            say(f"   total = (h, phi) - 2 ghost [v^2 = {r['scalar_bg'][0]}, tr W = {r['scalar_bg'][1]}]: method P (1/2) Tr a_2 = {totP}; method M (3.40) = {totM}; P - M = {sp.expand(totP - totM)} = (3/360) GB + (1/12) Box(Tr E_h - 2 Tr E_gh) = {td}: {'MATCH' if sp.expand(totP - totM - td) == 0 else 'MISMATCH'}")
+            ok &= sp.expand(totP - totM - td) == 0
+    if need_phi:
+        say(f"\nQ1 (E(0), Omega^2 = the sibling script's, from the printed (4.31)-(4.33)): {'PASS' if all(r.get('Q1_E0_equals_M_gravscalar', True) and r.get('Q1_E0_equals_M_ghostscalar', True) for r in reps) else 'FAIL'};  Q2, Q4 per background above")
+        say(f"\nstatus={'PASS' if ok else 'FAIL'}"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
     if len(reps) < 3:
         say("fewer than 3 backgrounds: no fit"); say(f"END rung3_dewitt_bundle {time.time() - t0:.0f} s"); sys.exit(0)
     # ---- fits

@@ -82,6 +82,11 @@ a run whose physics passed; `results/rung3_dewitt_graviton.log` is that run, ste
 
     python3 rung3_dewitt_bundle.py --samples 4 --jobs 4 --bundles graviton,ghost --log results/rung3_dewitt_graviton.log
 
+Step 3a, method P (9 Nov evening; rung 3 note §4d): the (h, φ) bundle and the ghost on backgrounds carrying a scalar field, with the
+flint backend (`pip install -U python-flint`; same exact rationals as sympy, which stays the default; seconds instead of hours):
+
+    python3 rung3_dewitt_bundle.py --samples 4 --bundles gravscalar,ghostscalar --backend flint --log results/rung3_dewitt_gravscalar.log
+
 `--measure plain` integrates over φ (operator K = √g·D); `--measure covariant` over χ = g^{1/4}φ (DeWitt's
 covariant measure). `--heatkernel` derives a₀, a₂, a₄ at second order in h from Tr e^{−tD} and compares with
 Vassilevich hep-th/0306138 eqs. 4.26–4.28.
