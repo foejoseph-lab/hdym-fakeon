@@ -1,0 +1,11 @@
+# ghost_operator_derive: seed 20261110, c = 1, k = 2, 1 on-shell + 0 off-shell backgrounds, G0 on the 16 linear + 16 diagonal quadratic monomial eta fields, jobs 16
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+on shell 0: R = 86/9, v^2 = 172/9, tr W = 0, field equations hold at 0: True
+   ghost: s_gh = 1, second-derivative part delta: True, no first-derivative terms: True (all 60 base fields);  E_gh == Ric - 2 v v: True  [0 s]
+   symmetry (ungauged operator on the pure-gauge fluctuation, k = 2): nonzero for 32 of 32 eta fields  [by degree of eta, nonzero/tried: 1: 16/16, 2: 16/16]  [283 s]
+
+G0 on shell the pure-gauge fluctuations are annihilated (k = 2): FAIL
+G1, G2 (c = 1, k = 2): PASS
+
+status=FAIL
+END ghost_operator_derive 283 s

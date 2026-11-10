@@ -1,0 +1,11 @@
+# ghost_operator_derive: seed 20261110, c = 0, k = 1, 1 on-shell + 1 off-shell backgrounds, G0 on the 16 linear + 16 diagonal quadratic monomial eta fields, jobs 1
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+on shell 0: R = 86/9, v^2 = 172/9, tr W = 0, field equations hold at 0: True
+   ghost: s_gh = 1, second-derivative part delta: True, no first-derivative terms: True (all 60 base fields);  E_gh == Ric - 0 v v: True  [0 s]
+off shell 0: R = -2221/18, v^2 = 119/18, tr W = -5/3, field equations hold at 0: False
+   ghost: s_gh = 1, second-derivative part delta: True, no first-derivative terms: True (all 60 base fields);  E_gh == Ric - 0 v v: True  [1 s]
+
+G1, G2 (c = 0, k = 1): PASS
+
+status=INCOMPLETE (PASS needs c = k = 1, the symmetry test, and at least one on-shell and one off-shell background)
+END ghost_operator_derive 1 s
