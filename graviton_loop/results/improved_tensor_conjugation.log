@@ -1,0 +1,24 @@
+# improved_tensor_conjugation: seed 20261111, 1 on-shell + 1 off-shell backgrounds, base fields all 165, mutate none, jobs 16
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+I0 F = 1, Ricci-flat background: Jordan evaluator == Einstein evaluator on 18 base fields (10 with a nonzero result): PASS   [tasks 18: per task min/mean/max 22/209/349 s (Jordan part mean 105 s); sum 3753 s, wall 350 s, ratio 10.7]
+      ... 20 of 165 base fields done, 0 mismatches so far, 734 s
+      ... 40 of 165 base fields done, 0 mismatches so far, 1319 s
+      ... 60 of 165 base fields done, 0 mismatches so far, 1580 s
+      ... 80 of 165 base fields done, 0 mismatches so far, 1714 s
+      ... 100 of 165 base fields done, 0 mismatches so far, 1899 s
+      ... 120 of 165 base fields done, 0 mismatches so far, 2103 s
+      ... 140 of 165 base fields done, 0 mismatches so far, 2317 s
+      ... 160 of 165 base fields done, 0 mismatches so far, 2431 s
+on shell 0: phi_0 = 1/2, F_0 = 47/48, F'_0 = -1/12; R_E = 13/8, (d phi-tilde)^2 = 13/4, Einstein field equations hold at 0: True
+   base fields tried {'const': 11, 'linear': 44, 'quadratic': 110}; with a nonzero result 131; Jordan != F_0 J^T (Einstein) J on: none   [tasks 165: per task min/mean/max 79/235/721 s (Jordan part mean 166 s); sum 38797 s, wall 2452 s, ratio 15.8]
+   I4: (203/80) R_E^2 = 34307/5120;  (203/320) K^2 sqrt(g) ((d phi)^2_g)^2 = 34307/5120: MATCH
+off shell 0: phi_0 = 2/3, F_0 = 26/27, F'_0 = -1/9; R_E = -949/36, (d phi-tilde)^2 = 45/4, Einstein field equations hold at 0: False
+   base fields tried {'const': 11}; with a nonzero result 11; Jordan != F_0 J^T (Einstein) J on: {'const': 11};  ratios lhs/rhs seen: [-17, -277/1042, -30875/1008, -350/1087, -359/120, -6]   [tasks 11: per task min/mean/max 310/445/463 s (Jordan part mean 231 s); sum 4890 s, wall 464 s, ratio 10.5]
+
+I1 on shell, Jordan second variation == F_0 J^T (ungauged Einstein operator) J, every base field tried, all 11 components: PASS
+I4 (arithmetic only, not a result: step 3's (6.5) rewritten in the original variables at the origin): PASS
+I2 off shell they differ on the constant base fields (the only ones that can: linear and quadratic base fields vanish at the origin): as predicted
+
+status=PASS
+No divergence is computed by this script; what I1 licenses, and by which argument, is in the header.
+END improved_tensor_conjugation 3267 s

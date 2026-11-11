@@ -1,0 +1,13 @@
+# improved_tensor_conjugation: seed 20261111, 1 on-shell + 0 off-shell backgrounds, base fields SUBSET (smoke), mutate nof, jobs 16
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+I0 F = 1, Ricci-flat background: Jordan evaluator == Einstein evaluator on 18 base fields (10 with a nonzero result): PASS   [tasks 18: per task min/mean/max 23/217/366 s (Jordan part mean 111 s); sum 3910 s, wall 367 s, ratio 10.6]
+on shell 0: phi_0 = 1/2, F_0 = 47/48, F'_0 = -1/12; R_E = 13/8, (d phi-tilde)^2 = 13/4, Einstein field equations hold at 0: True
+   base fields tried {'const': 11, 'linear': 4, 'quadratic': 3}; with a nonzero result 16; Jordan != F_0 J^T (Einstein) J on: {'const': 11, 'linear': 3};  ratios lhs/rhs seen: [-2, -37/23, -47/49, 0, 1, 11/19]   [tasks 18: per task min/mean/max 108/426/566 s (Jordan part mean 256 s); sum 7673 s, wall 568 s, ratio 13.5]
+   I4: (203/80) R_E^2 = 34307/5120;  (203/320) K^2 sqrt(g) ((d phi)^2_g)^2 = 34307/5120: MATCH
+
+I1 on shell, Jordan second variation == F_0 J^T (ungauged Einstein operator) J, every base field tried, all 11 components (mutated: must FAIL): FAIL
+I4 (arithmetic only, not a result: step 3's (6.5) rewritten in the original variables at the origin): PASS
+
+status=FAIL
+No divergence is computed by this script; what I1 licenses, and by which argument, is in the header.
+END improved_tensor_conjugation 935 s
