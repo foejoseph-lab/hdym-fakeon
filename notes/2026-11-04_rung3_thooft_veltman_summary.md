@@ -399,6 +399,38 @@ conjugated fields' content — and three checks were strengthened accordingly (h
 extension. **Not** yet the §7 redefinition, which also rescales the metric: that needs the gauge-fixing term carried along and is
 the next run. In the ledger both are new columns ("ours", 2026); the paper's own route for §7 keeps its O.
 
+**The author's proving run, 10–11 Nov overnight (committed b461490).** `conjugation_proving.log`: status=PASS on all six cases
+(1489 s); the two controls FAIL as intended; the first background of each setting identical to the sandbox. The conjugation method
+is licensed for linear redefinitions of matter-like fields, as are the translated-probe derivation and the recursion with a
+connection that is not the metric's. **A correction of course from the author (10 Nov 22:25):** the remaining O's on the §7 row are
+the work, not a detour — an old method run forward onto a case its authors gave up on, a newer one tested backward against it — and
+ledger items are not to be ranked "low priority" on Claude's judgement.
+
+## 4i. §7 by route 1, conjugation (11 Nov; sandbox, reviewed; the author's run pending)
+
+`graviton_loop/improved_tensor_conjugation.py`. Everything in exact rationals: the Einstein-frame background is step 3b's; the
+original-frame scalar is φ(x) = Φ(φ̃(x) − φ̃(0)) with Φ the Taylor series of dΦ/ds = F(Φ), Φ(0) = φ₀, F = 1 − φ²/12 (no artanh, no
+square roots); the metric is ĝ = (F₀/F)g_E, δ at the origin. The fluctuations map to first order by an 11 × 11 matrix J:
+h_E = (F/F₀)ĥ + (F′/F₀)ĝϕ, ϕ̃ = ϕ/F.
+
+| | prediction (header, before the code) | sandbox, 18 of the 165 base fields |
+|---|---|---|
+| I0 | field change off: the new evaluator reproduces the Einstein one | **failed as first coded, on the constant scalar**; my test was on a background with curvature, off shell for a constant scalar. On a Ricci-flat background it holds |
+| I1 | on shell, the a = 1/12 theory's ungauged second variation = (1/F₀)·Jᵀ(ungauged Einstein operator)J at the origin | holds **with F₀, not 1/F₀** — my slip in the factor, corrected in the header before the first run |
+| I2 | off shell they differ, already on constants | differs on all 11 constants |
+| I3 | control without the 1/F | fails |
+
+**The I0 failure is the improved tensor showing itself.** Even at φ₀ = 0, F of the fluctuating field is 1 − ϕ²/12: the scalar acquires
+−(1/12)Rϕ², which leaves the second variation only where R(0) = 0.
+
+**Fresh review (thirteen mutations).** No must-fix. It sharpened the on-shell argument: the second-order terms of the map are
+algebraic in the fluctuations, so only the field equations *at* the origin can enter, and for linear and quadratic base fields the
+identity holds off shell too — the shell condition is tested by the 11 constants, the derivative structure of J by the other 154.
+**No divergence is computed by this script.** What I1 licenses is by argument: with the gauge condition and ghosts taken over from
+the Einstein frame the operator is the step 3 operator conjugated by J, the ghost is unchanged (J maps the diffeomorphism of (ĝ, φ)
+to that of g_E), and the divergence is step 3's, (203/80)√g_E R_E² = (203/320)K²√g((∂φ)²)², K = 1/F² — the author's prediction with
+√12. That is an X in the conjugation column only; the paper's own route (route 2) keeps its O and is next.
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 

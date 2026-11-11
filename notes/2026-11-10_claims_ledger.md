@@ -198,7 +198,7 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - papers: 't Hooft & Veltman 1974 (`HV-11`): open; prediction on record: on shell it is (6.5) in the redefined field
   - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the paper's own route: the algorithm applied to the a = 1/12 Lagrangian in its gauge. Would add a test of gauge independence on shell
   - O — Weyl map checked as a pointwise identity (2026): weyl_map_check.log (status=PASS): the map and the constant sqrt(12) only. The divergence itself is not computed
-  - O — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): the a = 1/12 operator as the step 3 operator conjugated by the Jacobian of the Weyl map plus field redefinition. Needs the gauge term carried along
+  - O — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): improved_tensor_conjugation.py: sandbox subset smoke only. The author's run on all 165 base fields pending. The gauge term and ghosts are carried over by argument, and no divergence is computed
   - O — operator coefficient fields by jet probes with the background translated to first order (2026): needed by the paper's own route
 - **one-loop divergence: master formula for a general second-order operator (3.40)**
   - papers: 't Hooft & Veltman 1974 (`HV-1`): holds, as half the heat-kernel coefficient modulo Gauss-Bonnet
@@ -206,6 +206,8 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - X — dimensional regularization on the graphs (1972): rung1_dimreg_*.log: a one-component scalar only (full xi polynomial, no bundle-curvature term)
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
   - X — heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003): Gilkey's coefficient; the Box E term seen in rung3_dewitt_gravscalar.log
+  - X — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): conjugation_proving.log (status=PASS, six cases): the traces entering (3.40) unchanged under a linear field redefinition, on three matter settings
+  - X — operator coefficient fields by jet probes with the background translated to first order (2026): conjugation_proving.log: the translated-probe derivation reproduces the known operators and their conjugates
 - **one-loop divergence: pure gravity on shell vanishes (6.6)**
   - papers: 't Hooft & Veltman 1974 (`HV-10`): holds
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b). The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
@@ -358,7 +360,7 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 | Lee & Wick (reply) 1971, `LR-1` | · | · | · | · | · | X | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
 | Nakanishi (June) 1971, `NB-1` | · | · | · | · | · | · | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
 | Gleeson, Moore, Rechenberg & Sudarshan 1971, `GM-1` | · | · | · | · | X | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-1` | · | · | X | · | · | · | · | · | X | · | · | O | X | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-1` | · | · | X | · | · | · | · | · | X | · | · | O | X | · | · | · | · | · | · | · | · | X | X |
 | 't Hooft & Veltman 1974, `HV-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-3` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · |
@@ -392,7 +394,7 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 
 (· stands for N, to keep the marks visible.)
 
-Counts: X 75, X* 3, S 0, O 35, N 945; 46 claims, 23 methods.
+Counts: X 77, X* 3, S 0, O 35, N 943; 46 claims, 23 methods.
 
 ## 4. Needing backing
 

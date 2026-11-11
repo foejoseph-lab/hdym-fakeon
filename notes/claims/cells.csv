@@ -110,5 +110,7 @@ AP-2|cscale|O|added 10 Nov
 AP-3|regionwise|O|rung 2 results section 3
 AP-3|clop|O|the unequal-mass limit, in the 2017 model
 SV-1|dimreg|O|a one-line conversion from the rung 1 coefficients, written out 31 Oct, not run
-HV-11|conj|O|the a = 1/12 operator as the step 3 operator conjugated by the Jacobian of the Weyl map plus field redefinition. Needs the gauge term carried along
+HV-11|conj|O|improved_tensor_conjugation.py: sandbox subset smoke only. The author's run on all 165 base fields pending. The gauge term and ghosts are carried over by argument, and no divergence is computed
 HV-11|directshift|O|needed by the paper's own route
+HV-1|conj|X|conjugation_proving.log (status=PASS, six cases): the traces entering (3.40) unchanged under a linear field redefinition, on three matter settings
+HV-1|directshift|X|conjugation_proving.log: the translated-probe derivation reproduces the known operators and their conjugates
