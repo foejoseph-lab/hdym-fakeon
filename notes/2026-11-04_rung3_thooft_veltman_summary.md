@@ -406,7 +406,7 @@ connection that is not the metric's. **A correction of course from the author (1
 the work, not a detour — an old method run forward onto a case its authors gave up on, a newer one tested backward against it — and
 ledger items are not to be ranked "low priority" on Claude's judgement.
 
-## 4i. §7 by route 1, conjugation (11 Nov; sandbox, reviewed; the author's run pending)
+## 4i. §7 by route 1, conjugation (11 Nov; reviewed; the author's run committed 632b731, status=PASS, control FAIL as intended)
 
 `graviton_loop/improved_tensor_conjugation.py`. Everything in exact rationals: the Einstein-frame background is step 3b's; the
 original-frame scalar is φ(x) = Φ(φ̃(x) − φ̃(0)) with Φ the Taylor series of dΦ/ds = F(Φ), Φ(0) = φ₀, F = 1 − φ²/12 (no artanh, no
@@ -430,6 +430,24 @@ identity holds off shell too — the shell condition is tested by the 11 constan
 the Einstein frame the operator is the step 3 operator conjugated by J, the ghost is unchanged (J maps the diffeomorphism of (ĝ, φ)
 to that of g_E), and the divergence is step 3's, (203/80)√g_E R_E² = (203/320)K²√g((∂φ)²)², K = 1/F² — the author's prediction with
 √12. That is an X in the conjugation column only; the paper's own route (route 2) keeps its O and is next.
+
+**The author's run, 11 Nov evening (committed 632b731).** All 165 base fields on the on-shell background (φ₀ = 1/2, F₀ = 47/48), 131
+with a nonzero result: no mismatch, all 11 components; off shell all 11 constants differ; status=PASS, 3267 s. The control without
+the 1/F: FAIL on all 11 constants and 3 of the 4 linear base fields of the subset (the three quadratic ones do not see it — weak evidence by itself, two of them being nearly vacuous; the
+review's mutation table is the real support). The on-shell background is the one of the sandbox's subset smoke.
+
+**Timing, from this run's per-task line (one run).** On the author's machine with 16 workers the pool is fully busy (sum of task
+times over wall time 15.8) but each task takes 4–5 times longer than the same task on one sandbox core (235 s mean against 48 s,
+the latter *estimated* from the per-kind sandbox timings in the script header — the full set never ran in the sandbox, and no task
+was timed alone on the author's machine). Sixteen workers therefore delivered about 3.2 times one sandbox core here. For comparison,
+in the author's run of the untracked `pool_timing.py` diagnostic on 10 Nov (his console output, not committed) a light 2-second task
+slowed only 1.8 times at 16 workers. Memory capacity does not look like the cause (the author's reading of Task Manager during the
+control run: 21 of 127 GB in use); shared memory traffic is a guess, untested. For forecasts: sandbox single-core seconds × tasks ÷ 3.
+
+**Route 2 will have a second method in FORM** (decided 11 Nov): the symbolic derivation of the operator, once, as a covariant
+formula — a different kind of computation from numerical probing, and the descendant of the Schoonschip the paper used for this
+section. FORM 4.3.1 builds from source in the sandbox and has run a one-line test there; **nothing of the physics has been done in
+FORM yet.** The author has WSL with Ubuntu ready (FORM 5.0's paper, arXiv 2601.19982, lists native Windows support under deprecations).
 
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
