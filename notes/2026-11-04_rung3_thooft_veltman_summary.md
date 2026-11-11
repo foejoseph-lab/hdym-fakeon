@@ -366,6 +366,39 @@ written from the notes without opening the logs; the fresh review opened them an
 corrected, and six claims missing, added. One consequence for the record: **`rung3_dewitt_graviton.log` still ends status=FAIL**
 (the mistyped table of §4b; the numbers are right) — a clean log from the current script is owed.
 
+## 4h. The proving run for the conjugation method (10 Nov night; sandbox, reviewed; the author's run pending)
+
+**The author's rule (10 Nov).** A method that differs from the historical one gets its own column in the claims ledger, and for the
+historical papers it must be proven to give what the method beside it gives before it is accepted; an exact comparison on a
+simplified setting is the easiest way.
+
+**The method.** For a linear, position-dependent field redefinition χ = J(x)φ the fluctuation operator is conjugated, Δ′ = J⁻¹ΔJ, so
+ω′ = J⁻¹ωJ + J⁻¹∂J, E′ = J⁻¹EJ, Ω′ = J⁻¹ΩJ and every trace in the one-loop divergence is unchanged. **It is rigorous on paper** (three
+lines: O′ = JᵀOJ and S′ = JᵀSJ by the chain rule; similar operators have conjugate heat kernels; equal diagonal traces at every
+point and order), with the local Jacobian det J dropped as in dimensional regularization. **The run is not that proof**: it is an
+exact test, on random instances, that the code of the two methods agrees (`matter_loop/conjugation_proving.py`).
+
+**The method it is tested against, and an extension.** "Direct": derive the redefined Lagrangian's operator from that Lagrangian
+alone by jet probes. That needs the operator's coefficient fields near the origin, not just at it; the background is translated by
+a symbolic vector kept to first order. This extension is what a direct computation of §7 in the paper's own gauge would need.
+
+| | prediction (header, before any code) | sandbox, one background per setting |
+|---|---|---|
+| C0 | J = 1: the extension reproduces the known operator (S = 1 to first order, ω = 0, E = M, Ω = 0 or Riemann elementwise) | holds: one scalar, two scalars, a covector field |
+| C1 | random J: the directly derived ω, E, Ω equal the conjugated ones as matrices | holds; second derivatives of J cancel out of E |
+| C2 | Tr E, Tr E², Tr Ω² unchanged, so the (3.40) number is unchanged | holds |
+| C3 | DeWitt's recursion with the conjugated connection (not the metric's, not zero at the origin) gives the same Tr a₂(0) | holds; the fields fed to it carry the direct method's ω, E, Ω at the origin |
+| controls | halving J⁻¹∂J; JᵀEJ for E′ | both FAIL at C1 as intended |
+
+**Fresh review (about forty mutations).** One must-fix: the first version passed exact rationals through sympy's `nsimplify`, which
+is not the identity on them, so "exact" was untrue; removed, no number changed. It also showed what each check carries — C1, C2 test
+covariance; C0 alone carries the absolute normalisation; C3 as first written tested only the recursion with N(0) ≠ 0, not the
+conjugated fields' content — and three checks were strengthened accordingly (header).
+
+**What a PASS licenses.** The conjugation method for linear redefinitions of matter-like fields, and the translated-probe
+extension. **Not** yet the §7 redefinition, which also rescales the metric: that needs the gauge-fixing term carried along and is
+the next run. In the ledger both are new columns ("ours", 2026); the paper's own route for §7 keeps its O.
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 

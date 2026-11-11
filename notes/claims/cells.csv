@@ -69,7 +69,7 @@ HV-9|gsdw|O|when the chronology reaches 1985
 HV-10|hv340|X|hv1974_graviton_M.log
 HV-10|dewitt|X|rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b). The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
 HV-11|weylmap|O|weyl_map_check.log (status=PASS): the map and the constant sqrt(12) only. The divergence itself is not computed
-HV-11|hv340|O|the direct computation with a = 1/12, on shell
+HV-11|hv340|O|the paper's own route: the algorithm applied to the a = 1/12 Lagrangian in its gauge. Would add a test of gauge independence on shell
 HV-12|cutoff|O|rule-25 prediction (ii) of the rung 3 note
 HV-12|ptime|O|rule-25 prediction (ii) of the rung 3 note
 DN-1|hv340|O|step 3c
@@ -110,3 +110,5 @@ AP-2|cscale|O|added 10 Nov
 AP-3|regionwise|O|rung 2 results section 3
 AP-3|clop|O|the unequal-mass limit, in the 2017 model
 SV-1|dimreg|O|a one-line conversion from the rung 1 coefficients, written out 31 Oct, not run
+HV-11|conj|O|the a = 1/12 operator as the step 3 operator conjugated by the Jacobian of the Weyl map plus field redefinition. Needs the gauge term carried along
+HV-11|directshift|O|needed by the paper's own route

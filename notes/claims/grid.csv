@@ -1,48 +1,48 @@
-﻿,,before 1969,before 1969,before 1969,before 1969,1969-71,1969-71,1969-71,1969-71,1972-77,1972-77,1972-77,1985,2003,2017-20,2017-20,2017-20,2017-20,ours,ours,ours,ours
-paper,claim,Schwinger proper time on the graphs (1951),hard momentum cutoff on the graphs (1962),DeWitt recursion in normal coordinates (1965),real-axis energy integral with a spatial cutoff (no prescription) (1968),"Lee-Wick energy contour, momentum-space residues, real spatial momenta (1969)",CLOP mass-shift limit (1969),GMRS closed form (one-dimensional contour integral) (1971),complex scaling (Aguilar-Balslev-Combes dilation analyticity) (1971),dimensional regularization on the graphs (1972),"'t Hooft-Veltman algorithm, formula (3.40) (1974)",spin projection of the two-point function and resummation (1977),generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985),"heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003)","region-wise continuation, complex spatial momenta (Anselmi-Piva) (2017)",cutting equations (Anselmi-Piva 1703.05563) (2017),Feynman parameters with the average continuation (2018),order-by-order classical fakeon projection (2018),ball-arithmetic certification of closed forms (python-flint/Arb) (2026),second variation of the action by jet probes (2026),hand derivation by an independent reviewer (2026),Weyl map checked as a pointwise identity (2026)
-Pais & Uhlenbeck 1950,"PU-1 propagator: the fourth-order oscillator splits into two modes, one of negative norm or energy",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Utiyama & DeWitt 1962,"UD-1 one-loop divergence, matter on a classical background: exactly three orders (quartic, quadratic, logarithmic)",X,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Utiyama & DeWitt 1962,"UD-2 one-loop divergence, matter on a classical background: the quartic order is a cosmological-term counterterm",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Utiyama & DeWitt 1962,"UD-3 one-loop divergence, matter on a classical background: the quadratic order is a renormalization of G",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Utiyama & DeWitt 1962,"UD-4 one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)",X,X,X,N,N,N,N,N,X,X,N,O,X,N,N,N,N,N,N,N,N
-Utiyama & DeWitt 1962,UD-5 propagator: the semiclassical graviton Green's function falls as 1/p^4,X,X,N,N,N,N,N,N,X,N,X,N,N,N,N,O,N,N,N,N,N
-Sakharov 1967,"SA-1 one-loop divergence, matter on a classical background: the quadratic order determines G (induced gravity)",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Lee & Wick 1969,LW-1 pair bubble: defined by a deformed energy contour,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N
-Lee & Wick 1969,LW-2 S-matrix: the complex pair contributes no imaginary part (unitarity),N,N,N,N,X,N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N
-Lee & Wick 1969,LW-3 pair bubble: Lorentz invariant with the Lee-Wick contour and real spatial momenta,N,N,N,N,X,N,X,O,N,N,N,N,N,O,N,O,N,N,N,N,N
-"Cutkosky, Landshoff, Olive & Polkinghorne 1969","CL-1 pair bubble: coalescing singularities resolved by a mass-shift limit, giving a definite value",N,N,N,N,N,X,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N
-Nakanishi (Feb) 1971,NA-1 pair bubble: not Lorentz invariant with the Lee-Wick contour and real spatial momenta (the threshold moves with the frame),N,N,N,N,X,N,X,O,N,N,N,N,N,O,N,O,N,N,N,N,N
-Lee & Wick (reply) 1971,LR-1 pair bubble: Lorentz invariance restored by complex spatial momenta plus the CLOP rule,N,N,N,N,N,X,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N
-Nakanishi (June) 1971,NB-1 pair bubble: the Lorentz breaking is intrinsic to a Hamiltonian formulation with complex energies,N,N,N,N,N,N,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N
-"Gleeson, Moore, Rechenberg & Sudarshan 1971",GM-1 pair bubble: closed form at nonzero spatial momentum,N,N,N,N,X,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-1 one-loop divergence: master formula for a general second-order operator (3.40),N,N,X,N,N,N,N,N,X,N,N,O,X,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-2 one-loop divergence: the Riemann-squared term is never needed (Gauss-Bonnet, App. B)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-3 one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)",X,X,X,N,N,N,N,N,X,X,N,O,X,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-4 fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N
-'t Hooft & Veltman 1974,HV-5 ghost operator: gravity + scalar (5.19),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N
-'t Hooft & Veltman 1974,"HV-6 one-loop divergence: ghost contribution, gravity + scalar (5.21)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-7 one-loop divergence: gravity + scalar total, off shell (5.22)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-8 one-loop divergence: pure gravity, off shell (5.24)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-9 one-loop divergence: gravity + scalar on shell is (203/80) R^2, not removable (6.5)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-10 one-loop divergence: pure gravity on shell vanishes (6.6),N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-11 one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7),N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,O
-'t Hooft & Veltman 1974,"HV-12 S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)",O,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-13 one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)",N,N,N,N,N,N,N,N,X,X,N,N,N,N,N,N,N,N,N,N,N
-Deser & van Nieuwenhuizen 1974,"DN-1 one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N
-Gorbar & Shapiro (hep-ph/0210388) 2003,GS-1 propagator: the massless-scalar graviton self-energy has constant 46/15 beside its logarithm (3.7),N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N
-Aglietti & Anselmi (1612.06510) 2017,AA-1 pair bubble: nonlocal divergence when the energy integral of the complex pair runs on the real axis,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Aglietti & Anselmi (1612.06510) 2017,AA-2 pair bubble: the real-axis definition has no continuation to a Euclidean region,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Aglietti & Anselmi (1612.06510) 2017,AA-3 pair bubble: the real-axis result may be taken as a function of p^2 only,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Anselmi & Piva (1703.04584) 2017,"AP-1 pair bubble: rigid-contour residue and cusp at the Lee-Wick threshold (section 3, fig. 13)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N
-Anselmi & Piva (1703.04584) 2017,"AP-2 pair bubble: Lorentz invariant, region by region, when the spatial momenta are deformed too (3.11)",N,N,N,N,N,N,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N
-Anselmi & Piva (1703.04584) 2017,AP-3 pair bubble: for unequal masses the CLOP limit has two values and the region-wise result is their average (fig. 14),N,N,N,N,N,O,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N
-Anselmi (1801.00915) 2018,"AN-1 pair bubble: average continuation, closed forms (5.4)-(5.8), (5.12)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N
-Anselmi (1801.00915) 2018,AN-2 propagator: the fakeon is the zero-width limit of a Lee-Wick pair (6.3),N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N
-Anselmi (1801.00915) 2018,AN-3 S-matrix: the fakeon pair contributes no imaginary part (unitarity),N,N,N,N,N,N,N,N,N,N,N,N,N,N,O,X,N,N,N,N,N
-Anselmi (1809.05037) 2018,AC-1 classical projection: harmonic case in closed form (4.13),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N
-Anselmi (1809.05037) 2018,AC-2 classical projection: the order-by-order expansion is asymptotic for transient sources,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N
-Salvio (1804.09944) 2018,SV-1 one-loop divergence: the per-scalar running of the quadratic couplings (3.15)-(3.16),N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N
-Anselmi (2001.01942) 2020,AF-1 pair bubble: principal-value propagators in the loop give a nonlocal divergence (2.6),N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N
-Anselmi (2001.01942) 2020,"AF-2 pair bubble: principal-value propagators in the loop give an imaginary part at the pseudothreshold, wrong sign (4.3)",N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N
-Anselmi (2001.01942) 2020,"AF-3 pair bubble: fakeon minus ordinary self-energy, closed form (6.6)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N
-Anselmi (2001.01942) 2020,"AF-4 pair bubble: principal-value self-energy with a cutoff, closed form (3.1), and its imaginary parts in D = 3, 2 (section 7)",N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N
+﻿,,before 1969,before 1969,before 1969,before 1969,1969-71,1969-71,1969-71,1969-71,1972-77,1972-77,1972-77,1985,2003,2017-20,2017-20,2017-20,2017-20,ours,ours,ours,ours,ours,ours
+paper,claim,Schwinger proper time on the graphs (1951),hard momentum cutoff on the graphs (1962),DeWitt recursion in normal coordinates (1965),real-axis energy integral with a spatial cutoff (no prescription) (1968),"Lee-Wick energy contour, momentum-space residues, real spatial momenta (1969)",CLOP mass-shift limit (1969),GMRS closed form (one-dimensional contour integral) (1971),complex scaling (Aguilar-Balslev-Combes dilation analyticity) (1971),dimensional regularization on the graphs (1972),"'t Hooft-Veltman algorithm, formula (3.40) (1974)",spin projection of the two-point function and resummation (1977),generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985),"heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003)","region-wise continuation, complex spatial momenta (Anselmi-Piva) (2017)",cutting equations (Anselmi-Piva 1703.05563) (2017),Feynman parameters with the average continuation (2018),order-by-order classical fakeon projection (2018),ball-arithmetic certification of closed forms (python-flint/Arb) (2026),second variation of the action by jet probes (2026),hand derivation by an independent reviewer (2026),Weyl map checked as a pointwise identity (2026),conjugation of the original operator by the Jacobian of a linear field redefinition (2026),operator coefficient fields by jet probes with the background translated to first order (2026)
+Pais & Uhlenbeck 1950,"PU-1 propagator: the fourth-order oscillator splits into two modes, one of negative norm or energy",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Utiyama & DeWitt 1962,"UD-1 one-loop divergence, matter on a classical background: exactly three orders (quartic, quadratic, logarithmic)",X,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Utiyama & DeWitt 1962,"UD-2 one-loop divergence, matter on a classical background: the quartic order is a cosmological-term counterterm",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Utiyama & DeWitt 1962,"UD-3 one-loop divergence, matter on a classical background: the quadratic order is a renormalization of G",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Utiyama & DeWitt 1962,"UD-4 one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)",X,X,X,N,N,N,N,N,X,X,N,O,X,N,N,N,N,N,N,N,N,N,N
+Utiyama & DeWitt 1962,UD-5 propagator: the semiclassical graviton Green's function falls as 1/p^4,X,X,N,N,N,N,N,N,X,N,X,N,N,N,N,O,N,N,N,N,N,N,N
+Sakharov 1967,"SA-1 one-loop divergence, matter on a classical background: the quadratic order determines G (induced gravity)",X,X*,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Lee & Wick 1969,LW-1 pair bubble: defined by a deformed energy contour,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N,N,N
+Lee & Wick 1969,LW-2 S-matrix: the complex pair contributes no imaginary part (unitarity),N,N,N,N,X,N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N
+Lee & Wick 1969,LW-3 pair bubble: Lorentz invariant with the Lee-Wick contour and real spatial momenta,N,N,N,N,X,N,X,O,N,N,N,N,N,O,N,O,N,N,N,N,N,N,N
+"Cutkosky, Landshoff, Olive & Polkinghorne 1969","CL-1 pair bubble: coalescing singularities resolved by a mass-shift limit, giving a definite value",N,N,N,N,N,X,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N
+Nakanishi (Feb) 1971,NA-1 pair bubble: not Lorentz invariant with the Lee-Wick contour and real spatial momenta (the threshold moves with the frame),N,N,N,N,X,N,X,O,N,N,N,N,N,O,N,O,N,N,N,N,N,N,N
+Lee & Wick (reply) 1971,LR-1 pair bubble: Lorentz invariance restored by complex spatial momenta plus the CLOP rule,N,N,N,N,N,X,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N
+Nakanishi (June) 1971,NB-1 pair bubble: the Lorentz breaking is intrinsic to a Hamiltonian formulation with complex energies,N,N,N,N,N,N,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N
+"Gleeson, Moore, Rechenberg & Sudarshan 1971",GM-1 pair bubble: closed form at nonzero spatial momentum,N,N,N,N,X,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,HV-1 one-loop divergence: master formula for a general second-order operator (3.40),N,N,X,N,N,N,N,N,X,N,N,O,X,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-2 one-loop divergence: the Riemann-squared term is never needed (Gauss-Bonnet, App. B)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-3 one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)",X,X,X,N,N,N,N,N,X,X,N,O,X,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,HV-4 fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N
+'t Hooft & Veltman 1974,HV-5 ghost operator: gravity + scalar (5.19),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N
+'t Hooft & Veltman 1974,"HV-6 one-loop divergence: ghost contribution, gravity + scalar (5.21)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-7 one-loop divergence: gravity + scalar total, off shell (5.22)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-8 one-loop divergence: pure gravity, off shell (5.24)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-9 one-loop divergence: gravity + scalar on shell is (203/80) R^2, not removable (6.5)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,HV-10 one-loop divergence: pure gravity on shell vanishes (6.6),N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,HV-11 one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7),N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,O,O,O
+'t Hooft & Veltman 1974,"HV-12 S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)",O,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-13 one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)",N,N,N,N,N,N,N,N,X,X,N,N,N,N,N,N,N,N,N,N,N,N,N
+Deser & van Nieuwenhuizen 1974,"DN-1 one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N
+Gorbar & Shapiro (hep-ph/0210388) 2003,GS-1 propagator: the massless-scalar graviton self-energy has constant 46/15 beside its logarithm (3.7),N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Aglietti & Anselmi (1612.06510) 2017,AA-1 pair bubble: nonlocal divergence when the energy integral of the complex pair runs on the real axis,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Aglietti & Anselmi (1612.06510) 2017,AA-2 pair bubble: the real-axis definition has no continuation to a Euclidean region,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Aglietti & Anselmi (1612.06510) 2017,AA-3 pair bubble: the real-axis result may be taken as a function of p^2 only,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Anselmi & Piva (1703.04584) 2017,"AP-1 pair bubble: rigid-contour residue and cusp at the Lee-Wick threshold (section 3, fig. 13)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N
+Anselmi & Piva (1703.04584) 2017,"AP-2 pair bubble: Lorentz invariant, region by region, when the spatial momenta are deformed too (3.11)",N,N,N,N,N,N,N,O,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N
+Anselmi & Piva (1703.04584) 2017,AP-3 pair bubble: for unequal masses the CLOP limit has two values and the region-wise result is their average (fig. 14),N,N,N,N,N,O,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N
+Anselmi (1801.00915) 2018,"AN-1 pair bubble: average continuation, closed forms (5.4)-(5.8), (5.12)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N,N,N
+Anselmi (1801.00915) 2018,AN-2 propagator: the fakeon is the zero-width limit of a Lee-Wick pair (6.3),N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N
+Anselmi (1801.00915) 2018,AN-3 S-matrix: the fakeon pair contributes no imaginary part (unitarity),N,N,N,N,N,N,N,N,N,N,N,N,N,N,O,X,N,N,N,N,N,N,N
+Anselmi (1809.05037) 2018,AC-1 classical projection: harmonic case in closed form (4.13),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N
+Anselmi (1809.05037) 2018,AC-2 classical projection: the order-by-order expansion is asymptotic for transient sources,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N
+Salvio (1804.09944) 2018,SV-1 one-loop divergence: the per-scalar running of the quadratic couplings (3.15)-(3.16),N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Anselmi (2001.01942) 2020,AF-1 pair bubble: principal-value propagators in the loop give a nonlocal divergence (2.6),N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N
+Anselmi (2001.01942) 2020,"AF-2 pair bubble: principal-value propagators in the loop give an imaginary part at the pseudothreshold, wrong sign (4.3)",N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N
+Anselmi (2001.01942) 2020,"AF-3 pair bubble: fakeon minus ordinary self-energy, closed form (6.6)",N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,X,N,X,N,N,N,N,N
+Anselmi (2001.01942) 2020,"AF-4 pair bubble: principal-value self-energy with a cutoff, closed form (3.1), and its imaginary parts in D = 3, 2 (section 7)",N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,X,N,N,N,N,N

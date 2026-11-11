@@ -20,3 +20,5 @@ ballcert|ours|2026|ball-arithmetic certification of closed forms (python-flint/A
 jetprobe|ours|2026|second variation of the action by jet probes|method|designator. Exact rationals, operators derived and not transcribed
 hand|ours|2026|hand derivation by an independent reviewer|check|designator
 weylmap|ours|2026|Weyl map checked as a pointwise identity|method|designator
+conj|ours|2026|conjugation of the original operator by the Jacobian of a linear field redefinition|method|a NEW method, its own column (author, 10 Nov). Rigorous on paper (similar operators, conjugate heat kernels). Implementation tested against direct derivation on three simplified settings (conjugation_proving.py). Not yet shown for a redefinition that also rescales the metric
+directshift|ours|2026|operator coefficient fields by jet probes with the background translated to first order|method|designator. The extension a direct computation of 't Hooft-Veltman section 7 in their own gauge would need. First used in conjugation_proving.py

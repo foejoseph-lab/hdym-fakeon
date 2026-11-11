@@ -196,8 +196,10 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
 - **one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7)**
   - papers: 't Hooft & Veltman 1974 (`HV-11`): open; prediction on record: on shell it is (6.5) in the redefined field
-  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the direct computation with a = 1/12, on shell
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the paper's own route: the algorithm applied to the a = 1/12 Lagrangian in its gauge. Would add a test of gauge independence on shell
   - O — Weyl map checked as a pointwise identity (2026): weyl_map_check.log (status=PASS): the map and the constant sqrt(12) only. The divergence itself is not computed
+  - O — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): the a = 1/12 operator as the step 3 operator conjugated by the Jacobian of the Weyl map plus field redefinition. Needs the gauge term carried along
+  - O — operator coefficient fields by jet probes with the background translated to first order (2026): needed by the paper's own route
 - **one-loop divergence: master formula for a general second-order operator (3.40)**
   - papers: 't Hooft & Veltman 1974 (`HV-1`): holds, as half the heat-kernel coefficient modulo Gauss-Bonnet
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_bundle.log: scalar, vector, Maxwell. The vector bundle-curvature coefficient confirmed in combination only
@@ -336,61 +338,61 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
 
 Rows: (paper, claim), papers in order of publication. Columns: methods, grouped by era, earliest at the left.
 
-Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** = hard momentum cutoff on the graphs (1962); **dewitt** = DeWitt recursion in normal coordinates (1965); **realaxis** = real-axis energy integral with a spatial cutoff (no prescription) (1968); **lwres** = Lee-Wick energy contour, momentum-space residues, real spatial momenta (1969); **clop** = CLOP mass-shift limit (1969); **gmrs** = GMRS closed form (one-dimensional contour integral) (1971); **cscale** = complex scaling (Aguilar-Balslev-Combes dilation analyticity) (1971); **dimreg** = dimensional regularization on the graphs (1972); **hv340** = 't Hooft-Veltman algorithm, formula (3.40) (1974); **spinproj** = spin projection of the two-point function and resummation (1977); **gsdw** = generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985); **hktable** = heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003); **regionwise** = region-wise continuation, complex spatial momenta (Anselmi-Piva) (2017); **cutting** = cutting equations (Anselmi-Piva 1703.05563) (2017); **avgcont** = Feynman parameters with the average continuation (2018); **projection** = order-by-order classical fakeon projection (2018); **ballcert** = ball-arithmetic certification of closed forms (python-flint/Arb) (2026); **jetprobe** = second variation of the action by jet probes (2026); **hand** = hand derivation by an independent reviewer (2026); **weylmap** = Weyl map checked as a pointwise identity (2026)
+Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** = hard momentum cutoff on the graphs (1962); **dewitt** = DeWitt recursion in normal coordinates (1965); **realaxis** = real-axis energy integral with a spatial cutoff (no prescription) (1968); **lwres** = Lee-Wick energy contour, momentum-space residues, real spatial momenta (1969); **clop** = CLOP mass-shift limit (1969); **gmrs** = GMRS closed form (one-dimensional contour integral) (1971); **cscale** = complex scaling (Aguilar-Balslev-Combes dilation analyticity) (1971); **dimreg** = dimensional regularization on the graphs (1972); **hv340** = 't Hooft-Veltman algorithm, formula (3.40) (1974); **spinproj** = spin projection of the two-point function and resummation (1977); **gsdw** = generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985); **hktable** = heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003); **regionwise** = region-wise continuation, complex spatial momenta (Anselmi-Piva) (2017); **cutting** = cutting equations (Anselmi-Piva 1703.05563) (2017); **avgcont** = Feynman parameters with the average continuation (2018); **projection** = order-by-order classical fakeon projection (2018); **ballcert** = ball-arithmetic certification of closed forms (python-flint/Arb) (2026); **jetprobe** = second variation of the action by jet probes (2026); **hand** = hand derivation by an independent reviewer (2026); **weylmap** = Weyl map checked as a pointwise identity (2026); **conj** = conjugation of the original operator by the Jacobian of a linear field redefinition (2026); **directshift** = operator coefficient fields by jet probes with the background translated to first order (2026)
 
-| paper, claim | ptime | cutoff | dewitt | realaxis | lwres | clop | gmrs | cscale | dimreg | hv340 | spinproj | gsdw | hktable | regionwise | cutting | avgcont | projection | ballcert | jetprobe | hand | weylmap |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| *era* | *before 1969* | *before 1969* | *before 1969* | *before 1969* | *1969-71* | *1969-71* | *1969-71* | *1969-71* | *1972-77* | *1972-77* | *1972-77* | *1985* | *2003* | *2017-20* | *2017-20* | *2017-20* | *2017-20* | *ours* | *ours* | *ours* | *ours* |
-| Pais & Uhlenbeck 1950, `PU-1` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Utiyama & DeWitt 1962, `UD-1` | X | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Utiyama & DeWitt 1962, `UD-2` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Utiyama & DeWitt 1962, `UD-3` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Utiyama & DeWitt 1962, `UD-4` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · |
-| Utiyama & DeWitt 1962, `UD-5` | X | X | · | · | · | · | · | · | X | · | X | · | · | · | · | O | · | · | · | · | · |
-| Sakharov 1967, `SA-1` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Lee & Wick 1969, `LW-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · |
-| Lee & Wick 1969, `LW-2` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · |
-| Lee & Wick 1969, `LW-3` | · | · | · | · | X | · | X | O | · | · | · | · | · | O | · | O | · | · | · | · | · |
-| Cutkosky, Landshoff, Olive & Polkinghorne 1969, `CL-1` | · | · | · | · | · | X | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · |
-| Nakanishi (Feb) 1971, `NA-1` | · | · | · | · | X | · | X | O | · | · | · | · | · | O | · | O | · | · | · | · | · |
-| Lee & Wick (reply) 1971, `LR-1` | · | · | · | · | · | X | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · |
-| Nakanishi (June) 1971, `NB-1` | · | · | · | · | · | · | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · |
-| Gleeson, Moore, Rechenberg & Sudarshan 1971, `GM-1` | · | · | · | · | X | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-1` | · | · | X | · | · | · | · | · | X | · | · | O | X | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-3` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · |
-| 't Hooft & Veltman 1974, `HV-5` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · |
-| 't Hooft & Veltman 1974, `HV-6` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-7` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-8` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-9` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-10` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-11` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | O |
-| 't Hooft & Veltman 1974, `HV-12` | O | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-13` | · | · | · | · | · | · | · | · | X | X | · | · | · | · | · | · | · | · | · | · | · |
-| Deser & van Nieuwenhuizen 1974, `DN-1` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · |
-| Gorbar & Shapiro (hep-ph/0210388) 2003, `GS-1` | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · |
-| Aglietti & Anselmi (1612.06510) 2017, `AA-1` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Aglietti & Anselmi (1612.06510) 2017, `AA-2` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Aglietti & Anselmi (1612.06510) 2017, `AA-3` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Anselmi & Piva (1703.04584) 2017, `AP-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · |
-| Anselmi & Piva (1703.04584) 2017, `AP-2` | · | · | · | · | · | · | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · |
-| Anselmi & Piva (1703.04584) 2017, `AP-3` | · | · | · | · | · | O | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · |
-| Anselmi (1801.00915) 2018, `AN-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · |
-| Anselmi (1801.00915) 2018, `AN-2` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · |
-| Anselmi (1801.00915) 2018, `AN-3` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | O | X | · | · | · | · | · |
-| Anselmi (1809.05037) 2018, `AC-1` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · |
-| Anselmi (1809.05037) 2018, `AC-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · |
-| Salvio (1804.09944) 2018, `SV-1` | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
-| Anselmi (2001.01942) 2020, `AF-1` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · |
-| Anselmi (2001.01942) 2020, `AF-2` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · |
-| Anselmi (2001.01942) 2020, `AF-3` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · |
-| Anselmi (2001.01942) 2020, `AF-4` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · |
+| paper, claim | ptime | cutoff | dewitt | realaxis | lwres | clop | gmrs | cscale | dimreg | hv340 | spinproj | gsdw | hktable | regionwise | cutting | avgcont | projection | ballcert | jetprobe | hand | weylmap | conj | directshift |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| *era* | *before 1969* | *before 1969* | *before 1969* | *before 1969* | *1969-71* | *1969-71* | *1969-71* | *1969-71* | *1972-77* | *1972-77* | *1972-77* | *1985* | *2003* | *2017-20* | *2017-20* | *2017-20* | *2017-20* | *ours* | *ours* | *ours* | *ours* | *ours* | *ours* |
+| Pais & Uhlenbeck 1950, `PU-1` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Utiyama & DeWitt 1962, `UD-1` | X | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Utiyama & DeWitt 1962, `UD-2` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Utiyama & DeWitt 1962, `UD-3` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Utiyama & DeWitt 1962, `UD-4` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · | · | · |
+| Utiyama & DeWitt 1962, `UD-5` | X | X | · | · | · | · | · | · | X | · | X | · | · | · | · | O | · | · | · | · | · | · | · |
+| Sakharov 1967, `SA-1` | X | X\* | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Lee & Wick 1969, `LW-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · | · | · |
+| Lee & Wick 1969, `LW-2` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · |
+| Lee & Wick 1969, `LW-3` | · | · | · | · | X | · | X | O | · | · | · | · | · | O | · | O | · | · | · | · | · | · | · |
+| Cutkosky, Landshoff, Olive & Polkinghorne 1969, `CL-1` | · | · | · | · | · | X | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
+| Nakanishi (Feb) 1971, `NA-1` | · | · | · | · | X | · | X | O | · | · | · | · | · | O | · | O | · | · | · | · | · | · | · |
+| Lee & Wick (reply) 1971, `LR-1` | · | · | · | · | · | X | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
+| Nakanishi (June) 1971, `NB-1` | · | · | · | · | · | · | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
+| Gleeson, Moore, Rechenberg & Sudarshan 1971, `GM-1` | · | · | · | · | X | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-1` | · | · | X | · | · | · | · | · | X | · | · | O | X | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-3` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · |
+| 't Hooft & Veltman 1974, `HV-5` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · |
+| 't Hooft & Veltman 1974, `HV-6` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-7` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-8` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-9` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-10` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-11` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | O | O | O |
+| 't Hooft & Veltman 1974, `HV-12` | O | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-13` | · | · | · | · | · | · | · | · | X | X | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Deser & van Nieuwenhuizen 1974, `DN-1` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Gorbar & Shapiro (hep-ph/0210388) 2003, `GS-1` | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Aglietti & Anselmi (1612.06510) 2017, `AA-1` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Aglietti & Anselmi (1612.06510) 2017, `AA-2` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Aglietti & Anselmi (1612.06510) 2017, `AA-3` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Anselmi & Piva (1703.04584) 2017, `AP-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · |
+| Anselmi & Piva (1703.04584) 2017, `AP-2` | · | · | · | · | · | · | · | O | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
+| Anselmi & Piva (1703.04584) 2017, `AP-3` | · | · | · | · | · | O | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · |
+| Anselmi (1801.00915) 2018, `AN-1` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · | · | · |
+| Anselmi (1801.00915) 2018, `AN-2` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · |
+| Anselmi (1801.00915) 2018, `AN-3` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | O | X | · | · | · | · | · | · | · |
+| Anselmi (1809.05037) 2018, `AC-1` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · |
+| Anselmi (1809.05037) 2018, `AC-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · |
+| Salvio (1804.09944) 2018, `SV-1` | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Anselmi (2001.01942) 2020, `AF-1` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · |
+| Anselmi (2001.01942) 2020, `AF-2` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · |
+| Anselmi (2001.01942) 2020, `AF-3` | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | X | · | X | · | · | · | · | · |
+| Anselmi (2001.01942) 2020, `AF-4` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · |
 
 (· stands for N, to keep the marks visible.)
 
-Counts: X 75, X* 3, S 0, O 33, N 855; 46 claims, 21 methods.
+Counts: X 75, X* 3, S 0, O 35, N 945; 46 claims, 23 methods.
 
 ## 4. Needing backing
 
