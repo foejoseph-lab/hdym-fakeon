@@ -1,0 +1,10 @@
+# conjugation_proving: seed 20261110, settings B, 1 backgrounds each, mutate esym, jobs 1
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+B0 (d = 2; R = -1711/12; det J(0) = -2):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == 0 as matrices True, Tr Omega^2 = 0  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E False, Omega True  -> FAIL   [w'(0) nonzero: True]
+   C2 traces: Tr E -1/2 / -1/2, Tr E^2 11/8 / 11/8, Tr Omega^2 0 / 0  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated 29585623/46656, original 29585623/46656, 2(3.40) + (d/180)GB + (1/6)Box Tr E = 29585623/46656  -> PASS   [direct 94 s, total 94 s]
+
+status=FAIL
+END conjugation_proving 94 s

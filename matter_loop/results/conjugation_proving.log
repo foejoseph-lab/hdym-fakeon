@@ -1,0 +1,35 @@
+# conjugation_proving: seed 20261110, settings A,B,C, 2 backgrounds each, mutate none, jobs 6
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+A0 (d = 1; R = 377/6; det J(0) = 3/2):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == 0 as matrices True, Tr Omega^2 = 0  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E 3 / 3, Tr E^2 9 / 9, Tr Omega^2 0 / 0  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated 17696563/116640, original 17696563/116640, 2(3.40) + (d/180)GB + (1/6)Box Tr E = 17696563/116640  -> PASS   [direct 29 s, total 29 s]
+A1 (d = 1; R = -4; det J(0) = 2):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == 0 as matrices True, Tr Omega^2 = 0  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E 0 / 0, Tr E^2 0 / 0, Tr Omega^2 0 / 0  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated 2573729/116640, original 2573729/116640, 2(3.40) + (d/180)GB + (1/6)Box Tr E = 2573729/116640  -> PASS   [direct 28 s, total 29 s]
+B0 (d = 2; R = -1711/12; det J(0) = -2):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == 0 as matrices True, Tr Omega^2 = 0  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E -1/2 / -1/2, Tr E^2 11/8 / 11/8, Tr Omega^2 0 / 0  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated 29585623/46656, original 29585623/46656, 2(3.40) + (d/180)GB + (1/6)Box Tr E = 29585623/46656  -> PASS   [direct 130 s, total 131 s]
+B1 (d = 2; R = -887/9; det J(0) = 4):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == 0 as matrices True, Tr Omega^2 = 0  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E -2 / -2, Tr E^2 20/9 / 20/9, Tr Omega^2 0 / 0  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated 8699263/23328, original 8699263/23328, 2(3.40) + (d/180)GB + (1/6)Box Tr E = 8699263/23328  -> PASS   [direct 137 s, total 138 s]
+C0 (d = 4; R = -37/3; det J(0) = 51/2):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == Riemann elementwise True, Tr Omega^2 = -2477555/162 (-Riem^2 = -2477555/162)  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E -8/3 / -8/3, Tr E^2 257/24 / 257/24, Tr Omega^2 -2477555/162 / -2477555/162  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated -55219957/58320, original -55219957/58320, 2(3.40) + (d/180)GB + (1/6)Box Tr E = -55219957/58320  -> PASS   [direct 1486 s, total 1489 s]
+C1 (d = 4; R = -143/36; det J(0) = -139/4):
+   C0 J = 1: Laplace type True, w(0) = 0 True, E(0) = M(0) True, S = 1 to first order True, Omega == Riemann elementwise True, Tr Omega^2 = -1803443/432 (-Riem^2 = -1803443/432)  -> PASS
+   C1 direct == conjugated: S True, Laplace type True, w True, E True, Omega True  -> PASS   [w'(0) nonzero: True]
+   C2 traces: Tr E 4 / 4, Tr E^2 503/18 / 503/18, Tr Omega^2 -1803443/432 / -1803443/432  -> PASS
+   C3 recursion: its input fields == the direct method's w, E, Omega at the origin (original and conjugated) True; Tr a_2(0) conjugated -59863769/233280, original -59863769/233280, 2(3.40) + (d/180)GB + (1/6)Box Tr E = -59863769/233280  -> PASS   [direct 1484 s, total 1488 s]
+
+status=PASS
+END conjugation_proving 1489 s
