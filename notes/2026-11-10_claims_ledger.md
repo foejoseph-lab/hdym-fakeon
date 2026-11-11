@@ -197,7 +197,7 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
 - **one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7)**
   - papers: 't Hooft & Veltman 1974 (`HV-11`): open; prediction on record: on shell it is (6.5) in the redefined field
   - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the direct computation with a = 1/12, on shell
-  - O — Weyl map checked as a pointwise identity (2026): weyl_map_check.py: sandbox, reviewed 10 Nov. The author's run pending
+  - O — Weyl map checked as a pointwise identity (2026): weyl_map_check.log (status=PASS): the map and the constant sqrt(12) only. The divergence itself is not computed
 - **one-loop divergence: master formula for a general second-order operator (3.40)**
   - papers: 't Hooft & Veltman 1974 (`HV-1`): holds, as half the heat-kernel coefficient modulo Gauss-Bonnet
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_bundle.log: scalar, vector, Maxwell. The vector bundle-curvature coefficient confirmed in combination only
@@ -206,12 +206,12 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - X — heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003): Gilkey's coefficient; the Box E term seen in rung3_dewitt_gravscalar.log
 - **one-loop divergence: pure gravity on shell vanishes (6.6)**
   - papers: 't Hooft & Veltman 1974 (`HV-10`): holds
-  - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton.log: the numbers are right (after Gauss-Bonnet 1/120 R^2 + 7/20 Ric^2) but its status line says FAIL, from a mistyped prediction table (rung 3 note 4b). No corrected log is committed. The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
+  - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b). The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
   - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): hv1974_graviton_M.log
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
 - **one-loop divergence: pure gravity, off shell (5.24)**
   - papers: 't Hooft & Veltman 1974 (`HV-8`): holds
-  - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton.log: the numbers are right (after Gauss-Bonnet 1/120 R^2 + 7/20 Ric^2) but its status line says FAIL, from a mistyped prediction table (rung 3 note 4b). No corrected log is committed
+  - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b)
   - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): hv1974_graviton_M.log
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
 - **one-loop divergence: the Riemann-squared term is never needed (Gauss-Bonnet, App. B)**
@@ -403,4 +403,8 @@ Resting on a paper that was read, with no search of the later literature:
 - rung 2 control: the frame dependence of the finite part of the real-axis integral (not in 1612.06510, section 3 read in full)
 - rung 3: the (Box phi)^2 coefficient 1/2 against the printed 2 of (5.22)
 - rung 3: "(3.40) is half the heat-kernel coefficient modulo Gauss-Bonnet" as a statement
+Not from a paper: the project's own goal sentence.
+- "a scalar's stress sources the Weyl ghost" (a GR + massless-scalar solution on an anisotropic background stops solving the
+  Weyl-squared theory once the scalar moves): cited in the session briefs (outside git), up to no. 19, as established by the classical work in hdym. It rested on a quick
+  smoke of an uncommitted script. To be shown by one exact script after rung 3 (author's yes, 10 Nov).
 

@@ -80,7 +80,7 @@ The paper's own order is flat space → conformally flat → the self-energy gra
 | 1 | **(3.40) as code**: given the bundle, N_μ, M on a generic background, return ΔL's three coefficients | M: the formula. P: DeWitt's recursion (1965) on the bundle with endomorphism — rung 1's normal-coordinate collapse extended | the minimal scalar → (5.23) from rung 1's dim-reg logs; the conformal scalar; a vector with its ghosts (Maxwell on a background; the `matter_loop/` standing item) |
 | 2 | **the h-operator**: √g(−R − ½(∂φ̄)²) to second order about (g, φ̃) by sympy (rung 1's second-order machinery), the gauge (4.27), −½C², the P⁻¹ replacement (5.3–5.4), the connection (5.8), the ghost (5.19) | M: (3.40) applied. P: the pieces (5.14)–(5.18), (5.20)–(5.21) reproduced one by one before the sum | (5.22); φ̃ = 0 → (5.24); Gauss–Bonnet (B.6) on random algebraic curvature tensors (rung 1's fit) |
 | 3a | **on shell**: (6.3) → 203/80; (6.4) → 0 | | the paper's (6.5), (6.6) |
-| 3b | **§7, the improved tensor** — rule-25 prediction (from the author's overnight s1, 3–4 Nov, hdym; to be re-derived here): with a ≠ 0 and no R² term, aRφ² is removed by the Weyl map (7.7) plus the field redefinition φ̃ = √6 artanh(φ/√6) at a = 1/12 (K = 1/F², F = 1 − φ²/6); the S-matrix is invariant under field redefinitions (p. 70), so **the on-shell divergence with a = 1/12 is (6.5) rewritten in the new field: (√g/ε)(203/80)·¼K²((∂φ)²)²**, which is "not of any simple form" — the paper computed off shell and stopped one step short of this sentence. Off shell the power series in φ̃ is not reproduced (Schoonschip; "unprintable"); on shell it is one line | M: the Weyl map in rung 1's expansion. P: (3.40) with a ≠ 0 directly, on shell | the two agree; if they do not, the prediction failed (rule 11) |
+| 3b | **§7, the improved tensor** — rule-25 prediction (the prediction is the author's, 3–4 Nov; the formula was first written by a cloud session's script in hdym's normalisation R/2, where the constant is √6 and F = 1 − φ²/6 — corrected here 10 Nov to this paper's normalisation, §4g): with a ≠ 0 and no R² term, aRφ² is removed by the Weyl map (7.7) plus the field redefinition φ̃ = √12 artanh(φ/√12) at a = 1/12 (K = 1/F², F = 1 − φ²/12); the S-matrix is invariant under field redefinitions (p. 70), so **the on-shell divergence with a = 1/12 is (6.5) rewritten in the new field: (√g/ε)(203/80)·¼K²((∂φ)²)²**, which is "not of any simple form" — the paper computed off shell and stopped one step short of this sentence. Off shell the power series in φ̃ is not reproduced (Schoonschip; "unprintable"); on shell it is one line | M: the Weyl map in rung 1's expansion. P: (3.40) with a ≠ 0 directly, on shell | the two agree; if they do not, the prediction failed (rule 11) |
 | 3c | **Einstein–Maxwell** (Deser–van Nieuwenhuizen 1974): (√g/ε)(137/60)Ric² on shell [m] | the same code, different matter | the implemented-not-fitted check |
 | 4 | later techniques at their date: the modern a₂ tables (Vassilevich 2003) as the check on step 1; the 1985 generalized Schwinger–DeWitt only when the chronology reaches it (fourth-order operators are Stelle's) | | |
 
@@ -336,19 +336,28 @@ to be used, if they show up by one that s not an already run one as needing look
 any more thorough check using the methods of the era until 'finely tuned' or otherwise used in a slightly different way to catch the
 abnormality." They are left to the back passes.
 
-## 4g. √6 or √12? (10 Nov evening; sandbox, reviewed; the author's run pending) — the constant in the 3b prediction corrected
+## 4g. √6 or √12? (10 Nov evening; reviewed; the author's run committed 3c5db6b, status=PASS, identical to the sandbox) — the constant in the 3b prediction corrected
 
-The 3b row of §2 records the field redefinition as φ̃ = √6 artanh(φ/√6), F = 1 − φ²/6, from the author's overnight s1 (which is in
-neither repository and not on his machine, 10 Nov). `graviton_loop/weyl_map_check.py` derives it for a general coefficient c of the
+The 3b row of §2 records the field redefinition as φ̃ = √6 artanh(φ/√6), F = 1 − φ²/6, from a check written on 3 Nov for hdym (on the Bianchi IX
+ansatz; a cloud session's script that ran only as a quick smoke and was never committed — 10 Nov, from that session's own account). `graviton_loop/weyl_map_check.py` derives it for a general coefficient c of the
 curvature term, L = √g(c R − aRφ² − ½(∂φ)²): with g_E = f g, f = 1 − aφ²/c, K = 1/f + 3c f′²/f², the two Lagrangians differ by exactly
 the total derivative −∂_μ(3c√g g^{μν}∂_νf) on generic polynomial metrics and fields (eight effective cases, including a ≠ 1/12;
 R[f g] computed from the metric, no Weyl formula typed), and K f² = 1 + (aφ²/c)(12a − 1): **K = 1/f² at a = 1/12 for any c, with
 F = 1 − φ²/(12c), φ̃ = √(12c) artanh(φ/√(12c)).** 't Hooft–Veltman's (7.1), with f = 1 − aφ² (§1 above, from the scan), is c = 1:
-**√12 and F = 1 − φ²/12.** The √6 is consistent with the c = ½ normalisation (R/2, reduced Planck mass 1); no more can be said, since s1
-cannot be consulted and a slip there is as possible. Limits (fresh review, 10 Nov; mutations all caught): the identity holds for any
+**√12 and F = 1 − φ²/12.** The √6 is the c = ½ normalisation (R/2, reduced Planck mass 1): hdym writes its action as R/2 − C²/(4M²)
+(`hdym/bianchi9`), and that session reports its kinetic function as K = 1/F + (3/2)(F′/F)², which is the formula above at c = ½.
+The script itself was not seen. Limits (fresh review, 10 Nov; mutations all caught): the identity holds for any
 f, so the c in √(12c) rests on the identification c f R = cR − aRφ² and on the tested 3c in K; c = 1 is read from this note's
 summary of (7.1), with (6.3)'s ½ agreeing, not from the scan; the map needs |φ| < √(12c) and the script has m = 0; and going from
 the map to the divergence assumes the paper's Jacobian-one remark (p. 70), which is itself an open row of the ledger. The prediction's form, (203/80)·¼K²((∂φ)²)² on shell, is unchanged; read √12 for √6 in the 3b row.
+
+**Labels struck (author, 10 Nov).** Earlier notes and briefs called that check and three other unrun scripts of the same 3 Nov session
+by stage numbers. The numbering is dropped. What survives of them here: (i) the improved-tensor prediction, now standing on
+`weyl_map_check.py`; (ii) one statement the project's goal sentence leans on and that is **not yet shown in any committed run** —
+*a solution of general relativity with a massless scalar stops solving the theory with the Weyl-squared term once the scalar moves
+(on an anisotropic background), so the scalar's stress sources the Weyl ghost.* It is to be shown by one short exact script after
+rung 3 (classical work: the author's written yes, 10 Nov, for that one check). If a later reader finds it cited as established,
+it was not, as of this date. The other two scripts were hdym questions and are no part of this project.
 
 **The claims ledger** (author's request, 10 Nov): `notes/2026-11-10_claims_ledger.md`, generated from `notes/claims/` — what each
 paper reached so far set out to show, in one wording, against the methods by which it has been shown here. Its first draft was

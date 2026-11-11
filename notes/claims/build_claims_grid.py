@@ -88,5 +88,5 @@ if __name__ == '__main__':
     L.append(open(os.path.join(here, 'needs_backing.txt'), encoding='utf-8').read())
     open(os.path.join(here, '..', '2026-11-10_claims_ledger.md'), 'w', encoding='utf-8').write("\n".join(L) + "\n")
     with open(os.path.join(here, 'grid.csv'), 'w', newline='', encoding='utf-8-sig') as f:
-        csv.writer(f).writerows(rows)
+        csv.writer(f, lineterminator='\n').writerows(rows)
     print(f"claims {len(claims)}, methods {len(methods)}, cells listed {len(cell)}: X {counts['X']}, X* {counts['X*']}, S {counts['S']}, O {counts['O']}, N {counts['N']}")

@@ -7,3 +7,7 @@ Resting on a paper that was read, with no search of the later literature:
 - rung 2 control: the frame dependence of the finite part of the real-axis integral (not in 1612.06510, section 3 read in full)
 - rung 3: the (Box phi)^2 coefficient 1/2 against the printed 2 of (5.22)
 - rung 3: "(3.40) is half the heat-kernel coefficient modulo Gauss-Bonnet" as a statement
+Not from a paper: the project's own goal sentence.
+- "a scalar's stress sources the Weyl ghost" (a GR + massless-scalar solution on an anisotropic background stops solving the
+  Weyl-squared theory once the scalar moves): cited in the session briefs (outside git), up to no. 19, as established by the classical work in hdym. It rested on a quick
+  smoke of an uncommitted script. To be shown by one exact script after rung 3 (author's yes, 10 Nov).
