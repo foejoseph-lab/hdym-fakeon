@@ -1,0 +1,19 @@
+# weyl_map_check: seed 20261110
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+W1 a = 1/12, c = 1: L_E - L_J = 53/18;  -d(3 c sqrt(g) g d f) = 53/18;  equal: True   [f(0) = 11/12, K(0) = 144/121, K f^2 = 1]
+W1 a = 1/12, c = 1: L_E - L_J = 2563/720;  -d(3 c sqrt(g) g d f) = 2563/720;  equal: True   [f(0) = 299/300, K(0) = 90000/89401, K f^2 = 1]
+W1 a = 1/12, c = 1/2: L_E - L_J = 337/192;  -d(3 c sqrt(g) g d f) = 337/192;  equal: True   [f(0) = 23/24, K(0) = 576/529, K f^2 = 1]
+W1 a = 1/12, c = 1/2: L_E - L_J = 1195/288;  -d(3 c sqrt(g) g d f) = 1195/288;  equal: True   [f(0) = 23/24, K(0) = 576/529, K f^2 = 1]
+W1 a = 1/5, c = 1: L_E - L_J = 47/8;  -d(3 c sqrt(g) g d f) = 47/8;  equal: True   [f(0) = 19/20, K(0) = 428/361, K f^2 = 107/100]
+W1 a = 1/5, c = 1: L_E - L_J = 187/360;  -d(3 c sqrt(g) g d f) = 187/360;  equal: True   [f(0) = 44/45, K(0) = 261/242, K f^2 = 232/225]
+W1 a = -2/7, c = 3/2: L_E - L_J = -173/14;  -d(3 c sqrt(g) g d f) = -173/14;  equal: True   [f(0) = 25/21, K(0) = 813/625, K f^2 = 271/147]
+W1 a = -2/7, c = 3/2: L_E - L_J = -979/56;  -d(3 c sqrt(g) g d f) = -979/56;  equal: True   [f(0) = 22/21, K(0) = 267/242, K f^2 = 178/147]
+W1 a = 0, c = 1: L_E - L_J = 0;  -d(3 c sqrt(g) g d f) = 0;  equal: True   [f(0) = 1, K(0) = 1, K f^2 = 1]
+W1 a = 0, c = 1: L_E - L_J = 0;  -d(3 c sqrt(g) g d f) = 0;  equal: True   [f(0) = 1, K(0) = 1, K f^2 = 1]
+
+W2 K f^2 = 1 + (a phi^2/c)(12a - 1): True;  at a = 1/12, K f^2 = 1 for any c;  d/dphi [sqrt(12c) artanh(phi/sqrt(12c))] = 1/f = sqrt(K): True
+   c = 1   ('t Hooft-Veltman (7.1)):      phi-tilde = sqrt(12) artanh(phi/sqrt(12)),  F = 1 - phi^2/12
+   c = 1/2 (R/2, reduced Planck mass 1):  phi-tilde = sqrt(6)  artanh(phi/sqrt(6)),   F = 1 - phi^2/6
+
+status=PASS
+END weyl_map_check 0 s
