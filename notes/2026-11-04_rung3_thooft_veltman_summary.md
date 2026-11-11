@@ -327,6 +327,36 @@ Recorded against me: my first smoke printed G0 PASS having drawn no linear η on
 run); the times I typed in the header were guesses, not clock readings (corrected from the logs' file times); an unused import of
 the print script in a script whose point is independence from it (removed).
 
+**The author's ghost runs, 10 Nov 18:10 (committed a9f4d56).** Main run status=PASS and identical to the sandbox line for line; the
+weight-2 control FAIL as intended (32 of 32); the c = 0 control E_gh = Ric.
+
+**Step 3a closed (author, 10 Nov 17:59).** On the three items both methods share (the Faddeev–Popov −2, the two reductions, the
+on-shell substitution), in his words: "Honestly if they have been checked. They have been checked. At the number of different methods
+to be used, if they show up by one that s not an already run one as needing looking at, they likely would have still been hidden by
+any more thorough check using the methods of the era until 'finely tuned' or otherwise used in a slightly different way to catch the
+abnormality." They are left to the back passes.
+
+## 4g. √6 or √12? (10 Nov evening; sandbox, reviewed; the author's run pending) — the constant in the 3b prediction corrected
+
+The 3b row of §2 records the field redefinition as φ̃ = √6 artanh(φ/√6), F = 1 − φ²/6, from the author's overnight s1 (which is in
+neither repository and not on his machine, 10 Nov). `graviton_loop/weyl_map_check.py` derives it for a general coefficient c of the
+curvature term, L = √g(c R − aRφ² − ½(∂φ)²): with g_E = f g, f = 1 − aφ²/c, K = 1/f + 3c f′²/f², the two Lagrangians differ by exactly
+the total derivative −∂_μ(3c√g g^{μν}∂_νf) on generic polynomial metrics and fields (eight effective cases, including a ≠ 1/12;
+R[f g] computed from the metric, no Weyl formula typed), and K f² = 1 + (aφ²/c)(12a − 1): **K = 1/f² at a = 1/12 for any c, with
+F = 1 − φ²/(12c), φ̃ = √(12c) artanh(φ/√(12c)).** 't Hooft–Veltman's (7.1), with f = 1 − aφ² (§1 above, from the scan), is c = 1:
+**√12 and F = 1 − φ²/12.** The √6 is consistent with the c = ½ normalisation (R/2, reduced Planck mass 1); no more can be said, since s1
+cannot be consulted and a slip there is as possible. Limits (fresh review, 10 Nov; mutations all caught): the identity holds for any
+f, so the c in √(12c) rests on the identification c f R = cR − aRφ² and on the tested 3c in K; c = 1 is read from this note's
+summary of (7.1), with (6.3)'s ½ agreeing, not from the scan; the map needs |φ| < √(12c) and the script has m = 0; and going from
+the map to the divergence assumes the paper's Jacobian-one remark (p. 70), which is itself an open row of the ledger. The prediction's form, (203/80)·¼K²((∂φ)²)² on shell, is unchanged; read √12 for √6 in the 3b row.
+
+**The claims ledger** (author's request, 10 Nov): `notes/2026-11-10_claims_ledger.md`, generated from `notes/claims/` — what each
+paper reached so far set out to show, in one wording, against the methods by which it has been shown here. Its first draft was
+written from the notes without opening the logs; the fresh review opened them and found three wrong or unsupported groups of marks
+(two cells for a computation never run, cells citing a log whose status line says FAIL, a field separator inside a name), all
+corrected, and six claims missing, added. One consequence for the record: **`rung3_dewitt_graviton.log` still ends status=FAIL**
+(the mistyped table of §4b; the numbers are right) — a clean log from the current script is owed.
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 

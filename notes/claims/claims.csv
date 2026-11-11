@@ -1,0 +1,47 @@
+id|paper|year|source|kind|merged|claim|verdict
+PU-1|Pais & Uhlenbeck|1950|memory|propagators|PROP-4TH|propagator: the fourth-order oscillator splits into two modes, one of negative norm or energy|assumed (before the cutoff date; not recomputed)
+UD-1|Utiyama & DeWitt|1962|abstract only|one-loop divergences|DIV-3ORDERS|one-loop divergence, matter on a classical background: exactly three orders (quartic, quadratic, logarithmic)|holds
+UD-2|Utiyama & DeWitt|1962|abstract only|one-loop divergences|DIV-QUARTIC|one-loop divergence, matter on a classical background: the quartic order is a cosmological-term counterterm|holds only with a covariant regulator and DeWitt's measure
+UD-3|Utiyama & DeWitt|1962|abstract only|one-loop divergences|DIV-QUADRATIC|one-loop divergence, matter on a classical background: the quadratic order is a renormalization of G|holds only with a covariant regulator and DeWitt's measure
+UD-4|Utiyama & DeWitt|1962|abstract only|one-loop divergences|DIV-SCALAR-LOG|one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)|holds
+UD-5|Utiyama & DeWitt|1962|abstract only|propagators|PROP-1P4|propagator: the semiclassical graviton Green's function falls as 1/p^4|holds, as a running p^4 log term; which pole it implies is undecided from the abstract
+SA-1|Sakharov|1967|memory|one-loop divergences|DIV-INDUCED-G|one-loop divergence, matter on a classical background: the quadratic order determines G (induced gravity)|fails as a determination of G (the value is in the regulator, and dimensional regularization has no quadratic order at all). The m^2 R log coefficient survives. Dead vine
+LW-1|Lee & Wick|1969|second-hand|pair bubble|BUB-CONTOUR|pair bubble: defined by a deformed energy contour|holds in the rest frame
+LW-2|Lee & Wick|1969|second-hand|S-matrix|SMAT-NOIM-LW|S-matrix: the complex pair contributes no imaginary part (unitarity)|the bubble has no absorptive part, in the rest frame and in the boosted frames (the frame dependence is in the value). The S-matrix statement itself is not tested
+LW-3|Lee & Wick|1969|second-hand|pair bubble|BUB-LORENTZ|pair bubble: Lorentz invariant with the Lee-Wick contour and real spatial momenta|fails (the threshold moves with the frame)
+CL-1|Cutkosky, Landshoff, Olive & Polkinghorne|1969|second-hand|pair bubble|BUB-CLOP|pair bubble: coalescing singularities resolved by a mass-shift limit, giving a definite value|on one pair the two limits are the two i-epsilon values; the ambiguity cancels only in the symmetric four-pair sum
+NA-1|Nakanishi (Feb)|1971|second-hand|pair bubble|BUB-NOT-LORENTZ|pair bubble: not Lorentz invariant with the Lee-Wick contour and real spatial momenta (the threshold moves with the frame)|holds (the negation of LW-3)
+LR-1|Lee & Wick (reply)|1971|second-hand|pair bubble|BUB-LORENTZ-CURE|pair bubble: Lorentz invariance restored by complex spatial momenta plus the CLOP rule|CLOP with real momenta does not restore it; the complex-momenta half is open
+NB-1|Nakanishi (June)|1971|second-hand|pair bubble|BUB-INTRINSIC|pair bubble: the Lorentz breaking is intrinsic to a Hamiltonian formulation with complex energies|open (nothing computed)
+GM-1|Gleeson, Moore, Rechenberg & Sudarshan|1971|second-hand|pair bubble|BUB-CLOSED|pair bubble: closed form at nonzero spatial momentum|holds
+HV-1|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-MASTER|one-loop divergence: master formula for a general second-order operator (3.40)|holds, as half the heat-kernel coefficient modulo Gauss-Bonnet
+HV-2|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-GB|one-loop divergence: the Riemann-squared term is never needed (Gauss-Bonnet, App. B)|assumed (a classical identity in four dimensions). Used as a reduction throughout, never tested as an identity
+HV-3|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-SCALAR-LOG|one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)|holds (5.23)
+HV-4|'t Hooft & Veltman|1974|read in full|operators|OP-FLUCT|fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33)|holds, on shell and off shell
+HV-5|'t Hooft & Veltman|1974|read in full|operators|OP-GHOST|ghost operator: gravity + scalar (5.19)|holds; the factor -2 and the complex ghost are taken, not derived
+HV-6|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-GHOST|one-loop divergence: ghost contribution, gravity + scalar (5.21)|holds
+HV-7|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-GS-OFF|one-loop divergence: gravity + scalar total, off shell (5.22)|holds except one coefficient: (Box phi)^2 is 1/2, the printed 2 is a slip
+HV-8|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-G-OFF|one-loop divergence: pure gravity, off shell (5.24)|holds
+HV-9|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-GS-ON|one-loop divergence: gravity + scalar on shell is (203/80) R^2, not removable (6.5)|holds
+HV-10|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-G-ON|one-loop divergence: pure gravity on shell vanishes (6.6)|holds
+HV-11|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-IMPROVED|one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7)|open; prediction on record: on shell it is (6.5) in the redefined field
+HV-12|'t Hooft & Veltman|1974|read in full|S-matrix|SMAT-FIELDS|S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)|open; rung 1 found a measure term that dimensional regularization hides
+DN-1|Deser & van Nieuwenhuizen|1974|memory|one-loop divergences|DIV-EM-ON|one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable|open
+AA-1|Aglietti & Anselmi (1612.06510)|2017|read after the run|pair bubble|BUB-NONLOCAL-REALAXIS|pair bubble: nonlocal divergence when the energy integral of the complex pair runs on the real axis|a nonlocal divergence is found, ln(cutoff)/(4 pi^2 s) for the bare pair. The paper does not state that coefficient. Its table was checked at one entry (m = 0)
+AA-2|Aglietti & Anselmi (1612.06510)|2017|read after the run|pair bubble|BUB-NOEUCLID|pair bubble: the real-axis definition has no continuation to a Euclidean region|holds
+AA-3|Aglietti & Anselmi (1612.06510)|2017|read after the run|pair bubble|BUB-P2ONLY|pair bubble: the real-axis result may be taken as a function of p^2 only|holds for the logarithm; fails for the finite part (frame dependent)
+AP-1|Anselmi & Piva (1703.04584)|2017|read|pair bubble|BUB-CUSP|pair bubble: rigid-contour residue and cusp at the Lee-Wick threshold (section 3, fig. 13)|holds
+AN-1|Anselmi (1801.00915)|2018|read|pair bubble|BUB-AVG|pair bubble: average continuation, closed forms (5.4)-(5.8), (5.12)|holds
+AN-2|Anselmi (1801.00915)|2018|read|propagators|PROP-FAKEON-LIMIT|propagator: the fakeon is the zero-width limit of a Lee-Wick pair (6.3)|holds
+AN-3|Anselmi (1801.00915)|2018|read|S-matrix|SMAT-NOIM-FAKEON|S-matrix: the fakeon pair contributes no imaginary part (unitarity)|shown through its consequence on the real-mass fakeon bubble only
+AC-1|Anselmi (1809.05037)|2018|read|classical projection|PROJ-HARMONIC|classical projection: harmonic case in closed form (4.13)|holds; radius of convergence omega tau = 1/2
+AC-2|Anselmi (1809.05037)|2018|read|classical projection|PROJ-ASYMPTOTIC|classical projection: the order-by-order expansion is asymptotic for transient sources|indicated on a one-wall bounce (increments of c_K to K about 5. The last orders are at round-off)
+AF-1|Anselmi (2001.01942)|2020|read|pair bubble|BUB-NONLOCAL-PV|pair bubble: principal-value propagators in the loop give a nonlocal divergence (2.6)|holds (2.6)
+AF-2|Anselmi (2001.01942)|2020|read|pair bubble|BUB-PSEUDO|pair bubble: principal-value propagators in the loop give an imaginary part at the pseudothreshold, wrong sign (4.3)|holds
+AF-3|Anselmi (2001.01942)|2020|read|pair bubble|BUB-FAKEON-DIFF|pair bubble: fakeon minus ordinary self-energy, closed form (6.6)|holds
+HV-13|'t Hooft & Veltman|1974|read in full|one-loop divergences|DIV-SCALAR-CONF|one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)|holds
+GS-1|Gorbar & Shapiro (hep-ph/0210388)|2003|read|propagators|PROP-4615|propagator: the massless-scalar graviton self-energy has constant 46/15 beside its logarithm (3.7)|holds
+AP-2|Anselmi & Piva (1703.04584)|2017|read|pair bubble|BUB-REGIONWISE|pair bubble: Lorentz invariant, region by region, when the spatial momenta are deformed too (3.11)|open (back sweep)
+AP-3|Anselmi & Piva (1703.04584)|2017|read|pair bubble|BUB-FIG14|pair bubble: for unequal masses the CLOP limit has two values and the region-wise result is their average (fig. 14)|open (back sweep)
+SV-1|Salvio (1804.09944)|2018|read|one-loop divergences|DIV-SALVIO|one-loop divergence: the per-scalar running of the quadratic couplings (3.15)-(3.16)|the conversion from rung 1 was written out, not run
+AF-4|Anselmi (2001.01942)|2020|read|pair bubble|BUB-PV-31|pair bubble: principal-value self-energy with a cutoff, closed form (3.1), and its imaginary parts in D = 3, 2 (section 7)|holds

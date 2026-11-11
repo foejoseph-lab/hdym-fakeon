@@ -1,0 +1,9 @@
+Statements the notes mark as "ours". They stay marked as needing backing and may wait to the end (author, 10 Nov).
+Resting on papers read second-hand (the four 1971 Phys. Rev. D papers, CLOP 1969, Lee-Wick 1969 are unseen):
+- rung 2: the pinch circle and the odd i-epsilon mechanism at nonzero spatial momentum (not in Nakanishi 2006 or Anselmi-Piva 2017 as read)
+- rung 2: the fold-set location of the GMRS contour and its branch bookkeeping
+- rung 2: "CLOP's Lorentz invariance is the parametric integral's, not the rule's"
+Resting on a paper that was read, with no search of the later literature:
+- rung 2 control: the frame dependence of the finite part of the real-axis integral (not in 1612.06510, section 3 read in full)
+- rung 3: the (Box phi)^2 coefficient 1/2 against the printed 2 of (5.22)
+- rung 3: "(3.40) is half the heat-kernel coefficient modulo Gauss-Bonnet" as a statement

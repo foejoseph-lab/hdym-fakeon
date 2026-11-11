@@ -1,0 +1,22 @@
+id|era|year|name|kind|note
+ptime|before 1969|1951|Schwinger proper time on the graphs|regulator|good only with DeWitt's measure g^(1/4) phi
+cutoff|before 1969|1962|hard momentum cutoff on the graphs|regulator|both placements, both measures
+dewitt|before 1969|1965|DeWitt recursion in normal coordinates|method|random algebraic curvature tensors, exact fit
+realaxis|before 1969|1968|real-axis energy integral with a spatial cutoff (no prescription)|prescription|what anyone would have written before 1969; the era's control; year nominal
+lwres|1969-71|1969|Lee-Wick energy contour, momentum-space residues, real spatial momenta|prescription|'method M' of bubble/
+clop|1969-71|1969|CLOP mass-shift limit|prescription|
+gmrs|1969-71|1971|GMRS closed form (one-dimensional contour integral)|method|via Nakanishi 2006 eq. 3.7
+cscale|1969-71|1971|complex scaling (Aguilar-Balslev-Combes dilation analyticity)|method|existed the year of the crack and was never applied to it here. Whether the link is in print is unchecked
+dimreg|1972-77|1972|dimensional regularization on the graphs|regulator|
+hv340|1972-77|1974|'t Hooft-Veltman algorithm, formula (3.40)|method|'method M' of rung 3
+spinproj|1972-77|1977|spin projection of the two-point function and resummation|method|designator. Barnes-Rivers projectors, the move of Stelle 1977
+gsdw|1985|1985|generalized Schwinger-DeWitt (Barvinsky-Vilkovisky)|method|not yet reached
+hktable|2003|2003|heat-kernel coefficient table (Gilkey, Vassilevich 2003)|check|read after the run
+regionwise|2017-20|2017|region-wise continuation, complex spatial momenta (Anselmi-Piva)|prescription|back sweep
+cutting|2017-20|2017|cutting equations (Anselmi-Piva 1703.05563)|method|back sweep
+avgcont|2017-20|2018|Feynman parameters with the average continuation|prescription|'method P' of bubble/
+projection|2017-20|2018|order-by-order classical fakeon projection|method|
+ballcert|ours|2026|ball-arithmetic certification of closed forms (python-flint/Arb)|check|designator
+jetprobe|ours|2026|second variation of the action by jet probes|method|designator. Exact rationals, operators derived and not transcribed
+hand|ours|2026|hand derivation by an independent reviewer|check|designator
+weylmap|ours|2026|Weyl map checked as a pointwise identity|method|designator

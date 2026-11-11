@@ -1,0 +1,112 @@
+claim|method|mark|evidence
+UD-1|cutoff|X|matter_loop rung1_cutoff_*.log
+UD-1|ptime|X|rung1_propertime_*.log
+UD-2|cutoff|X*|non-covariant with either placement and either measure; rung1_cutoff_*_unshifted.log
+UD-2|ptime|X|rung1_propertime_covariant.log (fails with the plain measure)
+UD-3|cutoff|X*|non-covariant; rung1_cutoff_*.log
+UD-3|ptime|X|rung1_propertime_covariant.log
+UD-4|cutoff|X|six runs identical at the log order
+UD-4|ptime|X|six runs identical at the log order
+UD-4|dimreg|X|rung1_dimreg_*.log
+UD-4|dewitt|X|rung1_dewitt_samples.log
+UD-4|hv340|X|hv1974_master.log
+UD-4|hktable|X|Vassilevich 4.26-4.28, read after the run
+UD-4|gsdw|O|when the chronology reaches 1985
+UD-5|cutoff|X|rung1_finite_*.log: the p^4 log p^2 coefficient is right. The finite constant beside it is not transverse
+UD-5|ptime|X|rung1_finite_covariant.log
+UD-5|dimreg|X|rung1_finite_*.log; constant -46/15 verified against Gorbar-Shapiro
+UD-5|spinproj|X|rung1_finite_*.log
+UD-5|avgcont|O|the fakeon enters at the finite parts (rule 14)
+SA-1|cutoff|X*|rung1_massive_*.log
+SA-1|ptime|X|rung1_massive_covariant.log
+LW-1|lwres|X|bubble lw.log
+LW-1|avgcont|X|bubble lw.log
+LW-1|ballcert|X|bubble cert.log
+LW-2|lwres|X|lw.log, frame.log: no absorptive part in any frame tried
+LW-2|cutting|O|back sweep
+LW-3|lwres|X|frame.log, frame_sweep.log
+LW-3|gmrs|X|frame_sweep.log (G1, G2)
+LW-3|regionwise|O|back sweep from 2017
+LW-3|avgcont|O|back sweep, on the 1971 model
+NA-1|lwres|X|frame.log, frame_sweep.log
+NA-1|gmrs|X|frame_sweep.log (G1, G2)
+NA-1|regionwise|O|back sweep from 2017
+NA-1|avgcont|O|back sweep, on the 1971 model
+CL-1|clop|X|clop.log, both integration methods, rest and boosted frame
+CL-1|regionwise|O|the unequal-mass ambiguity in the 2017 model
+LR-1|clop|X|clop.log: a regular perturbation at nonzero spatial momentum
+LR-1|regionwise|O|back sweep from 2017
+NB-1|regionwise|O|back sweep from 2017
+GM-1|gmrs|X|frame_sweep.log (G1, G2)
+GM-1|lwres|X|frame_sweep.log
+HV-1|dewitt|X|rung3_dewitt_bundle.log: scalar, vector, Maxwell. The vector bundle-curvature coefficient confirmed in combination only
+HV-1|dimreg|X|rung1_dimreg_*.log: a one-component scalar only (full xi polynomial, no bundle-curvature term)
+HV-1|hktable|X|Gilkey's coefficient; the Box E term seen in rung3_dewitt_gravscalar.log
+HV-1|gsdw|O|when the chronology reaches 1985
+HV-3|cutoff|X|six runs identical at the log order
+HV-3|ptime|X|six runs identical at the log order
+HV-3|dimreg|X|rung1_dimreg_*.log
+HV-3|dewitt|X|rung1_dewitt_samples.log
+HV-3|hv340|X|hv1974_master.log
+HV-3|hktable|X|Vassilevich 4.26-4.28
+HV-3|gsdw|O|when the chronology reaches 1985
+HV-4|jetprobe|X|graviton_operator_derive.log, gravscalar_operator_derive*.log
+HV-4|hand|X|two fresh reviews, 9 Nov
+HV-5|jetprobe|X|ghost_operator_derive*.log
+HV-5|hand|X|fresh review, 9 and 10 Nov
+HV-6|hv340|X|hv1974_gravscalar_M.log
+HV-6|dewitt|X|rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method
+HV-6|gsdw|O|when the chronology reaches 1985
+HV-7|hv340|X|hv1974_gravscalar_M.log
+HV-7|dewitt|X|rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method
+HV-7|gsdw|O|when the chronology reaches 1985
+HV-8|hv340|X|hv1974_graviton_M.log
+HV-8|dewitt|X|rung3_dewitt_graviton.log: the numbers are right (after Gauss-Bonnet 1/120 R^2 + 7/20 Ric^2) but its status line says FAIL, from a mistyped prediction table (rung 3 note 4b). No corrected log is committed
+HV-8|gsdw|O|when the chronology reaches 1985
+HV-9|hv340|X|hv1974_gravscalar_M.log
+HV-9|dewitt|X|rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method (the on-shell substitution is one line in hv1974_gravscalar_M.py, hand-checked)
+HV-9|gsdw|O|when the chronology reaches 1985
+HV-10|hv340|X|hv1974_graviton_M.log
+HV-10|dewitt|X|rung3_dewitt_graviton.log: the numbers are right (after Gauss-Bonnet 1/120 R^2 + 7/20 Ric^2) but its status line says FAIL, from a mistyped prediction table (rung 3 note 4b). No corrected log is committed. The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
+HV-11|weylmap|O|weyl_map_check.py: sandbox, reviewed 10 Nov. The author's run pending
+HV-11|hv340|O|the direct computation with a = 1/12, on shell
+HV-12|cutoff|O|rule-25 prediction (ii) of the rung 3 note
+HV-12|ptime|O|rule-25 prediction (ii) of the rung 3 note
+DN-1|hv340|O|step 3c
+DN-1|dewitt|O|step 3c
+AA-1|realaxis|X|minkowski.log
+AA-2|realaxis|X|the pole-count argument and an unlogged first smoke (control note section 2). Not in minkowski.log
+AA-3|realaxis|X|minkowski.log (finite part frame dependent)
+AP-1|lwres|X|fig13.log: read from the table and the plot. No cusp check line
+AP-1|avgcont|X|fig13.log: read from the table and the plot. No cusp check line
+AN-1|avgcont|X|fakeon.log, lw.log
+AN-1|lwres|X|fakeon.log, lw.log
+AN-1|ballcert|X|cert.log
+AN-2|avgcont|X|fakeon.log
+AN-2|lwres|X|fakeon.log
+AN-3|avgcont|X|fakeon.log: real-mass fakeons, the consequence only
+AN-3|cutting|O|back sweep
+AC-1|projection|X|series_harmonic.log
+AC-2|projection|X|series_wall.log
+AF-1|realaxis|X|fw.log (real masses, the direct evidence). minkowski.log is the complex-mass extension
+AF-3|avgcont|X|fakeon.log
+AF-3|lwres|X|fakeon.log
+LW-3|cscale|O|the rigorous 1971 form of 'deform the spatial momenta'; added 10 Nov
+NA-1|cscale|O|added 10 Nov
+LR-1|cscale|O|the complex-momenta half of the reply, by the method of its own year
+NB-1|cscale|O|the one claim of rung 2 with nothing computed
+AF-2|realaxis|X|fw.log
+AF-1|ballcert|X|cert.log
+AF-2|ballcert|X|cert.log
+AF-3|ballcert|X|cert.log
+AF-4|realaxis|X|fw.log
+AF-4|ballcert|X|cert.log
+HV-10|gsdw|O|when the chronology reaches 1985
+HV-13|hv340|X|hv1974_master.log, scalar(1/6)
+HV-13|dimreg|X|rung1_dimreg_*.log: the R^2 coefficient vanishes at xi = 1/6 up to the -1/360
+GS-1|dimreg|X|rung1_finite_*.log; rung 1 note section 8.2, checked 2 Nov
+AP-2|regionwise|O|back sweep from 2017
+AP-2|cscale|O|added 10 Nov
+AP-3|regionwise|O|rung 2 results section 3
+AP-3|clop|O|the unequal-mass limit, in the 2017 model
+SV-1|dimreg|O|a one-line conversion from the rung 1 coefficients, written out 31 Oct, not run
