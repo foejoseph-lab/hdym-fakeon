@@ -488,6 +488,25 @@ backgrounds per c: the author's machine. The literal gauge (no K) at K′ ≠ 0 
 **Pending:** the author's three runs (header); then the ledger cells from the logs; then the second method in FORM, starting on
 the known case.
 
+## 4k. FORM beside the jet probes, on the known case first (13 Nov evening; sandbox only; the author's run pending)
+
+`graviton_loop/form/gravscalar_operator.frm` (FORM 4.3.1) and its reader `graviton_loop/form_operator_check.py`. Stage F0 of the
+second method for route 2: before FORM touches the class (7.10) it must give step 3's operator at K = 1 (the author's rule of
+10 Nov). Predictions F0.1–F0.6 in the FORM file's header, written 17:11 ET before any FORM code, the author's yes 17:25 ET.
+
+**What it is.** A symbolic, covariant derivation with the gauge coefficient c kept as a symbol: from the action and four
+identities of tensor calculus (√g and g⁻¹ to second order; the exact difference of connections and the exact Ricci tensor in
+terms of it; the commutator of covariant derivatives; the covariant Euler–Lagrange formula) FORM writes the two field equations
+and the ghost operator as sums of tensor monomials (35 + 8 + 7 terms, 0.00 s). Python evaluates them on random backgrounds by
+plain index sums; FORM is not asked to canonicalise curvature monomials.
+
+**Sandbox result (three backgrounds).** Second-derivative terms are P□h and □φ for every c; the first-derivative terms vanish at
+c = 1 and are proportional to (1 − c); the algebraic part at c = 1 equals `build_E` as an 11 × 11 matrix; the ghost is
+□η + (Ric − c·vv)η. Reversing the commutator's sign, or dropping the ⅛h² of √g, breaks the match in the h–h block. Nothing new
+about the physics: every number was known. What is new is a formula in c, which the jet probes can only sample.
+
+**Next:** F1, the class (7.10) with K(φ) and symbolic c, with its own header.
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 
