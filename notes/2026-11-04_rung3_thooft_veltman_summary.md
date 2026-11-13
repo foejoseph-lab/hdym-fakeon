@@ -449,6 +449,45 @@ formula — a different kind of computation from numerical probing, and the desc
 section. FORM 4.3.1 builds from source in the sandbox and has run a one-line test there; **nothing of the physics has been done in
 FORM yet.** The author has WSL with Ubuntu ready (FORM 5.0's paper, arXiv 2601.19982, lists native Windows support under deprecations).
 
+## 4j. §7 by route 2, the class (7.10) computed directly (13 Nov; sandbox smokes only; the author's runs pending; fresh review: see the script header)
+
+**§7 read from the print (13 Nov, pp. 88–90 as images; (7.8)–(7.9) also read by the author).** Corrections to §1 above and to brief 21:
+the metric alone is rescaled (7.7), the scalar is *not* redefined; the result (7.9) is filed under the class (7.10),
+√g{−R + ½(∂φ)²f₁(φ) + f₂(φ)}; (7.8) carries a mass term that (7.1) lacks; it is the Lagrangian that is a power series in φ and the
+counter-Lagrangian in φ̃. **The gauge is not stated, on or off shell is not stated, and no result is printed** — only "non-trivial
+coefficients", a = 1/12 "of little help", "not of any simple form". So route 2 has no printed number to reproduce. **Probable
+misprint:** (7.9) prints the kinetic term as −(2/2f)(∂φ)² (two independent readings); rescaling (7.8) gives −(1/2f), and
+`weyl_map_check.py` has K = 1/f + 3f′²/f². **b = 0** stays (author, 13 Nov): the b term has four derivatives, the order of the
+one-loop divergence itself, and a metric shift turns it into b((∂φ)²)² at first order — no propagator changes, no spin-2 pole
+(hand argument, nothing run).
+
+**The script.** `graviton_loop/class710_operator_derive.py`: L = √g(R − ½K(φ)(∂φ)²) with K's jets free (the theory (7.1) is
+K_a = (1 + (12a² − a)φ²)/(1 − aφ²)², so every a is a case), gauge −½C² with C = D·h − ½D tr h − c·K·φ∂φ̃ (c = 1: (4.27) of the
+canonical theory rewritten in φ — the gauge route 1 assumed by argument), the operator from the Lagrangian alone by jet probes,
+S⁻¹ from the left (the paper's P⁻¹ replacement extended to the scalar), ω, E, Ω, (3.40), the ghost by `ghost_operator_derive.py`.
+Predictions R0–R8 in its header, written 11:59 ET before any code and approved by the author 12:12 ET.
+
+**Found so far (sandbox, one background per smoke).** (i) My δ was wrong as first written (½k₁β + ¼k₁²u²; it is ½k₁β, with
+k₁ = K′/K, β = □φ̃ + ½k₁u² the scalar field equation) — a copying slip, caught by the first smoke on the scalar–scalar entry;
+the first wording stays in the header. (ii) With that, off shell (free K jets) and on shell (a = 1/12): S = diag(P, K), the only
+first-derivative term is k₁u on the scalar, E is step 3's with ∂φ̃∂φ̃ → K·uu plus δ on the scalar–scalar entry, the ghost is
+Ric − K·uu, and **on shell the total, less its Gauss–Bonnet and Ricci-identity multiples, is (203/320)K²(u²)²** — for a = 1/12 on
+one background. In this gauge the operator is step 3's by construction, so this tests the code and the algebra, not gauge
+independence. (iii) Prediction on record, argued: on shell the same number for every K, hence every a; a = 1/12 only makes k₁
+rational in φ. Off shell the extra terms are ¼k₁β(R/6 − Ku²) + (1/16)k₁²β² — a candidate for the paper's "non-trivial
+coefficients", in this gauge only.
+
+**New beside the proven method.** First-order data of the coefficient fields by expanding one order higher in y ('expand', ~40 s
+per base field) instead of translating the background ('translate', ~213 s); every run derives six base fields both ways on its
+first background and fails if they differ (two agreed exactly in the smoke).
+
+**R8, the gauge test (author's yes 13 Nov).** The family c ≠ 1 of the same gauge; on shell at a point there are four invariants
+and three total derivatives, so one number, α, is gauge invariant. Predicted α = 203/320 at c = 0 and c = 2. Needs five on-shell
+backgrounds per c: the author's machine. The literal gauge (no K) at K′ ≠ 0 is not tested by this.
+
+**Pending:** the author's three runs (header); then the ledger cells from the logs; then the second method in FORM, starting on
+the known case.
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 
