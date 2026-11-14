@@ -413,11 +413,12 @@ def check_r8(F, args, struct, cvals):
     return ok, table
 
 
-def check_logs(F, args, resdir):
-    """F1.8: FORM's operator against the jet-probe runs, on those runs' own backgrounds, from their logs and checkpoints"""
+def check_logs(F, args, resdir, lognames=('class710_r8_c0.log', 'class710_r8_c2.log', 'class710_operator_derive.log'), collect=None):
+    """F1.8: FORM's operator against the jet-probe runs, on those runs' own backgrounds, from their logs and checkpoints.
+    `collect`, if a list, receives (kind, R, u, W, cub, Kj, c, FORM's gilkey data) for every background compared."""
     ok = True; nseen = 0
     saved_say, saved_ver = Z.say, Z.CODE_VERSION
-    for logname in ('class710_r8_c0.log', 'class710_r8_c2.log', 'class710_operator_derive.log'):
+    for logname in lognames:
         path = os.path.join(resdir, logname)
         if not (os.path.exists(path) and os.path.exists(path + '.ckpt')):
             say(f"   {logname}: log or checkpoint not found; not compared"); continue
@@ -426,8 +427,10 @@ def check_logs(F, args, resdir):
         ver = re.search(r"# code version (\w+)", text).group(1)
         seed, cases, phi0, non, noff, cval, gauge, mode = head.groups()
         cval = sp.Rational(cval.rstrip(',')); phi0 = sp.Rational(phi0.rstrip(','))
-        totals = re.findall(r"\(3\.40\) total, pointwise: ([-0-9/]+)", text)
-        status = re.search(r"^status=(\S+)", text, re.M).group(1)
+        last = text.rsplit("# RESUMED", 1)[-1]          # a resumed run reprints every background below its last RESUMED line
+        totals = re.findall(r"\(3\.40\) total, pointwise: ([-0-9/]+)", last)
+        st = re.search(r"^status=(\S+)", last, re.M)
+        status = st.group(1) if st else "none (the run did not finish)"
         ck = ReadOnlyCheckpoint(path + '.ckpt')
         rng = random.Random(int(seed)); nb = 0; allsame = True
         Z.say = lambda *a: None; Z.CODE_VERSION = ver
@@ -455,20 +458,24 @@ def check_logs(F, args, resdir):
                         gh = GH.ghost_operator(D.Background(R, u, W, cub), c_eff, 1)          # the probes' ghost, derived here from the gauge condition (seconds)
                         same = dict(S=bool(P['s_ok']) and dd['S0'] == G['S'], B=all(dd['B0'][m] == G['B'][m] for m in idx), E=Ep_.applyfunc(sp.expand) == G['E'], Om2=Om2p == G['Om2'],
                                     ghost=gh[3] is not None and gh[3].applyfunc(sp.expand) == G['Egh'].applyfunc(sp.expand))
-                        if cval != 1:
+                        if totals:
                             same['total'] = nb < len(totals) and sp.Rational(totals[nb]) == G['tot']
+                        if collect is not None:
+                            collect.append((kind, R, u, W, cub, Kj, cval, G))
                         nb += 1; nseen += 1
                         if not all(same.values()):
                             allsame = False
                             say(f"   {logname}: {case} {kind} {i}: DIFFERS {same}")
         finally:
             Z.say, Z.CODE_VERSION = saved_say, saved_ver
-        if cval != 1 and len(totals) != nb:
+        if totals and len(totals) != nb:
             allsame = False
             say(f"   {logname}: {len(totals)} pointwise totals found in the log for {nb} backgrounds")
         say(f"   {logname} (c = {cval}, its own status={status}, code version {ver}): {nb} backgrounds regenerated from its seed; S (FORM's second-derivative part), the first-derivative coefficient, E (11 x 11), Tr Omega^2, the ghost"
-            + (" and the logged pointwise total" if cval != 1 else "") + f" by FORM == by the jet probes: {'all identical' if allsame and nb else 'NO'}")
+            + (" and the logged pointwise total" if totals else "") + f" by FORM == by the jet probes: {'all identical' if allsame and nb else 'NO'}")
         ok &= allsame and nb > 0
+        if nb and not allsame and not nseen:
+            say(f"   {logname}: found, but nothing in its checkpoint matches the backgrounds regenerated from its header (a different code version or options?)")
     return ok, nseen
 
 
