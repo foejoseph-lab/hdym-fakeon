@@ -1,0 +1,74 @@
+# class710_operator_derive: seed 20261113, cases 1/12, phi0 = 1/2, 5 on-shell + 0 off-shell backgrounds per case, c = 2, gauge image, mode min, method expand, crosscheck 2, mutate none, jobs 16
+# code version e631f8b77425 (hash of this script and its three imports; part of every checkpoint key)
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+# step 3's total on the eight structures (fitted here from hv1974_gravscalar_M, residuals zero: True): {'R2': 143/240, 'Ric2': -79/40, 'Riem2': 7/12, 'Rv2': 1/12, 'Ricvv': 1, 'v4': 1/2, 'trW2': -1/2, 'WW': 1}
+#   after its two reductions: {'R2': 1/80, 'Ric2': 43/120, 'Rv2': 1/12, 'v4': 1/2, 'trW2': 1/2};  on shell: 203/320 (v^2)^2   [2 s]
+# R8 fit on the known case (step 3's formula, c = 1, six on-shell backgrounds): {'v4': 203/320, 'vWv': 0, 'ricid': 1, 'gb': 7/12}, residuals [0, 0]: as it must be
+
+## a = 1/12 on shell 0: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 4128/2209, u^2 = 43/12, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 0: 20/68 base fields  [121 s]
+   a = 1/12 on shell 0: 40/68 base fields  [185 s]
+   a = 1/12 on shell 0: 60/68 base fields  [257 s]
+   a = 1/12 on shell 0: 68/68 base fields  [377 s]
+   timing: expand: 55 tasks, mean 56.6 s, sum 3114 s; plain: 11 tasks, mean 34.9 s, sum 384 s; translate: 2 tasks, mean 350.4 s, sum 701 s
+   cross-check, first-order data by 'translate' and by 'expand' on 2 base fields: identical
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 2, gauge image: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (4608/2209) u u: True
+   (3.40) total, pointwise: 210487115076977/71145748980
+   -> a = 1/12, on shell 0: cross ok, R1 ok, R5 ok   [378 s]
+
+## a = 1/12 on shell 1: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 15392/2209, u^2 = 481/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 1: 20/66 base fields  [501 s]
+   a = 1/12 on shell 1: 40/66 base fields  [560 s]
+   a = 1/12 on shell 1: 60/66 base fields  [606 s]
+   a = 1/12 on shell 1: 66/66 base fields  [621 s]
+   timing: expand: 55 tasks, mean 58.1 s, sum 3193 s; plain: 11 tasks, mean 36.6 s, sum 402 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 2, gauge image: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (4608/2209) u u: True
+   (3.40) total, pointwise: 174725219044669/142291497960
+   -> a = 1/12, on shell 1: R1 ok, R5 ok   [622 s]
+
+## a = 1/12 on shell 2: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 17696/2209, u^2 = 553/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 2: 20/66 base fields  [736 s]
+   a = 1/12 on shell 2: 40/66 base fields  [796 s]
+   a = 1/12 on shell 2: 60/66 base fields  [841 s]
+   a = 1/12 on shell 2: 66/66 base fields  [856 s]
+   timing: expand: 55 tasks, mean 55.7 s, sum 3062 s; plain: 11 tasks, mean 35.8 s, sum 394 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 2, gauge image: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (4608/2209) u u: True
+   (3.40) total, pointwise: 243379503064843/189721997280
+   -> a = 1/12, on shell 2: R1 ok, R5 ok   [857 s]
+
+## a = 1/12 on shell 3: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 11936/2209, u^2 = 373/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 3: 20/66 base fields  [974 s]
+   a = 1/12 on shell 3: 40/66 base fields  [1035 s]
+   a = 1/12 on shell 3: 60/66 base fields  [1081 s]
+   a = 1/12 on shell 3: 66/66 base fields  [1095 s]
+   timing: expand: 55 tasks, mean 56.7 s, sum 3118 s; plain: 11 tasks, mean 36.9 s, sum 406 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 2, gauge image: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (4608/2209) u u: True
+   (3.40) total, pointwise: 4881227976688373/1138331983680
+   -> a = 1/12, on shell 3: R1 ok, R5 ok   [1096 s]
+
+## a = 1/12 on shell 4: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 8064/2209, u^2 = 7, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 4: 20/66 base fields  [1211 s]
+   a = 1/12 on shell 4: 40/66 base fields  [1271 s]
+   a = 1/12 on shell 4: 60/66 base fields  [1318 s]
+   a = 1/12 on shell 4: 66/66 base fields  [1332 s]
+   timing: expand: 55 tasks, mean 56.2 s, sum 3091 s; plain: 11 tasks, mean 36.7 s, sum 404 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 2, gauge image: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (4608/2209) u u: True
+   (3.40) total, pointwise: 3778144433074133/1138331983680
+   -> a = 1/12, on shell 4: R1 ok, R5 ok   [1333 s]
+
+R8a  c = 2: alpha = 203/320  (203/320 predicted; step 3's own on-shell number computed above: 203/320): PASS
+R8b  Gauss-Bonnet coefficient g = 7/12 (7/12 at c = 1);  b = 0 per K0 u.Wt.u,  C = 25/12
+R8c  residuals of the 1 background(s) beyond the four fitted: [0]: PASS
+R8d  b = 0 (the canonical theory and this gauge family are even under (chi, psi) -> (-chi, -psi); v.Wc.v is odd): PASS
+status=PASS
+END class710_operator_derive 1333 s

@@ -1,0 +1,244 @@
+# class710_operator_derive: seed 20261113, cases 1/12,free,0,1/6,1,rand, phi0 = 1/2, 1 on-shell + 1 off-shell backgrounds per case, c = 1, gauge image, mode all, method expand, crosscheck 6, mutate none, jobs 16
+# code version e631f8b77425 (hash of this script and its three imports; part of every checkpoint key)
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+# step 3's total on the eight structures (fitted here from hv1974_gravscalar_M, residuals zero: True): {'R2': 143/240, 'Ric2': -79/40, 'Riem2': 7/12, 'Rv2': 1/12, 'Ricvv': 1, 'v4': 1/2, 'trW2': -1/2, 'WW': 1}
+#   after its two reductions: {'R2': 1/80, 'Ric2': 43/120, 'Rv2': 1/12, 'v4': 1/2, 'trW2': 1/2};  on shell: 203/320 (v^2)^2   [2 s]
+
+## a = 1/12 on shell 0: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 4128/2209, u^2 = 43/12, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 0: 20/182 base fields  [128 s]
+   a = 1/12 on shell 0: 40/182 base fields  [247 s]
+   a = 1/12 on shell 0: 60/182 base fields  [341 s]
+   a = 1/12 on shell 0: 80/182 base fields  [388 s]
+   a = 1/12 on shell 0: 100/182 base fields  [423 s]
+   a = 1/12 on shell 0: 120/182 base fields  [450 s]
+   a = 1/12 on shell 0: 140/182 base fields  [480 s]
+   a = 1/12 on shell 0: 160/182 base fields  [504 s]
+   a = 1/12 on shell 0: 180/182 base fields  [525 s]
+   a = 1/12 on shell 0: 182/182 base fields  [537 s]
+   timing: expand: 55 tasks, mean 56.7 s, sum 3118 s; plain: 121 tasks, mean 20.1 s, sum 2438 s; translate: 6 tasks, mean 450.7 s, sum 2704 s
+   cross-check, first-order data by 'translate' and by 'expand' on 6 base fields: identical
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-11882855753942/395254161): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -8256/2209)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (2304/2209) u u: True
+   R6  (3.40) total, pointwise: 209269542380897/71145748980;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 209269542380897/71145748980;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 216199872/24398405;  (203/320) K0^2 (u^2)^2 = 216199872/24398405;  equal: True
+   -> a = 1/12, on shell 0: cross ok, R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [538 s]
+
+## a = 1/12 off shell 0: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 529/18, u^2 = 481/36, beta = 763/423, delta = 3052/19881; field equations hold at 0: False
+   a = 1/12 off shell 0: 20/176 base fields  [640 s]
+   a = 1/12 off shell 0: 40/176 base fields  [694 s]
+   a = 1/12 off shell 0: 60/176 base fields  [736 s]
+   a = 1/12 off shell 0: 80/176 base fields  [756 s]
+   a = 1/12 off shell 0: 100/176 base fields  [779 s]
+   a = 1/12 off shell 0: 120/176 base fields  [803 s]
+   a = 1/12 off shell 0: 140/176 base fields  [822 s]
+   a = 1/12 off shell 0: 160/176 base fields  [841 s]
+   a = 1/12 off shell 0: 176/176 base fields  [854 s]
+   timing: expand: 55 tasks, mean 50.0 s, sum 2750 s; plain: 121 tasks, mean 18.4 s, sum 2226 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-324985/9): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -274004/19881)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (2304/2209) u u: True
+   R6  (3.40) total, pointwise: -9369782892551/31620332880;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: -9369782892551/31620332880;  equal: True
+   -> a = 1/12, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [855 s]
+
+## free K jets on shell 0: K jets (5, 3, 1), k1 = 3/5; R = 25, u^2 = 10, beta = 0, delta = 0; field equations hold at 0: True
+   free K jets on shell 0: 20/176 base fields  [960 s]
+   free K jets on shell 0: 40/176 base fields  [1017 s]
+   free K jets on shell 0: 60/176 base fields  [1059 s]
+   free K jets on shell 0: 80/176 base fields  [1075 s]
+   free K jets on shell 0: 100/176 base fields  [1098 s]
+   free K jets on shell 0: 120/176 base fields  [1124 s]
+   free K jets on shell 0: 140/176 base fields  [1143 s]
+   free K jets on shell 0: 160/176 base fields  [1162 s]
+   free K jets on shell 0: 176/176 base fields  [1175 s]
+   timing: expand: 55 tasks, mean 51.8 s, sum 2847 s; plain: 121 tasks, mean 18.1 s, sum 2195 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-17453689/648): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -50)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (5) u u: True
+   R6  (3.40) total, pointwise: 207533623/46656;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 207533623/46656;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 25375/16;  (203/320) K0^2 (u^2)^2 = 25375/16;  equal: True
+   -> free K jets, on shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [1176 s]
+
+## free K jets off shell 0: K jets (5, 3, 1), k1 = 3/5; R = -125/18, u^2 = 23/4, beta = 9/40, delta = 27/400; field equations hold at 0: False
+   free K jets off shell 0: 20/176 base fields  [1279 s]
+   free K jets off shell 0: 40/176 base fields  [1334 s]
+   free K jets off shell 0: 60/176 base fields  [1378 s]
+   free K jets off shell 0: 80/176 base fields  [1397 s]
+   free K jets off shell 0: 100/176 base fields  [1421 s]
+   free K jets off shell 0: 120/176 base fields  [1447 s]
+   free K jets off shell 0: 140/176 base fields  [1465 s]
+   free K jets off shell 0: 160/176 base fields  [1484 s]
+   free K jets off shell 0: 176/176 base fields  [1497 s]
+   timing: expand: 55 tasks, mean 50.9 s, sum 2800 s; plain: 121 tasks, mean 18.7 s, sum 2257 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-5745937/108): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -11473/400)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (5) u u: True
+   R6  (3.40) total, pointwise: 1329828187/1920000;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 1329828187/1920000;  equal: True
+   -> free K jets, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [1498 s]
+
+## a = 0 on shell 0: K jets (1, 0, 0), k1 = 0; R = 7/2, u^2 = 7, beta = 0, delta = 0; field equations hold at 0: True
+   a = 0 on shell 0: 20/176 base fields  [1603 s]
+   a = 0 on shell 0: 40/176 base fields  [1658 s]
+   a = 0 on shell 0: 60/176 base fields  [1700 s]
+   a = 0 on shell 0: 80/176 base fields  [1720 s]
+   a = 0 on shell 0: 100/176 base fields  [1744 s]
+   a = 0 on shell 0: 120/176 base fields  [1770 s]
+   a = 0 on shell 0: 140/176 base fields  [1789 s]
+   a = 0 on shell 0: 160/176 base fields  [1807 s]
+   a = 0 on shell 0: 176/176 base fields  [1820 s]
+   timing: expand: 55 tasks, mean 51.0 s, sum 2806 s; plain: 121 tasks, mean 18.8 s, sum 2275 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 0;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: not applicable at K0 = 1;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-21199099/648): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -7)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   R6  (3.40) total, pointwise: 94685431/29160;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 94685431/29160;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 9947/320;  (203/320) K0^2 (u^2)^2 = 9947/320;  equal: True
+   -> a = 0, on shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [1821 s]
+
+## a = 0 off shell 0: K jets (1, 0, 0), k1 = 0; R = 163/36, u^2 = 7, beta = 5/2, delta = 0; field equations hold at 0: False
+   a = 0 off shell 0: 20/176 base fields  [1925 s]
+   a = 0 off shell 0: 40/176 base fields  [1979 s]
+   a = 0 off shell 0: 60/176 base fields  [2022 s]
+   a = 0 off shell 0: 80/176 base fields  [2042 s]
+   a = 0 off shell 0: 100/176 base fields  [2064 s]
+   a = 0 off shell 0: 120/176 base fields  [2091 s]
+   a = 0 off shell 0: 140/176 base fields  [2110 s]
+   a = 0 off shell 0: 160/176 base fields  [2128 s]
+   a = 0 off shell 0: 176/176 base fields  [2141 s]
+   timing: expand: 55 tasks, mean 50.5 s, sum 2780 s; plain: 121 tasks, mean 18.7 s, sum 2257 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 0;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: not applicable at K0 = 1;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-3931385/216): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -7)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   R6  (3.40) total, pointwise: 4405823/10368;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 4405823/10368;  equal: True
+   -> a = 0, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [2142 s]
+
+## a = 1/6 on shell 0: K jets (600/529, 7008/12167, 415296/279841), k1 = 292/575; R = 1575/529, u^2 = 21/4, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/6 on shell 0: 20/176 base fields  [2267 s]
+   a = 1/6 on shell 0: 40/176 base fields  [2331 s]
+   a = 1/6 on shell 0: 60/176 base fields  [2379 s]
+   a = 1/6 on shell 0: 80/176 base fields  [2401 s]
+   a = 1/6 on shell 0: 100/176 base fields  [2427 s]
+   a = 1/6 on shell 0: 120/176 base fields  [2456 s]
+   a = 1/6 on shell 0: 140/176 base fields  [2477 s]
+   a = 1/6 on shell 0: 160/176 base fields  [2496 s]
+   a = 1/6 on shell 0: 176/176 base fields  [2512 s]
+   timing: expand: 55 tasks, mean 60.3 s, sum 3315 s; plain: 121 tasks, mean 20.8 s, sum 2514 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-4774900589585/90668484): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -3150/529)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (600/529) u u: True
+   R6  (3.40) total, pointwise: 36722991149443/7095794400;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 36722991149443/7095794400;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 100713375/4477456;  (203/320) K0^2 (u^2)^2 = 100713375/4477456;  equal: True
+   -> a = 1/6, on shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [2513 s]
+
+## a = 1/6 off shell 0: K jets (600/529, 7008/12167, 415296/279841), k1 = 292/575; R = -515/6, u^2 = 9/2, beta = 4517/3450, delta = 329741/991875; field equations hold at 0: False
+   a = 1/6 off shell 0: 20/176 base fields  [2616 s]
+   a = 1/6 off shell 0: 40/176 base fields  [2670 s]
+   a = 1/6 off shell 0: 60/176 base fields  [2713 s]
+   a = 1/6 off shell 0: 80/176 base fields  [2733 s]
+   a = 1/6 off shell 0: 100/176 base fields  [2756 s]
+   a = 1/6 off shell 0: 120/176 base fields  [2779 s]
+   a = 1/6 off shell 0: 140/176 base fields  [2798 s]
+   a = 1/6 off shell 0: 160/176 base fields  [2816 s]
+   a = 1/6 off shell 0: 176/176 base fields  [2828 s]
+   timing: expand: 55 tasks, mean 50.5 s, sum 2779 s; plain: 121 tasks, mean 18.0 s, sum 2180 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-3616601/54): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -4732759/991875)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (600/529) u u: True
+   R6  (3.40) total, pointwise: 2030281869804146371/850017037500000;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 2030281869804146371/850017037500000;  equal: True
+   -> a = 1/6, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [2829 s]
+
+## a = 1 on shell 0: K jets (20/3, 112/3, 6752/27), k1 = 28/5; R = 325/6, u^2 = 65/4, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1 on shell 0: 20/176 base fields  [2930 s]
+   a = 1 on shell 0: 40/176 base fields  [2982 s]
+   a = 1 on shell 0: 60/176 base fields  [3024 s]
+   a = 1 on shell 0: 80/176 base fields  [3045 s]
+   a = 1 on shell 0: 100/176 base fields  [3068 s]
+   a = 1 on shell 0: 120/176 base fields  [3094 s]
+   a = 1 on shell 0: 140/176 base fields  [3115 s]
+   a = 1 on shell 0: 160/176 base fields  [3134 s]
+   a = 1 on shell 0: 176/176 base fields  [3148 s]
+   timing: expand: 55 tasks, mean 49.2 s, sum 2706 s; plain: 121 tasks, mean 19.1 s, sum 2310 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-15912869/324): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -325/3)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (20/3) u u: True
+   R6  (3.40) total, pointwise: 1101413329/46656;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 1101413329/46656;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 4288375/576;  (203/320) K0^2 (u^2)^2 = 4288375/576;  equal: True
+   -> a = 1, on shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [3149 s]
+
+## a = 1 off shell 0: K jets (20/3, 112/3, 6752/27), k1 = 28/5; R = -1721/18, u^2 = 97/36, beta = 949/90, delta = 6643/225; field equations hold at 0: False
+   a = 1 off shell 0: 20/176 base fields  [3254 s]
+   a = 1 off shell 0: 40/176 base fields  [3309 s]
+   a = 1 off shell 0: 60/176 base fields  [3352 s]
+   a = 1 off shell 0: 80/176 base fields  [3372 s]
+   a = 1 off shell 0: 100/176 base fields  [3396 s]
+   a = 1 off shell 0: 120/176 base fields  [3421 s]
+   a = 1 off shell 0: 140/176 base fields  [3441 s]
+   a = 1 off shell 0: 160/176 base fields  [3460 s]
+   a = 1 off shell 0: 176/176 base fields  [3473 s]
+   timing: expand: 55 tasks, mean 51.4 s, sum 2827 s; plain: 121 tasks, mean 18.9 s, sum 2288 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-1504241/54): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived 7804/675)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (20/3) u u: True
+   R6  (3.40) total, pointwise: 10639882351/4860000;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 10639882351/4860000;  equal: True
+   -> a = 1, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [3474 s]
+
+## a = 1/2 on shell 0: K jets (104/49, 1952/343, 55232/2401), k1 = 244/91; R = 2600/441, u^2 = 50/9, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/2 on shell 0: 20/176 base fields  [3596 s]
+   a = 1/2 on shell 0: 40/176 base fields  [3659 s]
+   a = 1/2 on shell 0: 60/176 base fields  [3707 s]
+   a = 1/2 on shell 0: 80/176 base fields  [3729 s]
+   a = 1/2 on shell 0: 100/176 base fields  [3755 s]
+   a = 1/2 on shell 0: 120/176 base fields  [3782 s]
+   a = 1/2 on shell 0: 140/176 base fields  [3803 s]
+   a = 1/2 on shell 0: 160/176 base fields  [3824 s]
+   a = 1/2 on shell 0: 176/176 base fields  [3839 s]
+   timing: expand: 55 tasks, mean 59.1 s, sum 3251 s; plain: 121 tasks, mean 20.6 s, sum 2493 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-21507158332/64827): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived -5200/441)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (104/49) u u: True
+   R6  (3.40) total, pointwise: 246247257119/7584759;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 246247257119/7584759;  equal: True
+   R7  on shell: total - (7/12) Gauss-Bonnet - (1) (W.W - (tr W)^2 + Ric v v) = 2450500/27783;  (203/320) K0^2 (u^2)^2 = 2450500/27783;  equal: True
+   -> a = 1/2, on shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok, R7 ok   [3840 s]
+
+## a = 1/2 off shell 0: K jets (104/49, 1952/343, 55232/2401), k1 = 244/91; R = -123/2, u^2 = 83/18, beta = 12583/1638, delta = 767563/74529; field equations hold at 0: False
+   a = 1/2 off shell 0: 20/176 base fields  [3944 s]
+   a = 1/2 off shell 0: 40/176 base fields  [3999 s]
+   a = 1/2 off shell 0: 60/176 base fields  [4042 s]
+   a = 1/2 off shell 0: 80/176 base fields  [4062 s]
+   a = 1/2 off shell 0: 100/176 base fields  [4084 s]
+   a = 1/2 off shell 0: 120/176 base fields  [4109 s]
+   a = 1/2 off shell 0: 140/176 base fields  [4127 s]
+   a = 1/2 off shell 0: 160/176 base fields  [4145 s]
+   a = 1/2 off shell 0: 176/176 base fields  [4158 s]
+   timing: expand: 55 tasks, mean 51.2 s, sum 2818 s; plain: 121 tasks, mean 18.2 s, sum 2198 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True; Laplace type on all 110 quadratic base fields: True;  nonzero first-derivative entries of the raw operator: 4;  omega_m = 1/2 k1 u_m on the scalar only: True
+   controls (must break R3): scalar S^-1 left out: breaks it;  omega halved: breaks it
+   R2  Tr Omega^2 = step 3's (-221233/12): True
+   R3  E == prediction (11 x 11): True   [h-h block True; (E phi)_ab = -2 K0 Wt: True; (E h)_phi: True; E_phiphi = -K0 u^2 + delta: True (derived 38159/74529)]
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (104/49) u u: True
+   R6  (3.40) total, pointwise: 58571303965871/59248766304;  step 3's eight-structure formula at the image background + 1/2 delta (R/6 - K0 u^2) + 1/4 delta^2: 58571303965871/59248766304;  equal: True
+   -> a = 1/2, off shell 0: R1 ok, controls ok, R2 ok, R3 ok, R5 ok, R6 ok   [4159 s]
+
+status=PASS
+END class710_operator_derive 4159 s
