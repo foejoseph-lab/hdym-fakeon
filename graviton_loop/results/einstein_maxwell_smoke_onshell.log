@@ -1,0 +1,26 @@
+# einstein_maxwell_operator_derive (stage A, the paper's gauge (3.1)): seed 20261114, 1 on-shell + 0 off-shell + 0 F = 0 backgrounds, mode min, method expand, crosscheck 0, symmetry 0, jobs 16
+# code version 7a61c435a1a4 (hash of this script and its four imports; part of every checkpoint key)
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+
+## on shell 0: R = 0, F^2 = 34, (D.F)^2 = 0, (D_a F_bc)^2 = 1625/9; field equations hold at 0: True
+   structures: Ric2 = 715/16, R2 = 0, Riem2 = 11319041/1296, F4 = 1871/4, F22 = 1156, RF2 = 0, RicF2 = 715/8, RiemFF = 31801/48, DaF2 = 1625/9, DF2 = 0
+   on shell 0: 20/84 base fields  [141 s]
+   on shell 0: 40/84 base fields  [220 s]
+   on shell 0: 60/84 base fields  [266 s]
+   on shell 0: 80/84 base fields  [313 s]
+   on shell 0: 84/84 base fields  [323 s]
+   timing: expand: 70 tasks, mean 63.4 s, sum 4437 s; plain: 14 tasks, mean 36.9 s, sum 517 s
+   A1  S = diag(P, 1), constant to first order: True;  first-derivative terms in the mixed entries only: True (192 nonzero entries);  = the hand cross term with overall sign [1];  omega antisymmetric with respect to S (as a bilinear form on the 14 variables): True
+   A2  h block - step 2's E: nonzero (expected nonzero, quadratic in F);  a block + Ric: nonzero;  mixed blocks: nonzero (expected linear in DF)
+   A3  Tr Omega^2 = -83141861/1296;  Tr (E + R/6)^2 = 11581229/432;  Tr E = 51
+   A4  (3.40) on the 14 fields, pointwise: 125482423/31104;  steps 1-2 at F = 0 (122934163/31104) - 1/6 Ric.T + 13/24 T^2 + 1/6 (D.F)^2 = 125482423/31104;  equal: True
+   A5  vector ghost: unit Laplacian, no first-derivative terms, E_gh = Ric: True;  scalar ghost: unit Laplacian and nothing else: True;  the one mixed corner = F_km D^m + D^m F_km on eta_k: True
+   A6  ghost contribution (triangular: the diagonal blocks): 2728409/3888
+   A7  total, pointwise: 147309695/31104;  (4.16a) + g Gauss-Bonnet with g = 13/24: equal: True
+   controls (must break A4/A7): omega halved: breaks it;  the vector ghost's Ric with the other sign: DOES NOT;  the scalar ghost left out: breaks it
+   A8  on shell: total - (13/24) Gauss-Bonnet = 19591/192;  (137/60) Ric^2 = 19591/192;  equal: True
+   -> on shell 0: A1 ok, A4 ok, A5 ok, A7 ok, controls FAILS, A8 ok   [324 s]
+
+A9  the Gauss-Bonnet coefficient g on every background: [13/24]: one value, independent of F
+status=FAIL
+END einstein_maxwell_operator_derive 324 s
