@@ -53,7 +53,7 @@ transformation being one (provided dimensional regularization is applied)" — t
 (δ(0) = 0). Rung 3's ledger rows say so.
 
 **The implemented-not-fitted check** [m]: Deser & van Nieuwenhuizen, PRD 10, 401 (1974), Einstein–Maxwell, (√g/ε)(137/60) Ric² on
-shell. PRD not open; the number is textbook-stable and the computation is ours regardless.
+shell. ~~PRD not open~~ Both papers are open at Caltech Authors and were read in full 13 Nov (§4n); the number is [v] as printed.
 
 **What rung 3 computes, and how** (draft, for the author's yes):
 1. **(3.40) as code**: given the bundle, N_μ, M on a generic background, return ΔL's coefficients; smoked on rung 1's scalar → (5.23);
@@ -560,6 +560,82 @@ coefficient, where it holds only after total derivatives with non-constant coeff
 
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
+
+## 4n. Step 3c opened: Deser & van Nieuwenhuizen read from the print (13 Nov night; rule 5; nothing built, nothing run)
+
+Phys. Rev. Lett. 32, 245 (received 7 Dec 1973, the letter) and Phys. Rev. D 10, 401 (received 8 Apr 1974, the paper), both open at
+Caltech Authors; the author attached the PDFs (not in git). All pages read as images; the fractions below re-read at 450–900 dpi.
+Everything here is [v] as printed unless marked. The 137/60 of §1 was [m] until now.
+
+**The theory and conventions.** L = −√(−g)[κ⁻²R + ¼F_μν F_αβ g^μα g^νβ] (2.1); signature +2 (Minkowski, where 't Hooft–Veltman
+are Euclidean); R^μ_αβν ~ +∂_βΓ^μ_αν, which makes their R minus the standard one, as 't Hooft–Veltman's is (the ghost's −R_αβ, the
+field equation's sign and the Brans–Dicke 2ω + 3 all agree with this reading — Claude's inference from three places, not a printed
+sentence). Quantum fields ḡ = g + κh, Ā = κ⁻¹A + a (2.2a): κ drops out of L₂. Background equations G_μν = −½T_μν, D_αF^αβ = 0,
+T_μν = F_μα F_ν^α − ¼g_μν F² (2.4); hence R = 0, 4Ric² = T² = tr F⁴ − ¼(F²)², Ric·T = −2Ric² (2.5).
+
+**The gauge is stated, and it is not 't Hooft–Veltman's kind.** −½√(−g)(D^νh_μν − ½D_μh)² − ½√(−g)(D_μa^μ)² (3.1): plain de Donder
+and Lorentz, **no matter term in the gravitational gauge condition** (where (4.27) carries −φ∂φ̃). So the graviton–photon mixing
+h_αβ Q^{αβρσ} D_ρ a_σ, Q = 2g^{αρ}F^{βσ} − ½g^{αβ}F^{ρσ} (2.7d), stays in the operator as a first-derivative term: N^μ of (3.10)
+has off-diagonal blocks ½P⁻¹Q and −½Q, and M has −∂Q. This is the case the first-order machinery of §4j was built for.
+
+**The operator.** (2.6)–(2.7): X_g = P R − g^{αρ}R^{βσ} + g^{αβ}R^{ρσ} + R^{αρβσ} (2.7b) is the pure-gravity X; X_e (2.7c) is quadratic in F. After
+the doubling trick and the P⁻¹ replacement (they cite 't Hooft–Veltman for both), (3.9)–(3.10) on 10 + 4 fields; the photon block
+of M is R^δ_γ + τ. **Ghosts** (3.12)–(3.13): a vector (□ − Ric in their sign) and a scalar (□), with a triangular mixing
+(−½F in N, −D^λF_λβ in M, no conjugate entry), so the ghost determinant does not see F. The photon's scalar ghost contributes
+because D·a depends on the metric — they remark on it.
+
+**The pieces and the result.** (4.1) is (3.35) (1/12, ½, 1/60), the non-ghost part halved, the unit term 14 times (footnote 14).
+Printed traces (4.11a–c), (4.12a–c); non-ghost (4.13): (84/120)Ric² + (32/120)R² + (1/6)Ric·T + (13/24)T² + (1/6)(D^αF_αβ)²;
+ghost (4.14)–(4.15): −(¼Ric² + (7/24)R²); **total, off shell (4.16a): (1/ε)√(−g)[(9/20)Ric² − (1/40)R² + (1/6)Ric·T + (13/24)T² +
+(1/6)(D^αF_αβ)²]**; **on shell (4.16b): (1/ε)√(−g)(137/60)Ric²**. In the general nine-term form (4.6): c₅ = c₆ = c₈ = 0 — no
+(F²)², no Riemann·F·F, no R F²; F enters only through T and D·F, which the authors cannot explain (duality rotations offered as a
+guess). The letter's (7) is the same 137/60.
+
+**Checked in the session by exact fractions (a reading check, not a run; no log):**
+- (4.11)–(4.12) assemble to (4.13) under (4.1), with c₅ = c₈ = 0 and the (D_αF_βγ)² terms cancelling (−3/8 + 3/8), which is c₆ = 0.
+- (4.13) at F = 0 is this project's h-loop plus the vector in Feynman gauge: (7/12 + 7/60, 7/24 − 1/40) = (84/120, 32/120).
+- (4.15) is (5.21) at φ̃ = 0 plus one complex minimal scalar: (7/30 + 1/60, 17/60 + 1/120) = (¼, 7/24).
+- (4.16a) at F = 0 is (5.24) plus Maxwell of step 1: (7/20 + 1/10, 1/120 − 1/30) = (9/20, −1/40).
+- 9/20 − 2·(1/6) + 4·(13/24) = 137/60.
+So the curvature-only part of the paper is already two-method in this repository; **what step 3c adds is three numbers and three
+zeros: c₇ = 1/6, c₄ = 13/24, c₉ = 1/6, c₅ = c₆ = c₈ = 0**, and with them 137/60 = 9/20 − 1/3 + 13/6.
+
+**Misprints and differences found.**
+- The letter prints **c₂ = −29/10**; the paper prints −1/40, and −1/40 is what (4.13) + (4.15) and this project's own numbers
+  give. No effect on shell (R = 0). Read at 500 dpi.
+- (A6), the pure graviton loop, prints (7/20)I₂ + **(5/14)**I₀; (5.24) is (7/20)I₂ + (1/8)I₀ (I₂ = Ric² − R²/3, I₀ = R²).
+  Perhaps 5/40. (A4) photon (1/10)I₂ and (A7) scalar (1/120)I₂ + (1/144)I₀ agree with steps 1–2.
+- (5.4) prints λκ⁻⁴(43/60) and κ⁻²R(43/120) where the arithmetic of (5.3) gives λ²κ⁻⁴(43/60) = λκ⁻²R(43/120): a λ short in each.
+
+**§V, the other models.**
+- **Brans–Dicke** (5.1)–(5.2): −√(−g)[φ²R + 4ω(∂φ)²]; g → φ²g and ψ = [4(2ω + 3)]^½ ln φ give −√(−g)[R + ½(∂ψ)²], so "already
+  shown nonrenormalizable by 't Hooft and Veltman"; ω = −3/2 singular (equivalent to Einstein). **By argument only: nothing is
+  computed in the Brans–Dicke frame.** In this project's terms it is 't Hooft–Veltman's §7 with the Einstein term removed:
+  f = −aχ², a = −1/(8ω) for χ = (8ω)^½φ, and ω = −3/2 is a = 1/12, the Weyl-invariant point. In the Einstein frame it is the
+  class (7.10) with K = const/φ², which §4j's free-K-jet runs cover on shell. What is not covered anywhere, here or in the paper:
+  the divergence computed with the metric of (5.1) as the quantum field.
+- **Cosmological term** (5.3)–(5.4): λκ⁻⁴√(−g) added; the extra divergence λκ⁻²((5/2)λκ⁻² − (13/12)R); on shell
+  (R_μν = ½λκ⁻²g_μν) the total is (43/60)λ²κ⁻⁴, absorbed by renormalizing λ or κ. Called formal and not very physical.
+  [memory, tainted — rule 25, nothing fetched]: a later computation of this on-shell number exists and my memory of it does not
+  match 43/60 in any normalisation I can reconstruct; that is a reason to compute it, not a prediction.
+- **"Weyl models"**: a purely quadratic action a Ric² + b R² would reproduce its own form at one loop by dimensions, so
+  renormalizing (a, b) would suffice; p⁻⁴ propagators "with the attendant ghost problems"; "may repay closer investigation".
+  And: κ⁻²R + R² is expected to generate κ²R³ and so not to help (footnote 21 says the R² term is being treated as a vertex).
+  No computation. The branch point to 1977; left for the pause.
+- Footnote 7: another function of the metric could define the expansion "without altering the conclusions". Footnote 9: L₂'s
+  form and the ghosts change with the gauge, "but the total S matrix is gauge-invariant". Both asserted.
+
+**For the header of step 3c (to be shown to the author before any code).**
+1. Target: (4.16a) coefficient by coefficient in DvN's own gauge (3.1), then (4.16b). The operator from the action by the
+   first-order jet probes (14 components, 10 + 4; the ghosts apart) and by FORM; (3.40) with its first-derivative term.
+2. Predictions that are not the paper's numbers: the ghost sector is F-independent (triangular); the vector ghost's E and the
+   scalar ghost are as in steps 1–2; DeWitt's recursion needs the first-order term in the bundle connection (a new requirement
+   for that method — it may be where it stumbles).
+3. A gauge question in the manner of step 3: a term c·F_μν a^ν added to the de Donder condition is the analogue of (4.27)'s
+   −φ∂φ̃ and of the c-family of §4j. Whether some c removes the mixing Q, and whether 137/60 holds along c, would be the same
+   kind of one-family test as R8 — **not** the second gauge family tabled to 1978. For the author to say yes or no to.
+4. Background data on shell: R_μν = −½T_μν with T built from a random F is an algebraic constraint on the curvature sample
+   (R = 0 automatic); off shell needs D F jets as well ((D·F)² and the cancellation behind c₆ = 0).
 
 ## 5. For the ledger when the rows are written
 

@@ -119,3 +119,26 @@ HV-9|jetprobe|X|class710_r8_c0.log, class710_r8_c2.log (status=PASS, five on-she
 HV-4|form|X|form_operator_check.log (status=PASS, the author's run 13 Nov): FORM derives the gauge-fixed operator from the action and four identities of tensor calculus, gauge coefficient a symbol; at c = 1 it equals build_E on three backgrounds; controls (commutator sign, sqrt(g)) break it. Four details of the program change nothing on this Lagrangian and are untested (the reader's header)
 HV-5|form|X|form_operator_check.log (status=PASS): the ghost operator Box eta + (Ric - c v v) eta from the gauge condition, by FORM
 HV-9|form|X|form_class710_check.log (status=PASS): from FORM's operator the on-shell coefficient is 203/320 at c = -1, 0, 1/2, 1, 2, 3 (six on-shell backgrounds, b = 0, Gauss-Bonnet 7/12, zero residuals); alpha(c) is at most a quartic, so it is constant in the family C = D.h - 1/2 D tr h - c K phi d phi -- given FORM's operator (against the probes at c = 0, 1, 2 only) and the degree count. Other gauge families are untested. The gauge without K: form_literal_gauge_check.log (status=PASS, the author's run 13 Nov) -- FORM's operator equals the jet probes' entry by entry on six backgrounds, and 203/320 holds in 28 fits (seven sets of K jets, c = 1, 2, 1/2, -1) with b = gamma'(gamma + 5)/6 and C = (gamma^2 + 10 gamma + 1)/12, gamma = c/K, as predicted before the run
+DN-1|directshift|O|step 3c: the 14-component operator with its first-derivative mixing
+DN-1|form|O|step 3c
+DN-2|hv340|O|step 3c
+DN-2|dewitt|O|step 3c; the recursion needs the first-derivative term in the bundle connection
+DN-2|directshift|O|step 3c
+DN-2|form|O|step 3c
+DN-3|directshift|O|step 3c
+DN-3|form|O|step 3c
+DN-4|jetprobe|O|step 3c: the gauge variation as in ghost_operator_derive.py
+DN-4|form|O|step 3c
+DN-5|hv340|O|step 3c. By arithmetic on hv1974_gravscalar_M.log and hv1974_master.log the numbers are (5.21) at zero scalar plus one complex minimal scalar; not yet printed by a run
+DN-6|weylmap|O|the map (5.1) to (5.2a) as a pointwise identity, as weyl_map_check.py did for section 7
+DN-6|conj|O|the Brans-Dicke frame's ungauged second variation as the Einstein-frame operator conjugated, as improved_tensor_conjugation.py did
+DN-6|hv340|O|in the Einstein frame it is the class (7.10) with K = const/phi^2, inside the free-K-jet runs of class710_operator_derive.log on shell. In the Brans-Dicke frame, with the metric of (5.1) as the quantum field: not done here or in the paper
+DN-6|directshift|O|the Brans-Dicke-frame operator
+DN-6|form|O|the Brans-Dicke-frame operator
+DN-7|hv340|O|the pure-gravity operator with the mass term of (5.3)
+DN-7|dewitt|O|
+DN-7|jetprobe|O|
+DN-7|form|O|
+DN-8|gsdw|O|a fourth-order operator: at the 1977 rung and after
+DN-9|hv340|O|photon, scalar and graviton by arithmetic on the logs of steps 1 and 2; to be printed by a run
+DN-10|form|O|one gauge family so far (HV-9, the coefficient c); a second family is tabled to the 1978 rung (author, 13 Nov)

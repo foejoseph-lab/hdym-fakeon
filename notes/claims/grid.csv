@@ -28,7 +28,16 @@ Nakanishi (June) 1971,NB-1 pair bubble: the Lorentz breaking is intrinsic to a H
 't Hooft & Veltman 1974,HV-11 one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7),N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,O,X,X,X
 't Hooft & Veltman 1974,"HV-12 S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)",O,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 't Hooft & Veltman 1974,"HV-13 one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)",N,N,N,N,N,N,N,N,X,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-Deser & van Nieuwenhuizen 1974,"DN-1 one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Deser & van Nieuwenhuizen 1974,"DN-1 one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,O,O
+Deser & van Nieuwenhuizen 1974,"DN-2 one-loop divergence: Einstein-Maxwell total, off shell (4.16a); the field strength enters only through T and D.F",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,O,O
+Deser & van Nieuwenhuizen 1974,"DN-3 fluctuation operator: gravity + Maxwell in de Donder and Lorentz gauges, with the first-derivative mixing (2.6)-(2.7), (3.10)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,O,O
+Deser & van Nieuwenhuizen 1974,"DN-4 ghost operator: gravity + Maxwell, a vector and a scalar with triangular mixing (3.12)-(3.13)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,O,N,N,N,N,O
+Deser & van Nieuwenhuizen 1974,"DN-5 one-loop divergence: ghost contribution, gravity + Maxwell (4.15), independent of the field strength",N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Deser & van Nieuwenhuizen 1974,"DN-6 one-loop divergence: free Brans-Dicke is gravity + scalar after a Weyl map and a field redefinition, hence not removable; omega = -3/2 singular (5.1)-(5.2)",N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,O,O,O,O
+Deser & van Nieuwenhuizen 1974,"DN-7 one-loop divergence: pure gravity with a cosmological term, on shell (43/60) lambda^2 kappa^-4, removable (5.3)-(5.4)",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,O,N,N,N,N,O
+Deser & van Nieuwenhuizen 1974,"DN-8 one-loop divergence: a purely quadratic action a Ric^2 + b R^2 reproduces its own form (section V, by dimensions)",N,N,N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N
+Deser & van Nieuwenhuizen 1974,DN-9 one-loop divergence: the separate loops in the Weyl-squared and R^2 basis (A4)-(A7),N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+Deser & van Nieuwenhuizen 1974,"DN-10 S-matrix: independent of the quantum gauge and of which function of the metric defines the expansion (footnotes 7, 9)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,O
 Gorbar & Shapiro (hep-ph/0210388) 2003,GS-1 propagator: the massless-scalar graviton self-energy has constant 46/15 beside its logarithm (3.7),N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 Aglietti & Anselmi (1612.06510) 2017,AA-1 pair bubble: nonlocal divergence when the energy integral of the complex pair runs on the real axis,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 Aglietti & Anselmi (1612.06510) 2017,AA-2 pair bubble: the real-axis definition has no continuation to a Euclidean region,N,N,N,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N

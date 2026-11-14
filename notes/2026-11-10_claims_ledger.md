@@ -68,9 +68,18 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
 - `HV-12` S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)
 - `HV-13` one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)
 
-**Deser & van Nieuwenhuizen 1974** — source: memory
+**Deser & van Nieuwenhuizen 1974** — source: read in full
 
 - `DN-1` one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable
+- `DN-2` one-loop divergence: Einstein-Maxwell total, off shell (4.16a); the field strength enters only through T and D.F
+- `DN-3` fluctuation operator: gravity + Maxwell in de Donder and Lorentz gauges, with the first-derivative mixing (2.6)-(2.7), (3.10)
+- `DN-4` ghost operator: gravity + Maxwell, a vector and a scalar with triangular mixing (3.12)-(3.13)
+- `DN-5` one-loop divergence: ghost contribution, gravity + Maxwell (4.15), independent of the field strength
+- `DN-6` one-loop divergence: free Brans-Dicke is gravity + scalar after a Weyl map and a field redefinition, hence not removable; omega = -3/2 singular (5.1)-(5.2)
+- `DN-7` one-loop divergence: pure gravity with a cosmological term, on shell (43/60) lambda^2 kappa^-4, removable (5.3)-(5.4)
+- `DN-8` one-loop divergence: a purely quadratic action a Ric^2 + b R^2 reproduces its own form (section V, by dimensions)
+- `DN-9` one-loop divergence: the separate loops in the Weyl-squared and R^2 basis (A4)-(A7)
+- `DN-10` S-matrix: independent of the quantum gauge and of which function of the metric defines the expansion (footnotes 7, 9)
 
 **Gorbar & Shapiro (hep-ph/0210388) 2003** — source: read
 
@@ -119,6 +128,9 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - papers: 't Hooft & Veltman 1974 (`HV-12`): open; rung 1 found a measure term that dimensional regularization hides
   - O — Schwinger proper time on the graphs (1951): rule-25 prediction (ii) of the rung 3 note
   - O — hard momentum cutoff on the graphs (1962): rule-25 prediction (ii) of the rung 3 note
+- **S-matrix: independent of the quantum gauge and of which function of the metric defines the expansion (footnotes 7, 9)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-10`): open; asserted in the paper
+  - O — symbolic derivation of the operator in FORM (2026): one gauge family so far (HV-9, the coefficient c); a second family is tabled to the 1978 rung (author, 13 Nov)
 - **S-matrix: the complex pair contributes no imaginary part (unitarity)**
   - papers: Lee & Wick 1969 (`LW-2`): the bubble has no absorptive part, in the rest frame and in the boosted frames (the frame dependence is in the value). The S-matrix statement itself is not tested
   - X — Lee-Wick energy contour, momentum-space residues, real spatial momenta (1969): lw.log, frame.log: no absorptive part in any frame tried
@@ -176,9 +188,30 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - X — heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003) [`UD-4`]: Vassilevich 4.26-4.28, read after the run
   - X — heat-kernel coefficient table (Gilkey, Vassilevich 2003) (2003) [`HV-3`]: Vassilevich 4.26-4.28
 - **one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable**
-  - papers: Deser & van Nieuwenhuizen 1974 (`DN-1`): open
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-1`): open; printed so in the letter (7) and the paper (4.16b), in de Donder and Lorentz gauges (read 13 Nov)
   - O — DeWitt recursion in normal coordinates (1965): step 3c
   - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): step 3c
+  - O — operator coefficient fields by jet probes with the background translated to first order (2026): step 3c: the 14-component operator with its first-derivative mixing
+  - O — symbolic derivation of the operator in FORM (2026): step 3c
+- **one-loop divergence: Einstein-Maxwell total, off shell (4.16a); the field strength enters only through T and D.F**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-2`): open. The curvature-only part (9/20, -1/40) equals (5.24) plus the Maxwell loop of step 1 by arithmetic. The letter prints c2 = -29/10 where the paper prints -1/40
+  - O — DeWitt recursion in normal coordinates (1965): step 3c; the recursion needs the first-derivative term in the bundle connection
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): step 3c
+  - O — operator coefficient fields by jet probes with the background translated to first order (2026): step 3c
+  - O — symbolic derivation of the operator in FORM (2026): step 3c
+- **one-loop divergence: a purely quadratic action a Ric^2 + b R^2 reproduces its own form (section V, by dimensions)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-8`): open; no computation in the paper. The branch point to 1977
+  - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): a fourth-order operator: at the 1977 rung and after
+- **one-loop divergence: free Brans-Dicke is gravity + scalar after a Weyl map and a field redefinition, hence not removable; omega = -3/2 singular (5.1)-(5.2)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-6`): open. By argument in the paper; nothing is computed in the Brans-Dicke frame
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): in the Einstein frame it is the class (7.10) with K = const/phi^2, inside the free-K-jet runs of class710_operator_derive.log on shell. In the Brans-Dicke frame, with the metric of (5.1) as the quantum field: not done here or in the paper
+  - O — Weyl map checked as a pointwise identity (2026): the map (5.1) to (5.2a) as a pointwise identity, as weyl_map_check.py did for section 7
+  - O — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): the Brans-Dicke frame's ungauged second variation as the Einstein-frame operator conjugated, as improved_tensor_conjugation.py did
+  - O — operator coefficient fields by jet probes with the background translated to first order (2026): the Brans-Dicke-frame operator
+  - O — symbolic derivation of the operator in FORM (2026): the Brans-Dicke-frame operator
+- **one-loop divergence: ghost contribution, gravity + Maxwell (4.15), independent of the field strength**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-5`): open. The numbers equal (5.21) at zero scalar plus one complex minimal scalar by arithmetic
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): step 3c. By arithmetic on hv1974_gravscalar_M.log and hv1974_master.log the numbers are (5.21) at zero scalar plus one complex minimal scalar; not yet printed by a run
 - **one-loop divergence: ghost contribution, gravity + scalar (5.21)**
   - papers: 't Hooft & Veltman 1974 (`HV-6`): holds
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method
@@ -216,6 +249,12 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b). The on-shell zero follows by Ric = 0, modulo the Euler term, and is printed in neither log
   - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): hv1974_graviton_M.log
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
+- **one-loop divergence: pure gravity with a cosmological term, on shell (43/60) lambda^2 kappa^-4, removable (5.3)-(5.4)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-7`): open. As printed (5.4) is one power of lambda short
+  - O — DeWitt recursion in normal coordinates (1965): 
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the pure-gravity operator with the mass term of (5.3)
+  - O — second variation of the action by jet probes (2026): 
+  - O — symbolic derivation of the operator in FORM (2026): 
 - **one-loop divergence: pure gravity, off shell (5.24)**
   - papers: 't Hooft & Veltman 1974 (`HV-8`): holds
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_graviton_flint.log (status=PASS). The earlier rung3_dewitt_graviton.log has the same numbers and ends FAIL from a mistyped prediction table (rung 3 note 4b)
@@ -226,14 +265,25 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
 - **one-loop divergence: the per-scalar running of the quadratic couplings (3.15)-(3.16)**
   - papers: Salvio (1804.09944) 2018 (`SV-1`): the conversion from rung 1 was written out, not run
   - O — dimensional regularization on the graphs (1972): a one-line conversion from the rung 1 coefficients, written out 31 Oct, not run
+- **one-loop divergence: the separate loops in the Weyl-squared and R^2 basis (A4)-(A7)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-9`): open. Photon and scalar agree with step 1 by arithmetic; the graviton's R^2 coefficient is printed 5/14 where (5.24) gives 1/8; the fermion is not on this ladder
+  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): photon, scalar and graviton by arithmetic on the logs of steps 1 and 2; to be printed by a run
 
 ### operators
 
+- **fluctuation operator: gravity + Maxwell in de Donder and Lorentz gauges, with the first-derivative mixing (2.6)-(2.7), (3.10)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-3`): open
+  - O — operator coefficient fields by jet probes with the background translated to first order (2026): step 3c
+  - O — symbolic derivation of the operator in FORM (2026): step 3c
 - **fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33)**
   - papers: 't Hooft & Veltman 1974 (`HV-4`): holds, on shell and off shell
   - X — second variation of the action by jet probes (2026): graviton_operator_derive.log, gravscalar_operator_derive*.log
   - X — hand derivation by an independent reviewer (2026): two fresh reviews, 9 Nov
   - X — symbolic derivation of the operator in FORM (2026): form_operator_check.log (status=PASS, the author's run 13 Nov): FORM derives the gauge-fixed operator from the action and four identities of tensor calculus, gauge coefficient a symbol; at c = 1 it equals build_E on three backgrounds; controls (commutator sign, sqrt(g)) break it. Four details of the program change nothing on this Lagrangian and are untested (the reader's header)
+- **ghost operator: gravity + Maxwell, a vector and a scalar with triangular mixing (3.12)-(3.13)**
+  - papers: Deser & van Nieuwenhuizen 1974 (`DN-4`): open
+  - O — second variation of the action by jet probes (2026): step 3c: the gauge variation as in ghost_operator_derive.py
+  - O — symbolic derivation of the operator in FORM (2026): step 3c
 - **ghost operator: gravity + scalar (5.19)**
   - papers: 't Hooft & Veltman 1974 (`HV-5`): holds; the factor -2 and the complex ghost are taken, not derived
   - X — second variation of the action by jet probes (2026): ghost_operator_derive*.log
@@ -378,7 +428,16 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 | 't Hooft & Veltman 1974, `HV-11` | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | O | X | X | X |
 | 't Hooft & Veltman 1974, `HV-12` | O | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-13` | · | · | · | · | · | · | · | · | X | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| Deser & van Nieuwenhuizen 1974, `DN-1` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Deser & van Nieuwenhuizen 1974, `DN-1` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | O | O |
+| Deser & van Nieuwenhuizen 1974, `DN-2` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | O | O |
+| Deser & van Nieuwenhuizen 1974, `DN-3` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | O | O |
+| Deser & van Nieuwenhuizen 1974, `DN-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | O | · | · | · | · | O |
+| Deser & van Nieuwenhuizen 1974, `DN-5` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Deser & van Nieuwenhuizen 1974, `DN-6` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | O | O | O | O |
+| Deser & van Nieuwenhuizen 1974, `DN-7` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | O | · | · | · | · | O |
+| Deser & van Nieuwenhuizen 1974, `DN-8` | · | · | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
+| Deser & van Nieuwenhuizen 1974, `DN-9` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| Deser & van Nieuwenhuizen 1974, `DN-10` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | O |
 | Gorbar & Shapiro (hep-ph/0210388) 2003, `GS-1` | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | Aglietti & Anselmi (1612.06510) 2017, `AA-1` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | Aglietti & Anselmi (1612.06510) 2017, `AA-2` | · | · | · | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
@@ -399,7 +458,7 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 
 (· stands for N, to keep the marks visible.)
 
-Counts: X 85, X* 3, S 0, O 32, N 984; 46 claims, 24 methods.
+Counts: X 85, X* 3, S 0, O 55, N 1177; 55 claims, 24 methods.
 
 ## 4. Needing backing
 
