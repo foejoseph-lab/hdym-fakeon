@@ -536,6 +536,28 @@ c = −1, 0, ½, 1, 2, 3; α(c) is at most a quartic, so within this gauge famil
 against the probes at c = 0, 1, 2) and the degree count. For the record C = (c² + 10c + 1)/12 at all six. Controls: without K in
 the gauge term, with the commutator reversed, or with D_nB^m left out of the conversion, the match breaks.
 
+## 4m. The gauge without K: (4.27) exactly as printed, on the class (7.10) (13 Nov night; the author's runs PASS, b354150)
+
+The other reading of "the treatment of the previous sections": C = D·h − ½D tr h − c·φ∂φ̃, no K. `graviton_loop/form_literal_gauge_check.py`
+(predictions L1–L8 in its header, written 20:25 ET before any code; reviewed), FORM's `-d LITERAL` output, and a jet-probe data run
+(`class710_literal_c1.log`, 1539 s, status INCOMPLETE by design: it tests nothing itself).
+
+**The argument.** In the canonical field this gauge is step 3's c-family with a coefficient that varies with the background,
+γ = c/K. The operator contains γ and γ′ and no γ″. On shell the total derivatives with a function in front are
+D(F v v²) = F′v⁴ + 2F v·W·v and D(H(W·v − v□χ)) = H′ v·W·v + H(W·W + ½v⁴), so α = 203/320 + F′, b = 2F + H′, C = H; no γ″ makes
+F and H functions of γ alone, and the constant-γ runs (§4j, §4l) give F = 0, H = (γ² + 10γ + 1)/12. Hence, **if** the on-shell
+divergence does not depend on this gauge: α = 203/320 with no γ′ dependence, C = (γ² + 10γ + 1)/12, **b = γ′(γ + 5)/6**.
+
+**Result.** L1: FORM's operator in this gauge equals the jet probes' entry by entry on the run's six backgrounds (S, first-derivative
+coefficient, E, Tr Ω², ghost, logged totals). On the run's own five on-shell backgrounds and in 28 further fits (K of a = 1/12 at
+φ₀ = ½, 1, 3/2; a = 1/6; free jets with K′ = 0 and K′ ≠ 0, K″ varied; c = 1, 2, ½, −1): α = 203/320, b and C as predicted
+(e.g. b = 68/243 at K jets (3/2, −2/3, 1), c = 1), Gauss–Bonnet 7/12, zero residuals. The fresh review: α and b carry the test;
+the zero residuals are nearly automatic and the K″ check follows from the rest.
+
+**So** both readings of §7's unstated gauge give the same on-shell number, and the invariance survives a field-dependent gauge
+coefficient, where it holds only after total derivatives with non-constant coefficients are removed. Still one structural family
+(de Donder plus a scalar term); the paper's actual gauge remains unknown and, absent historical research, unknowable (author, 13 Nov).
+
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
 
