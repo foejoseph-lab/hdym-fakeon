@@ -521,14 +521,14 @@ about the physics: every number was known. What is new is a formula in c, which 
 
 **Next:** F1, the class (7.10) with K(φ) and symbolic c, with its own header.
 
-## 4l. FORM on the class (7.10), stage F1 (13 Nov evening; sandbox PASS against the author's logs and checkpoints; his own run of the reader pending)
+## 4l. FORM on the class (7.10), stage F1 (13 Nov evening; the author's run of the reader PASS, 1b34aaf, the same program hash 25a61584cdc0 and the same lines as the sandbox's)
 
 `graviton_loop/form/class710_operator.frm` and `graviton_loop/form_class710_check.py`. Predictions F1.1–F1.10 in the FORM file's
 header, written 17:52 ET before any F1 code and before any of the author's R8 or main-run logs were seen; the author's yes
 19:36 ET, after those runs were in. The F0 program with K(φ), the gauge factor, and one more module that writes the covariant
 derivative of the first-derivative coefficient; Python does the 11 × 11 conversion to ω, E, Ω.
 
-**Sandbox result.** F1.1–F1.6 hold on twelve fresh backgrounds. **F1.8, the two methods on the new case:** on the author's 22
+**Result (sandbox and the author's run alike).** F1.1–F1.6 hold on twelve fresh backgrounds. **F1.8, the two methods on the new case:** on the author's 22
 backgrounds (regenerated from each log's seed; the probes' data read from the checkpoints) FORM's S, first-derivative
 coefficient, E (11 × 11) and Tr Ω² equal the jet probes' entry by entry at c = 0, 2 and 1, and at c ≠ 1 FORM's pointwise total
 equals the number in the log. **F1.7:** from FORM's operator the R8 fit gives α = 203/320, b = 0, g = 7/12, zero residuals at
