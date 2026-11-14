@@ -18,14 +18,14 @@ Nakanishi (June) 1971,NB-1 pair bubble: the Lorentz breaking is intrinsic to a H
 't Hooft & Veltman 1974,HV-1 one-loop divergence: master formula for a general second-order operator (3.40),N,N,X,N,N,N,N,N,X,N,N,O,X,N,N,N,N,N,N,N,N,X,X,N
 't Hooft & Veltman 1974,"HV-2 one-loop divergence: the Riemann-squared term is never needed (Gauss-Bonnet, App. B)",N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 't Hooft & Veltman 1974,"HV-3 one-loop divergence, scalar on a classical background: the logarithmic order is quadratic in curvature (coefficients of R^2, Ric^2)",X,X,X,N,N,N,N,N,X,X,N,O,X,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-4 fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N,N
-'t Hooft & Veltman 1974,HV-5 ghost operator: gravity + scalar (5.19),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N,N
+'t Hooft & Veltman 1974,HV-4 fluctuation operator: gravity + scalar in the background-field gauge (4.27)-(4.33),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N,X
+'t Hooft & Veltman 1974,HV-5 ghost operator: gravity + scalar (5.19),N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,X,X,N,N,N,X
 't Hooft & Veltman 1974,"HV-6 one-loop divergence: ghost contribution, gravity + scalar (5.21)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N,N
 't Hooft & Veltman 1974,"HV-7 one-loop divergence: gravity + scalar total, off shell (5.22)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N,N
 't Hooft & Veltman 1974,"HV-8 one-loop divergence: pure gravity, off shell (5.24)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,"HV-9 one-loop divergence: gravity + scalar on shell is (203/80) R^2, not removable (6.5)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N,N
+'t Hooft & Veltman 1974,"HV-9 one-loop divergence: gravity + scalar on shell is (203/80) R^2, not removable (6.5)",N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,X,N,N,N,N,N
 't Hooft & Veltman 1974,HV-10 one-loop divergence: pure gravity on shell vanishes (6.6),N,N,X,N,N,N,N,N,N,X,N,O,N,N,N,N,N,N,N,N,N,N,N,N
-'t Hooft & Veltman 1974,HV-11 one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7),N,N,N,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,O,X,O,O
+'t Hooft & Veltman 1974,HV-11 one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7),N,N,N,N,N,N,N,N,N,X,N,N,N,N,N,N,N,N,N,N,O,X,X,O
 't Hooft & Veltman 1974,"HV-12 S-matrix: independent of the choice of basic fields, Jacobian one in dimensional regularization (p. 70)",O,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 't Hooft & Veltman 1974,"HV-13 one-loop divergence, scalar on a classical background: adding (1/12) R phi^2 removes the R^2 term (p. 79-80)",N,N,N,N,N,N,N,N,X,X,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 Deser & van Nieuwenhuizen 1974,"DN-1 one-loop divergence: Einstein-Maxwell on shell is (137/60) Ric^2, not removable",N,N,O,N,N,N,N,N,N,O,N,N,N,N,N,N,N,N,N,N,N,N,N,N

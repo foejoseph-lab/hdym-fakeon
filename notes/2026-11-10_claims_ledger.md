@@ -189,18 +189,19 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method (the on-shell substitution is one line in hv1974_gravscalar_M.py, hand-checked)
   - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): hv1974_gravscalar_M.log
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
+  - X — second variation of the action by jet probes (2026): class710_r8_c0.log, class710_r8_c2.log (status=PASS, five on-shell backgrounds each, the a = 1/12 theory, which on shell is step 3's): the coefficient of ((d phi)^2)^2 is 203/320 at gauge coefficient c = 0 and c = 2 as at c = 1, Gauss-Bonnet coefficient 7/12 at each; the first test here that (6.5) does not depend on the gauge, within the family C = D.h - 1/2 D tr h - c K phi d phi. Three values of a quartic in c
 - **one-loop divergence: gravity + scalar total, off shell (5.22)**
   - papers: 't Hooft & Veltman 1974 (`HV-7`): holds except one coefficient: (Box phi)^2 is 1/2, the printed 2 is a slip
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_gravscalar.log: the map from operator to divergence only, pointwise on four backgrounds. No coefficient fit and no on-shell number by this method
   - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): hv1974_gravscalar_M.log
   - O — generalized Schwinger-DeWitt (Barvinsky-Vilkovisky) (1985): when the chronology reaches 1985
 - **one-loop divergence: gravity + scalar with the improved tensor (a = 1/12) is of no simple form (section 7)**
-  - papers: 't Hooft & Veltman 1974 (`HV-11`): open; prediction on record: on shell it is (6.5) in the redefined field
-  - O — 't Hooft-Veltman algorithm, formula (3.40) (1974): the paper's own route: the algorithm applied to the a = 1/12 Lagrangian in its gauge. Would add a test of gauge independence on shell
+  - papers: 't Hooft & Veltman 1974 (`HV-11`): not testable as printed: section 7 gives no result, no gauge, and does not say on or off shell (read 13 Nov). Here, in the image of gauge (4.27): on shell it is (6.5) in the redefined field for every a tested (a = 1/12 is not special on shell); off shell the extra terms have a-dependent coefficients
+  - X — 't Hooft-Veltman algorithm, formula (3.40) (1974): class710_operator_derive.log (status=PASS, 12 backgrounds, all 176 base fields): (3.40) on the operator of the class (7.10) in the image of gauge (4.27). On shell (203/320) K^2 ((d phi)^2)^2 for a = 1/12, 0, 1/6, 1, 1/2 and for free K jets; off shell (5.22) in the new variables plus 1/4 k1 beta (R/6 - K u^2) + 1/16 k1^2 beta^2. The paper prints no gauge and no result (read 13 Nov), so this is the paper's class and algorithm, not a reproduction. NOT a test of gauge independence: in this gauge the operator is step 3's by construction (the earlier wording of this cell was wrong)
   - O — Weyl map checked as a pointwise identity (2026): weyl_map_check.log (status=PASS): the map and the constant sqrt(12) only. The divergence itself is not computed
   - X — conjugation of the original operator by the Jacobian of a linear field redefinition (2026): improved_tensor_conjugation.log (status=PASS, all 165 base fields): on shell the ungauged second variation is the step 3 operator conjugated. The divergence (203/320) K^2 ((d phi)^2)^2 is carried over from step 3 by argument (gauge term and ghosts taken over, the local Jacobian dropped as in row HV-12). No divergence is computed by this method
-  - O — operator coefficient fields by jet probes with the background translated to first order (2026): route 2, first method: the paper's non-canonical scalar and gauge, operator by translated probes, then (3.40) with its first-derivative term
-  - O — symbolic derivation of the operator in FORM (2026): route 2, second method
+  - X — operator coefficient fields by jet probes with the background translated to first order (2026): class710_operator_derive.log (status=PASS): the gauge-fixed 11-component operator with its first-derivative term from the Lagrangian alone; S, omega, E, Tr Omega^2 as predicted on 12 backgrounds, Laplace type on all 110 quadratic base fields. First-order data by expansion one order higher in y; six base fields also by translation, identical (two more in each R8 run)
+  - O — symbolic derivation of the operator in FORM (2026): route 2, second method: form/class710_operator.frm and form_class710_check.py written and PASS in the sandbox 13 Nov (FORM against the jet probes entry by entry on the author's 22 backgrounds, at c = 0, 1, 2). The author's run pending
 - **one-loop divergence: master formula for a general second-order operator (3.40)**
   - papers: 't Hooft & Veltman 1974 (`HV-1`): holds, as half the heat-kernel coefficient modulo Gauss-Bonnet
   - X — DeWitt recursion in normal coordinates (1965): rung3_dewitt_bundle.log: scalar, vector, Maxwell. The vector bundle-curvature coefficient confirmed in combination only
@@ -231,10 +232,12 @@ residues in `bubble/`, and were reused in rung 3 for DeWitt's recursion and the 
   - papers: 't Hooft & Veltman 1974 (`HV-4`): holds, on shell and off shell
   - X — second variation of the action by jet probes (2026): graviton_operator_derive.log, gravscalar_operator_derive*.log
   - X — hand derivation by an independent reviewer (2026): two fresh reviews, 9 Nov
+  - X — symbolic derivation of the operator in FORM (2026): form_operator_check.log (status=PASS, the author's run 13 Nov): FORM derives the gauge-fixed operator from the action and four identities of tensor calculus, gauge coefficient a symbol; at c = 1 it equals build_E on three backgrounds; controls (commutator sign, sqrt(g)) break it. Four details of the program change nothing on this Lagrangian and are untested (the reader's header)
 - **ghost operator: gravity + scalar (5.19)**
   - papers: 't Hooft & Veltman 1974 (`HV-5`): holds; the factor -2 and the complex ghost are taken, not derived
   - X — second variation of the action by jet probes (2026): ghost_operator_derive*.log
   - X — hand derivation by an independent reviewer (2026): fresh review, 9 and 10 Nov
+  - X — symbolic derivation of the operator in FORM (2026): form_operator_check.log (status=PASS): the ghost operator Box eta + (Ric - c v v) eta from the gauge condition, by FORM
 
 ### pair bubble
 
@@ -364,14 +367,14 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 | 't Hooft & Veltman 1974, `HV-1` | · | · | X | · | · | · | · | · | X | · | · | O | X | · | · | · | · | · | · | · | · | X | X | · |
 | 't Hooft & Veltman 1974, `HV-2` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-3` | X | X | X | · | · | · | · | · | X | X | · | O | X | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-5` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-4` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · | X |
+| 't Hooft & Veltman 1974, `HV-5` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | X | X | · | · | · | X |
 | 't Hooft & Veltman 1974, `HV-6` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-7` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-8` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-9` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
+| 't Hooft & Veltman 1974, `HV-9` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | X | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-10` | · | · | X | · | · | · | · | · | · | X | · | O | · | · | · | · | · | · | · | · | · | · | · | · |
-| 't Hooft & Veltman 1974, `HV-11` | · | · | · | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | O | X | O | O |
+| 't Hooft & Veltman 1974, `HV-11` | · | · | · | · | · | · | · | · | · | X | · | · | · | · | · | · | · | · | · | · | O | X | X | O |
 | 't Hooft & Veltman 1974, `HV-12` | O | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | 't Hooft & Veltman 1974, `HV-13` | · | · | · | · | · | · | · | · | X | X | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
 | Deser & van Nieuwenhuizen 1974, `DN-1` | · | · | O | · | · | · | · | · | · | O | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
@@ -395,7 +398,7 @@ Column key: **ptime** = Schwinger proper time on the graphs (1951); **cutoff** =
 
 (· stands for N, to keep the marks visible.)
 
-Counts: X 78, X* 3, S 0, O 35, N 988; 46 claims, 24 methods.
+Counts: X 83, X* 3, S 0, O 33, N 985; 46 claims, 24 methods.
 
 ## 4. Needing backing
 

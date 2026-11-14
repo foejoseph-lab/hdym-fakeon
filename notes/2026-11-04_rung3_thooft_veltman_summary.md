@@ -449,7 +449,7 @@ formula — a different kind of computation from numerical probing, and the desc
 section. FORM 4.3.1 builds from source in the sandbox and has run a one-line test there; **nothing of the physics has been done in
 FORM yet.** The author has WSL with Ubuntu ready (FORM 5.0's paper, arXiv 2601.19982, lists native Windows support under deprecations).
 
-## 4j. §7 by route 2, the class (7.10) computed directly (13 Nov; sandbox smokes only; the author's runs pending; fresh review: see the script header)
+## 4j. §7 by route 2, the class (7.10) computed directly (13 Nov; the author's three runs PASS, below; fresh review in the script header)
 
 **§7 read from the print (13 Nov, pp. 88–90 as images; (7.8)–(7.9) also read by the author).** Corrections to §1 above and to brief 21:
 the metric alone is rescaled (7.7), the scalar is *not* redefined; the result (7.9) is filed under the class (7.10),
@@ -485,8 +485,22 @@ first background and fails if they differ (two agreed exactly in the smoke).
 and three total derivatives, so one number, α, is gauge invariant. Predicted α = 203/320 at c = 0 and c = 2. Needs five on-shell
 backgrounds per c: the author's machine. The literal gauge (no K) at K′ ≠ 0 is not tested by this.
 
-**Pending:** the author's three runs (header); then the ledger cells from the logs; then the second method in FORM, starting on
-the known case.
+**The author's runs (13 Nov evening, pushed 19:31 ET; python 3.12.5, sympy 1.13.1, python-flint 0.9.0, 16 workers).**
+
+| log | what | result |
+|---|---|---|
+| `class710_operator_derive.log` | c = 1; a = 1/12, free K jets (5, 3, 1), a = 0, 1/6, 1, 1/2; one on-shell and one off-shell background each; all 176 base fields; 4159 s | **PASS**: R1, R2, R3, R5, R6 on all 12, R7 on the 6 on shell — the total less (7/12)·Gauss–Bonnet and the Ricci-identity term is (203/320)K²(u²)² for every case; Laplace type on all 110 quadratic base fields; six base fields by translation identical to 'expand' |
+| `class710_r8_c0.log` | c = 0, a = 1/12, five on-shell backgrounds; 1234 s | **PASS**: α = 203/320, g = 7/12, b = 0, C = 1/12, residual 0; 60 nonzero first-derivative entries (4 at c = 1) |
+| `class710_r8_c2.log` | c = 2, the same; 1333 s | **PASS**: α = 203/320, g = 7/12, b = 0, C = 25/12, residual 0 |
+
+So: (i) on shell the §7 class gives (6.5) in the redefined field for every a tested, a = 1/12 included and not special — in the
+image of gauge (4.27), where that is the code and the algebra, not physics beyond step 3; (ii) the on-shell number does not move
+with the gauge coefficient at c = 0, 1, 2, while the pointwise totals, the first-derivative terms and the Ricci-identity
+coefficient C do — the first test in this project that (6.5) does not depend on the gauge, within one family and at three
+points of a quartic; (iii) the Gauss–Bonnet coefficient, which was a question, stayed 7/12. Timing: 50–58 s per 'expand' base
+field under full load (39 s in a light smoke), about 3.5–6 minutes per background; my first forecast (8½ hours) was four times
+too long because it carried over the 4–5× slowdown of the route 1 run, which did not recur.
+
 
 ## 4k. FORM beside the jet probes, on the known case first (13 Nov evening; sandbox only; the author's run pending)
 
@@ -506,6 +520,21 @@ c = 1 and are proportional to (1 − c); the algebraic part at c = 1 equals `bui
 about the physics: every number was known. What is new is a formula in c, which the jet probes can only sample.
 
 **Next:** F1, the class (7.10) with K(φ) and symbolic c, with its own header.
+
+## 4l. FORM on the class (7.10), stage F1 (13 Nov evening; sandbox PASS against the author's logs and checkpoints; his own run of the reader pending)
+
+`graviton_loop/form/class710_operator.frm` and `graviton_loop/form_class710_check.py`. Predictions F1.1–F1.10 in the FORM file's
+header, written 17:52 ET before any F1 code and before any of the author's R8 or main-run logs were seen; the author's yes
+19:36 ET, after those runs were in. The F0 program with K(φ), the gauge factor, and one more module that writes the covariant
+derivative of the first-derivative coefficient; Python does the 11 × 11 conversion to ω, E, Ω.
+
+**Sandbox result.** F1.1–F1.6 hold on twelve fresh backgrounds. **F1.8, the two methods on the new case:** on the author's 22
+backgrounds (regenerated from each log's seed; the probes' data read from the checkpoints) FORM's S, first-derivative
+coefficient, E (11 × 11) and Tr Ω² equal the jet probes' entry by entry at c = 0, 2 and 1, and at c ≠ 1 FORM's pointwise total
+equals the number in the log. **F1.7:** from FORM's operator the R8 fit gives α = 203/320, b = 0, g = 7/12, zero residuals at
+c = −1, 0, ½, 1, 2, 3; α(c) is at most a quartic, so within this gauge family it is constant — given FORM's operator (tested
+against the probes at c = 0, 1, 2) and the degree count. For the record C = (c² + 10c + 1)/12 at all six. Controls: without K in
+the gauge term, with the commutator reversed, or with D_nB^m left out of the conversion, the match breaks.
 
 **Record (rule 11): patch 0015 deleted §5 of this note.** My edit script for §4d cut the file at the paragraph it was replacing and
 dropped everything after it — the four lines of §5 below. Found while writing this section; restored here verbatim from 459e826.
