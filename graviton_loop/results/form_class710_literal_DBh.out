@@ -1,0 +1,3 @@
+ - W(ia,jn)*d_(ib,jm)*c*pp + W(ib,jn)*d_(ia,jm)*pp*K - 1/2*W(jm,jn)*d_(ia,ib)*
+      pp*K + 1/2*W(jm,jn)*d_(ia,ib)*c*pp + v(ib)*v(jn)*d_(ia,jm)*pp*K1 - 1/2*
+      v(jm)*v(jn)*d_(ia,ib)*pp*K1

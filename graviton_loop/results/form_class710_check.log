@@ -1,0 +1,37 @@
+# form_class710_check: seed 20261114, 3 backgrounds per kind, reading C:\GitHub\hdym-fakeon\graviton_loop\results
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+#   form/class710_operator.frm as it is now: sha1 25a61584cdc0
+# step 3's total on the eight structures: {'R2': 143/240, 'Ric2': -79/40, 'Riem2': 7/12, 'Rv2': 1/12, 'Ricvv': 1, 'v4': 1/2, 'trW2': -1/2, 'WW': 1}; on shell 203/320 (v^2)^2   [2 s]
+## TAG main: (39, 13, 7, 8, 10) terms (h equation, scalar equation, ghost, D B for h, D B for the scalar); symbols ['K', 'K1', 'K2', 'c', 'p', 'pp']; tensors ['H1', 'R', 'Ric', 'S2', 'SE2', 'W', 'd_', 'eta', 'h', 'hh', 'p1', 'pS2', 'v']
+   free K jets, off shell 0: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   free K jets, off shell 1: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   free K jets, off shell 2: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   free K jets, on shell 0: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+   free K jets, on shell 1: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+   free K jets, on shell 2: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+   a = 1/12, off shell 0: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   a = 1/12, off shell 1: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   a = 1/12, off shell 2: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True
+   a = 1/12, on shell 0: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+   a = 1/12, on shell 1: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+   a = 1/12, on shell 2: F1.1 True;  F1.2 True (56 mixing entries at order c);  F1.3 E == R3's prediction and Tr Omega^2 == step 3's: True;  F1.4 K2 drops out of E: True;  F1.5 ghost: True;  F1.6 total == R6's formula: True; R7 remainder = (203/320) K^2 (u^2)^2: True
+F1.1 PASS   F1.2 PASS   F1.3 PASS   F1.4 PASS   F1.5 PASS   F1.6 PASS   [8 s]
+## F1.7  the gauge coefficient, by FORM: six on-shell backgrounds (a = 1/12), four fitted and two for the residual
+   c = -1: alpha = 203/320, b = 0, C = -2/3, g = 7/12, residuals [0, 0]: PASS
+   c = 0: alpha = 203/320, b = 0, C = 1/12, g = 7/12, residuals [0, 0]: PASS
+   c = 1/2: alpha = 203/320, b = 0, C = 25/48, g = 7/12, residuals [0, 0]: PASS
+   c = 1: alpha = 203/320, b = 0, C = 1, g = 7/12, residuals [0, 0]: PASS
+   c = 2: alpha = 203/320, b = 0, C = 25/12, g = 7/12, residuals [0, 0]: PASS
+   c = 3: alpha = 203/320, b = 0, C = 10/3, g = 7/12, residuals [0, 0]: PASS
+F1.7 PASS: alpha is the same at six values of c; alpha(c) is at most a quartic (E and Omega are quadratic in c, the ghost linear), so it is constant in this family -- given FORM operator and that degree count   [12 s]
+## F1.8  FORM against the jet probes on the author's runs
+   class710_r8_c0.log (c = 0, its own status=PASS, code version e631f8b77425): 5 backgrounds regenerated from its seed; S (FORM's second-derivative part), the first-derivative coefficient, E (11 x 11), Tr Omega^2, the ghost and the logged pointwise total by FORM == by the jet probes: all identical
+   class710_r8_c2.log (c = 2, its own status=PASS, code version e631f8b77425): 5 backgrounds regenerated from its seed; S (FORM's second-derivative part), the first-derivative coefficient, E (11 x 11), Tr Omega^2, the ghost and the logged pointwise total by FORM == by the jet probes: all identical
+   class710_operator_derive.log (c = 1, its own status=PASS, code version e631f8b77425): 12 backgrounds regenerated from its seed; S (FORM's second-derivative part), the first-derivative coefficient, E (11 x 11), Tr Omega^2, the ghost by FORM == by the jet probes: all identical
+F1.8 PASS (22 backgrounds)   [26 s]
+## F1.9  controls
+F1.9 control: D_n B^m left out of the conversion: F1.3 breaks, as it must
+F1.9 control literal (the gauge without K): breaks ['f12', 'f13', 'f15', 'f16']: as it must
+F1.9 control flip (the commutator's sign reversed): breaks ['f13', 'f15', 'f16']: as it must
+status=PASS
+END form_class710_check 43 s

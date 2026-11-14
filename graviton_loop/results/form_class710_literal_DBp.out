@@ -1,0 +1,3 @@
+W(jm,jn)*pp*K1 + 1/2*W(jm,jn)*hh(N1_?,N1_?)*K - 1/2*W(jm,jn)*hh(N1_?,N1_?)*c
+       - W(jn,N1_?)*hh(jm,N1_?)*K + W(jn,N1_?)*hh(jm,N1_?)*c - hh(jm,N1_?)*v(
+      jn)*v(N1_?)*K1 + 1/2*hh(N1_?,N1_?)*v(jm)*v(jn)*K1 + v(jm)*v(jn)*pp*K2
