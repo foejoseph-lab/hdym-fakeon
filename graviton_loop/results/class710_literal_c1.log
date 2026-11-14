@@ -1,0 +1,82 @@
+# class710_operator_derive: seed 20261113, cases 1/12, phi0 = 1/2, 5 on-shell + 1 off-shell backgrounds per case, c = 1, gauge literal, mode min, method expand, crosscheck 2, mutate none, jobs 16
+# code version e631f8b77425 (hash of this script and its three imports; part of every checkpoint key)
+# versions: python 3.12.5 (Windows AMD64), sympy 1.13.1, python-flint 0.9.0; C:\Users\Owner\AppData\Local\Programs\Python\Python312\python.exe
+# step 3's total on the eight structures (fitted here from hv1974_gravscalar_M, residuals zero: True): {'R2': 143/240, 'Ric2': -79/40, 'Riem2': 7/12, 'Rv2': 1/12, 'Ricvv': 1, 'v4': 1/2, 'trW2': -1/2, 'WW': 1}
+#   after its two reductions: {'R2': 1/80, 'Ric2': 43/120, 'Rv2': 1/12, 'v4': 1/2, 'trW2': 1/2};  on shell: 203/320 (v^2)^2   [2 s]
+
+## a = 1/12 on shell 0: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 4128/2209, u^2 = 43/12, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 0: 20/68 base fields  [122 s]
+   a = 1/12 on shell 0: 40/68 base fields  [188 s]
+   a = 1/12 on shell 0: 60/68 base fields  [262 s]
+   a = 1/12 on shell 0: 68/68 base fields  [362 s]
+   timing: expand: 55 tasks, mean 58.2 s, sum 3200 s; plain: 11 tasks, mean 35.8 s, sum 394 s; translate: 2 tasks, mean 323.9 s, sum 648 s
+   cross-check, first-order data by 'translate' and by 'expand' on 2 base fields: identical
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 95223492209689253/32379220869120
+   -> a = 1/12, on shell 0: cross ok, R1 ok, R5 ok   [363 s]
+
+## a = 1/12 on shell 1: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 15392/2209, u^2 = 481/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 1: 20/66 base fields  [482 s]
+   a = 1/12 on shell 1: 40/66 base fields  [542 s]
+   a = 1/12 on shell 1: 60/66 base fields  [590 s]
+   a = 1/12 on shell 1: 66/66 base fields  [603 s]
+   timing: expand: 55 tasks, mean 57.6 s, sum 3170 s; plain: 11 tasks, mean 37.0 s, sum 407 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 80475990118352453/72853246955520
+   -> a = 1/12, on shell 1: R1 ok, R5 ok   [604 s]
+
+## a = 1/12 on shell 2: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 17696/2209, u^2 = 553/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 2: 20/66 base fields  [718 s]
+   a = 1/12 on shell 2: 40/66 base fields  [782 s]
+   a = 1/12 on shell 2: 60/66 base fields  [827 s]
+   a = 1/12 on shell 2: 66/66 base fields  [840 s]
+   timing: expand: 55 tasks, mean 56.7 s, sum 3118 s; plain: 11 tasks, mean 36.7 s, sum 404 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 40185125956976561/36426623477760
+   -> a = 1/12, on shell 2: R1 ok, R5 ok   [841 s]
+
+## a = 1/12 on shell 3: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 11936/2209, u^2 = 373/36, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 3: 20/66 base fields  [959 s]
+   a = 1/12 on shell 3: 40/66 base fields  [1022 s]
+   a = 1/12 on shell 3: 60/66 base fields  [1074 s]
+   a = 1/12 on shell 3: 66/66 base fields  [1087 s]
+   timing: expand: 55 tasks, mean 58.7 s, sum 3229 s; plain: 11 tasks, mean 39.8 s, sum 438 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 1223090253955380413/291412987822080
+   -> a = 1/12, on shell 3: R1 ok, R5 ok   [1088 s]
+
+## a = 1/12 on shell 4: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 8064/2209, u^2 = 7, beta = 0, delta = 0; field equations hold at 0: True
+   a = 1/12 on shell 4: 20/66 base fields  [1208 s]
+   a = 1/12 on shell 4: 40/66 base fields  [1270 s]
+   a = 1/12 on shell 4: 60/66 base fields  [1316 s]
+   a = 1/12 on shell 4: 66/66 base fields  [1328 s]
+   timing: expand: 55 tasks, mean 58.0 s, sum 3188 s; plain: 11 tasks, mean 36.4 s, sum 400 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 236758119771101387/72853246955520
+   -> a = 1/12, on shell 4: R1 ok, R5 ok   [1329 s]
+
+## a = 1/12 off shell 0: K jets (2304/2209, 18432/103823, 1953792/4879681), k1 = 8/47; R = 163/36, u^2 = 7, beta = 291/94, delta = 582/2209; field equations hold at 0: False
+   a = 1/12 off shell 0: 20/66 base fields  [1430 s]
+   a = 1/12 off shell 0: 40/66 base fields  [1484 s]
+   a = 1/12 off shell 0: 60/66 base fields  [1526 s]
+   a = 1/12 off shell 0: 66/66 base fields  [1538 s]
+   timing: expand: 55 tasks, mean 49.5 s, sum 2725 s; plain: 11 tasks, mean 33.2 s, sum 366 s
+   R1  S = diag(P, K0) with d_c S = K1 u_c on the scalar only: True;  nonzero first-derivative entries of the raw operator: 60;  omega_m = 1/2 k1 u_m on the scalar only: False
+   (c = 1, gauge literal: R2, R3, R6, R7 are not predictions here; for the record: Tr Omega^2 == step 3's: False; E == the c = 1 prediction: False)
+   R5  ghost: unit second-derivative part True, no first-derivative terms True, E_gh == Ric - (1) u u: True
+   (3.40) total, pointwise: 4140304086601543/9713766260736
+   -> a = 1/12, off shell 0: R1 ok, R5 ok   [1539 s]
+
+predictions R1-R7 are written for the image gauge with c = 1 and no mutation; this run is not that: every check held
+status=INCOMPLETE (PASS needs --mode all or min, and an on-shell and an off-shell background; with --r8, one case and five on-shell backgrounds; a run at c != 1, in the literal gauge or with --mutate tests no prediction without --r8)
+END class710_operator_derive 1539 s
