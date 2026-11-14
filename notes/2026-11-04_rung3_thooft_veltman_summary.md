@@ -595,7 +595,7 @@ guess). The letter's (7) is the same 137/60.
 - (4.11)–(4.12) assemble to (4.13) under (4.1), with c₅ = c₈ = 0 and the (D_αF_βγ)² terms cancelling (−3/8 + 3/8), which is c₆ = 0.
 - (4.13) at F = 0 is this project's h-loop plus the vector in Feynman gauge: (7/12 + 7/60, 7/24 − 1/40) = (84/120, 32/120).
 - (4.15) is (5.21) at φ̃ = 0 plus one complex minimal scalar: (7/30 + 1/60, 17/60 + 1/120) = (¼, 7/24).
-- (4.16a) at F = 0 is (5.24) plus Maxwell of step 1: (7/20 + 1/10, 1/120 − 1/30) = (9/20, −1/40).
+- (4.16a) at F = 0 is 't Hooft–Veltman's (5.24) plus Maxwell of step 1: (7/20 + 1/10, 1/120 − 1/30) = (9/20, −1/40).
 - 9/20 − 2·(1/6) + 4·(13/24) = 137/60.
 So the curvature-only part of the paper is already two-method in this repository; **what step 3c adds is three numbers and three
 zeros: c₇ = 1/6, c₄ = 13/24, c₉ = 1/6, c₅ = c₆ = c₈ = 0**, and with them 137/60 = 9/20 − 1/3 + 13/6.
@@ -603,7 +603,7 @@ zeros: c₇ = 1/6, c₄ = 13/24, c₉ = 1/6, c₅ = c₆ = c₈ = 0**, and with 
 **Misprints and differences found.**
 - The letter prints **c₂ = −29/10**; the paper prints −1/40, and −1/40 is what (4.13) + (4.15) and this project's own numbers
   give. No effect on shell (R = 0). Read at 500 dpi.
-- (A6), the pure graviton loop, prints (7/20)I₂ + **(5/14)**I₀; (5.24) is (7/20)I₂ + (1/8)I₀ (I₂ = Ric² − R²/3, I₀ = R²).
+- (A6), the pure graviton loop, prints (7/20)I₂ + **(5/14)**I₀; 't Hooft–Veltman's (5.24), R²/120 + (7/20)Ric², is (7/20)I₂ + (1/8)I₀ (I₂ = Ric² − R²/3, I₀ = R²).
   Perhaps 5/40. (A4) photon (1/10)I₂ and (A7) scalar (1/120)I₂ + (1/144)I₀ agree with steps 1–2.
 - (5.4) prints λκ⁻⁴(43/60) and κ⁻²R(43/120) where the arithmetic of (5.3) gives λ²κ⁻⁴(43/60) = λκ⁻²R(43/120): a λ short in each.
 
@@ -625,7 +625,9 @@ zeros: c₇ = 1/6, c₄ = 13/24, c₉ = 1/6, c₅ = c₆ = c₈ = 0**, and with 
 - Footnote 7: another function of the metric could define the expansion "without altering the conclusions". Footnote 9: L₂'s
   form and the ghosts change with the gauge, "but the total S matrix is gauge-invariant". Both asserted.
 
-**For the header of step 3c (to be shown to the author before any code).**
+**For the header of step 3c (to be shown to the author before any code; written 13 Nov 22:37 ET as the docstring of
+`graviton_loop/einstein_maxwell_operator_derive.py`, header only, with the protocol for run-against-print differences the author
+agreed at 22:35 ET, and the c·F_μν a^ν family as stage B — ours, not in the paper, outside that protocol).**
 1. Target: (4.16a) coefficient by coefficient in DvN's own gauge (3.1), then (4.16b). The operator from the action by the
    first-order jet probes (14 components, 10 + 4; the ghosts apart) and by FORM; (3.40) with its first-derivative term.
 2. Predictions that are not the paper's numbers: the ghost sector is F-independent (triangular); the vector ghost's E and the
